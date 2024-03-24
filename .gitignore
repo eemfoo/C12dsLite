@@ -5,6 +5,8 @@
 # IntelliJ
 .idea
 
+/renders
+
 # Roomie sprite breakdowns
 # should be defined in other sprite folders hopefully
 Map/*.png
