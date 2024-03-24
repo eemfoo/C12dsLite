@@ -1,0 +1,20 @@
+# macOS junk files
+**/.DS_Store
+**/._*
+
+# IntelliJ
+.idea
+
+# Roomie sprite breakdowns
+# should be defined in other sprite folders hopefully
+Map/*.png
+
+# Temp CAOS files
+CAOS/*.cosx
+
+# Unbounded Ignore
+**.ignore.*
+
+# macOS/bedalton build commands
+*.macos.sh
+*.command
