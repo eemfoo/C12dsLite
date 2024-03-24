@@ -1,0 +1,21 @@
+
+# Text Files
+* text=auto
+*.[Cc][Oo][Ss] eol=crlf
+*.[Aa][Tt][Tt] eol=crlf
+*.[Cc][Aa][Tt][Aa][Ll][Oo][Gg][Uu][Ee] eol=crlf
+
+# Agent Bundles
+*.[Cc][Oo][Bb] binary
+*.[Aa][Gg][Ee][Nn][Tt][Ss]? binary
+
+# Images 
+*.[Pp][Nn][Gg] binary
+*.[Jj][Pp][e]?[Gg] binary
+*.[Gg][Ii][Ff] binary
+*.[Bb][Mm][Pp] binary
+*.[Ss][Pp][Rr] binary
+*.[SsCc]16 binary
+*.[Bb][Ll][Kk] binary
+*.[Aa][Ff][Dd][Ee][Ss][Ii][Gg][Nn] binary
+*.[Aa][Ff][Pp][Hh][Oo][Tt][Oo] binary
