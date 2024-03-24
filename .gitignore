@@ -9,7 +9,8 @@
 
 # Roomie sprite breakdowns
 # should be defined in other sprite folders hopefully
-Map/*.png
+map/*.png
+map/*.c16
 
 # Temp CAOS files
 CAOS/*.cosx
