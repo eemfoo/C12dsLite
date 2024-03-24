@@ -1,0 +1,24 @@
+# https://github.com/marketplace/actions/github-script
+# https://github.com/orgs/community/discussions/25389#discussioncomment-3247738
+
+name: Label and assign issues when commented
+on: 
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  assign_issue:
+    if: github.event_name == 'issue_comment' && contains(github.event.comment.body, '/assign-me')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign the comment author
+        uses: takanome-dev/assign-issue-action@v2.0.0
+        with:
+          github_token: '${{ secrets.GITHUB_TOKEN }}'
+          trigger: '/assign-me' # you can change the default trigger to something else
+          required_label: ''  # if present, the issue must have this label to be assigned
+          assigned_label: 'self-assigned'
+          assigned_comment: "Hey @{{ comment.user.login }}, thanks for taking on this task"
+          pin_label: ''
+          days_until_unassign: 0
+          
