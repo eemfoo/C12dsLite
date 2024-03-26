@@ -1,0 +1,942 @@
+***ROOMIE_START***
+
+*ROOMIE Expand map size
+mapd 200000 200000
+
+*ROOMIE Create new metaroom
+setv va01 addm 770 18000 4736 1280 "c12dsl"
+  setv va00 addr va01 1292 1440 18745 18745 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_0" va00
+  setv va00 addr va01 1440 1561 18745 18745 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_1" va00
+  setv va00 addr va01 1561 1725 18745 18745 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_2" va00
+  setv va00 addr va01 1725 1866 18745 18745 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_3" va00
+  setv va00 addr va01 1866 1971 18745 18745 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_4" va00
+  setv va00 addr va01 1971 2038 18745 18745 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_5" va00
+  setv va00 addr va01 1182 1292 18800 18745 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_6" va00
+  setv va00 addr va01 1090 1182 18800 18800 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_7" va00
+  setv va00 addr va01 975 1090 18800 18800 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_8" va00
+  setv va00 addr va01 867 975 18800 18800 18926 18926
+    rtyp va00 3
+    setv game "map_tmp_9" va00
+  setv va00 addr va01 1481 1560 18603 18603 18735 18735
+    rtyp va00 3
+    setv game "map_tmp_10" va00
+  setv va00 addr va01 1560 1724 18603 18604 18735 18737
+    rtyp va00 3
+    setv game "map_tmp_11" va00
+  setv va00 addr va01 1724 1793 18604 18604 18737 18737
+    rtyp va00 3
+    setv game "map_tmp_12" va00
+  setv va00 addr va01 1840 1988 18532 18541 18737 18737
+    rtyp va00 4
+    setv game "map_tmp_13" va00
+  setv va00 addr va01 1793 1827 18604 18642 18737 18737
+    rtyp va00 3
+    setv game "map_tmp_14" va00
+  setv va00 addr va01 868 977 18605 18605 18786 18786
+    rtyp va00 3
+    setv game "map_tmp_15" va00
+  setv va00 addr va01 977 1093 18605 18605 18786 18786
+    rtyp va00 3
+    setv game "map_tmp_16" va00
+  setv va00 addr va01 1093 1182 18605 18605 18786 18786
+    rtyp va00 3
+    setv game "map_tmp_17" va00
+  setv va00 addr va01 897 990 18483 18406 18592 18592
+    rtyp va00 3
+    setv game "map_tmp_18" va00
+  setv va00 addr va01 990 1094 18406 18406 18592 18592
+    rtyp va00 3
+    setv game "map_tmp_19" va00
+  setv va00 addr va01 1094 1182 18406 18406 18592 18592
+    rtyp va00 3
+    setv game "map_tmp_20" va00
+  setv va00 addr va01 1182 1266 18406 18406 18592 18592
+    rtyp va00 5
+    setv game "map_tmp_21" va00
+  setv va00 addr va01 1266 1359 18406 18406 18592 18592
+    rtyp va00 5
+    setv game "map_tmp_22" va00
+  setv va00 addr va01 1359 1468 18406 18406 18592 18592
+    rtyp va00 5
+    setv game "map_tmp_23" va00
+  setv va00 addr va01 1468 1560 18406 18406 18592 18592
+    rtyp va00 4
+    setv game "map_tmp_24" va00
+  setv va00 addr va01 1560 1724 18406 18406 18592 18592
+    rtyp va00 4
+    setv game "map_tmp_25" va00
+  setv va00 addr va01 1724 1793 18406 18406 18592 18592
+    rtyp va00 4
+    setv game "map_tmp_26" va00
+  setv va00 addr va01 1793 1840 18406 18406 18592 18649
+    rtyp va00 4
+    setv game "map_tmp_27" va00
+  setv va00 addr va01 1203 1455 18612 18612 18712 18712
+    rtyp va00 3
+    setv game "map_tmp_28" va00
+  setv va00 addr va01 1840 1988 18406 18406 18532 18541
+    rtyp va00 0
+    setv game "map_tmp_29" va00
+  setv va00 addr va01 2038 2179 18745 18745 18926 18926
+    rtyp va00 4
+    setv game "map_tmp_30" va00
+  setv va00 addr va01 2179 2315 18745 18745 18926 18926
+    rtyp va00 4
+    setv game "map_tmp_31" va00
+  setv va00 addr va01 2315 2485 18745 18745 18926 18934
+    rtyp va00 5
+    setv game "map_tmp_32" va00
+  setv va00 addr va01 2485 2603 18745 18745 18934 18934
+    rtyp va00 5
+    setv game "map_tmp_33" va00
+  setv va00 addr va01 2603 2720 18745 18745 18934 18934
+    rtyp va00 5
+    setv game "map_tmp_34" va00
+  setv va00 addr va01 2720 2826 18745 18745 18934 18934
+    rtyp va00 5
+    setv game "map_tmp_35" va00
+  setv va00 addr va01 2826 2978 18745 18745 18934 18934
+    rtyp va00 5
+    setv game "map_tmp_36" va00
+  setv va00 addr va01 2978 3082 18745 18745 18934 18934
+    rtyp va00 5
+    setv game "map_tmp_37" va00
+  setv va00 addr va01 3082 3219 18745 18745 18934 18934
+    rtyp va00 5
+    setv game "map_tmp_38" va00
+  setv va00 addr va01 3219 3376 18745 18745 18934 18936
+    rtyp va00 5
+    setv game "map_tmp_39" va00
+  setv va00 addr va01 3376 3510 18745 18745 18936 18934
+    rtyp va00 4
+    setv game "map_tmp_40" va00
+  setv va00 addr va01 3510 3666 18745 18745 18934 18934
+    rtyp va00 4
+    setv game "map_tmp_41" va00
+  setv va00 addr va01 3666 3834 18745 18736 18934 18925
+    rtyp va00 4
+    setv game "map_tmp_42" va00
+  setv va00 addr va01 3834 4044 18736 18736 18925 18925
+    rtyp va00 4
+    setv game "map_tmp_43" va00
+  setv va00 addr va01 4044 4173 18736 18736 18925 18925
+    rtyp va00 3
+    setv game "map_tmp_44" va00
+  setv va00 addr va01 4173 4300 18736 18736 18925 18925
+    rtyp va00 3
+    setv game "map_tmp_45" va00
+  setv va00 addr va01 4300 4412 18736 18736 18925 18925
+    rtyp va00 3
+    setv game "map_tmp_46" va00
+  setv va00 addr va01 4412 4523 18736 18736 18925 18925
+    rtyp va00 7
+    setv game "map_tmp_47" va00
+  setv va00 addr va01 4523 4644 18736 18736 18925 18925
+    rtyp va00 7
+    setv game "map_tmp_48" va00
+  setv va00 addr va01 4644 4778 18736 18736 18925 18925
+    rtyp va00 7
+    setv game "map_tmp_49" va00
+  setv va00 addr va01 4778 4920 18736 18736 18925 18925
+    rtyp va00 7
+    setv game "map_tmp_50" va00
+  setv va00 addr va01 4920 5109 18736 18736 18925 18925
+    rtyp va00 7
+    setv game "map_tmp_51" va00
+  setv va00 addr va01 5109 5231 18736 18773 18925 18925
+    rtyp va00 1
+    setv game "map_tmp_52" va00
+  setv va00 addr va01 5231 5357 18773 18805 18925 18925
+    rtyp va00 1
+    setv game "map_tmp_53" va00
+  setv va00 addr va01 4920 5107 18958 18958 19132 19132
+    rtyp va00 6
+    setv game "map_tmp_54" va00
+  setv va00 addr va01 5242 5417 18950 18950 19110 19112
+    rtyp va00 8
+    setv game "map_tmp_55" va00
+  setv va00 addr va01 5155 5242 18950 18950 19064 19110
+    rtyp va00 8
+    setv game "map_tmp_56" va00
+  setv va00 addr va01 896 1011 18967 18967 19093 19093
+    rtyp va00 7
+    setv game "map_tmp_57" va00
+  setv va00 addr va01 1011 1088 18967 18967 19093 19093
+    rtyp va00 7
+    setv game "map_tmp_58" va00
+  setv va00 addr va01 1088 1185 18967 18967 19093 19093
+    rtyp va00 7
+    setv game "map_tmp_59" va00
+  setv va00 addr va01 1185 1318 18967 18967 19093 19093
+    rtyp va00 7
+    setv game "map_tmp_60" va00
+  setv va00 addr va01 1318 1463 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_61" va00
+  setv va00 addr va01 1463 1602 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_62" va00
+  setv va00 addr va01 1602 1751 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_63" va00
+  setv va00 addr va01 1751 1883 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_64" va00
+  setv va00 addr va01 1883 2002 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_65" va00
+  setv va00 addr va01 2002 2116 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_66" va00
+  setv va00 addr va01 2116 2246 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_67" va00
+  setv va00 addr va01 2246 2370 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_68" va00
+  setv va00 addr va01 2370 2483 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_69" va00
+  setv va00 addr va01 2483 2623 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_70" va00
+  setv va00 addr va01 2623 2733 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_71" va00
+  setv va00 addr va01 2733 2862 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_72" va00
+  setv va00 addr va01 2862 2997 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_73" va00
+  setv va00 addr va01 2997 3139 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_74" va00
+  setv va00 addr va01 3139 3278 18967 18967 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_75" va00
+  setv va00 addr va01 3278 3411 18967 18951 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_76" va00
+  setv va00 addr va01 3411 3536 18951 18951 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_77" va00
+  setv va00 addr va01 3536 3660 18951 18951 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_78" va00
+  setv va00 addr va01 3660 3777 18951 18951 19093 19093
+    rtyp va00 1
+    setv game "map_tmp_79" va00
+  setv va00 addr va01 3777 3877 18951 18941 19093 19093
+    rtyp va00 3
+    setv game "map_tmp_80" va00
+  setv va00 addr va01 3877 4039 18941 18941 19093 19093
+    rtyp va00 7
+    setv game "map_tmp_81" va00
+  setv va00 addr va01 4039 4206 18941 18941 19093 19093
+    rtyp va00 7
+    setv game "map_tmp_82" va00
+  setv va00 addr va01 4206 4314 18941 18941 19093 19093
+    rtyp va00 7
+    setv game "map_tmp_83" va00
+  setv va00 addr va01 4314 4379 18941 18941 19093 19093
+    rtyp va00 7
+    setv game "map_tmp_84" va00
+  setv va00 addr va01 990 1094 18392 18321 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_85" va00
+  setv va00 addr va01 1094 1180 18321 18277 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_86" va00
+  setv va00 addr va01 1180 1266 18277 18225 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_87" va00
+  setv va00 addr va01 1266 1359 18225 18183 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_88" va00
+  setv va00 addr va01 1359 1468 18183 18131 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_89" va00
+  setv va00 addr va01 1468 1560 18131 18090 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_90" va00
+  setv va00 addr va01 1560 1724 18090 18021 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_91" va00
+  setv va00 addr va01 1724 1792 18021 18010 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_92" va00
+  setv va00 addr va01 1792 1840 18010 18010 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_93" va00
+  setv va00 addr va01 1840 1988 18010 18010 18406 18406
+    rtyp va00 0
+    setv game "map_tmp_94" va00
+  setv va00 addr va01 1988 2038 18541 18544 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_95" va00
+  setv va00 addr va01 2038 2179 18544 18547 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_96" va00
+  setv va00 addr va01 2179 2315 18547 18548 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_97" va00
+  setv va00 addr va01 2315 2485 18548 18548 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_98" va00
+  setv va00 addr va01 2485 2603 18548 18546 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_99" va00
+  setv va00 addr va01 2603 2720 18546 18547 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_100" va00
+  setv va00 addr va01 2720 2824 18547 18546 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_101" va00
+  setv va00 addr va01 2824 2978 18546 18546 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_102" va00
+  setv va00 addr va01 2978 3082 18546 18544 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_103" va00
+  setv va00 addr va01 3082 3219 18544 18545 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_104" va00
+  setv va00 addr va01 3219 3376 18545 18545 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_105" va00
+  setv va00 addr va01 3376 3510 18545 18545 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_106" va00
+  setv va00 addr va01 3510 3666 18545 18545 18745 18745
+    rtyp va00 0
+    setv game "map_tmp_107" va00
+  setv va00 addr va01 3666 3834 18545 18542 18745 18736
+    rtyp va00 0
+    setv game "map_tmp_108" va00
+  setv va00 addr va01 3834 4044 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_109" va00
+  setv va00 addr va01 4044 4173 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_110" va00
+  setv va00 addr va01 4173 4300 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_111" va00
+  setv va00 addr va01 4300 4412 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_112" va00
+  setv va00 addr va01 4412 4523 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_113" va00
+  setv va00 addr va01 4523 4644 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_114" va00
+  setv va00 addr va01 4644 4778 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_115" va00
+  setv va00 addr va01 4778 4920 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_116" va00
+  setv va00 addr va01 4920 5109 18542 18542 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_117" va00
+  setv va00 addr va01 1988 2038 18010 18012 18541 18544
+    rtyp va00 0
+    setv game "map_tmp_118" va00
+  setv va00 addr va01 2038 2179 18012 18013 18544 18547
+    rtyp va00 0
+    setv game "map_tmp_119" va00
+  setv va00 addr va01 2179 2315 18013 18014 18547 18548
+    rtyp va00 0
+    setv game "map_tmp_120" va00
+  setv va00 addr va01 2315 2485 18014 18014 18548 18548
+    rtyp va00 0
+    setv game "map_tmp_121" va00
+  setv va00 addr va01 2485 2603 18014 18014 18548 18546
+    rtyp va00 0
+    setv game "map_tmp_122" va00
+  setv va00 addr va01 2603 2720 18014 18014 18546 18547
+    rtyp va00 0
+    setv game "map_tmp_123" va00
+  setv va00 addr va01 2720 2824 18014 18014 18547 18546
+    rtyp va00 0
+    setv game "map_tmp_124" va00
+  setv va00 addr va01 2824 2978 18014 18014 18546 18546
+    rtyp va00 0
+    setv game "map_tmp_125" va00
+  setv va00 addr va01 2978 3082 18014 18014 18546 18544
+    rtyp va00 0
+    setv game "map_tmp_126" va00
+  setv va00 addr va01 3082 3219 18014 18014 18544 18545
+    rtyp va00 0
+    setv game "map_tmp_127" va00
+  setv va00 addr va01 3219 3376 18014 18014 18545 18545
+    rtyp va00 0
+    setv game "map_tmp_128" va00
+  setv va00 addr va01 3376 3546 18307 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_129" va00
+  setv va00 addr va01 3546 3664 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_130" va00
+  setv va00 addr va01 3664 3832 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_131" va00
+  setv va00 addr va01 3832 4040 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_132" va00
+  setv va00 addr va01 4040 4175 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_133" va00
+  setv va00 addr va01 4175 4303 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_134" va00
+  setv va00 addr va01 4303 4413 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_135" va00
+  setv va00 addr va01 4413 4524 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_136" va00
+  setv va00 addr va01 4524 4649 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_137" va00
+  setv va00 addr va01 4649 4774 18306 18306 18528 18528
+    rtyp va00 1
+    setv game "map_tmp_138" va00
+  setv va00 addr va01 4774 4923 18163 18243 18528 18528
+    rtyp va00 3
+    setv game "map_tmp_139" va00
+  setv va00 addr va01 4923 5111 18243 18351 18528 18528
+    rtyp va00 3
+    setv game "map_tmp_140" va00
+  setv va00 addr va01 5111 5169 18351 18394 18528 18528
+    rtyp va00 3
+    setv game "map_tmp_141" va00
+  setv va00 addr va01 3376 3546 18014 18016 18307 18306
+    rtyp va00 0
+    setv game "map_tmp_142" va00
+  setv va00 addr va01 3546 3664 18016 18016 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_143" va00
+  setv va00 addr va01 3664 3832 18016 18016 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_144" va00
+  setv va00 addr va01 3832 4040 18016 18016 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_145" va00
+  setv va00 addr va01 4040 4175 18016 18016 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_146" va00
+  setv va00 addr va01 4175 4303 18016 18016 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_147" va00
+  setv va00 addr va01 4303 4413 18016 18016 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_148" va00
+  setv va00 addr va01 4413 4524 18016 18057 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_149" va00
+  setv va00 addr va01 4524 4649 18057 18110 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_150" va00
+  setv va00 addr va01 4649 4774 18110 18163 18306 18306
+    rtyp va00 0
+    setv game "map_tmp_151" va00
+  setv va00 addr va01 2955 2960 18934 18934 18939 18939
+    rtyp va00 0
+    setv game "map_tmp_152" va00
+
+*ROOMIE Add doors between rooms
+door game "map_tmp_0" game "map_tmp_1" 100
+door game "map_tmp_1" game "map_tmp_2" 100
+door game "map_tmp_2" game "map_tmp_3" 100
+door game "map_tmp_3" game "map_tmp_4" 100
+door game "map_tmp_4" game "map_tmp_5" 100
+door game "map_tmp_0" game "map_tmp_6" 100
+door game "map_tmp_6" game "map_tmp_7" 100
+door game "map_tmp_7" game "map_tmp_8" 100
+door game "map_tmp_8" game "map_tmp_9" 100
+door game "map_tmp_10" game "map_tmp_11" 100
+door game "map_tmp_11" game "map_tmp_12" 100
+door game "map_tmp_12" game "map_tmp_14" 100
+door game "map_tmp_15" game "map_tmp_16" 100
+door game "map_tmp_16" game "map_tmp_17" 100
+door game "map_tmp_18" game "map_tmp_19" 100
+door game "map_tmp_19" game "map_tmp_20" 100
+door game "map_tmp_20" game "map_tmp_21" 100
+door game "map_tmp_21" game "map_tmp_22" 100
+door game "map_tmp_22" game "map_tmp_23" 100
+door game "map_tmp_23" game "map_tmp_24" 100
+door game "map_tmp_24" game "map_tmp_25" 100
+door game "map_tmp_25" game "map_tmp_26" 100
+door game "map_tmp_13" game "map_tmp_27" 100
+door game "map_tmp_26" game "map_tmp_27" 100
+door game "map_tmp_13" game "map_tmp_29" 100
+door game "map_tmp_27" game "map_tmp_29" 100
+door game "map_tmp_5" game "map_tmp_30" 100
+door game "map_tmp_30" game "map_tmp_31" 100
+door game "map_tmp_31" game "map_tmp_32" 100
+door game "map_tmp_32" game "map_tmp_33" 100
+door game "map_tmp_33" game "map_tmp_34" 100
+door game "map_tmp_34" game "map_tmp_35" 100
+door game "map_tmp_35" game "map_tmp_36" 100
+door game "map_tmp_36" game "map_tmp_37" 100
+door game "map_tmp_37" game "map_tmp_38" 100
+door game "map_tmp_38" game "map_tmp_39" 100
+door game "map_tmp_39" game "map_tmp_40" 100
+door game "map_tmp_40" game "map_tmp_41" 100
+door game "map_tmp_41" game "map_tmp_42" 100
+door game "map_tmp_42" game "map_tmp_43" 100
+door game "map_tmp_43" game "map_tmp_44" 100
+door game "map_tmp_44" game "map_tmp_45" 100
+door game "map_tmp_45" game "map_tmp_46" 100
+door game "map_tmp_46" game "map_tmp_47" 100
+door game "map_tmp_47" game "map_tmp_48" 100
+door game "map_tmp_48" game "map_tmp_49" 100
+door game "map_tmp_49" game "map_tmp_50" 100
+door game "map_tmp_50" game "map_tmp_51" 100
+door game "map_tmp_51" game "map_tmp_52" 100
+door game "map_tmp_52" game "map_tmp_53" 100
+door game "map_tmp_55" game "map_tmp_56" 100
+door game "map_tmp_57" game "map_tmp_58" 100
+door game "map_tmp_58" game "map_tmp_59" 100
+door game "map_tmp_59" game "map_tmp_60" 100
+door game "map_tmp_60" game "map_tmp_61" 100
+door game "map_tmp_61" game "map_tmp_62" 100
+door game "map_tmp_62" game "map_tmp_63" 100
+door game "map_tmp_63" game "map_tmp_64" 100
+door game "map_tmp_64" game "map_tmp_65" 100
+door game "map_tmp_65" game "map_tmp_66" 100
+door game "map_tmp_66" game "map_tmp_67" 100
+door game "map_tmp_67" game "map_tmp_68" 100
+door game "map_tmp_68" game "map_tmp_69" 100
+door game "map_tmp_69" game "map_tmp_70" 100
+door game "map_tmp_70" game "map_tmp_71" 100
+door game "map_tmp_71" game "map_tmp_72" 100
+door game "map_tmp_72" game "map_tmp_73" 100
+door game "map_tmp_73" game "map_tmp_74" 100
+door game "map_tmp_74" game "map_tmp_75" 100
+door game "map_tmp_75" game "map_tmp_76" 100
+door game "map_tmp_76" game "map_tmp_77" 100
+door game "map_tmp_77" game "map_tmp_78" 100
+door game "map_tmp_78" game "map_tmp_79" 100
+door game "map_tmp_79" game "map_tmp_80" 100
+door game "map_tmp_80" game "map_tmp_81" 100
+door game "map_tmp_81" game "map_tmp_82" 100
+door game "map_tmp_82" game "map_tmp_83" 100
+door game "map_tmp_83" game "map_tmp_84" 100
+door game "map_tmp_19" game "map_tmp_85" 100
+door game "map_tmp_20" game "map_tmp_86" 100
+door game "map_tmp_85" game "map_tmp_86" 100
+door game "map_tmp_20" game "map_tmp_87" 100
+door game "map_tmp_21" game "map_tmp_87" 100
+door game "map_tmp_86" game "map_tmp_87" 100
+door game "map_tmp_22" game "map_tmp_88" 100
+door game "map_tmp_87" game "map_tmp_88" 100
+door game "map_tmp_23" game "map_tmp_89" 100
+door game "map_tmp_88" game "map_tmp_89" 100
+door game "map_tmp_24" game "map_tmp_90" 100
+door game "map_tmp_89" game "map_tmp_90" 100
+door game "map_tmp_25" game "map_tmp_91" 100
+door game "map_tmp_90" game "map_tmp_91" 100
+door game "map_tmp_26" game "map_tmp_92" 100
+door game "map_tmp_91" game "map_tmp_92" 100
+door game "map_tmp_26" game "map_tmp_93" 100
+door game "map_tmp_27" game "map_tmp_93" 100
+door game "map_tmp_92" game "map_tmp_93" 100
+door game "map_tmp_29" game "map_tmp_94" 100
+door game "map_tmp_93" game "map_tmp_94" 100
+door game "map_tmp_13" game "map_tmp_95" 100
+door game "map_tmp_5" game "map_tmp_95" 100
+door game "map_tmp_30" game "map_tmp_96" 100
+door game "map_tmp_95" game "map_tmp_96" 100
+door game "map_tmp_31" game "map_tmp_97" 100
+door game "map_tmp_96" game "map_tmp_97" 100
+door game "map_tmp_32" game "map_tmp_98" 100
+door game "map_tmp_97" game "map_tmp_98" 100
+door game "map_tmp_33" game "map_tmp_99" 100
+door game "map_tmp_98" game "map_tmp_99" 100
+door game "map_tmp_34" game "map_tmp_100" 100
+door game "map_tmp_99" game "map_tmp_100" 100
+door game "map_tmp_35" game "map_tmp_101" 100
+door game "map_tmp_100" game "map_tmp_101" 100
+door game "map_tmp_35" game "map_tmp_102" 100
+door game "map_tmp_36" game "map_tmp_102" 100
+door game "map_tmp_101" game "map_tmp_102" 100
+door game "map_tmp_37" game "map_tmp_103" 100
+door game "map_tmp_102" game "map_tmp_103" 100
+door game "map_tmp_38" game "map_tmp_104" 100
+door game "map_tmp_103" game "map_tmp_104" 100
+door game "map_tmp_39" game "map_tmp_105" 100
+door game "map_tmp_104" game "map_tmp_105" 100
+door game "map_tmp_40" game "map_tmp_106" 100
+door game "map_tmp_105" game "map_tmp_106" 100
+door game "map_tmp_41" game "map_tmp_107" 100
+door game "map_tmp_106" game "map_tmp_107" 100
+door game "map_tmp_42" game "map_tmp_108" 100
+door game "map_tmp_107" game "map_tmp_108" 100
+door game "map_tmp_43" game "map_tmp_109" 100
+door game "map_tmp_108" game "map_tmp_109" 100
+door game "map_tmp_44" game "map_tmp_110" 100
+door game "map_tmp_109" game "map_tmp_110" 100
+door game "map_tmp_45" game "map_tmp_111" 100
+door game "map_tmp_110" game "map_tmp_111" 100
+door game "map_tmp_46" game "map_tmp_112" 100
+door game "map_tmp_111" game "map_tmp_112" 100
+door game "map_tmp_47" game "map_tmp_113" 100
+door game "map_tmp_112" game "map_tmp_113" 100
+door game "map_tmp_48" game "map_tmp_114" 100
+door game "map_tmp_113" game "map_tmp_114" 100
+door game "map_tmp_49" game "map_tmp_115" 100
+door game "map_tmp_114" game "map_tmp_115" 100
+door game "map_tmp_50" game "map_tmp_116" 100
+door game "map_tmp_115" game "map_tmp_116" 100
+door game "map_tmp_51" game "map_tmp_117" 100
+door game "map_tmp_116" game "map_tmp_117" 100
+door game "map_tmp_29" game "map_tmp_118" 100
+door game "map_tmp_94" game "map_tmp_118" 100
+door game "map_tmp_95" game "map_tmp_118" 100
+door game "map_tmp_96" game "map_tmp_119" 100
+door game "map_tmp_118" game "map_tmp_119" 100
+door game "map_tmp_97" game "map_tmp_120" 100
+door game "map_tmp_119" game "map_tmp_120" 100
+door game "map_tmp_98" game "map_tmp_121" 100
+door game "map_tmp_120" game "map_tmp_121" 100
+door game "map_tmp_99" game "map_tmp_122" 100
+door game "map_tmp_121" game "map_tmp_122" 100
+door game "map_tmp_100" game "map_tmp_123" 100
+door game "map_tmp_122" game "map_tmp_123" 100
+door game "map_tmp_101" game "map_tmp_124" 100
+door game "map_tmp_123" game "map_tmp_124" 100
+door game "map_tmp_102" game "map_tmp_125" 100
+door game "map_tmp_124" game "map_tmp_125" 100
+door game "map_tmp_103" game "map_tmp_126" 100
+door game "map_tmp_125" game "map_tmp_126" 100
+door game "map_tmp_104" game "map_tmp_127" 100
+door game "map_tmp_126" game "map_tmp_127" 100
+door game "map_tmp_105" game "map_tmp_128" 100
+door game "map_tmp_127" game "map_tmp_128" 100
+door game "map_tmp_129" game "map_tmp_130" 100
+door game "map_tmp_130" game "map_tmp_131" 100
+door game "map_tmp_131" game "map_tmp_132" 100
+door game "map_tmp_132" game "map_tmp_133" 100
+door game "map_tmp_133" game "map_tmp_134" 100
+door game "map_tmp_134" game "map_tmp_135" 100
+door game "map_tmp_135" game "map_tmp_136" 100
+door game "map_tmp_136" game "map_tmp_137" 100
+door game "map_tmp_137" game "map_tmp_138" 100
+door game "map_tmp_138" game "map_tmp_139" 100
+door game "map_tmp_139" game "map_tmp_140" 100
+door game "map_tmp_140" game "map_tmp_141" 100
+door game "map_tmp_129" game "map_tmp_142" 100
+door game "map_tmp_128" game "map_tmp_129" 100
+door game "map_tmp_128" game "map_tmp_142" 100
+door game "map_tmp_130" game "map_tmp_143" 100
+door game "map_tmp_142" game "map_tmp_143" 100
+door game "map_tmp_131" game "map_tmp_144" 100
+door game "map_tmp_143" game "map_tmp_144" 100
+door game "map_tmp_132" game "map_tmp_145" 100
+door game "map_tmp_144" game "map_tmp_145" 100
+door game "map_tmp_133" game "map_tmp_146" 100
+door game "map_tmp_145" game "map_tmp_146" 100
+door game "map_tmp_134" game "map_tmp_147" 100
+door game "map_tmp_146" game "map_tmp_147" 100
+door game "map_tmp_135" game "map_tmp_148" 100
+door game "map_tmp_147" game "map_tmp_148" 100
+door game "map_tmp_136" game "map_tmp_149" 100
+door game "map_tmp_148" game "map_tmp_149" 100
+door game "map_tmp_137" game "map_tmp_150" 100
+door game "map_tmp_149" game "map_tmp_150" 100
+door game "map_tmp_138" game "map_tmp_151" 100
+door game "map_tmp_139" game "map_tmp_151" 100
+door game "map_tmp_150" game "map_tmp_151" 100
+door game "map_tmp_36" game "map_tmp_152" 100
+
+*ROOMIE Delete temporary variables
+delg "map_tmp_0"
+delg "map_tmp_1"
+delg "map_tmp_2"
+delg "map_tmp_3"
+delg "map_tmp_4"
+delg "map_tmp_5"
+delg "map_tmp_6"
+delg "map_tmp_7"
+delg "map_tmp_8"
+delg "map_tmp_9"
+delg "map_tmp_10"
+delg "map_tmp_11"
+delg "map_tmp_12"
+delg "map_tmp_13"
+delg "map_tmp_14"
+delg "map_tmp_15"
+delg "map_tmp_16"
+delg "map_tmp_17"
+delg "map_tmp_18"
+delg "map_tmp_19"
+delg "map_tmp_20"
+delg "map_tmp_21"
+delg "map_tmp_22"
+delg "map_tmp_23"
+delg "map_tmp_24"
+delg "map_tmp_25"
+delg "map_tmp_26"
+delg "map_tmp_27"
+delg "map_tmp_28"
+delg "map_tmp_29"
+delg "map_tmp_30"
+delg "map_tmp_31"
+delg "map_tmp_32"
+delg "map_tmp_33"
+delg "map_tmp_34"
+delg "map_tmp_35"
+delg "map_tmp_36"
+delg "map_tmp_37"
+delg "map_tmp_38"
+delg "map_tmp_39"
+delg "map_tmp_40"
+delg "map_tmp_41"
+delg "map_tmp_42"
+delg "map_tmp_43"
+delg "map_tmp_44"
+delg "map_tmp_45"
+delg "map_tmp_46"
+delg "map_tmp_47"
+delg "map_tmp_48"
+delg "map_tmp_49"
+delg "map_tmp_50"
+delg "map_tmp_51"
+delg "map_tmp_52"
+delg "map_tmp_53"
+delg "map_tmp_54"
+delg "map_tmp_55"
+delg "map_tmp_56"
+delg "map_tmp_57"
+delg "map_tmp_58"
+delg "map_tmp_59"
+delg "map_tmp_60"
+delg "map_tmp_61"
+delg "map_tmp_62"
+delg "map_tmp_63"
+delg "map_tmp_64"
+delg "map_tmp_65"
+delg "map_tmp_66"
+delg "map_tmp_67"
+delg "map_tmp_68"
+delg "map_tmp_69"
+delg "map_tmp_70"
+delg "map_tmp_71"
+delg "map_tmp_72"
+delg "map_tmp_73"
+delg "map_tmp_74"
+delg "map_tmp_75"
+delg "map_tmp_76"
+delg "map_tmp_77"
+delg "map_tmp_78"
+delg "map_tmp_79"
+delg "map_tmp_80"
+delg "map_tmp_81"
+delg "map_tmp_82"
+delg "map_tmp_83"
+delg "map_tmp_84"
+delg "map_tmp_85"
+delg "map_tmp_86"
+delg "map_tmp_87"
+delg "map_tmp_88"
+delg "map_tmp_89"
+delg "map_tmp_90"
+delg "map_tmp_91"
+delg "map_tmp_92"
+delg "map_tmp_93"
+delg "map_tmp_94"
+delg "map_tmp_95"
+delg "map_tmp_96"
+delg "map_tmp_97"
+delg "map_tmp_98"
+delg "map_tmp_99"
+delg "map_tmp_100"
+delg "map_tmp_101"
+delg "map_tmp_102"
+delg "map_tmp_103"
+delg "map_tmp_104"
+delg "map_tmp_105"
+delg "map_tmp_106"
+delg "map_tmp_107"
+delg "map_tmp_108"
+delg "map_tmp_109"
+delg "map_tmp_110"
+delg "map_tmp_111"
+delg "map_tmp_112"
+delg "map_tmp_113"
+delg "map_tmp_114"
+delg "map_tmp_115"
+delg "map_tmp_116"
+delg "map_tmp_117"
+delg "map_tmp_118"
+delg "map_tmp_119"
+delg "map_tmp_120"
+delg "map_tmp_121"
+delg "map_tmp_122"
+delg "map_tmp_123"
+delg "map_tmp_124"
+delg "map_tmp_125"
+delg "map_tmp_126"
+delg "map_tmp_127"
+delg "map_tmp_128"
+delg "map_tmp_129"
+delg "map_tmp_130"
+delg "map_tmp_131"
+delg "map_tmp_132"
+delg "map_tmp_133"
+delg "map_tmp_134"
+delg "map_tmp_135"
+delg "map_tmp_136"
+delg "map_tmp_137"
+delg "map_tmp_138"
+delg "map_tmp_139"
+delg "map_tmp_140"
+delg "map_tmp_141"
+delg "map_tmp_142"
+delg "map_tmp_143"
+delg "map_tmp_144"
+delg "map_tmp_145"
+delg "map_tmp_146"
+delg "map_tmp_147"
+delg "map_tmp_148"
+delg "map_tmp_149"
+delg "map_tmp_150"
+delg "map_tmp_151"
+delg "map_tmp_152"
+
+*ROOMIE Add overlays
+new: simp 1 1 6500 "c1l_overlays_cellar" 1 0 8000
+  mvto 831 18943
+new: simp 1 1 6500 "c1l_overlays_cellar" 1 2 8000
+  mvto 1227 18939
+new: simp 1 1 6500 "c1l_overlays_cellar" 1 1 8000
+  mvto 831 19108
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 0 8000
+  mvto 1438 18937
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 1 8000
+  mvto 1494 18969
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 3 8000
+  mvto 1744 18977
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 4 8000
+  mvto 1881 18979
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 5 8000
+  mvto 2016 18975
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 10 8000
+  mvto 2097 18927
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 11 8000
+  mvto 1611 18973
+new: simp 1 1 6500 "c1l_overlays_top_level" 1 0 8000
+  mvto 834 18346
+new: simp 1 1 6500 "c1l_overlays_top_level" 1 1 8000
+  mvto 1083 18345
+new: simp 1 1 6500 "c1l_overlays_top_level" 1 2 8000
+  mvto 874 18550
+new: simp 1 1 6500 "c1l_overlays_misc" 1 2 8000
+  mvto 1191 18592
+new: simp 1 1 6500 "c1l_overlays_home" 1 5 8000
+  mvto 1471 18545
+new: simp 1 1 6500 "c1l_overlays_home" 1 7 8000
+  mvto 1718 18551
+new: simp 1 1 6500 "c1l_overlays_home" 1 4 8000
+  mvto 1462 18735
+new: simp 1 1 6500 "c1l_overlays_home" 1 8 8000
+  mvto 1649 18721
+new: simp 1 1 6500 "c1l_overlays_home" 1 0 8000
+  mvto 1783 18586
+new: simp 1 1 6500 "c1l_overlays_home" 1 1 8000
+  mvto 1824 18652
+new: simp 1 1 6500 "c1l_overlays_home" 1 3 8000
+  mvto 1846 18626
+new: simp 1 1 6500 "c1l_overlays_home" 1 2 8000
+  mvto 1961 18626
+new: simp 1 1 6500 "c1l_overlays_home" 1 6 8000
+  mvto 1430 18747
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 0 8000
+  mvto 1076 18785
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 1 8000
+  mvto 1077 18692
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 2 8000
+  mvto 1021 18602
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 3 8000
+  mvto 850 18605
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 4 8000
+  mvto 853 18793
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 5 8000
+  mvto 939 18795
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 0 8000
+  mvto 2319 18927
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 6 8000
+  mvto 1837 18934
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 1 8000
+  mvto 2650 18933
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 2 8000
+  mvto 2938 18934
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 4 8000
+  mvto 3411 18943
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 3 8000
+  mvto 3214 18934
+new: simp 1 1 6500 "c1l_overlays_temple" 1 0 8000
+  mvto 3675 18937
+new: simp 1 1 6500 "c1l_overlays_temple" 1 1 8000
+  mvto 3946 18925
+new: simp 1 1 6500 "c1l_overlays_temple" 1 2 8000
+  mvto 4279 18934
+new: simp 1 1 1000 "c1l_overlays_temple" 1 3 8000
+  mvto 3932 18705
+new: simp 1 1 6500 "c1l_overlays_tree" 1 1 8000
+  mvto 4409 18876
+new: simp 1 1 6500 "c1l_overlays_tree" 1 0 8000
+  mvto 5121 18723
+new: simp 1 1 6500 "c1l_overlays_tree" 1 2 8000
+  mvto 4953 18661
+new: simp 1 1 6500 "c1l_overlays_tree" 1 3 8000
+  mvto 4933 18526
+new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 1 8000
+  mvto 4490 18399
+new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 2 8000
+  mvto 4490 18241
+new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 0 8000
+  mvto 3823 18394
+new: simp 1 1 6500 "c1l_overlays_misc" 1 0 8000
+  mvto 3287 18750
+new: simp 1 1 6500 "c1l_overlays_misc" 1 1 8000
+  mvto 3369 18417
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 7 8000
+  mvto 1189 19130
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 8 8000
+  mvto 1653 19129
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 9 8000
+  mvto 2059 19139
+
+*ROOMIE Add favorite place icon
+new: simp 1 3 6500 "c1lfavoriteplace" 1 0 1
+  attr 272
+  mvto 1493 18820
+  tick 10
+
+*ROOMIE Add camera command
+cmrp 1493 18820 0
+
+***ROOMIE_END***
