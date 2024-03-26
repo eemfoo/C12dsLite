@@ -1,5 +1,5 @@
 **CAOS2Pray
-*# Pray-File "c12dslite"
+*# Pray-File "../build/c12dslite"
 *# C3-Name "C12DS-Lite (C3)"
 *# DS-Name "C12DS-Lite"
 *# desc = "A focused slice of C1 in C3DS"
