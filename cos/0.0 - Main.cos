@@ -5,6 +5,38 @@
 *# desc = "A focused slice of C1 in C3DS"
 *# animfile = "c1lfavoriteplace.c16"
 *# Agent Animation Gallery = "c1lfavoriteplace"
-*# Agent Sprite First Image = 0
-*# Agent Animation String = "0"
+*# Agent Sprite First Image = 1
+*# Agent Animation String = "1"
 *# Agent Bioenergy Value = 0
+* OVERLAYS
+*# Attach "../images/c1l_overlays_cellar.c16"
+*# Attach "../images/c1l_overlays_home.c16"
+*# Attach "../images/c1l_overlays_misc.c16"
+*# Attach "../images/c1l_overlays_rooms.c16"
+*# Attach "../images/c1l_overlays_temple.c16"
+*# Attach "../images/c1l_overlays_top_level.c16"
+*# Attach "../images/c1l_overlays_tree.c16"
+*# Attach "../images/c1l_overlays_tree_platform.c16"
+*# Attach "../images/c1l_overlays_underground_brick.c16"
+*# Attach "../images/c1l_overlays_underground_wood.c16"
+* Sprites
+*# Attach "../map/c12dsl.blk"
+*# Attach "../images/c1clock.c16"
+*# Attach "../images/c1drop.c16"
+*# Attach "../images/c1lfavoriteplace.c16"
+*# Attach "../images/c1smoke.c16"
+*# Attach "../images/c1stalactites.c16"
+*# Attach "../images/c1stove.c16"
+*# Attach "../images/c1stovetop.c16"
+*# Attach "../images/c1table.c16"
+*# Attach "../images/c1torches.c16"
+*# Attach "../images/c1vane.c16"
+* Sounds
+*# Attach "../sounds/c1c5.wav"
+*# Attach "../sounds/c1ca.wav"
+*# Attach "../sounds/c1st.wav"
+*# Attach "../sounds/c1ti.wav"
+* Linked Scripts
+*# Link "../map/c12dsL2024.cos"
+*# Link "1.0 - Overlays.cos"
+*# Link "1.0 - Shelves.cos"
