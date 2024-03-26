@@ -1,0 +1,114 @@
+* 1 1 6500 - Overlay
+* 1 1 6501 - Clocks
+* 1 5 6500 - Drops
+
+
+* Pinwheel
+new: simp 1 1 6500 "c1vane" 8 0 8000
+mvto 1804 18520
+anim [0 1 2 3 4 5 6 7 255]
+
+* Smoke above kitchen
+new: simp 1 1 6500 "c1smoke" 4 0 8000
+mvto 1924 18610
+anim [0 1 2 3 255]
+
+
+* C1 Clocks
+new: simp 1 1 6501 "c1clock" 5 0 2
+attr 4
+frat 1.65
+mvto 1908 18780
+anim [0 1 2 3 4 3 2 1 255]
+sndl "c1ti"
+
+new: simp 1 1 6501 "c1clock" 5 0 2
+attr 4
+mvto 5054 18400
+frat 1.65
+anim [0 1 2 3 4 3 2 1 255]
+sndl "c1ti"
+
+
+* STOVE
+new: simp 1 1 6500 "c1stove" 8 0 0
+mvto 3767 10870
+anim [0 1 2 3 4 5 6 7 255]
+sndl "c1st"
+
+
+* Torches
+new: simp 1 1 6500 "c1torches" 4 0 2
+anim [0 1 2 3 255]
+mvto 4003 18956
+
+new: simp 1 1 6500 "c1torches" 4 0 2
+anim [2 3 0 1 255]
+mvto 4077 18954
+
+new: simp 1 1 6500 "c1torches" 4 0 2
+anim [1 2 3 0 255]
+mvto 4158 18954
+
+new: simp 1 1 6500 "c1torches" 4 0 2
+anim [3 0 1 2 255]
+mvto 4324 18954
+
+new: simp 1 1 6500 "c1torches" 4 0 2
+anim [3 0 1 2 255]
+mvto 5077 19000
+
+new: simp 1 1 6500 "c1torches" 4 0 2
+anim [3 0 1 2 255]
+mvto 5162 18824
+
+* Stalactites
+new: simp 1 1 6500 "c1stalactites" 4 0 300
+mvto 5161 18779
+
+* Drops
+new: simp 1 5 6500 "c1drop" 6 0 2
+frat 1.65
+tick rand 41 61
+mvto 5099 18906
+
+new: simp 1 5 6500 "c1drop" 6 0 2
+frat 1.65
+tick rand 61 81
+mvto 5120 18906
+
+new: simp 1 5 6500 "c1drop" 6 0 2
+frat 1.65
+tick rand 81 101
+mvto 4951 19120
+
+
+* Stove
+new: simp 1 1 6500 "c1stove" 8 0 0
+mvto 1767 18870
+anim [0 1 2 3 4 5 6 7 255]
+sndl "c1st"
+
+
+* vent over table
+new: simp 1 7 6500 "c1table" 1 1 200
+mvto 1951 18754
+
+* SCRIPTS
+scrp 1 5 6500 9
+*	cave drop timer
+    sndc "c1ca"
+    anim [0 1 2 3 4 5 0]
+    over
+endm
+
+scrp 1 1 6501 1
+*	clock pushed
+    sndc "c1c5"
+    anim [1 1 2 2 3 3 4 4 3 3 2 2 1 1 0]
+    over
+    anim [0 1 2 3 4 3 2 1 0 255]
+    sndl "c1ti"
+endm
+
+
