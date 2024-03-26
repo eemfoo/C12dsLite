@@ -32,6 +32,7 @@
 *# Attach "../images/c1torches.c16"
 *# Attach "../images/c1vane.c16"
 * Sounds
+*# Attach "../sounds/c1_music.mng"
 *# Attach "../sounds/c1c5.wav"
 *# Attach "../sounds/c1ca.wav"
 *# Attach "../sounds/c1st.wav"
