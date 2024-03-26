@@ -1,0 +1,10 @@
+**CAOS2Pray
+*# Pray-File "c12dslite"
+*# C3-Name "C12DS-Lite (C3)"
+*# DS-Name "C12DS-Lite"
+*# desc = "A focused slice of C1 in C3DS"
+*# animfile = "c1lfavoriteplace.c16"
+*# Agent Animation Gallery = "c1lfavoriteplace"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
