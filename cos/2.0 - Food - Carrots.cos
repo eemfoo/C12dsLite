@@ -1,0 +1,393 @@
+* C1 Carrots
+* 2 11 6500 - Carrots
+
+* Dependencies:
+*   C1Plants.c16
+*   c1dp.wav
+
+inst
+lock
+* 	Carrot Plants
+setv va10 0
+reps 2
+    addv va10 1
+    doif va10 eq 1
+        setv va03 2400
+    else
+        setv va03 2650
+    endi
+    setv va04 0
+    reps 5
+        new: simp 2 11 6500 "c1plants" 9 40 7001
+        pose 6
+        attr 3
+        bhvr 48
+        emit 8 .20
+        addv va04 25
+        setv va00 va03
+        addv va00 rand 0 20
+        addv va00 va04
+        setv va01 18883
+        addv va01 rand -4 4
+        mvto va00 va01
+    repe
+repe
+
+doif totl 1 11 6500 eq 0
+    new: simp 1 11 6500 "blnk" 1 0 0
+endi
+***************************
+* CARROT Scripts
+
+scrp 2 11 6500 4
+*	Carrot has been picked up
+    inst
+    lock
+    tick 0
+    doif pose = 6
+        pose 7
+    endi
+    setv mv00 1
+    attr 195
+    accg 3
+    fric 90
+    aero 10
+endm
+
+scrp 2 11 6500 5
+
+    * Do not mess with un-grown carrot if it somehow got picked up
+    doif pose le 6
+        stop
+    endi
+
+    * Reset
+    setv mv01 0
+    * Update timer for self destruct; Longer for carrots in metaroom
+    doif gmap posl post eq game "c12dsl::metaroom::id"
+        tick rand 600 1200
+    else
+        * Delete self faster if outside metaroom
+        tick rand 400 800
+    endi
+endm
+
+scrp 2 11 6500 6
+*	Carrot has collided!
+    inst
+    lock
+    doif pose = 0
+        pose 1
+        attr 16
+        mvby 0 31
+        tick rand 30 90
+    elif pose > 0 and pose < 6
+        attr 16
+        mvby 0 31
+        tick rand 30 90
+    elif pose = 6
+        pose 7
+        tick 0
+        sndc "c1dp"
+    elif pose = 7
+        sndc "c1dp"
+    else
+        doif attr = 3
+            attr 195
+        endi
+    endi
+endm
+
+scrp 2 11 6500 9
+*	Carrot's timer
+    inst
+    lock
+    doif pose = 0
+        pose 1
+        tick rand 100 200
+        elas 20
+    elif pose > 0 and pose < 6
+        setv va20 pose
+        addv va20 1
+        pose va20
+        tick rand 100 200
+    endi
+
+    doif pose = 6
+        bhvr 48
+        attr 3
+        emit 8 .20
+        tick 0
+    endi
+
+    * If carried or too young, do not increment timer
+    doif carr ne null or pose le 6
+        stop
+    endi
+
+    * If already bitten, kill carrot
+    doif pose eq 8
+        kill ownr
+    endi
+
+    * Increment idle counter for self destruct
+    addv mv01 1
+
+    * Kill carrot if idle for too long
+    doif mv01 gt 4
+        kill ownr
+        stop
+    endi
+
+    * Update timer for self destruct; Longer for carrots in metaroom
+    doif gmap posl post eq game "c12dsl::metaroom::id"
+        tick rand 600 1200
+    else
+        * Delete self faster if outside metaroom
+        tick rand 400 800
+    endi
+endm
+
+* Carrot Constructor
+scrp 2 11 6500 10
+    fric 100
+    elas 0
+    aero 0
+    accg 3
+    puhl 0 8 45
+    puhl 1 8 45
+    puhl 2 8 45
+    puhl 3 8 45
+    puhl 4 8 45
+    puhl 5 8 45
+    puhl 6 8 45
+    puhl 7 26 20
+    puhl 8 26 20
+    rnge 300
+    perm 60
+endm
+
+scrp 2 11 6500 12
+*	eating a Carrot
+    inst
+    lock
+    snde "chwp"
+
+    * Stim food
+    doif crea from = 1
+        stim writ from 79 1
+    endi
+
+    * Disable creature interaction
+    targ ownr
+    bhvr 0
+
+    * Set pose to eaten pose
+    doif pose = 6
+        setv va50 posl
+        subv va50 25
+        addv va50 rand -10 10
+        mvsf va50 post
+        pose 8
+        mesg wrt+ ownr 1000 2 0 rand 20 0
+    elif pose = 7
+        pose 8
+        mesg wrt+ ownr 1000 2 0 rand 20 0
+    else
+        pose 8
+        mesg wrt+ ownr 1000 2 0 rand 20 0
+    endi
+
+    accg 5
+    attr 211
+    velo 0 5
+    targ carr
+    emit 0 0
+    bhvr 0
+
+    doif crea targ = 1
+*		drop
+        mesg writ targ 4
+    endi
+endm
+
+
+* Ensure carrot supply
+scrp 2 11 6500 1000
+    rtar 1 11 6500
+    doif targ eq null
+        new: simp 1 11 6500 "blnk" 1 0 0
+    else
+        mesg writ targ 1000
+    endi
+endm
+
+
+***************************
+* CARROT MANAGER Scripts
+
+* Carrot Manager - Constructor
+scrp 1 11 6500 10
+    bhvr 0
+    attr 0
+    setv name "metaroom_id" game "c12dsl::metaroom::id"
+    call 1000 0 0
+endm
+
+
+scrp 1 11 6500 9
+    call 1000 0 0
+endm
+
+
+* Carrot population management. A.K.A. Ensure there are enough carrots
+scrp 1 11 6500 1000
+    inst
+    lock
+
+    setv va98 name "metaroom_id"
+    setv va99 0
+
+    enum 2 11 6500
+        doif gmap posl post eq va98
+            doif ov00 eq 0
+                addv va99 1
+            endi
+        endi
+    next
+
+    * Norns in metaroom modifier
+    setv va97 0
+    enum 4 0 0
+        doif gmap posl post eq va98
+            addv va97 1
+        endi
+    next
+
+    * Ensure there enough carrots for at least 1/4 of the norns in metaroom
+    setv va94 va97
+    divv va94 4
+    setv va95 va99
+    subv va95 va94
+    doif va95 gt 5
+        gsub tick
+        stop
+    endi
+
+    * Modify the number of carrots given for norn count
+    setv va91 va97
+    gsub modify
+    setv va97 va91
+
+    * Get modifier for carrot beetles
+    setv va96 0
+    enum 2 2 6500
+        doif gmap posl post eq va98
+            addv va96 1
+        endi
+    next
+    setv va91 va96
+    gsub modify
+    setv va96 va91
+
+    * - Calculate needed carrots - *
+    * Get minimum count for 8 carrots in the garden
+    negv va99
+    addv va99 8
+    * Add carrots required for norn
+    addv va99 va97
+    * Add carrots required for carrot beetles
+    addv va99 va96
+
+
+    setv va80 0
+
+    * Create carrots as needed
+    reps va99
+        * Alternate area
+        setv va90 va99
+        modv va90 2
+        subv va99 1
+
+        * Get area
+        doif va90 eq 0
+            setv va03 2400
+        else
+            setv va03 2650
+            subv va30 rand 15 30
+        endi
+
+        new: simp 2 11 6500 "c1plants" 9 40 7001
+        pose 0
+        attr 16
+        bhvr 0
+        setv va00 va03
+        setv va01 18883
+        addv va00 rand 0 400
+        addv va01 rand -4 4
+        mvto va00 va01
+        addv va80 30
+        setv va81 va80
+        addv va81 60
+        tick rand va80  va81
+    repe
+
+    gsub tick
+
+    * Randomly reduces va90 to 1/3, 1/2 or 3/4 the amount
+    subr modify
+        setv va95 rand 0 3
+        doif va95 eq 0
+            * 1/3
+            divv va91 3
+        elif va95 eq 1
+            * 1/2
+            divv va91 2
+        else
+            * 3/4
+            mulv va91 3
+            divv va91 4
+        endi
+    retn
+
+    * Set the next manager check tick to a random amount
+    subr tick
+        doif game "c12ds::manager::carrots::ticks_min" eq 0
+            setv game "c12ds::manager::carrots::ticks_min" 250
+        endi
+        doif game "c12ds::manager::carrots::ticks_max" gt game "c12ds::manager::carrots::ticks_min"
+            tick rand
+                 game "c12ds::manager::carrots::ticks_min"
+                 game "c12ds::manager::carrots::ticks_max"
+        else
+            setv va80 game "c12ds::manager::carrots::ticks_min"
+            mulv va80 2.5
+            setv va80 ftoi va80
+            tick rand game "c12ds::manager::carrots::ticks_min" va80
+        endi
+    retn
+endm
+
+***************************
+* Removal scripts
+
+rscr
+
+enum 1 11 6500
+    kill targ
+next
+
+enum 2 11 6500
+    kill targ
+next
+
+scrx 2 11 6500 4
+scrx 2 11 6500 5
+scrx 2 11 6500 6
+scrx 2 11 6500 9
+scrx 2 11 6500 10
+scrx 2 11 6500 12
+scrx 2 11 6500 1000
+
+scrx 1 11 6500 10
+scrx 1 11 6500 1000
