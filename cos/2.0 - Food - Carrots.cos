@@ -189,13 +189,10 @@ scrp 2 11 6500 12
         addv va50 rand -10 10
         mvsf va50 post
         pose 8
-        mesg wrt+ ownr 1000 2 0 rand 20 0
     elif pose = 7
         pose 8
-        mesg wrt+ ownr 1000 2 0 rand 20 0
     else
         pose 8
-        mesg wrt+ ownr 1000 2 0 rand 20 0
     endi
 
     accg 5
