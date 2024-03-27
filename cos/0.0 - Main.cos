@@ -21,6 +21,7 @@
 *# Attach "../images/c1l_overlays_underground_wood.c16"
 * Sprites
 *# Attach "../map/c12dsl.blk"
+*# Attach "../images/c1ball.c16"
 *# Attach "../images/c1clock.c16"
 *# Attach "../images/c1drop.c16"
 *# Attach "../images/c1lfavoriteplace.c16"
@@ -32,7 +33,6 @@
 *# Attach "../images/c1table.c16"
 *# Attach "../images/c1torches.c16"
 *# Attach "../images/c1vane.c16"
-*# Attach "../images/c1ball.c16"
 * Sounds
 *# Attach "../sounds/c1_music.mng"
 *# Attach "../sounds/c1c5.wav"
