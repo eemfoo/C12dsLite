@@ -4,12 +4,12 @@
 
 
 * Pinwheel
-new: simp 1 1 6500 "c1vane" 8 0 8000
+new: simp 1 1 6500 "c1vane" 8 0 7000
 mvto 1804 18520
 anim [0 1 2 3 4 5 6 7 255]
 
 * Smoke above kitchen
-new: simp 1 1 6500 "c1smoke" 4 0 8000
+new: simp 1 1 6500 "c1smoke" 4 0 7000
 mvto 1924 18610
 anim [0 1 2 3 255]
 

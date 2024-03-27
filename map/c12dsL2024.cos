@@ -980,107 +980,107 @@ delg "map_tmp_151"
 delg "map_tmp_152"
 
 *ROOMIE Add overlays
-new: simp 1 1 6500 "c1l_overlays_cellar" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_cellar" 1 0 7000
   mvto 831 18943
-new: simp 1 1 6500 "c1l_overlays_cellar" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_cellar" 1 2 7000
   mvto 1227 18939
-new: simp 1 1 6500 "c1l_overlays_cellar" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_cellar" 1 1 7000
   mvto 831 19108
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 0 7000
   mvto 1438 18937
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 1 7000
   mvto 1494 18969
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 3 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 3 7000
   mvto 1744 18977
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 4 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 4 7000
   mvto 1881 18979
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 5 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 5 7000
   mvto 2016 18975
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 10 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 10 7000
   mvto 2097 18927
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 11 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 11 7000
   mvto 1611 18973
-new: simp 1 1 6500 "c1l_overlays_top_level" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_top_level" 1 0 7000
   mvto 834 18346
-new: simp 1 1 6500 "c1l_overlays_top_level" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_top_level" 1 1 7000
   mvto 1083 18345
-new: simp 1 1 6500 "c1l_overlays_top_level" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_top_level" 1 2 7000
   mvto 874 18550
-new: simp 1 1 6500 "c1l_overlays_misc" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_misc" 1 2 7000
   mvto 1191 18592
-new: simp 1 1 6500 "c1l_overlays_home" 1 5 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 5 7000
   mvto 1471 18545
-new: simp 1 1 6500 "c1l_overlays_home" 1 7 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 7 7000
   mvto 1718 18551
-new: simp 1 1 6500 "c1l_overlays_home" 1 4 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 4 7000
   mvto 1462 18735
-new: simp 1 1 6500 "c1l_overlays_home" 1 8 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 8 7000
   mvto 1649 18721
-new: simp 1 1 6500 "c1l_overlays_home" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 0 7000
   mvto 1783 18586
-new: simp 1 1 6500 "c1l_overlays_home" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 1 7000
   mvto 1824 18652
-new: simp 1 1 6500 "c1l_overlays_home" 1 3 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 3 7000
   mvto 1846 18626
-new: simp 1 1 6500 "c1l_overlays_home" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 2 7000
   mvto 1961 18626
-new: simp 1 1 6500 "c1l_overlays_home" 1 6 8000
+new: simp 1 1 6500 "c1l_overlays_home" 1 6 7000
   mvto 1430 18747
-new: simp 1 1 6500 "c1l_overlays_rooms" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 0 7000
   mvto 1076 18785
-new: simp 1 1 6500 "c1l_overlays_rooms" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 1 7000
   mvto 1077 18692
-new: simp 1 1 6500 "c1l_overlays_rooms" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 2 7000
   mvto 1021 18602
-new: simp 1 1 6500 "c1l_overlays_rooms" 1 3 8000
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 3 7000
   mvto 850 18605
-new: simp 1 1 6500 "c1l_overlays_rooms" 1 4 8000
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 4 7000
   mvto 853 18793
-new: simp 1 1 6500 "c1l_overlays_rooms" 1 5 8000
+new: simp 1 1 6500 "c1l_overlays_rooms" 1 5 7000
   mvto 939 18795
-new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 0 7000
   mvto 2319 18927
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 6 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 6 7000
   mvto 1837 18934
-new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 1 7000
   mvto 2650 18933
-new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 2 7000
   mvto 2938 18934
-new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 4 8000
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 4 7000
   mvto 3411 18943
-new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 3 8000
+new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 3 7000
   mvto 3214 18934
-new: simp 1 1 6500 "c1l_overlays_temple" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_temple" 1 0 7000
   mvto 3675 18937
-new: simp 1 1 6500 "c1l_overlays_temple" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_temple" 1 1 7000
   mvto 3946 18925
-new: simp 1 1 6500 "c1l_overlays_temple" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_temple" 1 2 7000
   mvto 4279 18934
-new: simp 1 1 1000 "c1l_overlays_temple" 1 3 8000
+new: simp 1 1 1000 "c1l_overlays_temple" 1 3 7000
   mvto 3932 18705
-new: simp 1 1 6500 "c1l_overlays_tree" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_tree" 1 1 7000
   mvto 4409 18876
-new: simp 1 1 6500 "c1l_overlays_tree" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_tree" 1 0 7000
   mvto 5121 18723
-new: simp 1 1 6500 "c1l_overlays_tree" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_tree" 1 2 7000
   mvto 4953 18661
-new: simp 1 1 6500 "c1l_overlays_tree" 1 3 8000
+new: simp 1 1 6500 "c1l_overlays_tree" 1 3 7000
   mvto 4933 18526
-new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 1 7000
   mvto 4490 18399
-new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 2 8000
+new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 2 7000
   mvto 4490 18241
-new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_tree_platform" 1 0 7000
   mvto 3823 18394
-new: simp 1 1 6500 "c1l_overlays_misc" 1 0 8000
+new: simp 1 1 6500 "c1l_overlays_misc" 1 0 7000
   mvto 3287 18750
-new: simp 1 1 6500 "c1l_overlays_misc" 1 1 8000
+new: simp 1 1 6500 "c1l_overlays_misc" 1 1 7000
   mvto 3369 18417
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 7 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 7 7000
   mvto 1189 19130
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 8 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 8 7000
   mvto 1653 19129
-new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 9 8000
+new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 9 7000
   mvto 2059 19139
 
 *ROOMIE Add favorite place icon
@@ -1093,3 +1093,22 @@ new: simp 1 3 6500 "c1lfavoriteplace" 1 0 1
 cmrp 1493 18820 0
 
 ***ROOMIE_END***
+
+* Set metaroom variables
+setv game "c12dsl::metaroom::id" va01
+
+* GET METAROOM X/Y
+setv va99 0
+sets va98 mloc va01
+
+* Get Metaroom X
+setv va97 sins va98 1 " "
+setv va96 va97
+subv va96 1
+setv game "c12ds::metaroom::x" stoi subs va98 1 va96
+
+* GET Metaroom Y
+addv va97 1
+setv va96 sins va98 va97 " "
+subv va96 1
+setv game "c12ds::metaroom::y" stoi subs va98 va97 va96
