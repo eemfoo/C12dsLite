@@ -32,14 +32,18 @@
 *# Attach "../images/c1table.c16"
 *# Attach "../images/c1torches.c16"
 *# Attach "../images/c1vane.c16"
+*# Attach "../images/c1ball.c16"
 * Sounds
 *# Attach "../sounds/c1_music.mng"
 *# Attach "../sounds/c1c5.wav"
 *# Attach "../sounds/c1ca.wav"
+*# Attach "../sounds/c1b4.wav"
 *# Attach "../sounds/c1fl.wav"
 *# Attach "../sounds/c1st.wav"
 *# Attach "../sounds/c1ti.wav"
+*# Attach "../sounds/c1s3.wav"
 * Linked Scripts
 *# Link "../map/c12dsL2024.cos"
 *# Link "1.0 - Overlays.cos"
 *# Link "1.0 - Shelves.cos"
+*# Link "2.0 - Toys.cos"

@@ -1,0 +1,175 @@
+****************************
+* C1 Toys
+****************************
+* Classifiers:
+*  2 21 6500 - BALL
+*
+* Dependencies:
+*  c1b4.wav
+*  c1ball.c16
+*  c1c2.wav
+*  c1cannon.c16
+*  c1cf.wav
+*  c1d2.wav
+*  c1d7.wav
+*  c1pump.c16
+*  c1water.c16
+*  c1pi.wav
+*  c1piano.c16
+*  c1to.wav
+*  c1top.c16
+*  c1s3.wav splash
+* 2005-06-12 Added splashes to ball and cannonball
+
+* Installers
+inst
+
+new: simp 2 21 6500 "c1ball" 7 0 100
+attr 199
+accg 3
+bhvr 43
+fric 90
+aero 0
+elas 75
+pose 6
+perm 70
+tick 2
+mvsf 1707 18705
+
+* new ball in Grendel tree
+new: simp 2 21 6500 "c1ball" 7 0 100
+attr 199
+accg 3
+bhvr 43
+fric 90
+aero 0
+elas 75
+pose 6
+perm 70
+tick 2
+mvsf 4690 18499
+
+scrp 2 21 6500 1
+    call 1001 from 0
+endm
+
+scrp 2 21 6500 2
+    call 1001 from 0
+endm
+
+scrp 2 21 6500 3
+    call 1001 from 0
+endm
+
+scrp 2 21 6500 1001
+*	ball is pushed
+    lock
+    sndc "c1b4"
+    setv va00 posl
+    addv va00 22
+    targ _p1_
+    doif targ <> null
+        setv va02 posl
+    else
+        setv va02 va00
+    endi
+    setv va10 va02
+    subv va10 va00
+    mulv va10 -1
+    doif va10 > 10
+        setv va10 10
+    elif va10 < -10
+        setv va10 -10
+    endi
+    targ ownr
+    anim [0 1 2 3 4 5 6 255]
+*	velo rand -5 5 rand -30 -10
+    velo va10 rand -30 -10
+    stim writ _p1_ 97 1
+endm
+
+scrp 2 21 6500 4
+*	ball is picked up
+    lock
+    pose 6
+    stpc
+endm
+
+scrp 2 21 6500 6
+*	Ball collides
+    inst
+*	tick 20
+    setv va00 velx
+    absv va00
+    setv va01 vely
+    absv va01
+
+    doif va00 > 2 or va01 > 2
+        doif ov99 <> 1
+            sndc "c1b4"
+        endi
+        anim [0 1 2 3 4 5 6 255]
+    else
+        pose 6
+    endi
+
+    doif velx = 0 and vely = 0
+        pose 6
+    endi
+endm
+
+
+scrp 2 21 6500 9
+    inst
+    doif velx < 1 and velx > -1 and vely < 1 and vely > -1
+        pose 6
+    endi
+    setv va00 posl
+    setv va01 post
+    addv va01 10
+    setv va02 posr
+    setv va03 posb
+    subv va03 10
+    setv ov20 rtyp grap va00 va01
+    setv ov21 rtyp grap va02 va01
+    setv ov22 rtyp grap va00 va03
+    setv ov23 rtyp grap va02 va03
+    addv ov24 30
+    doif ov24 >= 360
+        setv ov24 0
+    endi
+    doif ov20 = 8 and ov21 = 8 and ov22 = 8 and ov23 = 8
+*		float up in water
+        doif ov99 = 0
+            setv ov99 1
+            sndc "c1s3"
+        endi
+        pose 6
+        accg -4
+        aero 40
+    elif ov20 = 9 and ov21 = 9 and ov22 = 9 and ov23 = 9
+*		float up in water
+        doif ov99 = 0
+            setv ov99 1
+            sndc "c1s3"
+        endi
+        pose 6
+        accg -4
+        aero 40
+    elif ov22 = 8 and ov23 = 8 and ov20 <> 8 and ov21 <> 8
+*		bobbing on the water surface
+        pose 6
+        accg 0
+        velo 0 sin_ ov24
+    elif ov22 = 9 and ov23 = 9 and ov20 <> 9 and ov21 <> 9
+*		bobbing on the water surface
+        pose 6
+        accg 0
+        velo 0 sin_ ov24
+    elif ov22 <> 8 and ov23 <> 8 and ov22 <> 9 or ov23 <> 9
+*		normal (out of water)
+        setv ov99 0
+        accg 3
+        aero 0
+    endi
+endm
