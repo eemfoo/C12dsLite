@@ -198,10 +198,10 @@ scrp 2 11 6500 12
     accg 5
     attr 211
     velo 0 5
-    targ carr
     emit 0 0
     bhvr 0
 
+    targ carr
     doif crea targ = 1
 *		drop
         mesg writ targ 4
