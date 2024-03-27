@@ -13,6 +13,12 @@ new: simp 1 1 6500 "c1smoke" 4 0 8000
 mvto 1924 18610
 anim [0 1 2 3 255]
 
+* Penants (flags near lanterns)
+new: simp 1 1 64401 "c1penants" 5 0 0
+mvto 3384 18365
+anim [0 1 2 3 4 255]
+sndl "c1fl"
+frat 1.5
 
 * C1 Clocks
 new: simp 1 1 6501 "c1clock" 5 0 2
