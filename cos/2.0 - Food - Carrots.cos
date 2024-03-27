@@ -204,7 +204,7 @@ scrp 2 11 6500 12
     targ carr
     doif crea targ = 1
 *		drop
-        mesg writ targ 4
+        mesg writ targ 5
     endi
 endm
 
