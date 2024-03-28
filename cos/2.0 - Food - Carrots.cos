@@ -61,6 +61,11 @@ scrp 2 11 6500 5
         stop
     endi
 
+    doif pose eq 8
+        tick rand 30 60
+        stop
+    endi
+
     * Reset
     setv mv01 0
     * Update timer for self destruct; Longer for carrots in metaroom
@@ -127,6 +132,7 @@ scrp 2 11 6500 9
 
     * If already bitten, kill carrot
     doif pose eq 8
+        mesg writ ownr 5
         kill ownr
     endi
 
@@ -182,33 +188,15 @@ scrp 2 11 6500 12
     targ ownr
     bhvr 0
 
-    * Set pose to eaten pose
-    doif pose = 6
-        setv va50 posl
-        subv va50 25
-        addv va50 rand -10 10
-        mvsf va50 post
-        pose 8
-        mesg wrt+ ownr 1000 2 0 rand 20 0
-    elif pose = 7
-        pose 8
-        mesg wrt+ ownr 1000 2 0 rand 20 0
-    else
-        pose 8
-        mesg wrt+ ownr 1000 2 0 rand 20 0
-    endi
-
-    accg 5
-    attr 211
-    velo 0 5
-    targ carr
     emit 0 0
     bhvr 0
 
+    targ carr
     doif crea targ = 1
 *		drop
-        mesg writ targ 4
+        mesg writ ownr 5
     endi
+    kill ownr
 endm
 
 
@@ -260,7 +248,7 @@ scrp 1 11 6500 1000
     setv va97 0
     enum 4 0 0
         doif gmap posl post eq va98
-            addv va97 1
+            addv va97 rand 1 2
         endi
     next
 
@@ -274,21 +262,13 @@ scrp 1 11 6500 1000
         stop
     endi
 
-    * Modify the number of carrots given for norn count
-    setv va91 va97
-    gsub modify
-    setv va97 va91
-
     * Get modifier for carrot beetles
     setv va96 0
     enum 2 2 6500
         doif gmap posl post eq va98
-            addv va96 1
+            addv va96 rand 1 2
         endi
     next
-    setv va91 va96
-    gsub modify
-    setv va96 va91
 
     * - Calculate needed carrots - *
     * Get minimum count for 8 carrots in the garden
@@ -333,22 +313,6 @@ scrp 1 11 6500 1000
     repe
 
     gsub tick
-
-    * Randomly reduces va90 to 1/3, 1/2 or 3/4 the amount
-    subr modify
-        setv va95 rand 0 3
-        doif va95 eq 0
-            * 1/3
-            divv va91 3
-        elif va95 eq 1
-            * 1/2
-            divv va91 2
-        else
-            * 3/4
-            mulv va91 3
-            divv va91 4
-        endi
-    retn
 
     * Set the next manager check tick to a random amount
     subr tick
