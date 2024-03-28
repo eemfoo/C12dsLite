@@ -61,6 +61,11 @@ scrp 2 11 6500 5
         stop
     endi
 
+    doif pose eq 8
+        tick rand 100 500
+        stop
+    endi
+
     * Reset
     setv mv01 0
     * Update timer for self destruct; Longer for carrots in metaroom
