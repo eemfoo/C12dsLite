@@ -62,7 +62,7 @@ scrp 2 11 6500 5
     endi
 
     doif pose eq 8
-        tick rand 100 500
+        tick rand 30 60
         stop
     endi
 
@@ -132,6 +132,7 @@ scrp 2 11 6500 9
 
     * If already bitten, kill carrot
     doif pose eq 8
+        mesg writ ownr 5
         kill ownr
     endi
 
@@ -187,22 +188,6 @@ scrp 2 11 6500 12
     targ ownr
     bhvr 0
 
-    * Set pose to eaten pose
-    doif pose = 6
-        setv va50 posl
-        subv va50 25
-        addv va50 rand -10 10
-        mvsf va50 post
-        pose 8
-    elif pose = 7
-        pose 8
-    else
-        pose 8
-    endi
-
-    accg 5
-    attr 211
-    velo 0 5
     emit 0 0
     bhvr 0
 
@@ -211,6 +196,7 @@ scrp 2 11 6500 12
 *		drop
         mesg writ ownr 5
     endi
+    kill ownr
 endm
 
 
