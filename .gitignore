@@ -8,6 +8,9 @@
 /renders
 
 /build
+/bin
+
+.caos2pray.cos
 
 # Roomie sprite breakdowns
 # should be defined in other sprite folders hopefully
