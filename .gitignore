@@ -26,3 +26,5 @@ CAOS/*.cosx
 # macOS/bedalton build commands
 *.macos.sh
 *.command
+assets/Teleporter-Cheese.afphoto
+assets/Slices.afphoto
