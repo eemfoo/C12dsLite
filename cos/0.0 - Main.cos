@@ -22,6 +22,7 @@
 * Sprites
 *# Attach "../map/c12dsl.blk"
 *# Attach "../images/c1ball.c16"
+*# Attach "../images/c1cheese.c16"
 *# Attach "../images/c1clock.c16"
 *# Attach "../images/c1drop.c16"
 *# Attach "../images/c1lfavoriteplace.c16"
@@ -38,6 +39,7 @@
 *# Attach "../sounds/c1_music.mng"
 *# Attach "../sounds/c1c5.wav"
 *# Attach "../sounds/c1ca.wav"
+*# Attach "../sounds/c1d2.wav"
 *# Attach "../sounds/c1b4.wav"
 *# Attach "../sounds/c1dp.wav"
 *# Attach "../sounds/c1fl.wav"
@@ -50,3 +52,10 @@
 *# Link "1.0 - Shelves.cos"
 *# Link "2.0 - Toys.cos"
 *# Link "2.0 - Food - Carrots.cos"
+*# Link "2.0 - Food - Cheese.cos"
+* JOINS
+*# Join "2.0 - Food - Cheese.cos"
+*#
+
+inst
+setv game "C1_to_DS_Lite_Loaded" 1
