@@ -1,0 +1,295 @@
+* C1 Stackable Lemons
+* Classifiers
+*   2 4 6500 - Lemon Trellis
+*   2 8 6500 - Lemon
+* Dependencies:
+*  c1plants.c16
+*  c1dp.wav
+*  chwp.wav
+**CAOS2Pray Join
+*# C3-Name "C12DS-Lite Lemon Trellis (C3)"
+*# DS-Name "C12DS-Lite Lemon Trellis (DS)"
+*# bioenergy = 0
+*# Agent Description = "Grow lemons on your ship"
+*# Agent Animation File = "c1plants.c16"
+*# Agent Animation Gallery = "c1plants"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Attach "../images/c1plants.c16"
+*# Attach "../sounds/c1dp.wav"
+inst
+lock
+
+* 	Lemon trellis
+new: simp 2 4 6500 "c1plants" 1 49 100
+tick 200
+fric 100
+aero 100
+elas 0
+*cabp 1
+*cabv -1
+seta va20 targ
+mesg writ targ 9
+
+doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6500 <= 1
+    setv va00 3079
+    setv va01 18794
+    mvto va00 va01
+    attr 724
+* 	C1 to DS Injection Location Script
+* 	have to make verify that game_type variable is a string value
+elif type game "ds_game_type" ne 2
+    attr 215
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+    attr 215
+* 	it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+        seta va02 targ
+        rtar 3 3 21
+        doif targ <> null
+            doif sqrt disq pntr < 1000
+*				hand is nearest the c3 injector
+                setv va00 5440
+                setv va01 3580
+            else
+*				hand is nearest the DS injector
+                setv va00 6100
+                setv va01 9200
+            endi
+        else
+            setv va00 5440
+            setv va01 3580
+        endi
+        targ va02
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+endi
+
+***********
+* Scripts
+
+scrp 2 4 6500 9
+
+*	Lemon Trellis' timer
+    inst
+    lock
+    doif movs = 0
+        setv va20 0
+        etch 2 8 6500
+            doif ov00 eq 0
+                addv va20 1
+            endi
+        next
+        doif va20 < 8 or _p1_ <> 0
+*		no/not enough fruit exists or asked to vend
+            doif _p1_ <> 0
+                setv va21 _p1_
+            else
+                setv va21 8
+                subv va21 va20
+            endi
+            doif va21 > 0
+                setv va22 0
+                reps va21
+                    addv va22 1
+                    doif game "c1l_non_stackable_lemons" = 1
+                        new: simp 2 8 6500 "c1plants" 3 0 101
+                        attr 7
+                    else
+                        new: vhcl 2 8 6500 "c1plants" 3 0 101
+                        cabp 0
+                        cabw 1
+                        cabn -10 -25 34 4
+                        attr 527
+                    endi
+                    seta va51 targ
+                    pose 2
+                    mira rand 0 1
+                    accg 5
+                    fric 100
+                    elas 0
+                    aero 100
+                    bhvr 48
+                    perm 60
+                    file oope 1 "C12DSL-Lemons.txt" 1
+
+                    outs "Lemon[" outv va22 outs "]\n"
+                    setv va53 0
+                    loop
+                        addv va53 1
+                        targ ownr
+                        setv va00 posl
+                        setv va01 post
+                        addv va00 rand 0 120
+                        addv va01 rand 0 72
+                        addv va01 36
+                        targ va51
+                        mvsf va00 va01
+                        outs "\tMoving to: " outv va00 outs ", " outv va01
+                        setv va52 0
+                        setv va23 0
+                        etch 2 8 6500
+                            doif va52 eq 0 and va51 ne targ
+                                addv va23 1
+                                outs "\tInnerLemon[" outv va23 outs "]: "
+                                doif ov00 eq 0
+                                    outs "TOUCHING (" outv posl outs ", " outv post outs ")\n"
+                                    addv va52 1
+                                endi
+                            endi
+                        next
+                    untl va52 = 0 or va53 gt 8
+                    targ va51
+*					lemon scent
+                    emit 6 .20
+                    doif _p1_ <> 1
+                        setv va52 0
+                        inst
+                    else
+                        accg 5
+                        fric 100
+                        aero 10
+                        velo rand -10 10 rand 1 5
+                    endi
+                repe
+            endi
+        endi
+    endi
+endm
+
+scrp 2 4 6500 4
+*	Lemon Trellis - I've been picked up
+    inst
+    lock
+    accg 5
+    fric 90
+    aero 10
+    perm 60
+endm
+
+scrp 2 8 6500 1
+*	Lemon clicked
+    inst
+    lock
+    doif game "C1_Clickable_Food" = 1
+        setv va00 posl
+        setv va01 post
+
+        doif game "c1l_non_stackable_lemons" = 1
+            new: simp 2 8 6500 "c1plants" 3 0 101
+            attr 199
+        else
+            new: vhcl 2 8 6500 "c1plants" 3 0 101
+            cabp 0
+            cabw 1
+            cabn -10 -25 34 4
+            attr 719
+        endi
+        setv ov00 1
+        pose 2
+        mira rand 0 1
+        accg 5
+        fric 100
+        elas 0
+        aero 10
+        bhvr 48
+*		lemon scent
+        emit 6 .20
+        perm 60
+        mvsf va00 va01
+        velo rand -15 15 rand -15 -5
+    endi
+endm
+
+scrp 2 8 6500 4
+*	lemon has been picked up
+    inst
+    lock
+    setv ov00 1
+    doif type ownr = 6
+        attr 719
+    else
+        attr 199
+    endi
+    mira rand 0 1
+    accg 3
+    fric 90
+    aero 10
+endm
+
+scrp 2 8 6500 5
+*	lemon has been dropped!
+    inst
+    pose 0
+    mira rand 0 1
+    accg 3
+    fric 90
+    aero 10
+endm
+
+scrp 2 8 6500 6
+*	lemon has hit something!
+    sndc "c1dp"
+endm
+
+scrp 2 8 6500 124
+*	lemon got a passenger
+    epas 0 0 0
+        doif fmly = 2 and gnus = 8 and spcs = 6500
+*			it's Ok - C1 to DS Lemon
+        elif fmly = 2 and gnus = 8 and spcs = 7
+*			it's Ok - DS Lemon, but you can't stack on top of DS lemons
+        else
+            rpas ownr targ
+        endi
+    next
+endm
+
+scrp 2 8 6500 12
+*	eating a fruit
+*	Lemon
+    inst
+    lock
+    seta va20 norn
+    targ from
+    doif crea targ = 1
+        snde "chwp"
+    endi
+    stim writ from 78 1
+    targ ownr
+    kill targ
+endm
+
+rscr
+enum 2 8 6500
+    kill targ
+next
+enum 2 4 6500
+    kill targ
+next
+
+* Trellis Scripts
+scrx 2 4 6500 4
+scrx 2 4 6500 9
+
+* Lemon Scripts
+scrx 2 8 6500 1
+scrx 2 8 6500 4
+scrx 2 8 6500 5
+scrx 2 8 6500 6
+scrx 2 8 6500 12
+scrx 2 8 6500 124
