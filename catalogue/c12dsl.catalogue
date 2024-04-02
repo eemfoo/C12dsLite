@@ -1,0 +1,25 @@
+# FRUIT
+TAG "Agent Help 2 8 6500"
+"Lemon (Variety)"
+"Provides a multitude of beneficial nutrients."
+
+
+# FOOD
+TAG "Agent Help 2 11 6500"
+"Carrot (C1 Variety)"
+"Carrots are good food for norns."
+
+TAG "Agent Help 2 11 6501"
+"Cheese"
+"Good old fashioned Albian cheese. This food provides good nutrition for creatures."
+
+
+# TOYS
+TAG "Agent Help 2 21 6500"
+"Red ball"
+"Pushing the ball is fun for the hand and creatures!"
+
+# MISC
+TAG "Agent Help 1 7 6500"
+"Shelf"
+"Someplace to place your Albian things"
