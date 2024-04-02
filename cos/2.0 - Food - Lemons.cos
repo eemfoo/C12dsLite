@@ -146,7 +146,7 @@ scrp 2 4 6500 9
                                 endi
                             endi
                         next
-                    untl va52 = 0 or va53 gt 8
+                    untl va52 = 0 or va53 gt 600
                     targ va51
 *					lemon scent
                     emit 6 .20
