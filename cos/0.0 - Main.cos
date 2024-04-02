@@ -53,9 +53,9 @@
 *# Link "2.0 - Toys.cos"
 *# Link "2.0 - Food - Carrots.cos"
 *# Link "2.0 - Food - Cheese.cos"
+*# Link "2.0 - Food - Lemons.cos"
 * JOINS
 *# Join "2.0 - Food - Cheese.cos"
-*#
-
+*# Join "2.0 - Food - Lemons.cos"
 inst
 setv game "C1_to_DS_Lite_Loaded" 1
