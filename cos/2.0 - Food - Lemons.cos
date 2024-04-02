@@ -125,9 +125,6 @@ scrp 2 4 6500 9
                     aero 100
                     bhvr 48
                     perm 60
-                    file oope 1 "C12DSL-Lemons.txt" 1
-
-                    outs "Lemon[" outv va22 outs "]\n"
                     setv va53 0
                     loop
                         addv va53 1
@@ -139,15 +136,12 @@ scrp 2 4 6500 9
                         addv va01 36
                         targ va51
                         mvsf va00 va01
-                        outs "\tMoving to: " outv va00 outs ", " outv va01
                         setv va52 0
                         setv va23 0
                         etch 2 8 6500
                             doif va52 eq 0 and va51 ne targ
                                 addv va23 1
-                                outs "\tInnerLemon[" outv va23 outs "]: "
                                 doif ov00 eq 0
-                                    outs "TOUCHING (" outv posl outs ", " outv post outs ")\n"
                                     addv va52 1
                                 endi
                             endi
