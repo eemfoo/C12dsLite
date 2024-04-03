@@ -101,7 +101,9 @@ function buildCAOSFile() {
         process.exit(1);
     }
 
-    linkCos(text, "cos", "CAOS Scripts");
+    text.push("* CAOS Scripts")
+    text.push("*# Link \"map/c12dsL2024.cos\"");
+    linkCos(text, "cos");
 
     attachFilesIn(text, "images", "Images");
     text.push("*# Attach \"map/c12dsl.blk\"")
