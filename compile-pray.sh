@@ -7,7 +7,7 @@ const Path = require("node:path");
 const fs = require("node:fs");
 const {spawn} = require('node:child_process');
 const https = require("node:https");
-const {platform, arch, exit: exitProcess} = require("node:process");
+const {platform, arch, exit: exitProcess, argv} = require("node:process");
 
 
 const mainCos = "0.0 - Main.cos";
@@ -310,9 +310,15 @@ async function _compile() {
 
         const filename = buildCAOSFile();
 
+        const compilerArgs = ["compile", filename]
+        const debug = argv.find((arg) => arg.toLowerCase() === "--debug") != null;
+        if (debug) {
+            compilerArgs.push("--debug");
+        }
+
         let child;
         try {
-            child = spawn(exe, ["compile", filename, "--debug"]);
+            child = spawn(exe, compilerArgs);
         } catch (e) {
 //		 	fs.rmSync(exe, exe + ".broken");
             reject(e);
