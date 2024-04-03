@@ -9,3 +9,6 @@
 *# Agent Animation String = "1"
 *# Agent Bioenergy Value = 0
 * {}
+
+inst
+setv game "C1_to_DS_Lite_Loaded" 1
