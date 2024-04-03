@@ -21,7 +21,7 @@ const joins = [];
  * @param {string} relativePath the path relative to root for linking CAOS
  * @param {string|null|undefined} prefixComment comment to insert before CAOS2Pray lines
  */
-function linkCos(text, relativePath, prefixComment) {
+function linkCos(text, relativePath, prefixComment = null) {
     const path = Path.join(__dirname, relativePath);
     const files = fs.readdirSync(path);
 
