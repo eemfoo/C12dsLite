@@ -1,1 +1,1 @@
-node "compile-pray.bat"
+node "compile-pray.sh"
