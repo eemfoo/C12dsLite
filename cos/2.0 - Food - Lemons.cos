@@ -20,15 +20,15 @@ inst
 lock
 
 * 	Lemon trellis
-new: simp 2 4 6500 "c1plants" 1 49 100
+new: vhcl 2 4 6500 "c1plants" 1 49 100
+attr 711
 tick 200
 fric 100
 aero 100
 elas 0
-*cabp 1
-*cabv -1
+cabp 1
+cabv -1
 seta va20 targ
-mesg writ targ 9
 
 doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6500 <= 1
     setv va00 3079
@@ -78,6 +78,8 @@ else
     endi
 endi
 
+mesg writ targ 9
+
 ***********
 * Scripts
 
@@ -88,10 +90,8 @@ scrp 2 4 6500 9
     lock
     doif movs = 0
         setv va20 0
-        etch 2 8 6500
-            doif ov00 eq 0
-                addv va20 1
-            endi
+        epas 2 8 6500
+            addv va20 1
         next
         doif va20 < 8 or _p1_ <> 0
 *		no/not enough fruit exists or asked to vend
@@ -102,80 +102,57 @@ scrp 2 4 6500 9
                 subv va21 va20
             endi
             doif va21 > 0
-                setv va22 0
                 reps va21
-                    addv va22 1
-                    doif game "c1l_non_stackable_lemons" = 1
-                        new: simp 2 8 6500 "c1plants" 3 0 101
-                        attr 7
-                    else
-                        new: vhcl 2 8 6500 "c1plants" 3 0 101
-                        cabp 0
-                        cabw 1
-                        cabn -10 -25 34 4
-                        attr 527
-                    endi
+                    new: vhcl 2 8 6500 "c1plants" 3 0 101
                     seta va51 targ
-                    * Get offset range X
-                    setv va10 wdth
-                    setv va11 va10
-                    addv va11 8
-                    * Get offset range Y
-                    setv va12 hght
-                    setv va13 va12
-                    addv va13 5
-
-                    * Set standard properties
+                    cabp 0
+                    cabw 1
+                    cabn -10 -25 34 4
                     pose 2
                     mira rand 0 1
                     accg 5
+                    attr 719
                     fric 100
                     elas 0
                     aero 100
                     bhvr 48
                     perm 60
-
-                    * Try to find placement for lemon
+                    setv va53 0
                     loop
+                        addv va53 1
                         targ ownr
-
-                        * Decide on side of trellis for lemon
-                        setv va40 va22
-                        modv va40 2
-                        * Get X
                         setv va00 posl
-                        doif va40 eq 0
-                            addv va00 rand 60 120
-                        else
-                            addv va00 rand 0 60
-                        endi
-
-                        * Get Y
                         setv va01 post
-                        addv va01 rand 46 107
-
-                        * Move Lemon into place
                         targ va51
+                        addv va00 rand 0 120
+                        addv va01 rand 45 107
                         mvsf va00 va01
-
-                        * Find if touching any lemons
                         setv va52 0
                         targ ownr
-                        etch 2 8 32390
-                            doif ov00 eq 0
-                                doif va52 eq 0
-                                    doif touc va51 targ = 1
-                                        addv va52 1
-                                    endi
-                                endi
+                        epas 2 8 6500
+                            doif touc va51 targ = 1
+                                addv va52 1
                             endi
                         next
-                    untl va52 = 0 or va53 gt 700
-
-                    * Switch targ to lemon
+                    untl va52 = 0 or va53 ge 300
                     targ va51
-                    * lemon scent
+*					lemon scent
                     emit 6 .20
+                    doif _p1_ <> 1
+                        setv va52 0
+                        loop
+                            spas ownr targ
+                            wait 1
+                            inst
+                            addv va52 1
+                        untl type targ < 3 or carr = ownr or va52 > 100
+                        inst
+                    else
+                        accg 5
+                        fric 100
+                        aero 10
+                        velo rand -10 10 rand 1 5
+                    endi
                 repe
             endi
         endi
