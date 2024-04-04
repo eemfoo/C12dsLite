@@ -6,7 +6,7 @@
 * Top
 new: simp 2 21 6501 "c1top" 0 0 5000
 attr 199
-bhvr 41
+bhvr 43
 accg 5
 elas 0
 fric 90
@@ -23,6 +23,17 @@ setv ov91 post
 
 
 scrp 2 21 6501 1
+*	top is pushed
+    doif ov99 = 0
+        tick 1
+        setv ov97 0
+        setv ov99 1
+        sndc "c1to"
+        stim writ from 97 1
+    endi
+endm
+
+scrp 2 21 6501 2
 *	top is pushed
     doif ov99 = 0
         tick 1
