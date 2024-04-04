@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 // noinspection SpellCheckingInspection
 
-const version = "1.2.1";
+const version = "1.2.2";
 
 const Path = require("node:path");
 const fs = require("node:fs");
@@ -410,7 +410,7 @@ async function _compile() {
 
         buildCAOSFile();
 
-        const compilerArgs = ["compile", caos2PrayFilePath]
+        const compilerArgs = ["compile", caos2PrayFilePath, "--progress"]
         const debug = argv.find((arg) => arg.toLowerCase() === "--debug") != null;
         if (debug) {
             compilerArgs.push("--debug");
