@@ -117,6 +117,16 @@ scrp 2 4 6500 9
                         attr 527
                     endi
                     seta va51 targ
+                    * Get offset range X
+                    setv va10 wdth
+                    setv va11 va10
+                    addv va11 8
+                    * Get offset range Y
+                    setv va12 hght
+                    setv va13 va12
+                    addv va13 5
+
+                    * Set standard properties
                     pose 2
                     mira rand 0 1
                     accg 5
@@ -125,40 +135,48 @@ scrp 2 4 6500 9
                     aero 100
                     bhvr 48
                     perm 60
-                    setv va53 0
+
+                    * Try to find placement for lemon
                     loop
-                        addv va53 1
                         targ ownr
+
+                        * Decide on side of trellis for lemon
+                        setv va40 va22
+                        modv va40 2
+                        * Get X
                         setv va00 posl
+                        doif va40 eq 0
+                            addv va00 rand 60 120
+                        else
+                            addv va00 rand 0 60
+                        endi
+
+                        * Get Y
                         setv va01 post
-                        addv va00 rand 0 120
-                        addv va01 rand 0 72
-                        addv va01 36
+                        addv va01 rand 46 107
+
+                        * Move Lemon into place
                         targ va51
                         mvsf va00 va01
+
+                        * Find if touching any lemons
                         setv va52 0
-                        setv va23 0
-                        etch 2 8 6500
-                            doif va52 eq 0 and va51 ne targ
-                                addv va23 1
-                                doif ov00 eq 0
-                                    addv va52 1
+                        targ ownr
+                        etch 2 8 32390
+                            doif ov00 eq 0
+                                doif va52 eq 0
+                                    doif touc va51 targ = 1
+                                        addv va52 1
+                                    endi
                                 endi
                             endi
                         next
-                    untl va52 = 0 or va53 gt 600
+                    untl va52 = 0 or va53 gt 700
+
+                    * Switch targ to lemon
                     targ va51
-*					lemon scent
+                    * lemon scent
                     emit 6 .20
-                    doif _p1_ <> 1
-                        setv va52 0
-                        inst
-                    else
-                        accg 5
-                        fric 100
-                        aero 10
-                        velo rand -10 10 rand 1 5
-                    endi
                 repe
             endi
         endi
@@ -179,7 +197,9 @@ scrp 2 8 6500 1
 *	Lemon clicked
     inst
     lock
-    doif game "C1_Clickable_Food" = 1
+    doif game "C1L_Clickable_Food" = 1
+
+        * Create new lemon
         setv va00 posl
         setv va01 post
 
@@ -213,7 +233,7 @@ scrp 2 8 6500 4
 *	lemon has been picked up
     inst
     lock
-    setv ov00 1
+    setv mv00 1
     doif type ownr = 6
         attr 719
     else
