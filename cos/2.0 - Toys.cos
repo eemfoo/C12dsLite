@@ -20,7 +20,19 @@
 *  c1top.c16
 *  c1s3.wav splash
 * 2005-06-12 Added splashes to ball and cannonball
-
+**CAOS2Pray Join
+*# C3-Name "C12DS-Lite Red Ball (C3)"
+*# DS-Name "C12DS-Lite Red Ball"
+*# Agent Description = "Pushing the ball is fun for the hand and creatures!"
+*# Agent Animation File = "c1ball.c16"
+*# Agent Animation Gallery = "c1ball"
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Agent Sprite First Image = 0
+* Attachments
+*# Attach "../images/c1ball.c16"
+*# Attach "../sounds/c1b4.wav"
+*# Attach "../sounds/c1s3.wav"
 * Installers
 inst
 
@@ -34,20 +46,49 @@ elas 75
 pose 6
 perm 70
 tick 2
-mvsf 1707 18705
+
+
+doif game "C1_to_DS_Loaded" = 1 and totl 2 21 32314 <= 1
+
+* new ball in norn house
+    mvsf 1707 18705
 
 * new ball in Grendel tree
-new: simp 2 21 6500 "c1ball" 7 0 100
-attr 199
-accg 3
-bhvr 43
-fric 90
-aero 0
-elas 75
-pose 6
-perm 70
-tick 2
-mvsf 4690 18499
+    new: simp 2 21 6500 "c1ball" 7 0 100
+    attr 199
+    accg 3
+    bhvr 43
+    fric 90
+    aero 0
+    elas 75
+    pose 6
+    perm 70
+    tick 2
+    mvsf 4690 18499
+
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+endi
 
 scrp 2 21 6500 1
     call 1001 from 0
