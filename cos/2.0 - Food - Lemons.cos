@@ -7,8 +7,7 @@
 *  c1dp.wav
 *  chwp.wav
 **CAOS2Pray Join
-*# C3-Name "C12DS-Lite Lemon Trellis (C3)"
-*# DS-Name "C12DS-Lite Lemon Trellis (DS)"
+*# DS-Name "C12DS-Lite Lemon Trellis"
 *# bioenergy = 0
 *# Agent Description = "Grow lemons on your ship"
 *# Agent Animation File = "c1plants.c16"
