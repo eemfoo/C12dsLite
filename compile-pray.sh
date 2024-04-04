@@ -290,6 +290,22 @@ async function getCompiler() {
 
 
 /**
+ * Formats duration into minutes and seconds
+ * @param {number} time
+ * @returns {string}
+ */
+function formatTime(time) {
+    const duration = time / 1000.0;
+    const minutes = Math.floor(duration / 60.0);
+    const seconds = duration - (minutes * 60);
+    let timeString = minutes ? (minutes + "m ") : "";
+    if (seconds > 0) {
+        timeString += seconds + "s ";
+    }
+    return timeString;
+}
+
+/**
  * Compile agent and get compiler exit code
  * @returns {Promise<number>} compiler exit code
  */
@@ -318,8 +334,10 @@ async function _compile() {
             compilerArgs.push("--debug");
         }
 
+
         let child;
         try {
+            console.log("Compiling agent...");
             child = spawn(exe, compilerArgs);
         } catch (e) {
 //		 	fs.rmSync(exe, exe + ".broken");
@@ -341,10 +359,12 @@ async function _compile() {
  * Compile agent and log result
  */
 function compile() {
+    let time = Date.now();
     _compile()
         .then((code) => {
             if (code === 0) {
-                console.info("Compiled agent successfully");
+                const timeString = formatTime(Date.now() - time);
+                console.info("Compiled agent successfully in " + timeString);
             } else {
                 console.error("An error was encountered");
             }
