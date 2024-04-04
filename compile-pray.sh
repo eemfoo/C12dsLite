@@ -382,7 +382,7 @@ const addMusicAndWriteMap = function () {
         return true;
     } catch (e) {
         const error = e instanceof Error ? e.message : e;
-        console.error("Failed to write map file with music;" + (e.trim() ? (" Error: " + e.trim()) : ""));
+        console.error("Failed to write map file with music;" + (error.trim() ? (" Error: " + error.trim()) : ""));
         return false;
     }
 }
