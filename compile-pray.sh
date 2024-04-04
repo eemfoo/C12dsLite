@@ -268,18 +268,21 @@ async function getCompiler() {
         download(exe, binary)
             .then((destination) => {
                 try {
-                    fs.writeFileSync(versionTextFilePath, "" + version, "utf-8");
+                    fs.writeFileSync(versionTextFilePath+".tmp", "" + version, "utf-8");
                 } catch {
                     console.error("Failed to write version.txt; Please create it manually in the ./bin/version.txt; with content: " + version);
                 }
                 return destination;
             })
             .then((destination) => {
-                binaryError = getBinaryError(destination, versionTextFilePath);
+                binaryError = getBinaryError(destination, versionTextFilePath+".tmp");
                 if (binaryError) {
+                    fs.rmSync(versionTextFilePath+".tmp")
                     console.error("Failed to download: " + exe + "; Error: " + binaryError);
                     reject(binaryError);
                 } else {
+                    fs.rmSync(versionTextFilePath);
+                    fs.renameSync(versionTextFilePath+".tmp", versionTextFilePath)
                     resolve(binary);
                 }
             })
