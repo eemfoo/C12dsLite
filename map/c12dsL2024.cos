@@ -7,615 +7,462 @@ mapd 200000 200000
 setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 1292 1440 18745 18745 18926 18926
     rtyp va00 3
-    rmsc 1366 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_0" va00
   setv va00 addr va01 1440 1561 18745 18745 18926 18926
     rtyp va00 3
-    rmsc 1500 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_1" va00
   setv va00 addr va01 1561 1725 18745 18745 18926 18926
     rtyp va00 3
-    rmsc 1643 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_2" va00
   setv va00 addr va01 1725 1866 18745 18745 18926 18926
     rtyp va00 3
-    rmsc 1795 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_3" va00
   setv va00 addr va01 1866 1971 18745 18745 18926 18926
     rtyp va00 3
-    rmsc 1918 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_4" va00
   setv va00 addr va01 1971 2038 18745 18745 18926 18926
     rtyp va00 3
-    rmsc 2004 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_5" va00
   setv va00 addr va01 1182 1292 18800 18745 18926 18926
     rtyp va00 3
-    rmsc 1237 18849 "c1_music.mng\\c12ds"
     setv game "map_tmp_6" va00
   setv va00 addr va01 1090 1182 18800 18800 18926 18926
     rtyp va00 3
-    rmsc 1136 18863 "c1_music.mng\\c12ds"
     setv game "map_tmp_7" va00
   setv va00 addr va01 975 1090 18800 18800 18926 18926
     rtyp va00 3
-    rmsc 1032 18863 "c1_music.mng\\c12ds"
     setv game "map_tmp_8" va00
   setv va00 addr va01 867 975 18800 18800 18926 18926
     rtyp va00 3
-    rmsc 921 18863 "c1_music.mng\\c12ds"
     setv game "map_tmp_9" va00
   setv va00 addr va01 1481 1560 18603 18603 18735 18735
     rtyp va00 3
-    rmsc 1520 18669 "c1_music.mng\\c12ds"
     setv game "map_tmp_10" va00
   setv va00 addr va01 1560 1724 18603 18604 18735 18737
     rtyp va00 3
-    rmsc 1642 18669 "c1_music.mng\\c12ds"
     setv game "map_tmp_11" va00
   setv va00 addr va01 1724 1793 18604 18604 18737 18737
     rtyp va00 3
-    rmsc 1758 18670 "c1_music.mng\\c12ds"
     setv game "map_tmp_12" va00
   setv va00 addr va01 1840 1988 18532 18541 18737 18737
     rtyp va00 4
-    rmsc 1914 18636 "c1_music.mng\\c12ds"
     setv game "map_tmp_13" va00
   setv va00 addr va01 1793 1827 18604 18642 18737 18737
     rtyp va00 3
-    rmsc 1810 18679 "c1_music.mng\\c12ds"
     setv game "map_tmp_14" va00
   setv va00 addr va01 868 977 18605 18605 18786 18786
     rtyp va00 3
-    rmsc 922 18695 "c1_music.mng\\c12ds"
     setv game "map_tmp_15" va00
   setv va00 addr va01 977 1093 18605 18605 18786 18786
     rtyp va00 3
-    rmsc 1035 18695 "c1_music.mng\\c12ds"
     setv game "map_tmp_16" va00
   setv va00 addr va01 1093 1182 18605 18605 18786 18786
     rtyp va00 3
-    rmsc 1137 18695 "c1_music.mng\\c12ds"
     setv game "map_tmp_17" va00
   setv va00 addr va01 897 990 18483 18406 18592 18592
     rtyp va00 3
-    rmsc 943 18518 "c1_music.mng\\c12ds"
     setv game "map_tmp_18" va00
   setv va00 addr va01 990 1094 18406 18406 18592 18592
     rtyp va00 3
-    rmsc 1042 18499 "c1_music.mng\\c12ds"
     setv game "map_tmp_19" va00
   setv va00 addr va01 1094 1182 18406 18406 18592 18592
     rtyp va00 3
-    rmsc 1138 18499 "c1_music.mng\\c12ds"
     setv game "map_tmp_20" va00
   setv va00 addr va01 1182 1266 18406 18406 18592 18592
     rtyp va00 5
-    rmsc 1224 18499 "c1_music.mng\\c12ds"
     setv game "map_tmp_21" va00
   setv va00 addr va01 1266 1359 18406 18406 18592 18592
     rtyp va00 5
-    rmsc 1312 18499 "c1_music.mng\\c12ds"
     setv game "map_tmp_22" va00
   setv va00 addr va01 1359 1468 18406 18406 18592 18592
     rtyp va00 5
-    rmsc 1413 18499 "c1_music.mng\\c12ds"
     setv game "map_tmp_23" va00
   setv va00 addr va01 1468 1560 18406 18406 18592 18592
     rtyp va00 4
-    rmsc 1514 18499 "c1_music.mng\\c12ds"
     setv game "map_tmp_24" va00
   setv va00 addr va01 1560 1724 18406 18406 18592 18592
     rtyp va00 4
-    rmsc 1642 18499 "c1_music.mng\\c12ds"
     setv game "map_tmp_25" va00
   setv va00 addr va01 1724 1793 18406 18406 18592 18592
     rtyp va00 4
-    rmsc 1758 18499 "c1_music.mng\\c12ds"
     setv game "map_tmp_26" va00
   setv va00 addr va01 1793 1840 18406 18406 18592 18649
     rtyp va00 4
-    rmsc 1816 18513 "c1_music.mng\\c12ds"
     setv game "map_tmp_27" va00
   setv va00 addr va01 1203 1455 18612 18612 18712 18712
     rtyp va00 3
-    rmsc 1329 18662 "c1_music.mng\\c12ds"
     setv game "map_tmp_28" va00
   setv va00 addr va01 1840 1988 18406 18406 18532 18541
     rtyp va00 0
-    rmsc 1914 18471 "c1_music.mng\\c12ds"
     setv game "map_tmp_29" va00
   setv va00 addr va01 2038 2179 18745 18745 18926 18926
     rtyp va00 4
-    rmsc 2108 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_30" va00
   setv va00 addr va01 2179 2315 18745 18745 18926 18926
     rtyp va00 4
-    rmsc 2247 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_31" va00
   setv va00 addr va01 2315 2485 18745 18745 18926 18934
     rtyp va00 5
-    rmsc 2400 18837 "c1_music.mng\\c12ds"
     setv game "map_tmp_32" va00
   setv va00 addr va01 2485 2603 18745 18745 18934 18934
     rtyp va00 5
-    rmsc 2544 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_33" va00
   setv va00 addr va01 2603 2720 18745 18745 18934 18934
     rtyp va00 5
-    rmsc 2661 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_34" va00
   setv va00 addr va01 2720 2826 18745 18745 18934 18934
     rtyp va00 5
-    rmsc 2773 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_35" va00
   setv va00 addr va01 2826 2978 18745 18745 18934 18934
     rtyp va00 5
-    rmsc 2902 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_36" va00
   setv va00 addr va01 2978 3082 18745 18745 18934 18934
     rtyp va00 5
-    rmsc 3030 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_37" va00
   setv va00 addr va01 3082 3219 18745 18745 18934 18934
     rtyp va00 5
-    rmsc 3150 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_38" va00
   setv va00 addr va01 3219 3376 18745 18745 18934 18936
     rtyp va00 5
-    rmsc 3297 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_39" va00
   setv va00 addr va01 3376 3510 18745 18745 18936 18934
     rtyp va00 4
-    rmsc 3443 18840 "c1_music.mng\\c12ds"
     setv game "map_tmp_40" va00
   setv va00 addr va01 3510 3666 18745 18745 18934 18934
     rtyp va00 4
-    rmsc 3588 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_41" va00
   setv va00 addr va01 3666 3834 18745 18736 18934 18925
     rtyp va00 4
-    rmsc 3750 18835 "c1_music.mng\\c12ds"
     setv game "map_tmp_42" va00
   setv va00 addr va01 3834 4044 18736 18736 18925 18925
     rtyp va00 4
-    rmsc 3939 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_43" va00
   setv va00 addr va01 4044 4173 18736 18736 18925 18925
     rtyp va00 3
-    rmsc 4108 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_44" va00
   setv va00 addr va01 4173 4300 18736 18736 18925 18925
     rtyp va00 3
-    rmsc 4236 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_45" va00
   setv va00 addr va01 4300 4412 18736 18736 18925 18925
     rtyp va00 3
-    rmsc 4356 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_46" va00
   setv va00 addr va01 4412 4523 18736 18736 18925 18925
     rtyp va00 7
-    rmsc 4467 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_47" va00
   setv va00 addr va01 4523 4644 18736 18736 18925 18925
     rtyp va00 7
-    rmsc 4583 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_48" va00
   setv va00 addr va01 4644 4778 18736 18736 18925 18925
     rtyp va00 7
-    rmsc 4711 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_49" va00
   setv va00 addr va01 4778 4920 18736 18736 18925 18925
     rtyp va00 7
-    rmsc 4849 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_50" va00
   setv va00 addr va01 4920 5109 18736 18736 18925 18925
     rtyp va00 7
-    rmsc 5014 18830 "c1_music.mng\\c12ds"
     setv game "map_tmp_51" va00
   setv va00 addr va01 5109 5231 18736 18773 18925 18925
     rtyp va00 1
-    rmsc 5170 18839 "c1_music.mng\\c12ds"
     setv game "map_tmp_52" va00
   setv va00 addr va01 5231 5357 18773 18805 18925 18925
     rtyp va00 1
-    rmsc 5294 18857 "c1_music.mng\\c12ds"
     setv game "map_tmp_53" va00
   setv va00 addr va01 4920 5107 18958 18958 19132 19132
     rtyp va00 6
-    rmsc 5013 19045 "c1_music.mng\\c12ds"
     setv game "map_tmp_54" va00
   setv va00 addr va01 5242 5417 18950 18950 19110 19112
     rtyp va00 8
-    rmsc 5329 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_55" va00
   setv va00 addr va01 5155 5242 18950 18950 19064 19110
     rtyp va00 8
-    rmsc 5198 19018 "c1_music.mng\\c12ds"
     setv game "map_tmp_56" va00
   setv va00 addr va01 896 1011 18967 18967 19093 19093
     rtyp va00 7
-    rmsc 953 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_57" va00
   setv va00 addr va01 1011 1088 18967 18967 19093 19093
     rtyp va00 7
-    rmsc 1049 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_58" va00
   setv va00 addr va01 1088 1185 18967 18967 19093 19093
     rtyp va00 7
-    rmsc 1136 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_59" va00
   setv va00 addr va01 1185 1318 18967 18967 19093 19093
     rtyp va00 7
-    rmsc 1251 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_60" va00
   setv va00 addr va01 1318 1463 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 1390 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_61" va00
   setv va00 addr va01 1463 1602 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 1532 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_62" va00
   setv va00 addr va01 1602 1751 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 1676 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_63" va00
   setv va00 addr va01 1751 1883 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 1817 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_64" va00
   setv va00 addr va01 1883 2002 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 1942 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_65" va00
   setv va00 addr va01 2002 2116 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 2059 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_66" va00
   setv va00 addr va01 2116 2246 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 2181 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_67" va00
   setv va00 addr va01 2246 2370 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 2308 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_68" va00
   setv va00 addr va01 2370 2483 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 2426 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_69" va00
   setv va00 addr va01 2483 2623 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 2553 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_70" va00
   setv va00 addr va01 2623 2733 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 2678 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_71" va00
   setv va00 addr va01 2733 2862 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 2797 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_72" va00
   setv va00 addr va01 2862 2997 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 2929 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_73" va00
   setv va00 addr va01 2997 3139 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 3068 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_74" va00
   setv va00 addr va01 3139 3278 18967 18967 19093 19093
     rtyp va00 1
-    rmsc 3208 19030 "c1_music.mng\\c12ds"
     setv game "map_tmp_75" va00
   setv va00 addr va01 3278 3411 18967 18951 19093 19093
     rtyp va00 1
-    rmsc 3344 19026 "c1_music.mng\\c12ds"
     setv game "map_tmp_76" va00
   setv va00 addr va01 3411 3536 18951 18951 19093 19093
     rtyp va00 1
-    rmsc 3473 19022 "c1_music.mng\\c12ds"
     setv game "map_tmp_77" va00
   setv va00 addr va01 3536 3660 18951 18951 19093 19093
     rtyp va00 1
-    rmsc 3598 19022 "c1_music.mng\\c12ds"
     setv game "map_tmp_78" va00
   setv va00 addr va01 3660 3777 18951 18951 19093 19093
     rtyp va00 1
-    rmsc 3718 19022 "c1_music.mng\\c12ds"
     setv game "map_tmp_79" va00
   setv va00 addr va01 3777 3877 18951 18941 19093 19093
     rtyp va00 3
-    rmsc 3827 19020 "c1_music.mng\\c12ds"
     setv game "map_tmp_80" va00
   setv va00 addr va01 3877 4039 18941 18941 19093 19093
     rtyp va00 7
-    rmsc 3958 19017 "c1_music.mng\\c12ds"
     setv game "map_tmp_81" va00
   setv va00 addr va01 4039 4206 18941 18941 19093 19093
     rtyp va00 7
-    rmsc 4122 19017 "c1_music.mng\\c12ds"
     setv game "map_tmp_82" va00
   setv va00 addr va01 4206 4314 18941 18941 19093 19093
     rtyp va00 7
-    rmsc 4260 19017 "c1_music.mng\\c12ds"
     setv game "map_tmp_83" va00
   setv va00 addr va01 4314 4379 18941 18941 19093 19093
     rtyp va00 7
-    rmsc 4346 19017 "c1_music.mng\\c12ds"
     setv game "map_tmp_84" va00
   setv va00 addr va01 990 1094 18392 18321 18406 18406
     rtyp va00 0
-    rmsc 1042 18381 "c1_music.mng\\c12ds"
     setv game "map_tmp_85" va00
   setv va00 addr va01 1094 1180 18321 18277 18406 18406
     rtyp va00 0
-    rmsc 1137 18352 "c1_music.mng\\c12ds"
     setv game "map_tmp_86" va00
   setv va00 addr va01 1180 1266 18277 18225 18406 18406
     rtyp va00 0
-    rmsc 1223 18328 "c1_music.mng\\c12ds"
     setv game "map_tmp_87" va00
   setv va00 addr va01 1266 1359 18225 18183 18406 18406
     rtyp va00 0
-    rmsc 1312 18305 "c1_music.mng\\c12ds"
     setv game "map_tmp_88" va00
   setv va00 addr va01 1359 1468 18183 18131 18406 18406
     rtyp va00 0
-    rmsc 1413 18281 "c1_music.mng\\c12ds"
     setv game "map_tmp_89" va00
   setv va00 addr va01 1468 1560 18131 18090 18406 18406
     rtyp va00 0
-    rmsc 1514 18258 "c1_music.mng\\c12ds"
     setv game "map_tmp_90" va00
   setv va00 addr va01 1560 1724 18090 18021 18406 18406
     rtyp va00 0
-    rmsc 1642 18231 "c1_music.mng\\c12ds"
     setv game "map_tmp_91" va00
   setv va00 addr va01 1724 1792 18021 18010 18406 18406
     rtyp va00 0
-    rmsc 1758 18211 "c1_music.mng\\c12ds"
     setv game "map_tmp_92" va00
   setv va00 addr va01 1792 1840 18010 18010 18406 18406
     rtyp va00 0
-    rmsc 1816 18208 "c1_music.mng\\c12ds"
     setv game "map_tmp_93" va00
   setv va00 addr va01 1840 1988 18010 18010 18406 18406
     rtyp va00 0
-    rmsc 1914 18208 "c1_music.mng\\c12ds"
     setv game "map_tmp_94" va00
   setv va00 addr va01 1988 2038 18541 18544 18745 18745
     rtyp va00 0
-    rmsc 2013 18643 "c1_music.mng\\c12ds"
     setv game "map_tmp_95" va00
   setv va00 addr va01 2038 2179 18544 18547 18745 18745
     rtyp va00 0
-    rmsc 2108 18645 "c1_music.mng\\c12ds"
     setv game "map_tmp_96" va00
   setv va00 addr va01 2179 2315 18547 18548 18745 18745
     rtyp va00 0
-    rmsc 2247 18646 "c1_music.mng\\c12ds"
     setv game "map_tmp_97" va00
   setv va00 addr va01 2315 2485 18548 18548 18745 18745
     rtyp va00 0
-    rmsc 2400 18646 "c1_music.mng\\c12ds"
     setv game "map_tmp_98" va00
   setv va00 addr va01 2485 2603 18548 18546 18745 18745
     rtyp va00 0
-    rmsc 2544 18646 "c1_music.mng\\c12ds"
     setv game "map_tmp_99" va00
   setv va00 addr va01 2603 2720 18546 18547 18745 18745
     rtyp va00 0
-    rmsc 2661 18645 "c1_music.mng\\c12ds"
     setv game "map_tmp_100" va00
   setv va00 addr va01 2720 2824 18547 18546 18745 18745
     rtyp va00 0
-    rmsc 2772 18646 "c1_music.mng\\c12ds"
     setv game "map_tmp_101" va00
   setv va00 addr va01 2824 2978 18546 18546 18745 18745
     rtyp va00 0
-    rmsc 2901 18645 "c1_music.mng\\c12ds"
     setv game "map_tmp_102" va00
   setv va00 addr va01 2978 3082 18546 18544 18745 18745
     rtyp va00 0
-    rmsc 3030 18645 "c1_music.mng\\c12ds"
     setv game "map_tmp_103" va00
   setv va00 addr va01 3082 3219 18544 18545 18745 18745
     rtyp va00 0
-    rmsc 3150 18644 "c1_music.mng\\c12ds"
     setv game "map_tmp_104" va00
   setv va00 addr va01 3219 3376 18545 18545 18745 18745
     rtyp va00 0
-    rmsc 3297 18645 "c1_music.mng\\c12ds"
     setv game "map_tmp_105" va00
   setv va00 addr va01 3376 3510 18545 18545 18745 18745
     rtyp va00 0
-    rmsc 3443 18645 "c1_music.mng\\c12ds"
     setv game "map_tmp_106" va00
   setv va00 addr va01 3510 3666 18545 18545 18745 18745
     rtyp va00 0
-    rmsc 3588 18645 "c1_music.mng\\c12ds"
     setv game "map_tmp_107" va00
   setv va00 addr va01 3666 3834 18545 18542 18745 18736
     rtyp va00 0
-    rmsc 3750 18642 "c1_music.mng\\c12ds"
     setv game "map_tmp_108" va00
   setv va00 addr va01 3834 4044 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 3939 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_109" va00
   setv va00 addr va01 4044 4173 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 4108 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_110" va00
   setv va00 addr va01 4173 4300 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 4236 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_111" va00
   setv va00 addr va01 4300 4412 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 4356 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_112" va00
   setv va00 addr va01 4412 4523 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 4467 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_113" va00
   setv va00 addr va01 4523 4644 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 4583 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_114" va00
   setv va00 addr va01 4644 4778 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 4711 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_115" va00
   setv va00 addr va01 4778 4920 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 4849 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_116" va00
   setv va00 addr va01 4920 5109 18542 18542 18736 18736
     rtyp va00 0
-    rmsc 5014 18639 "c1_music.mng\\c12ds"
     setv game "map_tmp_117" va00
   setv va00 addr va01 1988 2038 18010 18012 18541 18544
     rtyp va00 0
-    rmsc 2013 18276 "c1_music.mng\\c12ds"
     setv game "map_tmp_118" va00
   setv va00 addr va01 2038 2179 18012 18013 18544 18547
     rtyp va00 0
-    rmsc 2108 18279 "c1_music.mng\\c12ds"
     setv game "map_tmp_119" va00
   setv va00 addr va01 2179 2315 18013 18014 18547 18548
     rtyp va00 0
-    rmsc 2247 18280 "c1_music.mng\\c12ds"
     setv game "map_tmp_120" va00
   setv va00 addr va01 2315 2485 18014 18014 18548 18548
     rtyp va00 0
-    rmsc 2400 18281 "c1_music.mng\\c12ds"
     setv game "map_tmp_121" va00
   setv va00 addr va01 2485 2603 18014 18014 18548 18546
     rtyp va00 0
-    rmsc 2544 18281 "c1_music.mng\\c12ds"
     setv game "map_tmp_122" va00
   setv va00 addr va01 2603 2720 18014 18014 18546 18547
     rtyp va00 0
-    rmsc 2661 18280 "c1_music.mng\\c12ds"
     setv game "map_tmp_123" va00
   setv va00 addr va01 2720 2824 18014 18014 18547 18546
     rtyp va00 0
-    rmsc 2772 18280 "c1_music.mng\\c12ds"
     setv game "map_tmp_124" va00
   setv va00 addr va01 2824 2978 18014 18014 18546 18546
     rtyp va00 0
-    rmsc 2901 18280 "c1_music.mng\\c12ds"
     setv game "map_tmp_125" va00
   setv va00 addr va01 2978 3082 18014 18014 18546 18544
     rtyp va00 0
-    rmsc 3030 18280 "c1_music.mng\\c12ds"
     setv game "map_tmp_126" va00
   setv va00 addr va01 3082 3219 18014 18014 18544 18545
     rtyp va00 0
-    rmsc 3150 18279 "c1_music.mng\\c12ds"
     setv game "map_tmp_127" va00
   setv va00 addr va01 3219 3376 18014 18014 18545 18545
     rtyp va00 0
-    rmsc 3297 18279 "c1_music.mng\\c12ds"
     setv game "map_tmp_128" va00
   setv va00 addr va01 3376 3546 18307 18306 18528 18528
     rtyp va00 1
-    rmsc 3461 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_129" va00
   setv va00 addr va01 3546 3664 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 3605 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_130" va00
   setv va00 addr va01 3664 3832 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 3748 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_131" va00
   setv va00 addr va01 3832 4040 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 3936 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_132" va00
   setv va00 addr va01 4040 4175 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 4107 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_133" va00
   setv va00 addr va01 4175 4303 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 4239 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_134" va00
   setv va00 addr va01 4303 4413 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 4358 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_135" va00
   setv va00 addr va01 4413 4524 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 4468 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_136" va00
   setv va00 addr va01 4524 4649 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 4586 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_137" va00
   setv va00 addr va01 4649 4774 18306 18306 18528 18528
     rtyp va00 1
-    rmsc 4711 18417 "c1_music.mng\\c12ds"
     setv game "map_tmp_138" va00
   setv va00 addr va01 4774 4923 18163 18243 18528 18528
     rtyp va00 3
-    rmsc 4848 18365 "c1_music.mng\\c12ds"
     setv game "map_tmp_139" va00
   setv va00 addr va01 4923 5111 18243 18351 18528 18528
     rtyp va00 3
-    rmsc 5017 18412 "c1_music.mng\\c12ds"
     setv game "map_tmp_140" va00
   setv va00 addr va01 5111 5169 18351 18394 18528 18528
     rtyp va00 3
-    rmsc 5140 18450 "c1_music.mng\\c12ds"
     setv game "map_tmp_141" va00
   setv va00 addr va01 3376 3546 18014 18016 18307 18306
     rtyp va00 0
-    rmsc 3461 18160 "c1_music.mng\\c12ds"
     setv game "map_tmp_142" va00
   setv va00 addr va01 3546 3664 18016 18016 18306 18306
     rtyp va00 0
-    rmsc 3605 18161 "c1_music.mng\\c12ds"
     setv game "map_tmp_143" va00
   setv va00 addr va01 3664 3832 18016 18016 18306 18306
     rtyp va00 0
-    rmsc 3748 18161 "c1_music.mng\\c12ds"
     setv game "map_tmp_144" va00
   setv va00 addr va01 3832 4040 18016 18016 18306 18306
     rtyp va00 0
-    rmsc 3936 18161 "c1_music.mng\\c12ds"
     setv game "map_tmp_145" va00
   setv va00 addr va01 4040 4175 18016 18016 18306 18306
     rtyp va00 0
-    rmsc 4107 18161 "c1_music.mng\\c12ds"
     setv game "map_tmp_146" va00
   setv va00 addr va01 4175 4303 18016 18016 18306 18306
     rtyp va00 0
-    rmsc 4239 18161 "c1_music.mng\\c12ds"
     setv game "map_tmp_147" va00
   setv va00 addr va01 4303 4413 18016 18016 18306 18306
     rtyp va00 0
-    rmsc 4358 18161 "c1_music.mng\\c12ds"
     setv game "map_tmp_148" va00
   setv va00 addr va01 4413 4524 18016 18057 18306 18306
     rtyp va00 0
-    rmsc 4468 18171 "c1_music.mng\\c12ds"
     setv game "map_tmp_149" va00
   setv va00 addr va01 4524 4649 18057 18110 18306 18306
     rtyp va00 0
-    rmsc 4586 18194 "c1_music.mng\\c12ds"
     setv game "map_tmp_150" va00
   setv va00 addr va01 4649 4774 18110 18163 18306 18306
     rtyp va00 0
-    rmsc 4711 18221 "c1_music.mng\\c12ds"
     setv game "map_tmp_151" va00
   setv va00 addr va01 2955 2960 18934 18934 18939 18939
     rtyp va00 0
-    rmsc 2957 18936 "c1_music.mng\\c12ds"
     setv game "map_tmp_152" va00
 
 *ROOMIE Add doors between rooms

@@ -84,6 +84,8 @@ function attachFilesIn(text, relativePath, prefixComment) {
     }
 }
 
+
+const caos2PrayFilePath = Path.join(__dirname, ".caos2pray.cos");
 /**
  * Builds and writes the CAOS file and returns the path to it
  * @returns {string} path to generated CAOS2Pray file
@@ -101,9 +103,13 @@ function buildCAOSFile() {
         process.exit(1);
     }
 
-    text.push("* CAOS Scripts")
-    text.push("*# Link \"map/c12dsL2024.cos\"");
-    linkCos(text, "cos");
+    const wroteMap = addMusicAndWriteMap();
+    if (!wroteMap) {
+        console.error("Map failure");
+        process.exit(1);
+    }
+
+    linkCos(text, "cos", "* CAOS Scripts");
 
     attachFilesIn(text, "images", "Images");
     text.push("*# Attach \"map/c12dsl.blk\"")
@@ -113,9 +119,7 @@ function buildCAOSFile() {
 
     body = body.replace("* {}", text.join("\n"));
 
-    const filename = Path.join(__dirname, ".caos2pray.cos");
-    fs.writeFileSync(filename, body);
-    return filename;
+    fs.writeFileSync(caos2PrayFilePath, body);
 }
 
 /**
@@ -305,6 +309,81 @@ function formatTime(time) {
     return timeString;
 }
 
+
+let outputMapFile = null;
+/**
+ * Adds music to the map file, and writes it to the ./cos subdirectory
+ * @returns {boolean} true if map file is written
+ */
+const addMusicAndWriteMap = function () {
+
+// Output
+    const outputFileName = "0.01 - DO_NOT_EDIT - MAP.cos";
+    outputMapFile = Path.join(__dirname, "cos", outputFileName);
+
+    if (fs.existsSync(outputMapFile)) {
+        try {
+            fs.rmSync(outputMapFile);
+        } catch {
+            // ignore
+        }
+    }
+
+// Get map file data
+    const inputMapPath = Path.join(__dirname, "map", "c12dsL2024.cos");
+    /** @var {string[]} mapData */
+    let mapData;
+    try {
+        mapData = fs
+            .readFileSync(inputMapPath, "latin1")
+            .split(/\r?\n/);
+    } catch (e) {
+        console.error("Failed to read map data from file: " + inputMapPath, "error: ", e);
+        return false;
+    }
+
+// Build output file contents
+    let out = "";
+    const roomRegex = /\s+setv va00 addr va01 (\d+) (\d+) (\d+) (\d+) (\d+) (\d+)/ig;
+    for (const line of mapData) {
+        // Add line no matter what
+        out += line + "\r\n";
+        const match = roomRegex.exec(line);
+        if (match == null) {
+            continue;
+        }
+        // Read room points
+        const [
+            left,
+            right,
+            topLeft,
+            topRight,
+            bottomLeft,
+            bottomRight
+        ] = match.slice(1).map((v) => parseInt(v, 10));
+
+        // Calculate room midpoint X
+        const midX = Math.floor((left + right) / 2);
+
+        // Calculate room midpoint Y
+        const top = Math.max(topLeft, topRight);
+        const bottom = Math.min(bottomLeft, bottomRight);
+        const midY = Math.floor((bottom + top) / 2);
+
+        // Add music to room midpoint
+        out += `    rmsc ${midX} ${midY} "c1_music.mng\\\\c12ds"\r\n`;
+    }
+
+    try {
+        fs.writeFileSync(outputMapFile, out, "latin1");
+        return true;
+    } catch (e) {
+        const error = e instanceof Error ? e.message : e;
+        console.error("Failed to write map file with music;" + (e.trim() ? (" Error: " + e.trim()) : ""));
+        return false;
+    }
+}
+
 /**
  * Compile agent and get compiler exit code
  * @returns {Promise<number>} compiler exit code
@@ -326,9 +405,9 @@ async function _compile() {
             return;
         }
 
-        const filename = buildCAOSFile();
+        buildCAOSFile();
 
-        const compilerArgs = ["compile", filename]
+        const compilerArgs = ["compile", caos2PrayFilePath]
         const debug = argv.find((arg) => arg.toLowerCase() === "--debug") != null;
         if (debug) {
             compilerArgs.push("--debug");
@@ -365,6 +444,16 @@ function compile() {
             if (code === 0) {
                 const timeString = formatTime(Date.now() - time);
                 console.info("Compiled agent successfully in " + timeString);
+                try {
+                    if (outputMapFile) {
+                        fs.rmSync(outputMapFile);
+                    }
+                    if (fs.existsSync(caos2PrayFilePath)) {
+                        fs.rmSync(caos2PrayFilePath);
+                    }
+                } catch {
+                    // ignore
+                }
             } else {
                 console.error("An error was encountered");
             }
