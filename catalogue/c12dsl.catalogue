@@ -1,7 +1,132 @@
+# Seed
+TAG "Agent Help 2 3 6500"
+"Coconut"
+"Coconut provides starch and other nutrients that are good for creatures."
+
+TAG "Agent Help 2 3 6501"
+"Beelacanth Seed"
+"This seed will grow into Beelacanth plant unless it is eaten by a creature. Beelacanth seeds provide essential starches."
+
+TAG "Agent Help 2 3 6502"
+"Sunflower Seed"
+"Sunflower Seeds are a delicious way to get the starch every creature needs."
+
+# Good Plant
+TAG "Agent Help 2 4 6500"
+"Baobab Plant"
+"Baobab is an energy source, but can induce a bad reaction in some creatures, including tiredness."
+
+TAG "Agent Help 2 4 6501"
+"Beelacanth plant"
+"This beelacanth plant flowers and provides seeds for the creatures of Albia."
+
+TAG "Agent Help 2 4 6502"
+"Sunflower Plant"
+"Sunflower plants provide sunflower seeds which are high in essential starch."
+
+TAG "Agent Help 2 4 6503"
+"Coconut Palm"
+"Coconut provides starch and other nutrients that are good for creatures."
+
+TAG "Agent Help 2 4 6504"
+"Feverfew Plant"
+"Feverfew provides pain relief properties and good source of energy."
+
+TAG "Agent Help 2 4 6505"
+"Gentian Plant"
+"Gentian reduces feeling extremes of temperature. Useful to alleviate symptoms of fever."
+
+TAG "Agent Help 2 4 6506"
+"Lemon Plant Trellis"
+"The lemons provided by this plant contain a multitude of beneficial nutrients."
+
+TAG "Agent Help 2 4 6507"
+"Morning Glory Plant"
+"Morning Glory reduces tiredness and makes a Norn alert. This is a useful herb."
+
+TAG "Agent Help 2 4 6508"
+"Tomato Plant"
+"Tomato increases sex drive and overall health levels."
+
+# Bad Plant
+TAG "Agent Help 2 5 6500"
+"Pyrethium Weed Plant"
+"Pyrethium reacts badly with Norns to cause pain. Pyrethium also makes creatures hungry even if they do not need food! Is a small energy source."
+
+TAG "Agent Help 2 5 6501"
+"Pyrethium Weed"
+"Pyrethium reacts badly with Norns to cause pain. Pyrethium also makes creatures hungry even if they do not need food! Is a small energy source."
+
+TAG "Agent Help 2 5 6502"
+"Nightshade Plant"
+"Nightshade causes sleepiness. Just a small amount of Nightshade is enough to send most Norns to sleep."
+
+TAG "Agent Help 2 5 6503"
+"Nightshade"
+"Nightshade causes sleepiness. Just a small amount of Nightshade is enough to send most Norns to sleep."
+
+TAG "Agent Help 2 5 6504"
+"Ugly Tomato Plant"
+"Easily confused with a tomato plant, however this plant has the opposite and dangerous effects. It reduces sex drive and increases aging."
+
+TAG "Agent Help 2 5 6505"
+"Ugly Tomato"
+"Although easy to confuse with the tomato, this has the totally opposite properties. It reduces sex drive, affects the aging process and can be dangerous."
+
+TAG "Agent Help 2 5 6506"
+"Campanula Weed"
+"Campanula causes a fever and coughing. It is a source of energy."
+
+TAG "Agent Help 2 5 6507"
+"Campanula"
+"Causes a fever and coughing. Is a source of energy."
+
+TAG "Agent Help 2 5 6508"
+"Laburnum Plant"
+"This is a very dangerous herb with unpleasant side effects, such as sneezing, coughing, sleepiness and a fever."
+
+TAG "Agent Help 2 5 6509"
+"Laburnum"
+"This is a very dangerous herb with unpleasant side effects, such as sneezing, coughing, sleepiness and a fever."
+
+TAG "Agent Help 2 5 6510"
+"Death Cap"
+"AVOID! The Death Cap is nearly always fatal in young Norns. It causes a huge fever, and a rapid loss of energy stores."
+
+TAG "Agent Help 2 5 6511"
+"Death Cap Fungus"
+"AVOID! The Death Cap is nearly always fatal in young Norns. It causes a huge fever, and a rapid loss of energy stores."
+
+# Flowers
+TAG "Agent Help 2 7 6500"
+"Feverfew"
+"Provides pain relief properties and good source of energy."
+
+TAG "Agent Help 2 7 6501"
+"Morning Glory"
+"Reduces tiredness and makes a Norn alert. This is a useful herb."
+
+TAG "Agent Help 2 7 6502"
+"Baobab"
+"Energy source, but can induce a bad reaction in some creatures, including tiredness."
+
+TAG "Agent Help 2 7 6503"
+"Gentian"
+"Reduces feeling extremes of temperature. Useful to alleviate symptoms of fever."
+
 # FRUIT
 TAG "Agent Help 2 8 6500"
 "Lemon (Variety)"
 "Provides a multitude of beneficial nutrients."
+
+TAG "Agent Help 2 8 6501"
+"Tomato"
+"Increases sex drive and overall health levels."
+
+# Bad Friut / Alcohol
+TAG "Agent Help 2 9 6500"
+"Hooch"
+"Hooch, also known as manky, is an alcoholic beverage for your creatures. Like all alcoholic beverages, it is slightly toxic and makes creatures sleepy."
 
 
 # FOOD
@@ -12,6 +137,51 @@ TAG "Agent Help 2 11 6500"
 TAG "Agent Help 2 11 6501"
 "Cheese"
 "Good old fashioned Albian cheese. This food provides good nutrition for creatures."
+
+TAG "Agent Help 2 11 6502"
+"Potato"
+"Provides energy and a little bit of starch."
+
+TAG "Agent Help 2 11 6503"
+"Love Cheese"
+"This distinctive red cheese created by Lacota will boost the sex drive of a creature that eats it. Very useful!"
+
+TAG "Agent Help 2 11 6504"
+"Blue Carrot"
+"These distinctive Blue Carrots are explosive. They are useful, but keep them away from your creatures!"
+
+TAG "Agent Help 2 11 6505"
+"Honey"
+"Honey provides energy and vitamins to creatures."
+
+TAG "Agent Help 2 11 6506"
+"Honey"
+"Honey provides energy and vitamins to creatures."
+
+# Good Bug
+TAG "Agent Help 2 13 6500"
+"Albian Carrot Beetle"
+"This helpful little insect farms and eats carrots. It does not like being touched!"
+
+TAG "Agent Help 2 13 6501"
+"Cloud Butterfy"
+"These beautiful insects flitter around the gardens of Albia."
+
+# Bad Bug
+TAG "Agent Help 2 14 6500"
+"Cave Fly"
+"These annoying flying insects harass creatures that venture near their cave. Their stings may cause pain or illness."
+
+# Good Critter
+TAG "Agent Help 2 15 6503"
+"Bee"
+"Bees make honey in bee hives and may sting when threatened."
+
+
+# Nest
+TAG "Agent Help 2 17 6500"
+"Bee Hive"
+"The Bee Hive will create a honey pot when pushed. It also is home to several bees!"
 
 
 # TOYS
@@ -32,9 +202,117 @@ TAG "Agent Help 2 21 6503"
 "Jack-in-the-box"
 "The jack-in-the-box toy provides surprising entertainment for creatures."
 
+TAG "Agent Help 2 21 6504"
+"Pianola"
+"This player piano makes music for creatures. You can also place things on top of it."
+
+TAG "Agent Help 2 21 6505"
+"Robot Toy"
+"The clockwork robot is fun to play with."
+
+TAG "Agent Help 2 21 6506"
+"Trumpet"
+"Playing the trumpet is fun for creatures."
+
+TAG "Agent Help 2 21 6507"
+"Teddy Bear"
+"This huggable toy helps sleepy and tired creatures to rest."
+
+TAG "Agent Help 2 21 6508"
+"Party Favor Toy"
+"This toy is great for creatures that want to celebrate."
+
+TAG "Agent Help 2 21 6509"
+"Microscope"
+"This is a great toy for those creatures that have a scientific curiosity."
+
+TAG "Agent Help 2 21 6510"
+"Breakable Jug"
+"This toy is fun to smash."
+
+TAG "Agent Help 2 21 6511"
+"Mario Doll"
+"Are your creatures bored? Mario has entertained humans worldwide for decades and makes an entertaining toy for your creatures. Created by Lacota."
+
+TAG "Agent Help 2 21 6512"
+"Slide Projector"
+"The Slide Projector displays various photos of beautiful Albia when pushed."
+
+TAG "Agent Help 2 21 6513"
+"Water Pump"
+"For some reason, creatures find it quite entertaining to pump water!"
+
+TAG "Agent Help 2 21 6514"
+"Radio"
+"The radio provides musical entertainment for creatures."
+
+TAG "Agent Help 2 21 6515"
+"Harp"
+"Creatures can play music with this harp."
+
+TAG "Agent Help 2 21 6516"
+"Drum"
+"Percussive entertainment for creatures. Bang the drum slowly!"
+
+TAG "Agent Help 2 21 6517"
+"Jukebox"
+"Pushing the jukebox provides music and a light show for creatures."
+
+TAG "Agent Help 2 21 6518"
+"Learning Computer"
+"The Learning Computer helps you teach creatures how to speak when pushed. You can set the Learning Computer to automatically advance, go to the Previous word, go to the Next word, and switch word libraries."
+
+
+TAG "Agent Help 2 22 32316"
+"Incubator"
+"Creature eggs are hatched by the incubator. Drop an egg in the incubator to begin the hatching process."
+
+
+# Vendor
+TAG "Agent Help 2 23 6500"
+"Hooch Still"
+"The hooch still creates more hooch. Pushing on the still vends more hooch."
+
+TAG "Agent Help 2 23 6501"
+"Carrot Vendor"
+"This machine vends delicious and nutritious carrots when activated."
+
+TAG "Agent Help 2 23 6502"
+"Breakable Jug Vendor"
+"This machine dispenses Breakable Jugs for you and creatures to play with."
+
+TAG "Agent Help 2 23 6503"
+"Beelacanth Seed Launcher"
+"This machine dispenses beelacanth seeds when clicked."
+
+TAG "Agent Help 2 24 6504"
+"Solution X - Beelacanth Killer"
+"This machine dispenses clouds of poison that kill beelacanth plants and seeds on contact."
+
+TAG "Agent Help 2 23 6505"
+"Love Cheese Vendor"
+"This machine dispenses Lacota's famous Love Cheese."
+
+TAG "Agent Help 2 23 6506"
+"Blue Carrot Vendor"
+"This machine dispenses the dangerous, but helpful Blue Carrots. Beware! The Blue Carrots are explosive!"
+
+
+# Tool
+#TAG "Agent Help 2 24 32300"
+#"Bell"
+#"Pushing the bell makes it ring."
+
+# Potion
+
+TAG "Agent Help 2 25 6500"
+"Coffee"
+"Coffee will wake a creature up, warm it from the inside, and reduce its appetite. Yummy!"
+
+
+
 
 # Birds
-
 TAG "Agent Help 2 15 6500"
 "Flying Bird"
 "These birds fly all over Albia singing occassionally."
@@ -51,3 +329,45 @@ TAG "Agent Help 1 1 6503"
 TAG "Agent Help 1 7 6500"
 "Shelf"
 "Someplace to place your Albian things"
+
+TAG "Agent Help 1 5 6500"
+"Dripping Water"
+"The dripping water makes a tinkling sound."
+
+TAG "Agent Help 1 1 6501"
+"Clock"
+"This clock is an amusement for creatures."
+
+TAG "Agent Help 3 2 6500"
+"C1-Lite Teleporter"
+"Pushing this teleporter takes the hand or creatures to and from Albia-Lite."
+
+TAG "Agent Help 3 2 6501"
+"Teleporter"
+"Teleports norn around albia"
+
+TAG "Agent Help 3 2 32319"
+"Telescope"
+"I wonder what would happen if a creature pushed this?"
+
+TAG "Agent Help 1 4 6500"
+"Creatures 1 Favorite Place"
+"Click on this icon to go to Albia."
+
+TAG "Agent Help 2 21 64401"
+"Learning Computer"
+"The Learning Computer helps you teach creatures how to speak when pushed. You can set the Learning Computer to automatically advance, go to the Previous word, go to the Next word, and switch word libraries."
+
+TAG "Agent Help 1 1 6505"
+"Grendel Mother"
+"This is where baby Grendels come from."
+
+# Lifts
+
+TAG "Agent Help 3 1 6500"
+"Lift"
+"Creatures can get from one floor to another with the lift."
+
+TAG "Agent Help 2 12 6500"
+"Lift Call Button"
+"Pressing this button calls the lift from another floor."
