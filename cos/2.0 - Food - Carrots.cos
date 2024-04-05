@@ -33,8 +33,8 @@ reps 2
     repe
 repe
 
-doif totl 1 11 6500 eq 0
-    new: simp 1 11 6500 "blnk" 1 0 0
+doif totl 1 1 6504 eq 0
+    new: simp 1 1 6504 "blnk" 1 0 0
 endi
 ***************************
 * CARROT Scripts
@@ -202,9 +202,9 @@ endm
 
 * Ensure carrot supply
 scrp 2 11 6500 1000
-    rtar 1 11 6500
+    rtar 1 1 6504
     doif targ eq null
-        new: simp 1 11 6500 "blnk" 1 0 0
+        new: simp 1 1 6504 "blnk" 1 0 0
     else
         mesg writ targ 1000
     endi
@@ -215,7 +215,7 @@ endm
 * CARROT MANAGER Scripts
 
 * Carrot Manager - Constructor
-scrp 1 11 6500 10
+scrp 1 1 6504 10
     bhvr 0
     attr 0
     setv name "metaroom_id" game "c12dsl::metaroom::id"
@@ -223,13 +223,13 @@ scrp 1 11 6500 10
 endm
 
 
-scrp 1 11 6500 9
+scrp 1 1 6504 9
     call 1000 0 0
 endm
 
 
 * Carrot population management. A.K.A. Ensure there are enough carrots
-scrp 1 11 6500 1000
+scrp 1 1 6504 1000
     inst
     lock
 
@@ -337,7 +337,7 @@ endm
 
 rscr
 
-enum 1 11 6500
+enum 1 1 6504
     kill targ
 next
 
@@ -353,5 +353,5 @@ scrx 2 11 6500 10
 scrx 2 11 6500 12
 scrx 2 11 6500 1000
 
-scrx 1 11 6500 10
-scrx 1 11 6500 1000
+scrx 1 1 6504 10
+scrx 1 1 6504 1000

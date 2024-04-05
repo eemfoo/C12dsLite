@@ -35,7 +35,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1
 
 * Hummingbirds
     reps 3
-        new: simp 1 15 6500 "c1birds" 11 0 7001
+        new: simp 1 1 6502 "c1birds" 11 0 7001
         attr 215
         accg 0
         aero 10
@@ -73,7 +73,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1
     repe
 
 * Nesting Bird
-    new: simp 1 15 6501 "c1birds" 11 0 7001
+    new: simp 1 1 6503 "c1birds" 11 0 7001
     attr 215
     accg 0
     aero 10
@@ -122,13 +122,13 @@ scrp 2 15 6500 2
     stim writ from 86 1.0
 endm
 
-scrp 1 15 6500 1
+scrp 1 1 6502 1
     stpc
     sndc "c1b2"
     stim writ from 86 1.0
 endm
 
-scrp 1 15 6501 1
+scrp 1 1 6503 1
     stpc
     sndc "c1b3"
     stim writ from 86 1.0
@@ -340,7 +340,7 @@ scrp 2 15 6500 12
     retn
 endm
 
-scrp 1 15 6500 9
+scrp 1 1 6502 9
 *	Hummingbird timer
     inst
     lock
@@ -447,7 +447,7 @@ scrp 1 15 6500 9
     endi
 endm
 
-scrp 1 15 6501 9
+scrp 1 1 6503 9
 *	Nesting bird timer
     inst
     lock
@@ -558,19 +558,19 @@ enum 2 15 6500
     kill targ
 next
 
-enum 1 15 6500
+enum 1 1 6502
     kill targ
 next
 
-enum 1 15 6501
+enum 1 1 6503
     kill targ
 next
 
-scrx 1 15 6500 1
-scrx 1 15 6500 9
-scrx 1 15 6500 12
-scrx 1 15 6501 1
-scrx 1 15 6501 9
+scrx 1 1 6502 1
+scrx 1 1 6502 9
+scrx 1 1 6502 12
+scrx 1 1 6503 1
+scrx 1 1 6503 9
 scrx 2 15 6500 9
 scrx 2 15 6500 12
 scrx 2 15 6500 4
