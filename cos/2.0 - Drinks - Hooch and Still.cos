@@ -29,7 +29,7 @@ perm 60
 tick 30
 
 doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 9 6500 <= 1
-    mvsf 734 18983
+    mvsf 898 18983
 * make some hooch
     setv va02 955
     setv va03 18983
@@ -64,7 +64,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 9 6500 <= 1
     accg 5
     perm 60
     bhvr 48
-    mvsf 784 19073
+    mvsf 948 19073
 
 * put hooch on top of any pianola
     enum 2 21 6505
