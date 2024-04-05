@@ -10,6 +10,7 @@ const https = require("node:https");
 const {platform, arch, exit: exitProcess, argv} = require("node:process");
 
 
+const useJoins = argv.find((arg) => arg.toLowerCase() === "--no-joins") == null;
 const mainCos = "0.0 - Main.cos";
 const attachmentExtensions = [".c16", ".s16", ".blk", ".mng", ".wav"];
 
@@ -50,7 +51,7 @@ function linkCos(text, relativePath, prefixComment = null) {
         text.push(`*# Link \"${fileRelative}\"`);
 
         const content = fs.readFileSync(Path.join(__dirname, fileRelative), "latin1").toLowerCase().trim();
-        if (content.indexOf("**caos2pray join") >= 0) {
+        if (useJoins && content.indexOf("**caos2pray join") >= 0) {
             joins.push(fileRelative);
         }
 
@@ -120,7 +121,9 @@ function buildCAOSFile() {
     text.push("*# Attach \"map/c12dsl.blk\"")
     attachFilesIn(text, "sounds", "Sound Files");
 
-    text = text.concat(joins.map((file) => "*# Join \"" + file + "\""));
+    if (useJoins) {
+        text = text.concat(joins.map((file) => "*# Join \"" + file + "\""));
+    }
 
     body = body.replace("* {}", text.join("\n"));
 

@@ -1,6 +1,7 @@
 
 # Text Files
 * text=auto
+*.[Bb][Aa][Tt] eol=crlf
 *.[Cc][Oo][Ss] eol=crlf
 *.[Aa][Tt][Tt] eol=crlf
 *.[Cc][Aa][Tt][Aa][Ll][Oo][Gg][Uu][Ee] eol=crlf
