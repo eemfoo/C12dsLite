@@ -14,7 +14,7 @@ mvto 1924 18610
 anim [0 1 2 3 255]
 
 * Penants (flags near lanterns)
-new: simp 1 1 64401 "c1penants" 5 0 0
+new: simp 1 1 6500 "c1penants" 5 0 0
 mvto 3384 18365
 anim [0 1 2 3 4 255]
 sndl "c1fl"
