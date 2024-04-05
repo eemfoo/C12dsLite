@@ -33,6 +33,20 @@ TAG "Agent Help 2 21 6503"
 "The jack-in-the-box toy provides surprising entertainment for creatures."
 
 
+# Birds
+
+TAG "Agent Help 2 15 6500"
+"Flying Bird"
+"These birds fly all over Albia singing occassionally."
+
+TAG "Agent Help 1 15 6500"
+"Hummingbird"
+"Hummingbirds prefer the blossom trees in Albia."
+
+TAG "Agent Help 1 15 6501"
+"Nesting Bird"
+"This mother bird is brooding some chicks."
+
 # MISC
 TAG "Agent Help 1 7 6500"
 "Shelf"

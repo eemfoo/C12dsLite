@@ -489,7 +489,7 @@ door game "map_tmp_23" game "map_tmp_24" 100
 door game "map_tmp_24" game "map_tmp_25" 100
 door game "map_tmp_25" game "map_tmp_26" 100
 door game "map_tmp_13" game "map_tmp_27" 100
-door game "map_tmp_26" game "map_tmp_27" 100
+door game "map_tmp_26" game "map_tmp_27" 99
 door game "map_tmp_13" game "map_tmp_29" 100
 door game "map_tmp_27" game "map_tmp_29" 100
 door game "map_tmp_5" game "map_tmp_30" 100
@@ -648,7 +648,7 @@ door game "map_tmp_138" game "map_tmp_139" 100
 door game "map_tmp_139" game "map_tmp_140" 100
 door game "map_tmp_140" game "map_tmp_141" 100
 door game "map_tmp_129" game "map_tmp_142" 100
-door game "map_tmp_128" game "map_tmp_129" 100
+door game "map_tmp_128" game "map_tmp_129" 99
 door game "map_tmp_128" game "map_tmp_142" 100
 door game "map_tmp_130" game "map_tmp_143" 100
 door game "map_tmp_142" game "map_tmp_143" 100
