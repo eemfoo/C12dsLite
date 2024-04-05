@@ -54,6 +54,11 @@ function linkCos(text, relativePath, prefixComment = null) {
             joins.push(fileRelative);
         }
 
+        if (content.indexOf("game \"C1_to_DS_Loaded\"") >= 0) {
+            console.error("Incorrect `game \"C1_to_DS_Loaded\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Lite_Loaded\"`");
+            exitProcess(1);
+        }
+
     }
 }
 
