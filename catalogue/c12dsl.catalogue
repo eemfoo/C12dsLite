@@ -27,6 +27,12 @@ TAG "Agent Help 2 21 6502"
 "Toy Helicopter"
 "This bouncy toy helicopter provides hours of entertainment for creatures."
 
+
+TAG "Agent Help 2 21 6503"
+"Jack-in-the-box"
+"The jack-in-the-box toy provides surprising entertainment for creatures."
+
+
 # MISC
 TAG "Agent Help 1 7 6500"
 "Shelf"
