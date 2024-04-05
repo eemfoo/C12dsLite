@@ -1,0 +1,192 @@
+****************************
+* C1 JackInTheBox
+****************************
+
+* Dependencies:
+*  C1JackInTheBox.c16
+*  c1h4.wav
+*  c1p3.wav
+*  c1p4.wav
+*  c1p5.wav
+*  c1p6.wav
+*
+**CAOS2Pray Join
+*# C3-Name "C12DS-Lite Jack-in-the-Box (C3)"
+*# DS-Name "C12DS-Lite Jack-in-the-Box"
+*# Agent Description = "The jack-in-the-box toy provides surprising entertainment for creatures."
+*# Agent Sprite First Image = 0
+*# Agent Animation File = "c1jackinthebox.c16"
+*# Agent Animation Gallery = "c1jackinthebox"
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+* Attach
+*# Attach "../images/c1jackinthebox.c16"
+*# Attach "../sounds/c1h4.wav"
+*# Attach "../sounds/c1p3.wav"
+*# Attach "../sounds/c1p4.wav"
+*# Attach "../sounds/c1p5.wav"
+*# Attach "../sounds/c1p6.wav"
+
+* Installers
+inst
+
+new: simp 2 21 6503 "c1jackinthebox" 19 0 200
+attr 199
+accg 5
+bhvr 43
+fric 12.5
+aero 10
+elas 30
+perm 60
+puhl 0 32 40
+puhl 1 32 40
+puhl 2 32 40
+puhl 3 32 40
+puhl 4 32 40
+puhl 5 32 40
+puhl 6 32 40
+puhl 7 32 40
+puhl 8 32 40
+
+doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 6503 <= 1
+* 	JackInTheBox under ettin palace
+    mvsf 3675 18480
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+endi
+
+****************************
+* Scripts
+
+scrp 2 21 6503 1
+    call 1000 from 0
+endm
+
+scrp 2 21 6503 2
+    call 1000 from 0
+endm
+
+scrp 2 21 6503 1000
+*	JackInTheBox is pushed
+    inst
+    lock
+    doif type _p1_ ge 3
+        stim writ _p1_ 97 1
+    else
+        stim writ from 97 1
+    endi
+    doif ov00 < 3
+*		randomly advance to the pop-up cycle once in a while!
+        doif rand 1 3 = 3
+            setv ov00 3
+        endi
+    endi
+    doif ov00 >= 0 and ov00 <= 2
+        setv va00 rand 1 3
+        doif va00 = 1
+            anim [1 0]
+        elif va00 = 2
+            anim [1 2 1 0]
+        elif va00 = 3
+            anim [1 2 3 2 1 0]
+        endi
+    endi
+
+    doif ov00 = 0
+        sndc "c1p3"
+        velo rand -1 1 -5
+        setv ov00 1
+    elif ov00 = 1
+        sndc "c1p4"
+        velo rand -1 1 -5
+        setv ov00 2
+    elif ov00 = 2
+        sndc "c1p5"
+        velo rand -1 1 -5
+        setv ov00 3
+    elif ov00 = 3
+* 		pop up
+        setv ov00 1
+        sndc "c1h4"
+        sndc "c1p6"
+        anim [0 1 2 3 4 5]
+        velo rand -1 1 -10
+        over
+        anim [5 5 5 5 5 5 5 5 5 5 5 6 7 8 0]
+        setv ov00 0
+    endi
+    wait 20
+endm
+
+scrp 2 21 6503 3
+*	JackInTheBox is hit
+    inst
+    lock
+    stim writ from 0 1
+    velo rand -10 10 rand -10 -20
+    sndc "c1h4"
+    setv ov00 0
+    anim [0]
+endm
+
+scrp 2 21 6503 4
+*	JackInTheBox is picked up
+    stpc
+endm
+
+scrp 2 21 6503 6
+*	JackInTheBox collides
+    inst
+    lock
+    doif ov00 = 0
+        doif vely < 10 or vely > 10
+            anim [1 0]
+            stpc
+            sndc "c1h4"
+        elif vely > -2 and vely < 2
+            stpc
+            pose 0
+        endi
+    endi
+endm
+
+scrp 2 21 6503 12
+*	JackInTheBox is bitten
+    inst
+    lock
+    stim writ from 0 1
+    setv ov00 0
+endm
+
+****************************
+* Removers
+
+* JackInTheBox remover
+rscr
+enum 2 21 6503
+    kill targ
+next
+scrx 2 21 6503 1
+scrx 2 21 6503 3
+scrx 2 21 6503 4
+scrx 2 21 6503 6
