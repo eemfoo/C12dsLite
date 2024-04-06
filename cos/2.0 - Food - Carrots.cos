@@ -304,13 +304,13 @@ scrp 1 1 6504 1000
         bhvr 0
         setv va00 va03
         setv va01 18883
-        addv va00 rand 0 400
+        addv va00 rand 0 200
         addv va01 rand -4 4
         mvto va00 va01
         addv va80 30
         setv va81 va80
         addv va81 60
-        tick rand va80  va81
+        tick rand va80 va81
     repe
 
     gsub tick
