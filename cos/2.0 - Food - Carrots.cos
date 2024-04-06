@@ -109,13 +109,13 @@ scrp 2 11 6500 9
     lock
     doif pose = 0
         pose 1
-        tick rand 100 200
+        tick rand 80 140
         elas 20
     elif pose > 0 and pose < 6
         setv va20 pose
         addv va20 1
         pose va20
-        tick rand 100 200
+        tick rand 80 140
     endi
 
     doif pose = 6
@@ -317,7 +317,7 @@ scrp 1 1 6504 1000
     * Set the next manager check tick to a random amount
     subr tick
         doif game "c12ds::manager::carrots::ticks_min" eq 0
-            setv game "c12ds::manager::carrots::ticks_min" 250
+            setv game "c12ds::manager::carrots::ticks_min" 100
         endi
         doif game "c12ds::manager::carrots::ticks_max" gt game "c12ds::manager::carrots::ticks_min"
             tick rand
