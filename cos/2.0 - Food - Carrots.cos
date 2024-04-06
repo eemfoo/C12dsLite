@@ -160,6 +160,7 @@ scrp 2 11 6500 10
     elas 0
     aero 0
     accg 3
+    mira rand 0 1
     puhl 0 8 45
     puhl 1 8 45
     puhl 2 8 45
