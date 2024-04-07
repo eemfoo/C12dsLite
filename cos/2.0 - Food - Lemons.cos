@@ -174,7 +174,7 @@ scrp 2 8 6500 1
 *	Lemon clicked
     inst
     lock
-    doif game "C1L_Clickable_Food" = 1
+    doif game "C1_to_DS_Lite_Clickable_Food" = 1
 
         * Create new lemon
         setv va00 posl

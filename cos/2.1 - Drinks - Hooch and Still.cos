@@ -123,7 +123,7 @@ endi
 scrp 2 9 6500 1
 * 	hooch cup clicked
     inst
-    doif game "C1_Clickable_Food" = 1
+    doif game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 9 6500 "C1HoochCups" 2 0 502

@@ -91,26 +91,27 @@ endi
 ***********************
 * Scripts
 
-*scrp 2 11 6501 1
-**	Cheese gets clicked
-*    inst
-*    doif game "C1_Clickable_Food" = 1
-*        setv va00 posl
-*        setv va01 post
-*        new: simp 2 11 6501 "c1cheese" 3 0 200
-*        attr 199
-*        accg 5
-*        aero 10
-*        fric 100
-*        bhvr 48
-*        elas 0
-*        perm 60
-*        pose 2
-*        emit 8 .3
-*        mvsf va00 va01
-*        velo rand -15 15 rand -15 -5
-*    endi
-*endm
+scrp 2 11 6501 1
+*	Cheese gets clicked
+    inst
+    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+        setv ov88 mv88
+        setv va00 posl
+        setv va01 post
+        new: simp 2 11 6501 "c1cheese" 3 0 200
+        attr 199
+        accg 5
+        aero 10
+        fric 100
+        bhvr 48
+        elas 0
+        perm 60
+        pose 2
+        emit 8 .3
+        mvsf va00 va01
+        velo rand -15 15 rand -15 -5
+    endi
+endm
 
 * Cheese - Pickup
 scrp 2 11 6501 4
