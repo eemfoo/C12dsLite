@@ -17,7 +17,7 @@ const {platform, arch, exit: _exitProcess, argv} = require("node:process");
 // CAOS Vars
 const caos2PrayFilePath = Path.join(__dirname, ".caos2pray.cos");
 let outputMapFile = null;
-const attachmentExtensions = [".c16", ".s16", ".blk", ".mng", ".wav"];
+const attachmentExtensions = [".c16", ".s16", ".blk", ".mng", ".wav", ".catalogue"];
 const mainCos = "0.0 - Main.cos";
 // Joins
 const useJoins = argv.find((arg) => arg.toLowerCase() === "--no-joins") == null;
@@ -79,7 +79,8 @@ function linkCos(text, relativePath, prefixComment = null) {
  */
 function attachFilesIn(text, relativePath, prefixComment) {
     const path = Path.join(__dirname, relativePath);
-    const files = fs.readdirSync(path);
+    const files = fs.readdirSync(path)
+        .filter((file) => attachmentExtensions.indexOf(Path.extname(file).toLowerCase()) >= 0)
 
     if (!files) {
         return;
@@ -90,9 +91,6 @@ function attachFilesIn(text, relativePath, prefixComment) {
     }
 
     for (let file of files) {
-        if (attachmentExtensions.indexOf(Path.extname(file).toLowerCase()) < 0) {
-            continue;
-        }
         file = Path.join(relativePath, file);
         text.push(`*# Attach \"${file}\"`);
     }
@@ -177,10 +175,13 @@ const addMusicAndWriteMap = function () {
  */
 function buildCAOSFile() {
 
+    // CAOS2Pray/comment statements array
     let text = [];
 
+    // Output text
     let body;
 
+    // Read Main.cos
     try {
         body = fs.readFileSync(Path.join(__dirname, "cos", mainCos), "latin1");
     } catch (e) {
@@ -188,24 +189,35 @@ function buildCAOSFile() {
         exitProcess(1);
     }
 
+    // Add misic to map and write generated file
     const wroteMap = addMusicAndWriteMap();
     if (!wroteMap) {
         console.error("Map failure");
         exitProcess(1);
     }
 
+    // Link CAOS scripts
     linkCos(text, "cos", "* CAOS Scripts");
 
+    // Attach Catalogues
+    attachFilesIn(text, "catalogue", "Catalogues");
+
+    // Attach Images
     attachFilesIn(text, "images", "Images");
     text.push("*# Attach \"map/c12dsl.blk\"")
+
+    // Attach Sounds
     attachFilesIn(text, "sounds", "Sound Files");
 
+    // Add Joins if any
     if (useJoins) {
         text = text.concat(joins.map((file) => "*# Join \"" + file + "\""));
     }
 
+    // Insert CAOS2Pray statements into Main.cos
     body = body.replace("* {}", text.join("\n"));
 
+    // Write generated CAOS2Pray file
     fs.writeFileSync(caos2PrayFilePath, body);
 }
 

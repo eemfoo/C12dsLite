@@ -32,7 +32,7 @@
 * Installers
 inst
 
-new: comp 2 21 32309 "c1harp" 0 0 200
+new: comp 2 21 6515 "c1harp" 0 0 200
 attr 199
 accg 5
 bhvr 11
@@ -234,11 +234,11 @@ endm
 
 * Harp remover
 rscr
-enum 2 21 32309
+enum 2 21 6515
     kill targ
 next
-scrx 2 21 32309 1
-scrx 2 21 32309 3
-scrx 2 21 32309 4
-scrx 2 21 32309 6
-scrx 2 21 32309 12
+scrx 2 21 6515 1
+scrx 2 21 6515 3
+scrx 2 21 6515 4
+scrx 2 21 6515 6
+scrx 2 21 6515 12
