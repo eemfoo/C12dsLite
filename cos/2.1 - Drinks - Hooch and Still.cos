@@ -1,0 +1,272 @@
+* C1 Hooch and still
+
+* Dependencies:
+*  C1HoochStill.c16
+*  C1HoochCups.c16
+*  c1d2.wav
+*  c1d3.wav
+*  c1dr.wav
+
+
+***************************************
+* Installer
+
+inst
+lock
+
+* 	make the hooch still
+new: vhcl 2 23 6500 "c1hoochstill" 4 0 500
+part 0
+pose 0
+cabp 1
+cabn 0 0 100 90
+attr 199
+bhvr 1
+fric 100
+accg 25
+elas 0
+perm 60
+tick 30
+
+doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 9 6500 <= 1
+    mvsf 898 18983
+* make some hooch
+    setv va02 955
+    setv va03 18983
+    reps 4
+        new: simp 2 9 6500 "C1HoochCups" 2 0 502
+        attr 199
+        elas 0
+        fric 100
+        aero 10
+        accg 5
+        bhvr 48
+        perm 60
+        mvto va02 va03
+        seta va50 targ
+        addv va02 20
+        setv ov62 1
+    repe
+* force the shelf to pick them up!
+    enum 1 7 6500
+        inst
+        doif type targ = 6
+            gpas 2 9 6500 0
+        endi
+    next
+
+* make the hooch next to the still
+    new: simp 2 9 6500 "C1HoochCups" 2 0 502
+    attr 199
+    elas 0
+    fric 100
+    aero 10
+    accg 5
+    perm 60
+    bhvr 48
+    mvsf 948 19073
+
+* put hooch on top of any pianola
+    enum 2 21 6504
+        seta va51 targ
+        new: simp 2 9 6500 "C1HoochCups" 2 0 502
+        seta va50 targ
+        attr 199
+        elas 0
+        fric 100
+        aero 10
+        accg 5
+        bhvr 48
+        perm 60
+        rnge 300
+        setv ov62 1
+        targ va51
+        doif type targ = 6
+            setv va02 posl
+            addv va02 20
+            setv va03 post
+            targ va50
+            mvsf va02 va03
+            targ va51
+            gpas 2 9 6500 0
+        endi
+    next
+
+
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+endi
+
+***************************************
+* Scripts
+
+scrp 2 9 6500 1
+* 	hooch cup clicked
+    inst
+    doif game "C1_Clickable_Food" = 1
+        setv va00 posl
+        setv va01 post
+        new: simp 2 9 6500 "C1HoochCups" 2 0 502
+        attr 199
+        elas 0
+        fric 100
+        aero 10
+        accg 5
+        bhvr 48
+        perm 60
+        mvto va00 va01
+        velo rand -15 15 rand -15 -5
+    endi
+endm
+
+scrp 2 9 6500 5
+* 	hooch cup dropped!
+    inst
+    setv va20 0
+    etch 2 23 6500
+        addv va20 1
+    next
+    doif va20 > 0
+        pose 0
+        bhvr 48
+        attr 199
+    endi
+endm
+
+scrp 2 9 6500 6
+    inst
+    sndc "c1d2"
+    setv va20 0
+    etch 2 23 6500
+        addv va20 1
+    next
+    doif va20 > 0
+        pose 0
+        bhvr 48
+        attr 199
+    endi
+endm
+
+scrp 2 9 6500 9
+    inst
+    kill targ
+endm
+
+scrp 2 9 6500 12
+    inst
+    lock
+    sndc "c1d3"
+    pose 1
+    stim writ from 82 1.0
+    targ from
+    doif crea targ = 1
+        zomb 1
+        wait 5
+        inst
+        mesg writ targ 23
+        wait 5
+        inst
+        zomb 0
+    endi
+    targ ownr
+    mesg writ ownr 5
+    bhvr 0
+    attr 215
+    tick rand 19 73
+    slow
+    unlk
+endm
+
+
+scrp 2 23 6500 1
+    inst
+    setv va00 posl
+    setv va01 post
+    addv va00 45
+    addv va01 70
+    new: simp 2 9 6500 "c1hoochcups" 2 0 502
+    attr 199
+    elas 0
+    fric 100
+    aero 10
+    accg 5
+    bhvr 48
+    perm 60
+    pose 0
+    mvsf va00 va01
+    velo rand -10 10 rand -5 -2
+endm
+
+scrp 2 23 6500 9
+    inst
+    doif movs = 0
+        part 0
+        anim [0 1 2 3 0]
+        over
+        inst
+        sndc "c1dr"
+        setv va00 0
+        esee 2 9 6500
+            addv va00 1
+        next
+        doif va00 < 1
+            mesg writ ownr 0
+        endi
+    endi
+    slow
+    doif totl 2 9 6500 > 20
+        loop
+            rtar 2 9 6500
+            kill targ
+        untl totl 2 9 6500 <= 20
+    endi
+endm
+
+scrp 2 23 6500 124
+    epas 0 0 0
+        doif gnus eq 2 and fmly eq 9
+            pose 0
+            bhvr 48
+            attr 199
+            rpas ownr targ
+        else
+            rpas ownr targ
+        endi
+    next
+endm
+
+***************************************
+* Remover
+
+rscr
+
+enum 2 23 6500
+    kill targ
+next
+scrx 2 23 6500 1
+scrx 2 23 6500 9
+scrx 2 23 6500 124
+
+enum 2 9 6500
+    kill targ
+next
