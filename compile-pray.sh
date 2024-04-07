@@ -68,6 +68,11 @@ function linkCos(text, relativePath, prefixComment = null) {
             exitProcess(1);
         }
 
+        if (content.indexOf("game \"c1_clickable_food\"") >= 0) {
+            console.error("Incorrect `game \"C1_Clickable_Food\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Clickable_Food\"");
+            exitProcess(1);
+        }
+
     }
 }
 
