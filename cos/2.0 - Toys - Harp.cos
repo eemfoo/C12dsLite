@@ -46,7 +46,7 @@ pat: butt 3 "c1harp" 5 2 35 48 0 [] 1003 0
 pat: butt 4 "c1harp" 7 2 41 56 0 [] 1004 0
 pat: butt 5 "c1harp" 9 2 47 62 0 [] 1005 0
 
-doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 32309 <= 1
+doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 6515 <= 1
 * 	Harp in music room
     mvsf 790 18812
 elif type game "ds_game_type" ne 2
@@ -77,37 +77,37 @@ endi
 ****************************
 * Scripts
 
-scrp 2 21 32309 1001
+scrp 2 21 6515 1001
     part 1
     anim [0 1 1 1 0]
     sndc "c1h5"
 endm
 
-scrp 2 21 32309 1002
+scrp 2 21 6515 1002
     part 2
     anim [0 1 1 1 0]
     sndc "c1h6"
 endm
 
-scrp 2 21 32309 1003
+scrp 2 21 6515 1003
     part 3
     anim [0 1 1 1 0]
     sndc "c1h7"
 endm
 
-scrp 2 21 32309 1004
+scrp 2 21 6515 1004
     part 4
     anim [0 1 1 1 0]
     sndc "c1h8"
 endm
 
-scrp 2 21 32309 1005
+scrp 2 21 6515 1005
     part 5
     anim [0 1 1 1 0]
     sndc "c1h9"
 endm
 
-scrp 2 21 32309 1006
+scrp 2 21 6515 1006
     sndc "c1ha"
     part 5
     anim [0 1 0]
@@ -126,7 +126,7 @@ scrp 2 21 32309 1006
     wait 3
 endm
 
-scrp 2 21 32309 1007
+scrp 2 21 6515 1007
     sndc "c1hb"
     part 1
     anim [0 1 0]
@@ -146,7 +146,7 @@ scrp 2 21 32309 1007
 endm
 
 
-scrp 2 21 32309 1
+scrp 2 21 6515 1
 *	Harp is pushed
     inst
     lock
@@ -169,7 +169,7 @@ scrp 2 21 32309 1
     endi
 endm
 
-scrp 2 21 32309 2
+scrp 2 21 6515 2
 *	Harp is pushed
     inst
     lock
@@ -192,7 +192,7 @@ scrp 2 21 32309 2
     endi
 endm
 
-scrp 2 21 32309 3
+scrp 2 21 6515 3
 *	Harp is hit
     inst
     lock
@@ -202,12 +202,12 @@ scrp 2 21 32309 3
     setv ov00 0
 endm
 
-scrp 2 21 32309 4
+scrp 2 21 6515 4
 *	Harp is picked up
     stpc
 endm
 
-scrp 2 21 32309 6
+scrp 2 21 6515 6
 *	Harp collides
     inst
     lock
