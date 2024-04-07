@@ -1,0 +1,315 @@
+**CAOS2Pray Join
+*# DSAG-Name "C1 to DS Sunflower"
+*# Agent Description = "The C1 Sunflower and Sunflower Seeds were created just for the nutritional needs of the modern Norn."
+*# Agent Animation File = "c1seeds.c16"
+*# Agent Animation Gallery = "c1seeds"
+*# Agent Animation String = "0"
+*# Attach "../images/c1seeds.c16"
+*# Depend "../catalogue/c1todsl.catalogue"
+*# Depend "c1seeds.c16"
+* C1 SunflowerSeed
+
+* Dependencies:
+*  c1seeds.c16
+*  blnk.c16
+*  chwp.c16
+
+inst
+lock
+
+* 	SunflowerSeed plant
+new: comp 2 4 6502 "c1seeds" 1 0 200
+pat: dull 2 "c1seeds" 9 22 75 0
+attr 199
+accg 5
+fric 100
+aero 0
+elas 0
+bhvr 11
+perm 60
+rnge 300
+setv ov99 1
+tick rand 203 305
+*mesg wrt+ targ 1001 0 0 10
+mesg wrt+ targ 0 0 0 10
+
+
+
+doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6502 <= 1
+* 	SunflowerSeed plant by pump
+    mvsf 2100 18842
+
+* 	SunflowerSeed plant by hives (hidden)
+    new: comp 2 4 6502 "blank" 1 0 200
+    attr 199
+    accg 0
+    fric 100
+    aero 100
+    elas 0
+    bhvr 11
+    perm 60
+    tick rand 203 305
+    rnge 300
+    setv ov99 1
+    mvsf 1336 18497
+*	mesg wrt+ targ 1001 0 0 10
+    mesg wrt+ targ 0 0 0 10
+
+
+* 	SunflowerSeed plant by pump (hidden)
+    new: comp 2 4 6502 "blank" 1 0 200
+    attr 199
+    accg 0
+    fric 100
+    aero 100
+    elas 0
+    bhvr 11
+    perm 60
+    tick rand 203 305
+    rnge 300
+    setv ov99 1
+    mvsf 2187 18831
+*	mesg wrt+ targ 1001 0 0 10
+    mesg wrt+ targ 0 0 0 10
+
+
+* 	WeirdSeed plant in jungle (hidden)
+    new: comp 2 4 6502 "blank" 1 0 200
+    attr 199
+    accg 0
+    fric 100
+    aero 100
+    elas 0
+    bhvr 11
+    perm 60
+    tick rand 203 305
+    rnge 300
+    setv ov99 2
+    mvsf 4650 18818
+*	mesg wrt+ targ 1001 0 0 10
+    mesg wrt+ targ 0 0 0 10
+
+
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+endi
+
+
+
+***********
+* Scripts
+scrp 2 4 6502 1
+    call 1000 from 0
+endm
+
+scrp 2 4 6502 2
+    call 1000 from 0
+endm
+
+scrp 2 4 6502 3
+    call 1000 from 0
+endm
+
+scrp 2 4 6502 1000
+
+    doif _p1_ ne pntr
+        stim writ from 84 1.0
+        stop
+    endi
+*	Sunflower seed plant clicked by hand
+    inst
+    setv va03 0
+    esee 2 3 6502
+        addv va03 1
+    next
+    doif va03 < 30
+        setv va01 posl
+        setv va02 post
+        addv va01 20
+        addv va02 20
+        reps rand 11 15
+            doif mv99 = 1
+                new: simp 2 3 6502 "c1seeds" 4 1 200
+                setv ov99 1
+            else
+                new: simp 2 3 6502 "c1seeds" 4 5 200
+                setv ov99 0
+            endi
+            attr 199
+            bhvr 48
+            accg .8
+            aero 0
+            elas 25
+            perm 60
+            emit 7 0.3
+            doif rand 0 1 = 1
+                anim [0 1 2 3 255]
+            else
+                anim [0 3 2 1 255]
+            endi
+            mvsf va01 va02
+            velo rand -5 5 rand 1 3
+        repe
+    endi
+endm
+
+scrp 2 4 6502 4
+*	Sunflower seed plant pickup
+    inst
+    part 2
+    pose 1
+endm
+
+scrp 2 4 6502 6
+*	Sunflower seed plant collision
+    inst
+    part 2
+    pose 0
+endm
+
+scrp 2 4 6502 9
+*	SunflowerSeed plant timer
+    inst
+    doif movs = 0
+        setv va00 0
+        esee 2 3 6502
+            addv va00 1
+        next
+        doif va00 < 10
+            setv va01 posl
+            setv va02 post
+            addv va01 20
+            addv va02 20
+            reps rand 11 15
+                doif mv99 = 1
+                    new: simp 2 3 6502 "c1seeds" 4 1 200
+                    setv ov99 1
+                else
+                    new: simp 2 3 6502 "c1seeds" 4 5 200
+                    setv ov99 0
+                endi
+                attr 199
+                bhvr 48
+                accg .8
+                aero 0
+                elas 25
+                perm 60
+                emit 7 0.3
+                doif rand 0 1 = 1
+                    anim [0 1 2 3 255]
+                else
+                    anim [0 3 2 1 255]
+                endi
+                mvsf va01 va02
+                velo rand -5 5 rand 1 3
+            repe
+        endi
+    endi
+endm
+
+scrp 2 3 6502 1
+*	SunflowerSeed clicked by hand
+    inst
+    doif game "C1_Clickable_Food" = 1
+        setv va01 posl
+        setv va02 post
+        doif ov99 = 1
+            new: simp 2 3 6502 "c1seeds" 4 1 200
+            setv ov99 1
+        else
+            new: simp 2 3 6502 "c1seeds" 4 5 200
+            setv ov99 0
+        endi
+        attr 199
+        bhvr 48
+        accg .8
+        aero 0
+        elas 25
+        perm 60
+        emit 7 0.3
+        doif rand 0 1 = 1
+            anim [0 1 2 3 255]
+        else
+            anim [0 3 2 1 255]
+        endi
+        mvsf va01 va02
+        velo rand -15 15 rand -15 -5
+    endi
+endm
+
+scrp 2 3 6502 4
+*	SunflowerSeed picked up
+    mira rand 0 1
+    pose 0
+endm
+
+scrp 2 3 6502 5
+*	SunflowerSeed dropped
+    inst
+    mira rand 0 1
+    doif rand 0 1 = 1
+        anim [0 1 2 3 255]
+    else
+        anim [0 3 2 1 255]
+    endi
+endm
+
+
+scrp 2 3 6502 6
+*	SunflowerSeed picked up
+    mira rand 0 1
+    pose 0
+endm
+
+
+scrp 2 3 6502 12
+*	eating a seed
+*	SunflowerSeed
+    inst
+    lock
+    seta va20 norn
+    targ from
+    snde "chwp"
+    stim writ from 77 1
+    mesg writ ownr 5
+    kill ownr
+endm
+
+rscr
+enum 2 4 6502
+    kill targ
+next
+enum 2 3 6502
+    kill targ
+next
+
+scrx 2 4 6502 1
+scrx 2 4 6502 4
+scrx 2 4 6502 6
+scrx 2 4 6502 9
+
+scrx 2 3 6502 1
+scrx 2 3 6502 4
+scrx 2 3 6502 5
+scrx 2 3 6502 6
+scrx 2 3 6502 12
