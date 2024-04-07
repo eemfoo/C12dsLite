@@ -11,6 +11,7 @@ TAG "Agent Help 2 3 6502"
 "Sunflower Seed"
 "Sunflower Seeds are a delicious way to get the starch every creature needs."
 
+
 # Good Plant
 TAG "Agent Help 2 4 6500"
 "Baobab Plant"
@@ -47,6 +48,7 @@ TAG "Agent Help 2 4 6507"
 TAG "Agent Help 2 4 6508"
 "Tomato Plant"
 "Tomato increases sex drive and overall health levels."
+
 
 # Bad Plant
 TAG "Agent Help 2 5 6500"
@@ -97,6 +99,7 @@ TAG "Agent Help 2 5 6511"
 "Death Cap Fungus"
 "AVOID! The Death Cap is nearly always fatal in young Norns. It causes a huge fever, and a rapid loss of energy stores."
 
+
 # Flowers
 TAG "Agent Help 2 7 6500"
 "Feverfew"
@@ -114,6 +117,7 @@ TAG "Agent Help 2 7 6503"
 "Gentian"
 "Reduces feeling extremes of temperature. Useful to alleviate symptoms of fever."
 
+
 # FRUIT
 TAG "Agent Help 2 8 6500"
 "Lemon (Variety)"
@@ -122,6 +126,7 @@ TAG "Agent Help 2 8 6500"
 TAG "Agent Help 2 8 6501"
 "Tomato"
 "Increases sex drive and overall health levels."
+
 
 # Bad Friut / Alcohol
 TAG "Agent Help 2 9 6500"
@@ -158,6 +163,7 @@ TAG "Agent Help 2 11 6506"
 "Honey"
 "Honey provides energy and vitamins to creatures."
 
+
 # Good Bug
 TAG "Agent Help 2 13 6500"
 "Albian Carrot Beetle"
@@ -167,10 +173,12 @@ TAG "Agent Help 2 13 6501"
 "Cloud Butterfy"
 "These beautiful insects flitter around the gardens of Albia."
 
+
 # Bad Bug
 TAG "Agent Help 2 14 6500"
 "Cave Fly"
 "These annoying flying insects harass creatures that venture near their cave. Their stings may cause pain or illness."
+
 
 # Good Critter
 TAG "Agent Help 2 15 6503"
@@ -196,7 +204,6 @@ TAG "Agent Help 2 21 6501"
 TAG "Agent Help 2 21 6502"
 "Toy Helicopter"
 "This bouncy toy helicopter provides hours of entertainment for creatures."
-
 
 TAG "Agent Help 2 21 6503"
 "Jack-in-the-box"
@@ -262,7 +269,6 @@ TAG "Agent Help 2 21 6518"
 "Learning Computer"
 "The Learning Computer helps you teach creatures how to speak when pushed. You can set the Learning Computer to automatically advance, go to the Previous word, go to the Next word, and switch word libraries."
 
-
 TAG "Agent Help 2 22 32316"
 "Incubator"
 "Creature eggs are hatched by the incubator. Drop an egg in the incubator to begin the hatching process."
@@ -295,7 +301,8 @@ TAG "Agent Help 2 23 6506"
 
 
 # Tool
-#TAG "Agent Help 2 24 32300"
+
+#TAG "Agent Help 2 24 6500"
 #"Bell"
 #"Pushing the bell makes it ring."
 
@@ -305,12 +312,9 @@ TAG "Agent Help 2 24 6504"
 
 
 # Potion
-
 TAG "Agent Help 2 25 6500"
 "Coffee"
 "Coffee will wake a creature up, warm it from the inside, and reduce its appetite. Yummy!"
-
-
 
 
 # Birds
@@ -325,6 +329,7 @@ TAG "Agent Help 1 1 6502"
 TAG "Agent Help 1 1 6503"
 "Nesting Bird"
 "This mother bird is brooding some chicks."
+
 
 # MISC
 TAG "Agent Help 1 7 6500"
@@ -363,8 +368,8 @@ TAG "Agent Help 1 1 6505"
 "Grendel Mother"
 "This is where baby Grendels come from."
 
-# Lifts
 
+# Lifts
 TAG "Agent Help 3 1 6500"
 "Lift"
 "Creatures can get from one floor to another with the lift."
