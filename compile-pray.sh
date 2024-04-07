@@ -3,18 +3,26 @@
 
 const version = "1.2.2";
 
+// Node libararies
 const Path = require("node:path");
 const fs = require("node:fs");
 const {spawn} = require('node:child_process');
 const https = require("node:https");
-const {platform, arch, exit: exitProcess, argv} = require("node:process");
+const {platform, arch, exit: _exitProcess, argv} = require("node:process");
 
+// ============== //
+// ==== CAOS ==== //
+// ============== //
 
-const useJoins = argv.find((arg) => arg.toLowerCase() === "--no-joins") == null;
-const mainCos = "0.0 - Main.cos";
+// CAOS Vars
+const caos2PrayFilePath = Path.join(__dirname, ".caos2pray.cos");
+let outputMapFile = null;
 const attachmentExtensions = [".c16", ".s16", ".blk", ".mng", ".wav"];
-
+const mainCos = "0.0 - Main.cos";
+// Joins
+const useJoins = argv.find((arg) => arg.toLowerCase() === "--no-joins") == null;
 const joins = [];
+
 
 /**
  * Adds link statements for all CAOS files in relative path
@@ -55,8 +63,8 @@ function linkCos(text, relativePath, prefixComment = null) {
             joins.push(fileRelative);
         }
 
-        if (content.indexOf("game \"C1_to_DS_Loaded\"") >= 0) {
-            console.error("Incorrect `game \"C1_to_DS_Loaded\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Lite_Loaded\"`");
+        if (content.indexOf("game \"c1_to_ds_loaded\"") >= 0) {
+            console.error("Incorrect `game \"C1_to_DS_Loaded\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Lite_Loaded\"");
             exitProcess(1);
         }
 
@@ -90,8 +98,79 @@ function attachFilesIn(text, relativePath, prefixComment) {
     }
 }
 
+/**
+ * Adds music to the map file, and writes it to the ./cos subdirectory
+ * @returns {boolean} true if map file is written
+ */
+const addMusicAndWriteMap = function () {
 
-const caos2PrayFilePath = Path.join(__dirname, ".caos2pray.cos");
+// Output
+    const outputFileName = "0.01 - DO_NOT_EDIT - MAP.cos";
+    outputMapFile = Path.join(__dirname, "cos", outputFileName);
+
+    if (fs.existsSync(outputMapFile)) {
+        try {
+            fs.rmSync(outputMapFile);
+        } catch {
+            // ignore
+        }
+    }
+
+// Get map file data
+    const inputMapPath = Path.join(__dirname, "map", "c12dsL2024.cos");
+    /** @var {string[]} mapData */
+    let mapData;
+    try {
+        mapData = fs
+            .readFileSync(inputMapPath, "latin1")
+            .split(/\r?\n/);
+    } catch (e) {
+        console.error("Failed to read map data from file: " + inputMapPath, "error: ", e);
+        return false;
+    }
+
+// Build output file contents
+    let out = "";
+    const roomRegex = /\s+setv va00 addr va01 (\d+) (\d+) (\d+) (\d+) (\d+) (\d+)/ig;
+    for (const line of mapData) {
+        // Add line no matter what
+        out += line + "\r\n";
+        const match = roomRegex.exec(line);
+        if (match == null) {
+            continue;
+        }
+        // Read room points
+        const [
+            left,
+            right,
+            topLeft,
+            topRight,
+            bottomLeft,
+            bottomRight
+        ] = match.slice(1).map((v) => parseInt(v, 10));
+
+        // Calculate room midpoint X
+        const midX = Math.floor((left + right) / 2);
+
+        // Calculate room midpoint Y
+        const top = Math.max(topLeft, topRight);
+        const bottom = Math.min(bottomLeft, bottomRight);
+        const midY = Math.floor((bottom + top) / 2);
+
+        // Add music to room midpoint
+        out += `    rmsc ${midX} ${midY} "c1_music.mng\\\\c12ds"\r\n`;
+    }
+
+    try {
+        fs.writeFileSync(outputMapFile, out, "latin1");
+        return true;
+    } catch (e) {
+        const error = e instanceof Error ? e.message : e;
+        console.error("Failed to write map file with music;" + (error.trim() ? (" Error: " + error.trim()) : ""));
+        return false;
+    }
+}
+
 /**
  * Builds and writes the CAOS file and returns the path to it
  * @returns {string} path to generated CAOS2Pray file
@@ -106,13 +185,13 @@ function buildCAOSFile() {
         body = fs.readFileSync(Path.join(__dirname, "cos", mainCos), "latin1");
     } catch (e) {
         console.error("Failed to read 0.0 - Main.cos file for CAOS2Pray headers");
-        process.exit(1);
+        exitProcess(1);
     }
 
     const wroteMap = addMusicAndWriteMap();
     if (!wroteMap) {
         console.error("Map failure");
-        process.exit(1);
+        exitProcess(1);
     }
 
     linkCos(text, "cos", "* CAOS Scripts");
@@ -129,6 +208,10 @@ function buildCAOSFile() {
 
     fs.writeFileSync(caos2PrayFilePath, body);
 }
+
+// =================== //
+// ==== DOWNLOAD ==== //
+// =================== //
 
 /**
  * Gets the bytes for a given URL
@@ -187,6 +270,11 @@ async function download(url, destination) {
         }, 1);
     });
 }
+
+
+// ================ //
+// ==== BINARY ==== //
+// ================ //
 
 /**
  * Returns an error message describing a problem with the agent compiler binary; Returns null if okay
@@ -276,21 +364,21 @@ async function getCompiler() {
         download(exe, binary)
             .then((destination) => {
                 try {
-                    fs.writeFileSync(versionTextFilePath+".tmp", "" + version, "utf-8");
+                    fs.writeFileSync(versionTextFilePath + ".tmp", "" + version, "utf-8");
                 } catch {
                     console.error("Failed to write version.txt; Please create it manually in the ./bin/version.txt; with content: " + version);
                 }
                 return destination;
             })
             .then((destination) => {
-                binaryError = getBinaryError(destination, versionTextFilePath+".tmp");
+                binaryError = getBinaryError(destination, versionTextFilePath + ".tmp");
                 if (binaryError) {
-                    fs.rmSync(versionTextFilePath+".tmp")
+                    fs.rmSync(versionTextFilePath + ".tmp")
                     console.error("Failed to download: " + exe + "; Error: " + binaryError);
                     reject(binaryError);
                 } else {
                     fs.rmSync(versionTextFilePath);
-                    fs.renameSync(versionTextFilePath+".tmp", versionTextFilePath)
+                    fs.renameSync(versionTextFilePath + ".tmp", versionTextFilePath)
                     resolve(binary);
                 }
             })
@@ -303,6 +391,19 @@ async function getCompiler() {
 
 }
 
+
+// ================= //
+// ==== UTILITY ==== //
+// ================= //
+
+/**
+ * Exit the script with code, cleaning up as needed
+ * @param code
+ */
+function exitProcess(code) {
+    cleanTemporaryFiles();
+    _exitProcess(code);
+}
 
 /**
  * Formats duration into minutes and seconds
@@ -320,80 +421,28 @@ function formatTime(time) {
     return timeString;
 }
 
-
-let outputMapFile = null;
 /**
- * Adds music to the map file, and writes it to the ./cos subdirectory
- * @returns {boolean} true if map file is written
+ * Deletes the temporary CAOS files generated during compile
  */
-const addMusicAndWriteMap = function () {
-
-// Output
-    const outputFileName = "0.01 - DO_NOT_EDIT - MAP.cos";
-    outputMapFile = Path.join(__dirname, "cos", outputFileName);
-
-    if (fs.existsSync(outputMapFile)) {
-        try {
+function cleanTemporaryFiles() {
+    try {
+        if (outputMapFile) {
             fs.rmSync(outputMapFile);
-        } catch {
-            // ignore
         }
-    }
-
-// Get map file data
-    const inputMapPath = Path.join(__dirname, "map", "c12dsL2024.cos");
-    /** @var {string[]} mapData */
-    let mapData;
-    try {
-        mapData = fs
-            .readFileSync(inputMapPath, "latin1")
-            .split(/\r?\n/);
-    } catch (e) {
-        console.error("Failed to read map data from file: " + inputMapPath, "error: ", e);
-        return false;
-    }
-
-// Build output file contents
-    let out = "";
-    const roomRegex = /\s+setv va00 addr va01 (\d+) (\d+) (\d+) (\d+) (\d+) (\d+)/ig;
-    for (const line of mapData) {
-        // Add line no matter what
-        out += line + "\r\n";
-        const match = roomRegex.exec(line);
-        if (match == null) {
-            continue;
-        }
-        // Read room points
-        const [
-            left,
-            right,
-            topLeft,
-            topRight,
-            bottomLeft,
-            bottomRight
-        ] = match.slice(1).map((v) => parseInt(v, 10));
-
-        // Calculate room midpoint X
-        const midX = Math.floor((left + right) / 2);
-
-        // Calculate room midpoint Y
-        const top = Math.max(topLeft, topRight);
-        const bottom = Math.min(bottomLeft, bottomRight);
-        const midY = Math.floor((bottom + top) / 2);
-
-        // Add music to room midpoint
-        out += `    rmsc ${midX} ${midY} "c1_music.mng\\\\c12ds"\r\n`;
+    } catch {
     }
 
     try {
-        fs.writeFileSync(outputMapFile, out, "latin1");
-        return true;
-    } catch (e) {
-        const error = e instanceof Error ? e.message : e;
-        console.error("Failed to write map file with music;" + (error.trim() ? (" Error: " + error.trim()) : ""));
-        return false;
+        if (fs.existsSync(caos2PrayFilePath)) {
+            fs.rmSync(caos2PrayFilePath);
+        }
+    } catch {
     }
 }
+
+// ================= //
+// ==== COMPILE ==== //
+// ================= //
 
 /**
  * Compile agent and get compiler exit code
@@ -418,12 +467,11 @@ async function _compile() {
 
         buildCAOSFile();
 
-        const compilerArgs = ["compile", caos2PrayFilePath, "--progress"]
+        const compilerArgs = ["compile", caos2PrayFilePath];
         const debug = argv.find((arg) => arg.toLowerCase() === "--debug") != null;
         if (debug) {
             compilerArgs.push("--debug");
         }
-
 
         let child;
         try {
@@ -445,6 +493,7 @@ async function _compile() {
     });
 }
 
+
 /**
  * Compile agent and log result
  */
@@ -455,28 +504,24 @@ function compile() {
             if (code === 0) {
                 const timeString = formatTime(Date.now() - time);
                 console.info("Compiled agent successfully in " + timeString);
-                try {
-                    if (outputMapFile) {
-                        fs.rmSync(outputMapFile);
-                    }
-                    if (fs.existsSync(caos2PrayFilePath)) {
-                        fs.rmSync(caos2PrayFilePath);
-                    }
-                } catch {
-                    // ignore
-                }
             } else {
                 console.error("An error was encountered");
             }
-            exitProcess(code)
+            return code
         })
         .catch((e) => {
             const error = e instanceof Error ? e.message : e;
             console.error("Compile agent failed; " + error);
-            exitProcess(1);
-        });
+            return 1;
+        })
+        .then((code) => {
+            exitProcess(code)
+        })
 }
 
+// ================= //
+// ====== RUN ====== //
+// ================= //
 
 // Call compiler
 compile();
