@@ -1,0 +1,100 @@
+# Good Plant
+TAG "Agent Help 2 4 6509"
+"Mistletoe"
+"With this festive herb, your creatures may want to kiss one another."
+
+
+# Bad Plant
+TAG "Agent Help 2 5 6512"
+"Holly"
+"Use this holly to decorate Albia, but make sure your creatures do not eat it."
+
+
+# Food
+TAG "Agent Help 2 11 6507"
+"Pudding"
+"Pudding is a delicious dessert food for creatures."
+
+TAG "Agent Help 2 11 6508"
+"Turkey"
+"This tasty turkey provides your creatures with tasty holiday food."
+
+TAG "Agent Help 2 11 6509"
+"Flaming Christmas Pudding"
+"This seasonal speciality appears in the left-most oven in the stove near the incubator. You'll need to be careful though, as it's still cooking, and is extremely hot. If any creature attempts to sneak a quick bite, the pudding will be a bit painful. The pudding will decrease in size when eaten. Also, your creature may be lucky enough to find a surprise silver coin inside a portion of pudding. It's not all good news though; your creature may have a lucky coin but he'll also have a sore mouth!"
+
+
+# Good Critter
+TAG "Agent Help 2 15 6504"
+"Reindeer"
+"These magical creatures are fun to play with, but don't like getting their feet wet."
+
+
+# Weather
+TAG "Agent Help 2 19 32301"
+"Snowflake"
+"It's snowing!"
+
+
+# Toys
+TAG "Agent Help 2 21 6519"
+"Good Luck Christmas Pudding Coin"
+"Your creature may be lucky enough to find a surprise silver coin inside a portion of pudding. It's not all good news though; they may have a lucky coin but they'll also have a sore mouth!"
+
+TAG "Agent Help 2 21 6520"
+"Snowman"
+"The snowman toy makes creatures happy when played with. Beware of frostbite!"
+
+TAG "Agent Help 2 21 6521"
+"Christmas Cracker Toy"
+"Each Christmas Cracker contains a toy surprise!"
+
+TAG "Agent Help 2 21 6522"
+"Christmas Toy"
+"These Christmas trinket toys are very entertaining for creatures."
+
+
+# Vendor
+TAG "Agent Help 2 23 6507"
+"Oven"
+"There are delicious smells wafting out of the oven."
+
+
+# Tool
+TAG "Agent Help 2 24 6501"
+"Christmas Cards"
+"You can display your creatures' christmas cards."
+
+TAG "Agent Help 2 24 6502"
+"Christmas Garland"
+"You can decorate Albia to celebrate Christmas!"
+
+TAG "Agent Help 2 24 6503"
+"Christmas Ribbon"
+"You can decorate Albia to celebrate Christmas!"
+
+TAG "Agent Help 2 24 6505"
+"Fairy Lights"
+"Decorate Albia with these twinkling fairy lights."
+
+TAG "Agent Help 2 24 6506"
+"Incubator Fairy Lights"
+"These lights decorate the Incubator with Christmas spirit."
+
+TAG "Agent Help 2 24 6507"
+"Christmas Tree"
+"Your creatures can celebrate the Christmas season with this fresh pine-scented Christmas tree."
+
+TAG "Agent Help 2 24 6508"
+"Fire Log Box"
+"Using this log box will add fuel to any nearby fireplaces."
+
+TAG "Agent Help 2 24 6509"
+"Fireplace"
+"The fireplace provides warmth, light, and a place to hang your creatures' stockings."
+
+
+# Gadget
+TAG "Agent Help 3 8 6500"
+"Snow Making Machine"
+"This machine creates a wintery snowstorm to entertain your creatures."
