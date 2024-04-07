@@ -41,6 +41,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 6502 <= 1
 elif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
+    setv va88 1
     setv va00 5440
     setv va01 3580
     velo rand 30 40 -5
