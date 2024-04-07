@@ -285,10 +285,6 @@ TAG "Agent Help 2 23 6503"
 "Beelacanth Seed Launcher"
 "This machine dispenses beelacanth seeds when clicked."
 
-TAG "Agent Help 2 24 6504"
-"Solution X - Beelacanth Killer"
-"This machine dispenses clouds of poison that kill beelacanth plants and seeds on contact."
-
 TAG "Agent Help 2 23 6505"
 "Love Cheese Vendor"
 "This machine dispenses Lacota's famous Love Cheese."
@@ -302,6 +298,11 @@ TAG "Agent Help 2 23 6506"
 #TAG "Agent Help 2 24 32300"
 #"Bell"
 #"Pushing the bell makes it ring."
+
+TAG "Agent Help 2 24 6504"
+"Solution X - Beelacanth Killer"
+"This machine dispenses clouds of poison that kill beelacanth plants and seeds on contact."
+
 
 # Potion
 
