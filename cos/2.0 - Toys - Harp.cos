@@ -221,15 +221,7 @@ scrp 2 21 6515 6
     endi
 endm
 
-scrp 2 21 32309 12
-*	Harp is bitten
-    inst
-    lock
-    stim writ from 0 1
-    setv ov00 0
-endm
-
-****************************
+ ****************************
 * Removers
 
 * Harp remover

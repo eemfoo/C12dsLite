@@ -171,14 +171,6 @@ scrp 2 21 6503 6
     endi
 endm
 
-scrp 2 21 6503 12
-*	JackInTheBox is bitten
-    inst
-    lock
-    stim writ from 0 1
-    setv ov00 0
-endm
-
 ****************************
 * Removers
 
