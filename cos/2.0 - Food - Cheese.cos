@@ -22,6 +22,8 @@
 *# Attach "../catalogue/c12dsl.catalogue"
 
 inst
+* Clear double delete flag
+setv game "C1_to_DS_Lite::Delete_Override::Cheese" 0
 
 doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 11 6501 < 1
 
@@ -65,6 +67,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 11 6501 < 1
     mvsf 4815 18509
 else
     inst
+    setv va88 1
     doif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
@@ -85,6 +88,7 @@ else
 *	make some cheese at the agent injector
     reps rand 3 5
         new: simp 2 11 6501 "c1cheese" 3 0 200
+        setv ov88 1
         attr 199
         accg 5
         aero 10
@@ -165,11 +169,23 @@ scrp 2 11 6501 12
     kill targ
 endm
 
+
 rscr
+
+* If double deleted, remove all cheese from C12DSL as well as manually injected
+setv va88 game "C1_to_DS_Lite::Delete_Override::Cheese"
+setv game "C1_to_DS_Lite::Delete_Override::Cheese" 1
+
+* DO NOT MERGE
 enum 2 11 6501
-    kill targ
+    doif va88 eq 1 or ov88 eq 1
+        kill targ
+    endi
 next
+
+doif totl 2 11 6501 eq 0 or game "C1_to_DS_Lite_Uninstall_All_Instances" eq 1
     scrx 2 11 6501 4
     scrx 2 11 6501 6
     scrx 2 11 6501 10
     scrx 2 11 6501 12
+endi

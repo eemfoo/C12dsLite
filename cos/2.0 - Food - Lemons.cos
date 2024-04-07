@@ -20,8 +20,12 @@
 *# Attach "../images/c1plants.c16"
 *# Attach "../sounds/c1d2.wav"
 *# Attach "../catalogue/c12dsl.catalogue"
+
 inst
 lock
+
+* Clear double delete flag
+setv game "C1_to_DS_Lite::Delete_Override::Sunflowers" 0
 
 * 	Lemon trellis
 new: vhcl 2 4 6500 "c1plants" 1 49 100
@@ -43,6 +47,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6500 <= 1
 * 	C1 to DS Injection Location Script
 * 	have to make verify that game_type variable is a string value
 elif type game "ds_game_type" ne 2
+    setv ov88 1
     attr 215
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
@@ -51,6 +56,8 @@ elif type game "ds_game_type" ne 2
     velo rand 30 40 -5
     mvsf va00 va01
 else
+
+    setv ov88 1
     attr 215
 * 	it IS a string, but what is the value?
     doif game "ds_game_type" eq "undocked"
@@ -124,6 +131,7 @@ scrp 2 4 6500 9
             doif va21 > 0
                 reps va21
                     new: vhcl 2 8 6500 "c1plants" 3 0 101
+                    setv ov88 mv88
                     seta va51 targ
                     cabp 0
                     cabw 1
@@ -210,6 +218,7 @@ scrp 2 8 6500 1
             attr 719
         endi
         setv ov00 1
+        setv ov88 mv88
         pose 2
         mira rand 0 1
         accg 5
@@ -285,15 +294,21 @@ scrp 2 8 6500 12
 endm
 
 rscr
+setv va88 game "C1_to_DS_Lite::Delete_Override::Sunflowers"
+setv game "C1_to_DS_Lite::Delete_Override::Sunflowers" 1
 enum 2 8 6500
-    kill targ
+    doif va88 eq 1 or ov88 eq 1
+        kill targ
+    endi
 next
 enum 2 4 6500
-    kill targ
+    doif va88 eq 1 or ov88 eq 1
+        kill targ
+    endi
 next
 
 * Trellis Scripts
-
+doif totl 2 4 6500 eq 0 and totl 2 8 6500 eq 0
     * Trellis
     scrx 2 4 6500 4
     scrx 2 4 6500 9
@@ -304,3 +319,4 @@ next
     scrx 2 8 6500 6
     scrx 2 8 6500 12
     scrx 2 8 6500 124
+endi

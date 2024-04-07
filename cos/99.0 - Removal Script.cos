@@ -1,0 +1,199 @@
+
+inst
+setv game "C1_to_DS_Lite_UNINSTALLING" 1
+setv va99 game "C1_to_DS_Lite_Uninstall_All_Instances"
+
+* Kill overlays
+enum 1 1 6500 kill targ next
+
+* Kill clocks
+enum 1 1 6501 kill targ next
+
+* Hummingbirds
+enum 2 15 6500 kill targ next
+enum 1 1 6502 kill targ next
+enum 1 1 6503 kill targ next
+
+* Carrots and Manager
+enum 1 1 6504 kill targ next
+enum 2 11 6500 kill targ next
+
+* Cheese
+enum 2 11 6501 gsub kill next
+
+* Lemons and Trellis
+enum 2 4 6500 gsub kill next
+enum 2 8 6500 gsub kill next
+
+* Sunflowers
+enum 2 4 6502 gsub kill next
+enum 2 3 6502 gsub kill next
+
+* Red Ball
+enum 2 21 6500 gsub kill next
+
+* Harp
+enum 2 21 6515 gsub kill next
+
+* Hooch and Still
+enum 2 9 6500 kill targ next
+enum 2 23 6500 kill targ next
+
+* Helicopter
+enum 2 21 6502 gsub kill next
+
+* Jack-in-the-Box
+enum 2 21 6503 gsub kill next
+
+* Shelves
+enum 1 7 6500
+    dpas 0 0 0
+    kill targ
+next
+
+* == Remove Scripts == *
+* Clocks
+scrx 1 1 6501 1
+scrx 1 1 6501 9
+
+* Shelves
+scrx 1 7 6500 1264
+scrx 1 7 6500 1001
+
+* Hummingbirds
+scrx 1 1 6502 1
+scrx 1 1 6502 9
+scrx 1 1 6503 1
+scrx 1 1 6503 9
+scrx 2 15 6500 1
+scrx 2 15 6500 2
+scrx 2 15 6500 3
+scrx 2 15 6500 4
+scrx 2 15 6500 5
+scrx 2 15 6500 6
+scrx 2 15 6500 9
+scrx 2 15 6500 12
+
+* Carrot Manager
+scrx 1 1 6504 9
+scrx 1 1 6504 10
+scrx 1 1 6504 1000
+* Carrots
+scrx 2 11 6500 4
+scrx 2 11 6500 5
+scrx 2 11 6500 6
+scrx 2 11 6500 9
+scrx 2 11 6500 10
+scrx 2 11 6500 12
+scrx 2 11 6500 1000
+
+* Hooch Still
+scrx 2 23 32300 1
+scrx 2 23 32300 9
+scrx 2 23 32300 124
+
+* Hooch Cups
+scrx 2 9 650 1
+scrx 2 9 650 5
+scrx 2 9 650 6
+scrx 2 9 650 12
+
+* Pianola
+scrx 2 21 6504 1
+scrx 2 21 6504 2
+scrx 2 21 6504 3
+scrx 2 21 6504 124
+scrx 2 21 6504 1000
+
+
+* Delete cheese if no independent cheeses are using it
+doif totl 2 11 6501 eq 0 or va99 eq 1
+    scrx 2 11 6501 4
+    scrx 2 11 6501 6
+    scrx 2 11 6501 10
+    scrx 2 11 6501 12
+endi
+
+doif totl 2 4 6500 eq 0 and totl 2 8 6500 eq 0
+    scrx 2 4 6500 4
+    scrx 2 4 6500 9
+    scrx 2 8 6500 1
+    scrx 2 8 6500 4
+    scrx 2 8 6500 5
+    scrx 2 8 6500 6
+    scrx 2 8 6500 12
+    scrx 2 8 6500 124
+endi
+
+* Sunflower and Seeds
+doif totl 2 4 6502 eq 0 and totl 2 3 6502 eq 0
+    * Sunflower Plant
+    scrx 2 4 6502 1
+    scrx 2 4 6502 2
+    scrx 2 4 6502 3
+    scrx 2 4 6502 4
+    scrx 2 4 6502 6
+    scrx 2 4 6502 9
+    scrx 2 4 6502 1000
+
+    * Sunflower Seeds
+    scrx 2 3 6502 1
+    scrx 2 3 6502 4
+    scrx 2 3 6502 5
+    scrx 2 3 6502 6
+    scrx 2 3 6502 12
+endi
+
+* Red Ball
+doif totl 2 21 6500 eq 0
+    scrx 2 21 6500 1
+    scrx 2 21 6500 2
+    scrx 2 21 6500 3
+    scrx 2 21 6500 6
+    scrx 2 21 6500 9
+    scrx 2 21 6500 1001
+endi
+
+* Harp
+doif totl 2 21 6515 eq 0
+    scrx 2 21 6515 1
+    scrx 2 21 6515 2
+    scrx 2 21 6515 3
+    scrx 2 21 6515 4
+    scrx 2 21 6515 6
+    scrx 2 21 6515 1001
+    scrx 2 21 6515 1002
+    scrx 2 21 6515 1003
+    scrx 2 21 6515 1004
+    scrx 2 21 6515 1005
+    scrx 2 21 6515 1006
+    scrx 2 21 6515 1007
+endi
+
+* Helicopter
+doif totl 2 21 6502 eq 0
+    scrx 2 21 6502 1
+    scrx 2 21 6502 2
+    scrx 2 21 6502 3
+    scrx 2 21 6502 4
+    scrx 2 21 6502 6
+endi
+
+* Jack-in-the-Box
+doif totl 2 21 6503 eq 0
+    scrx 2 21 6503 1
+    scrx 2 21 6503 3
+    scrx 2 21 6503 4
+    scrx 2 21 6503 6
+endi
+
+delg "C1_to_DS_Lite_Loading"
+delg "C1_to_DS_Lite_UNINSTALLING"
+
+* Kills agent only if not marked as Independently installed
+* i.e. va88 == 0
+subr kill
+    doif va88 eq 0
+        kill targ
+    endi
+retn

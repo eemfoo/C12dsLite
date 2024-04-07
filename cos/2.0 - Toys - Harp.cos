@@ -36,6 +36,8 @@
 * Installers
 inst
 
+setv game "C1_to_DS_Lite::Delete_Override::Harp" 0
+
 new: comp 2 21 6515 "c1harp" 0 0 200
 attr 199
 accg 5
@@ -56,11 +58,13 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 6515 <= 1
 elif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
+    setv ov88 1
     setv va00 5440
     setv va01 3580
     velo rand 30 40 -5
     mvsf va00 va01
 else
+    setv ov88 1
 * 	it IS a string, but what is the value?
     doif game "ds_game_type" eq "undocked"
 * 		this is an undocked world, location needs to be DS safe
@@ -230,18 +234,27 @@ endm
 
 * Harp remover
 rscr
+
+setv va88 game "C1_to_DS_Lite::Delete_Override::Harp"
+setv game "C1_to_DS_Lite::Delete_Override::Harp" 1
+
 enum 2 21 6515
-    kill targ
+    doif ov88 eq 1 or va88 eq 1
+        kill targ
+    endi
 next
-scrx 2 21 6515 1
-scrx 2 21 6515 2
-scrx 2 21 6515 3
-scrx 2 21 6515 4
-scrx 2 21 6515 6
-scrx 2 21 6515 1001
-scrx 2 21 6515 1002
-scrx 2 21 6515 1003
-scrx 2 21 6515 1004
-scrx 2 21 6515 1005
-scrx 2 21 6515 1006
-scrx 2 21 6515 1007
+
+doif totl 2 21 6515 eq 0
+    scrx 2 21 6515 1
+    scrx 2 21 6515 2
+    scrx 2 21 6515 3
+    scrx 2 21 6515 4
+    scrx 2 21 6515 6
+    scrx 2 21 6515 1001
+    scrx 2 21 6515 1002
+    scrx 2 21 6515 1003
+    scrx 2 21 6515 1004
+    scrx 2 21 6515 1005
+    scrx 2 21 6515 1006
+    scrx 2 21 6515 1007
+endi

@@ -34,6 +34,8 @@
 
 * Installers
 inst
+* Clear double delete flag
+setv game "C1_to_DS_Lite::Delete_Override::Jack-in-the-Box" 0
 
 new: simp 2 21 6503 "c1jackinthebox" 19 0 200
 attr 199
@@ -180,12 +182,21 @@ endm
 
 * JackInTheBox remover
 rscr
+* If double deleted, remove all jack-in-the-boxes from C12DSL as well as manually injected
+setv va88 game "C1_to_DS_Lite::Delete_Override::Jack-in-the-Box"
+setv game "C1_to_DS_Lite::Delete_Override::Jack-in-the-Box" 1
+
 enum 2 21 6503
-    kill targ
+    doif va88 eq 1 or ov88 eq 1
+        kill targ
+    endi
 next
+
+doif totl 2 21 6503 eq 0
     scrx 2 21 6503 1
     scrx 2 21 6503 2
     scrx 2 21 6503 3
     scrx 2 21 6503 4
     scrx 2 21 6503 6
     scrx 2 21 6503 1000
+endi

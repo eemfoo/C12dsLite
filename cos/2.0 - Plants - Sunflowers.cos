@@ -22,6 +22,9 @@
 inst
 lock
 
+* Variable to only delete manually injected agents with this agents removal script
+setv game "C1_to_DS_Lite::Delete_Override::Sunflowers" 0
+
 * 	SunflowerSeed plant
 new: comp 2 4 6502 "c1seeds" 1 0 200
 pat: dull 2 "c1seeds" 9 22 75 0
@@ -303,13 +306,20 @@ scrp 2 3 6502 12
 endm
 
 rscr
+setv va88 game "C1_to_DS_Lite::Delete_Override::Sunflowers"
+setv game "C1_to_DS_Lite::Delete_Override::Sunflowers" 1
 enum 2 4 6502
-    kill targ
+    doif va88 eq 1 or va88 eq 1
+        kill targ
+    endi
 next
 enum 2 3 6502
-    kill targ
+    doif va88 eq 1 or va88 eq 1
+        kill targ
+    endi
 next
 
+doif totl 2 4 6502 eq 0 and totl 2 3 6502 eq 0
     * Sunflower
     scrx 2 4 6502 1
     scrx 2 4 6502 2
@@ -325,3 +335,4 @@ next
     scrx 2 3 6502 5
     scrx 2 3 6502 6
     scrx 2 3 6502 12
+endi

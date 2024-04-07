@@ -23,6 +23,9 @@
 *# Attach "../catalogue/c12dsl.catalogue"
 inst
 
+* Clear double delete flag
+setv game "C1_to_DS_Lite::Delete_Override::Helicopter" 0
+
 new: simp 2 21 6502 "c1helicopter" 19 0 200
 attr 199
 accg 5
@@ -43,6 +46,7 @@ elif type game "ds_game_type" ne 2
     velo rand 30 40 -5
     mvsf va00 va01
 else
+    setv va88 1
 * 	it IS a string, but what is the value?
     doif game "ds_game_type" eq "undocked"
 * 		this is an undocked world, location needs to be DS safe
@@ -147,11 +151,20 @@ endm
 
 * helicopter remover
 rscr
+* If double deleted, remove all helicopter toys from C12DSL as well as manually injected
+setv va88 game "C1_to_DS_Lite::Delete_Override::Helicopter"
+setv game "C1_to_DS_Lite::Delete_Override::Helicopter" 1
+
 enum 2 21 6502
-    kill targ
+    doif va88 eq 1 or ov88 eq 1
+        kill targ
+    endi
 next
-scrx 2 21 6502 1
-scrx 2 21 6502 2
-scrx 2 21 6502 3
-scrx 2 21 6502 4
-scrx 2 21 6502 6
+
+doif totl 2 21 6502 eq 0
+    scrx 2 21 6502 1
+    scrx 2 21 6502 2
+    scrx 2 21 6502 3
+    scrx 2 21 6502 4
+    scrx 2 21 6502 6
+endi
