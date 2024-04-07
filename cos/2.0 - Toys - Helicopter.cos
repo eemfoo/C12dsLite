@@ -20,6 +20,7 @@
 *# Attach "../images/c1helicopter.c16"
 *# Attach "../sounds/c1h3.wav"
 *# Attach "../sounds/c1h4.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
 inst
 
 new: simp 2 21 6502 "c1helicopter" 19 0 200

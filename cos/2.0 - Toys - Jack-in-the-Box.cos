@@ -26,6 +26,7 @@
 *# Attach "../sounds/c1p4.wav"
 *# Attach "../sounds/c1p5.wav"
 *# Attach "../sounds/c1p6.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
 
 * Installers
 inst

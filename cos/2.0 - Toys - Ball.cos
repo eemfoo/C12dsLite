@@ -23,6 +23,7 @@
 *# Attach "../images/c1ball.c16"
 *# Attach "../sounds/c1b4.wav"
 *# Attach "../sounds/c1s3.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
 * Installers
 inst
 

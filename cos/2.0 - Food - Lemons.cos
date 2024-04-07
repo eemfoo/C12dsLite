@@ -16,6 +16,7 @@
 *# Agent Animation String = "0"
 *# Attach "../images/c1plants.c16"
 *# Attach "../sounds/c1dp.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
 inst
 lock
 

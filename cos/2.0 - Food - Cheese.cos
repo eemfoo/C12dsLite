@@ -9,6 +9,7 @@
 *# Agent Description = "A tasty piece of C1 cheese. With fat and vitamin-c"
 *# Attach "../images/c1cheese.c16"
 *# Attach "../sounds/c1d2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
 
 inst
 
