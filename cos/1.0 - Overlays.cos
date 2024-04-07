@@ -97,7 +97,7 @@ sndl "c1st"
 
 
 * vent over table
-new: simp 1 7 6500 "c1table" 1 1 200
+new: simp 1 1 6500 "c1table" 1 1 200
 mvto 1951 18754
 
 * SCRIPTS
