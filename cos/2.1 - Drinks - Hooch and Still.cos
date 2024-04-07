@@ -21,7 +21,7 @@ pose 0
 cabp 1
 cabn 0 0 100 90
 attr 199
-bhvr 1
+bhvr 11
 fric 100
 accg 25
 elas 0
@@ -199,7 +199,16 @@ endm
 
 
 scrp 2 23 6500 1
+    call 1001 from 0
+endm
+
+scrp 2 23 6500 2
+    call 1001 from 0
+endm
+
+scrp 2 23 6500 1001
     inst
+    stim writ _p1_ 90 1.0
     setv va00 posl
     setv va01 post
     addv va00 45
@@ -215,6 +224,17 @@ scrp 2 23 6500 1
     pose 0
     mvsf va00 va01
     velo rand -10 10 rand -5 -2
+endm
+
+scrp 2 23 6500 3
+*	Hit hooch
+    inst
+    lock
+    stim writ from 92 1
+    velo rand -10 10 rand -10 -20
+    sndc "c1sp"
+    setv ov00 0
+    anim [0]
 endm
 
 scrp 2 23 6500 9

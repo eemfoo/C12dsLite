@@ -143,7 +143,7 @@ scrp 2 21 6503 3
 *	JackInTheBox is hit
     inst
     lock
-    stim writ from 0 1
+    stim writ from 97 1
     velo rand -10 10 rand -10 -20
     sndc "c1h4"
     setv ov00 0
@@ -169,14 +169,6 @@ scrp 2 21 6503 6
             pose 0
         endi
     endi
-endm
-
-scrp 2 21 6503 12
-*	JackInTheBox is bitten
-    inst
-    lock
-    stim writ from 0 1
-    setv ov00 0
 endm
 
 ****************************

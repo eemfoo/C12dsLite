@@ -110,7 +110,7 @@ scrp 2 21 6502 3
 *	helicopter is hit
     inst
     lock
-    stim writ from 0 1
+    stim writ from 97 1
     velo rand -10 10 rand -10 -20
     sndc "c1h4"
     anim [9 10 11 12 13 12 11 10 9 10 11 12 13 12 11 10 0]

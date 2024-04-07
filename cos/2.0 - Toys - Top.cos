@@ -23,24 +23,28 @@ setv ov91 post
 
 
 scrp 2 21 6501 1
-*	top is pushed
-    doif ov99 = 0
-        tick 1
-        setv ov97 0
-        setv ov99 1
-        sndc "c1to"
-        stim writ from 97 1
-    endi
+*   top is pushed
+    call 1000 from 0
 endm
 
 scrp 2 21 6501 2
-*	top is pushed
+*	top is pulled
+    call 1000 from 0
+endm
+
+scrp 2 21 6501 3
+*	top is hit
+    call 1000 from 0
+endm
+
+scrp 2 21 6501 1000
+*   Top is activated
+    stim writ _p1_ 97 1
     doif ov99 = 0
         tick 1
         setv ov97 0
         setv ov99 1
         sndc "c1to"
-        stim writ from 97 1
     endi
 endm
 
