@@ -196,7 +196,7 @@ scrp 2 21 6515 3
 *	Harp is hit
     inst
     lock
-    stim writ from 0 1
+    stim writ from 97 1
     velo rand -10 10 rand -10 -20
     sndc "c1d2"
     setv ov00 0
