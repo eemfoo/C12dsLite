@@ -50,3 +50,12 @@ scrp 2 21 1021 124
     dpas 4 0 0
     dpas 3 4 0
 endm
+
+rscr
+* remove pianola
+enum 2 21 1021
+    kill targ
+next
+scrx 2 21 1021 1
+scrx 2 21 1021 124
+
