@@ -230,7 +230,7 @@ endm
 scrp 2 3 6502 1
 *	SunflowerSeed clicked by hand
     inst
-    doif game "C1_Clickable_Food" = 1
+    doif game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va01 posl
         setv va02 post
         doif ov99 = 1
