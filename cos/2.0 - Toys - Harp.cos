@@ -1,0 +1,243 @@
+**CAOS2Pray Join
+*# DS-Name "C12DS-Lite Harp"
+*# Agent Description = "Creatures can play music with this harp."
+*# Agent Animation Gallery = "c1harp"
+*# Agent Animation File = "c1harp.c16"
+*# Attach "../images/c1harp.c16"
+*# Attach "../sounds/c1hb.wav"
+*# Attach "../sounds/c1ha.wav"
+*# Attach "../sounds/c1h5.wav"
+*# Attach "../sounds/c1h6.wav"
+*# Attach "../sounds/c1h7.wav"
+*# Attach "../sounds/c1h8.wav"
+*# Attach "../sounds/c1h9.wav"
+*# Attach "../sounds/c1d2.wav"
+****************************
+* C1 Harp
+****************************
+
+* Dependencies:
+*  c1harp.c16
+*  c1h5.wav
+*  c1h6.wav
+*  c1h7.wav
+*  c1h8.wav
+*  c1h9.wav
+*  c1ha.wav
+*  c1hb.wav
+*  c1d2.wav
+
+
+* Installers
+inst
+
+new: comp 2 21 32309 "c1harp" 0 0 200
+attr 199
+accg 5
+bhvr 11
+fric 12.5
+aero 10
+elas 0
+perm 60
+pat: butt 1 "c1harp" 1 2 23 26 0 [] 1001 0
+pat: butt 2 "c1harp" 3 2 29 39 0 [] 1002 0
+pat: butt 3 "c1harp" 5 2 35 48 0 [] 1003 0
+pat: butt 4 "c1harp" 7 2 41 56 0 [] 1004 0
+pat: butt 5 "c1harp" 9 2 47 62 0 [] 1005 0
+
+doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 32309 <= 1
+* 	Harp in music room
+    mvsf 790 18812
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+
+endi
+
+****************************
+* Scripts
+
+scrp 2 21 32309 1001
+    part 1
+    anim [0 1 1 1 0]
+    sndc "c1h5"
+endm
+
+scrp 2 21 32309 1002
+    part 2
+    anim [0 1 1 1 0]
+    sndc "c1h6"
+endm
+
+scrp 2 21 32309 1003
+    part 3
+    anim [0 1 1 1 0]
+    sndc "c1h7"
+endm
+
+scrp 2 21 32309 1004
+    part 4
+    anim [0 1 1 1 0]
+    sndc "c1h8"
+endm
+
+scrp 2 21 32309 1005
+    part 5
+    anim [0 1 1 1 0]
+    sndc "c1h9"
+endm
+
+scrp 2 21 32309 1006
+    sndc "c1ha"
+    part 5
+    anim [0 1 0]
+    wait 3
+    part 4
+    anim [0 1 0]
+    wait 3
+    part 3
+    anim [0 1 0]
+    wait 3
+    part 2
+    anim [0 1 0]
+    wait 3
+    part 1
+    anim [0 1 0]
+    wait 3
+endm
+
+scrp 2 21 32309 1007
+    sndc "c1hb"
+    part 1
+    anim [0 1 0]
+    wait 3
+    part 2
+    anim [0 1 0]
+    wait 3
+    part 3
+    anim [0 1 0]
+    wait 3
+    part 4
+    anim [0 1 0]
+    wait 3
+    part 5
+    anim [0 1 0]
+    wait 3
+endm
+
+
+scrp 2 21 32309 1
+*	Harp is pushed
+    inst
+    lock
+    stim writ from 97 1
+    setv va00 rand 1 7
+    doif va00 = 1
+        mesg writ ownr 1001
+    elif va00 = 2
+        mesg writ ownr 1002
+    elif va00 = 3
+        mesg writ ownr 1003
+    elif va00 = 4
+        mesg writ ownr 1004
+    elif va00 = 5
+        mesg writ ownr 1005
+    elif va00 = 6
+        mesg writ ownr 1006
+    elif va00 = 7
+        mesg writ ownr 1007
+    endi
+endm
+
+scrp 2 21 32309 2
+*	Harp is pushed
+    inst
+    lock
+    stim writ from 97 1
+    setv va00 rand 1 7
+    doif va00 = 1
+        mesg writ ownr 1001
+    elif va00 = 2
+        mesg writ ownr 1002
+    elif va00 = 3
+        mesg writ ownr 1003
+    elif va00 = 4
+        mesg writ ownr 1004
+    elif va00 = 5
+        mesg writ ownr 1005
+    elif va00 = 6
+        mesg writ ownr 1006
+    elif va00 = 7
+        mesg writ ownr 1007
+    endi
+endm
+
+scrp 2 21 32309 3
+*	Harp is hit
+    inst
+    lock
+    stim writ from 0 1
+    velo rand -10 10 rand -10 -20
+    sndc "c1d2"
+    setv ov00 0
+endm
+
+scrp 2 21 32309 4
+*	Harp is picked up
+    stpc
+endm
+
+scrp 2 21 32309 6
+*	Harp collides
+    inst
+    lock
+    doif ov00 = 0
+        doif vely < 10 or vely > 10
+            stpc
+            sndc "c1d2"
+        elif vely > -2 and vely < 2
+            stpc
+        endi
+    endi
+endm
+
+scrp 2 21 32309 12
+*	Harp is bitten
+    inst
+    lock
+    stim writ from 0 1
+    setv ov00 0
+endm
+
+****************************
+* Removers
+
+* Harp remover
+rscr
+enum 2 21 32309
+    kill targ
+next
+scrx 2 21 32309 1
+scrx 2 21 32309 3
+scrx 2 21 32309 4
+scrx 2 21 32309 6
+scrx 2 21 32309 12
