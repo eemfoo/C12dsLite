@@ -268,7 +268,9 @@ TAG "Agent Help 2 21 6518"
 "Learning Computer"
 "The Learning Computer helps you teach creatures how to speak when pushed. You can set the Learning Computer to automatically advance, go to the Previous word, go to the Next word, and switch word libraries."
 
-TAG "Agent Help 2 22 32316"
+
+# Incubator
+TAG "Agent Help 2 22 6500"
 "Incubator"
 "Creature eggs are hatched by the incubator. Drop an egg in the incubator to begin the hatching process."
 
