@@ -30,6 +30,7 @@ elas 0
 cabp 1
 cabv -1
 seta va20 targ
+bhvr 11
 
 doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6500 <= 1
     setv va00 3079
@@ -83,6 +84,21 @@ mesg writ targ 9
 
 ***********
 * Scripts
+
+scrp 2 4 6500 1
+    * pushed plant
+    stim writ from 84 1.0
+endm
+
+scrp 2 4 6500 2
+    * Pulled plant
+    stim writ from 84 1.0
+endm
+
+scrp 2 4 6500 3
+    * Hit plant
+    stim writ from 84 1.0
+endm
 
 scrp 2 4 6500 9
 
