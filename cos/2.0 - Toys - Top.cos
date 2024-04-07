@@ -166,6 +166,9 @@ enum 2 21 6501
     kill targ
 next
 scrx 2 21 6501 1
+scrx 2 21 6501 2
+scrx 2 21 6501 3
 scrx 2 21 6501 4
 scrx 2 21 6501 6
 scrx 2 21 6501 9
+scrx 2 21 6501 1000

@@ -118,3 +118,28 @@ scrp 1 1 6501 1
 endm
 
 
+rscr
+
+* Kill overlays
+enum 1 1 6500 kill targ next
+
+* Kill clocks
+enum 1 1 6501 kill targ next
+
+* Clocks
+scrx 1 1 6501 1
+scrx 1 1 6501 9
+
+* Hummingbirds
+scrx 1 1 6502 1
+scrx 1 1 6502 9
+scrx 1 1 6503 1
+scrx 1 1 6503 9
+scrx 2 15 6500 1
+scrx 2 15 6500 2
+scrx 2 15 6500 3
+scrx 2 15 6500 4
+scrx 2 15 6500 5
+scrx 2 15 6500 6
+scrx 2 15 6500 9
+scrx 2 15 6500 12

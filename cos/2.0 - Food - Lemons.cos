@@ -293,13 +293,14 @@ enum 2 4 6500
 next
 
 * Trellis Scripts
-scrx 2 4 6500 4
-scrx 2 4 6500 9
 
-* Lemon Scripts
-scrx 2 8 6500 1
-scrx 2 8 6500 4
-scrx 2 8 6500 5
-scrx 2 8 6500 6
-scrx 2 8 6500 12
-scrx 2 8 6500 124
+    * Trellis
+    scrx 2 4 6500 4
+    scrx 2 4 6500 9
+    * Lemon Scripts
+    scrx 2 8 6500 1
+    scrx 2 8 6500 4
+    scrx 2 8 6500 5
+    scrx 2 8 6500 6
+    scrx 2 8 6500 12
+    scrx 2 8 6500 124

@@ -87,3 +87,14 @@ scrp 1 7 6500 1001
     sndc "bep2"
 *	delg ov62
 endm
+
+rscr
+
+enum 1 7 6500
+    dpas 0 0 0
+    kill targ
+next
+
+* Shelves
+scrx 1 7 6500 1264
+scrx 1 7 6500 1001

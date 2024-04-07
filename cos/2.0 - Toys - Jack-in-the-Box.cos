@@ -183,7 +183,9 @@ rscr
 enum 2 21 6503
     kill targ
 next
-scrx 2 21 6503 1
-scrx 2 21 6503 3
-scrx 2 21 6503 4
-scrx 2 21 6503 6
+    scrx 2 21 6503 1
+    scrx 2 21 6503 2
+    scrx 2 21 6503 3
+    scrx 2 21 6503 4
+    scrx 2 21 6503 6
+    scrx 2 21 6503 1000

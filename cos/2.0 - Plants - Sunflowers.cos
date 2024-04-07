@@ -310,13 +310,18 @@ enum 2 3 6502
     kill targ
 next
 
-scrx 2 4 6502 1
-scrx 2 4 6502 4
-scrx 2 4 6502 6
-scrx 2 4 6502 9
+    * Sunflower
+    scrx 2 4 6502 1
+    scrx 2 4 6502 2
+    scrx 2 4 6502 3
+    scrx 2 4 6502 4
+    scrx 2 4 6502 6
+    scrx 2 4 6502 9
+    scrx 2 4 6502 1000
 
-scrx 2 3 6502 1
-scrx 2 3 6502 4
-scrx 2 3 6502 5
-scrx 2 3 6502 6
-scrx 2 3 6502 12
+    * Sunflower seeds
+    scrx 2 3 6502 1
+    scrx 2 3 6502 4
+    scrx 2 3 6502 5
+    scrx 2 3 6502 6
+    scrx 2 3 6502 12
