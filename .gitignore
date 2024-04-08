@@ -10,7 +10,9 @@
 /build
 /bin
 
+# Generated files
 .caos2pray.cos
+cos/0.01 - DO_NOT_EDIT - MAP.cos
 
 # Roomie sprite breakdowns
 # should be defined in other sprite folders hopefully
