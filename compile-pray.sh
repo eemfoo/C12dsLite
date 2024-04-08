@@ -22,7 +22,7 @@ const mainCos = "0.0 - Main.cos";
 // Joins
 const useJoins = argv.find((arg) => arg.toLowerCase() === "--no-joins") == null;
 const joins = [];
-
+const badDepends = /^\s*[*]#\s*depend\s+"\/?([.]+\/)+[a-zA-Z0-9\\/]+\.[a-zA-Z]+"/gi
 
 /**
  * Adds link statements for all CAOS files in relative path
@@ -70,6 +70,15 @@ function linkCos(text, relativePath, prefixComment = null) {
 
         if (content.indexOf("game \"c1_clickable_food\"") >= 0) {
             console.error("Incorrect `game \"C1_Clickable_Food\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Clickable_Food\"");
+            exitProcess(1);
+        }
+
+        let foundBadDepends = false;
+        for (const match of content.matchAll(badDepends)) {
+            foundBadDepends = true;
+            console.error("Depend statements should be filename only not relative paths. Found " + match[0] +  " in " + fileRelative);
+        }
+        if (foundBadDepends) {
             exitProcess(1);
         }
 

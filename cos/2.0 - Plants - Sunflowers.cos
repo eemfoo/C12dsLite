@@ -5,8 +5,8 @@
 *# Agent Animation Gallery = "c1seeds"
 *# Agent Animation String = "0"
 *# Attach "../images/c1seeds.c16"
-*# Depend "../catalogue/c1todsl.catalogue"
-*# Depend "c1seeds.c16"
+*# Attach "../catalogue/c12dsl.catalogue"
+
 * C1 SunflowerSeed
 
 * Dependencies:
