@@ -9,8 +9,7 @@
 
 * Installers
 **CAOS2Pray Join
-*# C3-Name "Toy Helicopter (C3)"
-*# DS-Name "Toy Helicopter"
+*# DS-Name "C12DS-Lite Toy Helicopter"
 *# Agent Bioenergy Value = 0
 *# Agent Sprite First Image = 0
 *# Agent Animation Gallery = "c1helicopter"
