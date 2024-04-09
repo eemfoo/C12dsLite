@@ -1,3 +1,17 @@
+**CAOS2Pray Join
+*# DS-Name "C1-Lite Hooch and Still"
+*# Agent Animation Gallery = "c1hoochstill"
+*# Agent Animation File = "c1hoochstill.c16"
+*# Agent Description = "A vendor and still of hooch, an alcoholic beverage for your creatures"
+*# Agent Bioenergy Value = 0
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Attach "../images/c1hoochstill.c16"
+*# Attach "../images/c1hoochcups.c16"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../sounds/c1d3.wav"
+*# Attach "../sounds/c1dr.wav"
+
 * C1 Hooch and still
 
 * Dependencies:
@@ -123,6 +137,14 @@ endi
 scrp 2 9 6500 1
 * 	hooch cup clicked
     inst
+
+    * Kill cup on ctrl+click
+    doif keyd 17 eq 1
+        mesg writ ownr 5
+        kill ownr
+        stop
+    endi
+
     doif game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
@@ -199,16 +221,23 @@ endm
 
 
 scrp 2 23 6500 1
-    call 1001 from 0
-endm
 
-scrp 2 23 6500 2
-    call 1001 from 0
-endm
+    doif from ne pntr
+        call 1001 from 0
+        stop
+    endi
 
-scrp 2 23 6500 1001
-    inst
-    stim writ _p1_ 90 1.0
+    * Start stop drip sound
+    doif keyd 17 eq 1
+        doif name "no_drip" eq 0
+            setv name "no_drip" 1
+        else
+            setv name "no_drip" 0
+        endi
+        stop
+    endi
+
+    * Create new hooch cup
     setv va00 posl
     setv va01 post
     addv va00 45
@@ -224,6 +253,15 @@ scrp 2 23 6500 1001
     pose 0
     mvsf va00 va01
     velo rand -10 10 rand -5 -2
+endm
+
+scrp 2 23 6500 2
+    call 1001 from 0
+endm
+
+scrp 2 23 6500 1001
+    inst
+    stim writ _p1_ 90 1.0
 endm
 
 scrp 2 23 6500 3
@@ -244,7 +282,9 @@ scrp 2 23 6500 9
         anim [0 1 2 3 0]
         over
         inst
-        sndc "c1dr"
+        doif name "no_drip" eq 0
+            sndc "c1dr"
+        endi
         setv va00 0
         esee 2 9 6500
             addv va00 1

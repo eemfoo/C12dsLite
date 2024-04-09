@@ -131,7 +131,7 @@ TAG "Agent Help 2 8 6501"
 # Bad Friut / Alcohol
 TAG "Agent Help 2 9 6500"
 "Hooch"
-"Hooch, also known as manky, is an alcoholic beverage for your creatures. Like all alcoholic beverages, it is slightly toxic and makes creatures sleepy."
+"Hooch, also known as manky, is an alcoholic beverage for your creatures. Like all alcoholic beverages, it is slightly toxic and makes creatures sleepy.\n\nCTRL+Click hooch cup to delete"
 
 
 # FOOD
@@ -274,7 +274,7 @@ TAG "Agent Help 2 22 6500"
 # Vendor
 TAG "Agent Help 2 23 6500"
 "Hooch Still"
-"The hooch still creates more hooch. Pushing on the still vends more hooch."
+"The hooch still creates more hooch. Pushing on the still vends more hooch.\n\nCTRL+click still to mute sound"
 
 TAG "Agent Help 2 23 6501"
 "Carrot Vendor"
