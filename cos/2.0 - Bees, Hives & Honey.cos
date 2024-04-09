@@ -10,7 +10,7 @@
 
 * 2 15 6503 - bee
 * 2 17 6500 Hive 	(nest)
-* 2 11 6506 Honey 	(food)
+* 2 11 6505 Honey 	(food)
 
 ***************************************
 * Installer
@@ -139,7 +139,7 @@ else
     mesg wrt+ targ 1003 0 0 0
 
 * make some honey under middle hive
-    new: simp 2 11 6506 "c1beehivehoney" 3 13 502
+    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
     attr 199
     elas 0
     fric 100
@@ -153,7 +153,7 @@ else
     setv ov99 5
 
 * make some honey to left of hives
-    new: simp 2 11 6506 "c1beehivehoney" 3 13 502
+    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
     attr 199
     elas 0
     fric 100
@@ -167,7 +167,7 @@ else
     setv ov99 5
 
 * make some honey on kitchen table
-    new: simp 2 11 6506 "c1beehivehoney" 3 13 502
+    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
     attr 199
     elas 0
     fric 100
@@ -180,11 +180,11 @@ else
     setv ov62 1
     setv ov99 5
     etch 1 7 32332
-        gpas 2 11 6506 0
+        gpas 2 11 6505 0
     next
 
 * make some honey on greenhouse shelf
-    new: simp 2 11 6506 "c1beehivehoney" 3 13 502
+    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
     attr 199
     elas 0
     fric 100
@@ -197,11 +197,11 @@ else
     setv ov62 1
     setv ov99 5
     etch 1 7 32332
-        gpas 2 11 6506 0
+        gpas 2 11 6505 0
     next
 
 * make some honey in treehouse
-    new: simp 2 11 6506 "c1beehivehoney" 3 13 502
+    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
     attr 199
     elas 0
     fric 100
@@ -214,20 +214,20 @@ else
     setv ov62 1
     setv ov99 5
     etch 1 7 32332
-        gpas 2 11 6506 0
+        gpas 2 11 6505 0
     next
 endi
 
 ***************************************
 * Scripts
 
-scrp 2 11 6506 1
+scrp 2 11 6505 1
 *	honey is clicked
     inst
     doif game "C1L_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
-        new: simp 2 11 6506 "c1beehivehoney" 3 13 502
+        new: simp 2 11 6505 "c1beehivehoney" 3 13 502
         attr 199
         elas 0
         fric 100
@@ -242,14 +242,14 @@ scrp 2 11 6506 1
     endi
 endm
 
-scrp 2 11 6506 4
+scrp 2 11 6505 4
 *	honey is picked up
     doif ov99 >= 1 and carr = pntr
         pose 1
     endi
 endm
 
-scrp 2 11 6506 5
+scrp 2 11 6505 5
     inst
     lock
 *	honey is dropped
@@ -279,7 +279,7 @@ scrp 2 11 6506 5
     endi
 endm
 
-scrp 2 11 6506 6
+scrp 2 11 6505 6
 *	honey collides with something
     inst
     sndc "c1d2"
@@ -296,12 +296,12 @@ scrp 2 11 6506 6
     endi
 endm
 
-scrp 2 11 6506 9
+scrp 2 11 6505 9
     inst
     kill ownr
 endm
 
-scrp 2 11 6506 12
+scrp 2 11 6505 12
 *	honey is being eaten
     inst
     lock
@@ -486,7 +486,7 @@ scrp 2 17 6500 1
 *	hive is pushed, so vend a pot of honey
     inst
     setv va20 0
-    esee 2 11 6506
+    esee 2 11 6505
         doif pose <> 2
             addv va20 1
         endi
@@ -497,7 +497,7 @@ scrp 2 17 6500 1
         setv va01 post
         addv va00 45
         addv va01 70
-        new: simp 2 11 6506 "c1beehivehoney" 3 13 502
+        new: simp 2 11 6505 "c1beehivehoney" 3 13 502
         attr 199
         elas 0
         fric 100
@@ -538,7 +538,7 @@ scrp 2 17 6500 9
     endi
     setv va23 0
     targ ownr
-    esee 2 11 6506
+    esee 2 11 6505
         addv va23 1
     next
     doif va23 = 0 and movs = 0
@@ -585,7 +585,7 @@ scrp 2 17 6500 1004
     inst
     lock
     setv va20 0
-    esee 2 11 6506
+    esee 2 11 6505
         doif pose <> 2
             addv va20 1
         endi
@@ -600,15 +600,15 @@ endm
 
 rscr
 
-enum 2 11 6506
+enum 2 11 6505
     kill targ
 next
-scrx 2 11 6506 1
-scrx 2 11 6506 4
-scrx 2 11 6506 5
-scrx 2 11 6506 6
-scrx 2 11 6506 9
-scrx 2 11 6506 12
+scrx 2 11 6505 1
+scrx 2 11 6505 4
+scrx 2 11 6505 5
+scrx 2 11 6505 6
+scrx 2 11 6505 9
+scrx 2 11 6505 12
 
 enum 2 15 6503
     kill targ
