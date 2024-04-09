@@ -224,6 +224,12 @@ endi
 scrp 2 11 6505 1
 *	honey is clicked
     inst
+
+    doif keyd 17 eq 1
+        kill ownr
+        stop
+    endi
+
     doif game "C1L_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
