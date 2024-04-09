@@ -20,7 +20,7 @@ lock
 * 	SunflowerSeed plant
 new: comp 2 4 6502 "c1seeds" 1 0 200
 pat: dull 2 "c1seeds" 9 22 75 0
-attr 199
+attr 196
 accg 5
 fric 100
 aero 0
@@ -41,7 +41,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6502 <= 1
 
 * 	SunflowerSeed plant by hives (hidden)
     new: comp 2 4 6502 "blank" 1 0 200
-    attr 199
+    attr 196
     accg 0
     fric 100
     aero 100
@@ -58,7 +58,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6502 <= 1
 
 * 	SunflowerSeed plant by pump (hidden)
     new: comp 2 4 6502 "blank" 1 0 200
-    attr 199
+    attr 196
     accg 0
     fric 100
     aero 100
@@ -75,7 +75,7 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6502 <= 1
 
 * 	WeirdSeed plant in jungle (hidden)
     new: comp 2 4 6502 "blank" 1 0 200
-    attr 199
+    attr 196
     accg 0
     fric 100
     aero 100
@@ -93,11 +93,13 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6502 <= 1
 elif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
+    attr 198
     setv va00 5440
     setv va01 3580
     velo rand 30 40 -5
     mvsf va00 va01
 else
+    attr 198
 * 	it IS a string, but what is the value?
     doif game "ds_game_type" eq "undocked"
 * 		this is an undocked world, location needs to be DS safe
