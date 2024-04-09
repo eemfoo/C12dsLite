@@ -427,7 +427,7 @@ async function getCompiler() {
  * @param code
  */
 function exitProcess(code) {
-    cleanTemporaryFiles();
+    cleanTemporaryFiles(code !== 0);
     _exitProcess(code);
 }
 
@@ -450,7 +450,7 @@ function formatTime(time) {
 /**
  * Deletes the temporary CAOS files generated during compile
  */
-function cleanTemporaryFiles() {
+function cleanTemporaryFiles(keepPray = false) {
     try {
         if (outputMapFile) {
             fs.rmSync(outputMapFile);
@@ -459,7 +459,7 @@ function cleanTemporaryFiles() {
     }
 
     try {
-        if (fs.existsSync(caos2PrayFilePath)) {
+        if (!keepPray && fs.existsSync(caos2PrayFilePath)) {
             fs.rmSync(caos2PrayFilePath);
         }
     } catch {
