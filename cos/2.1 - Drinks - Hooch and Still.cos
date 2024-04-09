@@ -205,6 +205,16 @@ scrp 2 23 6500 1
         stop
     endi
 
+    * Start stop drip sound
+    doif keyd 17 eq 1
+        doif name "no_drip" eq 0
+            setv name "no_drip" 1
+        else
+            setv name "no_drip" 0
+        endi
+        stop
+    endi
+
     * Create new hooch cup
     setv va00 posl
     setv va01 post
@@ -250,7 +260,9 @@ scrp 2 23 6500 9
         anim [0 1 2 3 0]
         over
         inst
-        sndc "c1dr"
+        doif name "no_drip" eq 0
+            sndc "c1dr"
+        endi
         setv va00 0
         esee 2 9 6500
             addv va00 1

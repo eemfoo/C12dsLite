@@ -274,7 +274,7 @@ TAG "Agent Help 2 22 6500"
 # Vendor
 TAG "Agent Help 2 23 6500"
 "Hooch Still"
-"The hooch still creates more hooch. Pushing on the still vends more hooch."
+"The hooch still creates more hooch. Pushing on the still vends more hooch.\n\nCTRL+click still to mute sound"
 
 TAG "Agent Help 2 23 6501"
 "Carrot Vendor"
