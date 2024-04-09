@@ -1,3 +1,17 @@
+**CAOS2Pray Join
+*# DS-Name "C1-Lite Hooch and Still"
+*# Agent Animation Gallery = "c1hoochstill"
+*# Agent Animation File = "c1hoochstill.c16"
+*# Agent Description = "A vendor and still of hooch, an alcoholic beverage for your creatures"
+*# Agent Bioenergy Value = 0
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Attach "../images/c1hoochstill.c16"
+*# Attach "../images/c1hoochcups.c16"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../sounds/c1d3.wav"
+*# Attach "../sounds/c1dr.wav"
+
 * C1 Hooch and still
 
 * Dependencies:
