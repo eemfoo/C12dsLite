@@ -123,6 +123,14 @@ endi
 scrp 2 9 6500 1
 * 	hooch cup clicked
     inst
+
+    * Kill cup on ctrl+click
+    doif keyd 17 eq 1
+        mesg writ ownr 5
+        kill ownr
+        stop
+    endi
+
     doif game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
