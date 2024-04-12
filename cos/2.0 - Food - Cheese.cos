@@ -183,7 +183,7 @@ enum 2 11 6501
     endi
 next
 
-doif totl 2 11 6501 eq 0 or game "C1_to_DS_Lite_Uninstall_All_Instances" eq 1
+doif totl 2 11 6501 eq 0
     scrx 2 11 6501 4
     scrx 2 11 6501 6
     scrx 2 11 6501 10
