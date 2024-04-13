@@ -14,6 +14,8 @@ const {platform, arch, exit: _exitProcess, argv} = require("node:process");
 // ==== CAOS ==== //
 // ============== //
 
+const trueStart = Date.now();
+
 // CAOS Vars
 const caos2PrayFilePath = Path.join(__dirname, ".caos2pray.cos");
 let outputMapFile = null;
@@ -48,6 +50,9 @@ function linkCos(text, relativePath, prefixComment = null) {
         if (Path.extname(file).toLowerCase() !== ".cos") {
             continue;
         }
+        if (file.toLowerCase().indexOf("99.0") >= 0) {
+            continue;
+        }
         if (file.toLowerCase() === mainCos.toLowerCase()) {
             continue;
         }
@@ -76,7 +81,7 @@ function linkCos(text, relativePath, prefixComment = null) {
         let foundBadDepends = false;
         for (const match of content.matchAll(badDepends)) {
             foundBadDepends = true;
-            console.error("Depend statements should be filename only not relative paths. Found " + match[0] +  " in " + fileRelative);
+            console.error("Depend statements should be filename only not relative paths. Found " + match[0] + " in " + fileRelative);
         }
         if (foundBadDepends) {
             exitProcess(1);
@@ -403,8 +408,10 @@ async function getCompiler() {
                     console.error("Failed to download: " + exe + "; Error: " + binaryError);
                     reject(binaryError);
                 } else {
-                    fs.rmSync(versionTextFilePath);
-                    fs.renameSync(versionTextFilePath + ".tmp", versionTextFilePath)
+                    if (fs.existsSync(versionTextFilePath)) {
+                        fs.rmSync(versionTextFilePath);
+                    }
+                    fs.renameSync(versionTextFilePath + ".tmp", versionTextFilePath);
                     resolve(binary);
                 }
             })
@@ -493,7 +500,7 @@ async function _compile() {
 
         buildCAOSFile();
 
-        const compilerArgs = ["compile", caos2PrayFilePath];
+        const compilerArgs = ["compile", caos2PrayFilePath, "-o", __dirname];
         const debug = argv.find((arg) => arg.toLowerCase() === "--debug") != null;
         if (debug) {
             compilerArgs.push("--debug");
@@ -528,8 +535,14 @@ function compile() {
     _compile()
         .then((code) => {
             if (code === 0) {
-                const timeString = formatTime(Date.now() - time);
-                console.info("Compiled agent successfully in " + timeString);
+                const now = Date.now();
+                const compileTimeString = formatTime(now - time);
+                const timeString = formatTime(now - trueStart);
+                if (compileTimeString === timeString) {
+                    console.info("Compiled agent successfully in " + timeString);
+                } else {
+                    console.info("Compiled agent successfully in " + timeString + "; Time in compiler: " + compileTimeString);
+                }
             } else {
                 console.error("An error was encountered");
             }
