@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 // noinspection SpellCheckingInspection
 
-const version = "1.2.2";
+const version = "1.2.4";
 
 // Node libararies
 const Path = require("node:path");
