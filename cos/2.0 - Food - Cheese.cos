@@ -22,9 +22,6 @@
 *# Attach "../catalogue/c12dsl.catalogue"
 
 inst
-* Clear double delete flag
-setv game "C1_to_DS_Lite::Delete_Override::Cheese" 0
-
 doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 11 6501 < 1
 
 * cheese on the main floor in norn house
@@ -88,7 +85,6 @@ else
 *	make some cheese at the agent injector
     reps rand 3 5
         new: simp 2 11 6501 "c1cheese" 3 0 200
-        setv ov88 1
         attr 199
         accg 5
         aero 10
@@ -109,7 +105,6 @@ scrp 2 11 6501 1
 *	Cheese gets clicked
     inst
     doif game "C1_to_DS_Lite_Clickable_Food" = 1
-        setv ov88 mv88
         setv va00 posl
         setv va01 post
         new: simp 2 11 6501 "c1cheese" 3 0 200
@@ -171,14 +166,11 @@ endm
 
 
 rscr
-
-* If double deleted, remove all cheese from C12DSL as well as manually injected
-setv va88 game "C1_to_DS_Lite::Delete_Override::Cheese"
-setv game "C1_to_DS_Lite::Delete_Override::Cheese" 1
+setv va88 game "c12dsl::metaroom::id"
 
 * DO NOT MERGE
 enum 2 11 6501
-    doif va88 eq 1 or ov88 eq 1
+    doif gmap posl post ne va88
         kill targ
     endi
 next

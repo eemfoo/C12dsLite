@@ -91,13 +91,18 @@ scrp 2 21 6504 124
 endm
 
 rscr
+setv va88 game "c12dsl::metaroom::id"
+
 * remove pianola
 enum 2 21 6504
-    kill targ
+    doif gmap posl post ne va88
+        kill targ
+    endi
 next
-scrx 2 21 6504 1
-scrx 2 21 6504 2
-scrx 2 21 6504 3
-scrx 2 21 6504 124
-scrx 2 21 6504 1000
-
+doif totl 2 21 6504 eq 0
+    scrx 2 21 6504 1
+    scrx 2 21 6504 2
+    scrx 2 21 6504 3
+    scrx 2 21 6504 124
+    scrx 2 21 6504 1000
+endi

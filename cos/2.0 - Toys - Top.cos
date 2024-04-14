@@ -162,13 +162,20 @@ endm
 
 rscr
 * top remover
+setv va88 game "c12dsl::metaroom::id"
+
 enum 2 21 6501
-    kill targ
+    doif gmap posl post ne va88
+        kill targ
+    endi
 next
-scrx 2 21 6501 1
-scrx 2 21 6501 2
-scrx 2 21 6501 3
-scrx 2 21 6501 4
-scrx 2 21 6501 6
-scrx 2 21 6501 9
-scrx 2 21 6501 1000
+
+doif totl 2 21 6501 eq 0
+    scrx 2 21 6501 1
+    scrx 2 21 6501 2
+    scrx 2 21 6501 3
+    scrx 2 21 6501 4
+    scrx 2 21 6501 6
+    scrx 2 21 6501 9
+    scrx 2 21 6501 1000
+endi

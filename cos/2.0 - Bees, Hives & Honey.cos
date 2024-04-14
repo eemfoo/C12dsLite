@@ -614,34 +614,50 @@ endm
 
 rscr
 
+setv va88 game "c12dsl::metaroom::id"
+
 enum 2 11 6505
-    kill targ
+    doif gmap posl post ne va88
+        kill targ
+    endi
 next
-scrx 2 11 6505 1
-scrx 2 11 6505 4
-scrx 2 11 6505 5
-scrx 2 11 6505 6
-scrx 2 11 6505 9
-scrx 2 11 6505 12
 
 enum 2 15 6503
-    kill targ
+    doif gmap posl post ne va88
+        kill targ
+    endi
 next
-scrx 2 15 6503 1
-scrx 2 15 6503 3
-scrx 2 15 6503 4
-scrx 2 15 6503 6
-scrx 2 15 6503 9
-scrx 2 15 6503 12
-scrx 2 15 6503 1001
-scrx 2 15 6503 1002
 
 enum 2 17 6500
-    kill targ
+    doif gmap posl post ne va88
+        kill targ
+    endi
 next
-scrx 2 17 6500 1
-scrx 2 17 6500 2
-scrx 2 17 6500 3
-scrx 2 17 6500 9
-scrx 2 17 6500 1003
-scrx 2 17 6500 1004
+
+doif totl 2 17 6500 eq 0 and totl 2 15 6503 eq 0 and totl 2 11 6505 eq 0
+* Hive
+    scrx 2 17 6500 1
+    scrx 2 17 6500 2
+    scrx 2 17 6500 3
+    scrx 2 17 6500 9
+    scrx 2 17 6500 1003
+    scrx 2 17 6500 1004
+
+* Bee
+    scrx 2 15 6503 1
+    scrx 2 15 6503 3
+    scrx 2 15 6503 4
+    scrx 2 15 6503 6
+    scrx 2 15 6503 9
+    scrx 2 15 6503 12
+    scrx 2 15 6503 1001
+    scrx 2 15 6503 1002
+
+*Honey
+    scrx 2 11 6505 1
+    scrx 2 11 6505 4
+    scrx 2 11 6505 5
+    scrx 2 11 6505 6
+    scrx 2 11 6505 9
+    scrx 2 11 6505 12
+endi

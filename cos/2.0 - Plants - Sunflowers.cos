@@ -306,15 +306,15 @@ scrp 2 3 6502 12
 endm
 
 rscr
-setv va88 game "C1_to_DS_Lite::Delete_Override::Sunflowers"
-setv game "C1_to_DS_Lite::Delete_Override::Sunflowers" 1
+setv va88 game "c12dsl::metaroom::id"
+
 enum 2 4 6502
-    doif va88 eq 1 or va88 eq 1
+    doif gmap posl post ne va88
         kill targ
     endi
 next
 enum 2 3 6502
-    doif va88 eq 1 or va88 eq 1
+    doif gmap posl post ne va88
         kill targ
     endi
 next

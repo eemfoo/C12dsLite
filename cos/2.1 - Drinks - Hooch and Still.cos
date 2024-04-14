@@ -323,23 +323,33 @@ endm
 * Remover
 
 rscr
+setv va88 game "c12dsl::metaroom::id"
 
 enum 2 23 6500
-    kill targ
+    doif gmap posl post ne va88
+        kill targ
+    endi
 next
 
 enum 2 9 6500
-    kill targ
+    doif gmap posl post ne va88
+        kill targ
+    endi
 next
 
+doif totl 2 23 6500 eq 0 and totl 2 8 6500 eq 0
 * Hooch Still
-scrx 2 23 6500 1
-scrx 2 23 6500 9
-scrx 2 23 6500 124
+    scrx 2 23 6500 1
+    scrx 2 23 6500 2
+    scrx 2 23 6500 3
+    scrx 2 23 6500 9
+    scrx 2 23 6500 124
+    scrx 2 23 6500 1001
 
 * Hooch Cup
-scrx 2 8 6500 1
-scrx 2 8 6500 5
-scrx 2 8 6500 6
-scrx 2 8 6500 9
-scrx 2 8 6500 12
+    scrx 2 9 6500 1
+    scrx 2 9 6500 5
+    scrx 2 9 6500 6
+    scrx 2 9 6500 9
+    scrx 2 9 6500 12
+endi

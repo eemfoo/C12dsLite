@@ -47,7 +47,6 @@ doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6500 <= 1
 * 	C1 to DS Injection Location Script
 * 	have to make verify that game_type variable is a string value
 elif type game "ds_game_type" ne 2
-    setv ov88 1
     attr 215
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
@@ -57,7 +56,6 @@ elif type game "ds_game_type" ne 2
     mvsf va00 va01
 else
 
-    setv ov88 1
     attr 215
 * 	it IS a string, but what is the value?
     doif game "ds_game_type" eq "undocked"
@@ -131,7 +129,6 @@ scrp 2 4 6500 9
             doif va21 > 0
                 reps va21
                     new: vhcl 2 8 6500 "c1plants" 3 0 101
-                    setv ov88 mv88
                     seta va51 targ
                     cabp 0
                     cabw 1
@@ -218,7 +215,6 @@ scrp 2 8 6500 1
             attr 719
         endi
         setv ov00 1
-        setv ov88 mv88
         pose 2
         mira rand 0 1
         accg 5
@@ -294,15 +290,16 @@ scrp 2 8 6500 12
 endm
 
 rscr
-setv va88 game "C1_to_DS_Lite::Delete_Override::Sunflowers"
-setv game "C1_to_DS_Lite::Delete_Override::Sunflowers" 1
+setv va88 game "c12dsl::metaroom::id"
+
 enum 2 8 6500
-    doif va88 eq 1 or ov88 eq 1
+    doif gmap posl post ne va88
         kill targ
     endi
 next
+
 enum 2 4 6500
-    doif va88 eq 1 or ov88 eq 1
+    doif gmap posl post ne va88
         kill targ
     endi
 next
@@ -310,9 +307,12 @@ next
 * Trellis Scripts
 doif totl 2 4 6500 eq 0 and totl 2 8 6500 eq 0
     * Trellis
+    scrx 2 4 6500 1
+    scrx 2 4 6500 2
+    scrx 2 4 6500 3
     scrx 2 4 6500 4
     scrx 2 4 6500 9
-    * Lemon Scripts
+    * Lemon
     scrx 2 8 6500 1
     scrx 2 8 6500 4
     scrx 2 8 6500 5
