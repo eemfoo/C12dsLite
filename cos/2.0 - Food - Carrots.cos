@@ -3,8 +3,8 @@
 
 * Dependencies:
 *   C1Plants.c16
-*   c1dp.wav
 
+*   c1d2.wav
 inst
 lock
 * 	Carrot Plants
@@ -93,9 +93,9 @@ scrp 2 11 6500 6
     elif pose = 6
         pose 7
         tick 0
-        sndc "c1dp"
+        sndc "c1d2"
     elif pose = 7
-        sndc "c1dp"
+        sndc "c1d2"
     else
         doif attr = 3
             attr 195

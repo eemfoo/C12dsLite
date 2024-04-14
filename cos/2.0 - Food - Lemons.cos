@@ -4,8 +4,8 @@
 *   2 8 6500 - Lemon
 * Dependencies:
 *  c1plants.c16
-*  c1dp.wav
 *  chwp.wav
+*  c1d2.wav
 **CAOS2Pray Join
 *# DS-Name "C12DS-Lite Lemon Trellis"
 *# bioenergy = 0
@@ -250,7 +250,7 @@ endm
 
 scrp 2 8 6500 6
 *	lemon has hit something!
-    sndc "c1dp"
+    sndc "c1d2"
 endm
 
 scrp 2 8 6500 124
