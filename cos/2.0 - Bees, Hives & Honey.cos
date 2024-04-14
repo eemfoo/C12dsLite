@@ -13,17 +13,24 @@
 *  c1h1.wav
 *  c1s2.wav
 ***************************************
-
-* Installer
 **CAOS2Pray Join
 *# DS-Name "Bees & Hive"
 *# Agent Description = "A bee hive with honey"
+*# Agent Animation Gallery = "c1beehivehoney"
+*# Agent Animation File = "c1beehivehoney.c16"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
 *# Attach "../images/c1beehivehoney.c16"
 *# Attach "../sounds/c1bb.wav"
 *# Attach "../sounds/c1d2.wav"
 *# Attach "../sounds/c1h1.wav"
 *# Attach "../sounds/c1s2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
 
+***************************************
+
+* Installer
 inst
 lock
 
