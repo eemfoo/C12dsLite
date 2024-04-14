@@ -1,7 +1,9 @@
 ****************************
 * C1 JackInTheBox
 ****************************
-
+* Classifier:
+*  2 21 6503
+*
 * Dependencies:
 *  C1JackInTheBox.c16
 *  c1h4.wav
@@ -9,7 +11,7 @@
 *  c1p4.wav
 *  c1p5.wav
 *  c1p6.wav
-*
+****************************
 **CAOS2Pray Join
 *# C3-Name "C12DS-Lite Jack-in-the-Box (C3)"
 *# DS-Name "C12DS-Lite Jack-in-the-Box"
@@ -27,6 +29,8 @@
 *# Attach "../sounds/c1p5.wav"
 *# Attach "../sounds/c1p6.wav"
 *# Attach "../catalogue/c12dsl.catalogue"
+
+**********************************************
 
 * Installers
 inst

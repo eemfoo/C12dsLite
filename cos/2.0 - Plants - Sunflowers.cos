@@ -1,3 +1,13 @@
+********************************
+* C1 Sunflowers
+********************************
+* Classifiers:
+*  2 3 6502 - Sunflower Seeds
+*  2 4 6502 - Sunflower
+*
+* Dependencies:
+*  c1seeds.wav
+*********************************
 **CAOS2Pray Join
 *# DSAG-Name "C12DS-Lite Sunflower"
 *# Agent Description = "The C1 Sunflower and Sunflower Seeds were created just for the nutritional needs of the modern Norn."
@@ -7,12 +17,7 @@
 *# Attach "../images/c1seeds.c16"
 *# Attach "../catalogue/c12dsl.catalogue"
 
-* C1 SunflowerSeed
-
-* Dependencies:
-*  c1seeds.c16
-*  blnk.c16
-*  chwp.c16
+**********************************
 
 inst
 lock

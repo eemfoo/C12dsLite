@@ -1,12 +1,16 @@
 ****************************
 * C1 Pianola
 ****************************
-
+* Classifier:
+*  2 21 6504
 * Dependencies:
 *  c1pi.wav
 *  c1piano.c16
 * 2005-06-12 Added splashes to ball and cannonball
 * pianola
+****************************
+
+* Installer
 new: vhcl 2 21 6504 "c1piano" 0 0 2000
 cabp 1
 cabw 100

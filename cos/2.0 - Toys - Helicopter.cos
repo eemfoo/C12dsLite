@@ -1,12 +1,13 @@
-****************************
-* C1 helicopter
-****************************
-
+********************************
+* C1 Helicopter Toy
+********************************
+* Classifiers:
+*  2 21 6502 - Helicopter Toy
 * Dependencies:
 *  c1helicopter.c16
 *  c1h3.wav
 *  c1h4.wav
-
+********************************
 * Installers
 **CAOS2Pray Join
 *# DS-Name "C12DS-Lite Toy Helicopter"

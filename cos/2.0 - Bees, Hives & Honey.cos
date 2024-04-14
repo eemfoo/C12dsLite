@@ -1,18 +1,19 @@
+**************************************
 * Clucky's C1 Bees, hives, and honey
-
-* Bug fixed: honey pots would not disappear. Also made hive spawn honey on timer if none exists.
+**************************************
+* Classifiers:
+*  2 15 6503 - Bee
+*  2 17 6500 - Hive
+*  2 11 6505 - Honey
+*
 * Dependencies:
 *  C1BeeHiveHoney.c16
 *  c1bb.wav
 *  c1d2.wav
 *  c1h1.wav
 *  c1s2.wav
-
-* 2 15 6503 - bee
-* 2 17 6500 Hive 	(nest)
-* 2 11 6505 Honey 	(food)
-
 ***************************************
+
 * Installer
 **CAOS2Pray Join
 *# DS-Name "Bees & Hive"

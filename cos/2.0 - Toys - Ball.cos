@@ -1,5 +1,5 @@
 ****************************
-* C1 Toys
+* C1 Red Ball
 ****************************
 * Classifiers:
 *  2 21 6500 - BALL
@@ -9,7 +9,7 @@
 *  c1ball.c16
 *  c1c2.wav
 *  c1s3.wav splash
-*
+*****************************
 **CAOS2Pray Join
 *# C3-Name "C12DS-Lite Red Ball (C3)"
 *# DS-Name "C12DS-Lite Red Ball"
@@ -24,6 +24,8 @@
 *# Attach "../sounds/c1b4.wav"
 *# Attach "../sounds/c1s3.wav"
 *# Attach "../catalogue/c12dsl.catalogue"
+****************************************************************************************
+
 * Installers
 inst
 

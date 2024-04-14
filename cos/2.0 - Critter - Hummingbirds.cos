@@ -1,11 +1,17 @@
+****************************
 * C1 Birds
-
-*Dependencies:
-*  C1Birds.c16
-*  C1B1.wav
-*  C1B2.wav
-*  C1B3.wav
-
+****************************
+* Classifiers:
+*  2 15 6500 - Flying Birds
+*  1 1 6502 - Hummingbirds
+*  1 1 6503 - NestingBird
+*
+* Dependencies:
+*  c1birds.c16
+*  c1b1.wav
+*  c1b2.wav
+*  c1b3.wav
+*****************************
 inst
 lock
 

@@ -1,11 +1,14 @@
+******************************
 * C1 Stackable Lemons
-* Classifiers
-*   2 4 6500 - Lemon Trellis
-*   2 8 6500 - Lemon
+******************************
+* Classifiers:
+*  2 4 6500 - Lemon Trellis
+*  2 8 6500 - Lemon
+*
 * Dependencies:
 *  c1plants.c16
-*  chwp.wav
 *  c1d2.wav
+******************************
 **CAOS2Pray Join
 *# DS-Name "C12DS-Lite Lemon Trellis"
 *# bioenergy = 0
@@ -15,7 +18,7 @@
 *# Agent Sprite First Image = 0
 *# Agent Animation String = "0"
 *# Attach "../images/c1plants.c16"
-*# Attach "../sounds/c1dp.wav"
+*# Attach "../sounds/c1d2.wav"
 *# Attach "../catalogue/c12dsl.catalogue"
 inst
 lock

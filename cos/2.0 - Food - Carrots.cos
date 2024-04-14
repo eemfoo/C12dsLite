@@ -1,10 +1,13 @@
+****************************
 * C1 Carrots
-* 2 11 6500 - Carrots
-
+****************************
+* Classifiers:
+*  2 11 6500 - Carrots
+*
 * Dependencies:
-*   C1Plants.c16
-
+*  C1Plants.c16
 *   c1d2.wav
+*****************************
 inst
 lock
 * 	Carrot Plants

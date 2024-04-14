@@ -1,3 +1,20 @@
+**********************************
+* C1 Harp
+**********************************
+* Classifiers:
+*  2 21 6515 - Harp
+*
+* Dependencies:
+*  c1harp.c16
+*  c1h5.wav
+*  c1h6.wav
+*  c1h7.wav
+*  c1h8.wav
+*  c1h9.wav
+*  c1ha.wav
+*  c1hb.wav
+*  c1d2.wav
+**********************************
 **CAOS2Pray Join
 *# DS-Name "C12DS-Lite Harp"
 *# Agent Description = "Creatures can play music with this harp."
@@ -13,21 +30,8 @@
 *# Attach "../sounds/c1h9.wav"
 *# Attach "../sounds/c1d2.wav"
 *# Attach "../catalogue/c12dsl.catalogue"
-****************************
-* C1 Harp
-****************************
 
-* Dependencies:
-*  c1harp.c16
-*  c1h5.wav
-*  c1h6.wav
-*  c1h7.wav
-*  c1h8.wav
-*  c1h9.wav
-*  c1ha.wav
-*  c1hb.wav
-*  c1d2.wav
-
+*****************************************************
 
 * Installers
 inst
