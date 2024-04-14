@@ -6,8 +6,19 @@
 * Dependencies:
 *  c1pi.wav
 *  c1piano.c16
-* 2005-06-12 Added splashes to ball and cannonball
-* pianola
+****************************
+**CAOS2Pray Join
+*# DS-Name "C1L Pianola"
+*# Agent Description = "This player piano makes music for creatures."
+*# Agent Bioenergy Value = 0
+*# Agent Animation String = "0"
+*# Agent Sprite First Image = 0
+*# Agent Animation Gallery = "c1piano"
+*# Agent Animation File = "c1piano.c16"
+*# Attach "../images/c1piano.c16"
+*# Attach "../sounds/c1pi.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+
 ****************************
 
 * Installer
@@ -21,8 +32,32 @@ fric 100
 accg 3
 elas 0
 perm 60
-mvsf 4054 18800
 
+doif game "C1_to_DS_Lite_Loaded" eq 1 and totl 2 21 6504  <= 1
+    mvsf 4054 18800
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+    setv va00 5440
+    setv va01 3480
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9100
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9100
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+endi
 
 scrp 2 21 6504 1
     call 1000 from 0
@@ -61,5 +96,8 @@ enum 2 21 6504
     kill targ
 next
 scrx 2 21 6504 1
+scrx 2 21 6504 2
+scrx 2 21 6504 3
 scrx 2 21 6504 124
+scrx 2 21 6504 1000
 
