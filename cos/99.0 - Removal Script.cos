@@ -1,7 +1,6 @@
 
 inst
-setv game "C1_to_DS_Lite_UNINSTALLING" 1
-setv va99 game "C1_to_DS_Lite_Uninstall_All_Instances"
+setv va88 game "c12dsl::metaroom::id"
 
 * Kill overlays
 enum 1 1 6500 kill targ next
@@ -35,15 +34,26 @@ enum 2 21 6500 gsub kill next
 * Harp
 enum 2 21 6515 gsub kill next
 
+* Helicopter
+enum 2 21 6502 gsub kill next
+
 * Hooch and Still
 enum 2 9 6500 kill targ next
 enum 2 23 6500 kill targ next
 
-* Helicopter
-enum 2 21 6502 gsub kill next
-
 * Jack-in-the-Box
 enum 2 21 6503 gsub kill next
+
+* Pianola
+enum  2 21 6504 gsub kill next
+
+* Top
+enum 2 21 6501 gsub kill next
+
+* Bees, Hives and honey
+enum 2 17 6500 gsub kill next
+enum  2 15 6503 gsub kill next
+enum 2 11 6505 gsub kill next
 
 * Shelves
 enum 1 7 6500
@@ -87,36 +97,27 @@ scrx 2 11 6500 10
 scrx 2 11 6500 12
 scrx 2 11 6500 1000
 
-* Hooch Still
-scrx 2 23 32300 1
-scrx 2 23 32300 9
-scrx 2 23 32300 124
-
-* Hooch Cups
-scrx 2 9 650 1
-scrx 2 9 650 5
-scrx 2 9 650 6
-scrx 2 9 650 12
-
-* Pianola
-scrx 2 21 6504 1
-scrx 2 21 6504 2
-scrx 2 21 6504 3
-scrx 2 21 6504 124
-scrx 2 21 6504 1000
 
 
-* Delete cheese if no independent cheeses are using it
+* Delete cheese scripts if no independent cheeses are using it
 doif totl 2 11 6501 eq 0 or va99 eq 1
+    scrx 2 11 6501 1
     scrx 2 11 6501 4
     scrx 2 11 6501 6
     scrx 2 11 6501 10
     scrx 2 11 6501 12
 endi
 
+
+* Lemon and Trellis
 doif totl 2 4 6500 eq 0 and totl 2 8 6500 eq 0
+    * Trellis
+    scrx 2 4 6500 1
+    scrx 2 4 6500 2
+    scrx 2 4 6500 3
     scrx 2 4 6500 4
     scrx 2 4 6500 9
+    * Lemons
     scrx 2 8 6500 1
     scrx 2 8 6500 4
     scrx 2 8 6500 5
@@ -149,6 +150,7 @@ doif totl 2 21 6500 eq 0
     scrx 2 21 6500 1
     scrx 2 21 6500 2
     scrx 2 21 6500 3
+    scrx 2 21 6500 4
     scrx 2 21 6500 6
     scrx 2 21 6500 9
     scrx 2 21 6500 1001
@@ -182,9 +184,77 @@ endi
 * Jack-in-the-Box
 doif totl 2 21 6503 eq 0
     scrx 2 21 6503 1
+    scrx 2 21 6503 2
     scrx 2 21 6503 3
     scrx 2 21 6503 4
     scrx 2 21 6503 6
+    scrx 2 21 6503 1000
+endi
+
+doif totl 2 23 6500 eq 0 and totl 2 8 6500 eq 0
+* Hooch Still
+    scrx 2 23 6500 1
+    scrx 2 23 6500 2
+    scrx 2 23 6500 3
+    scrx 2 23 6500 9
+    scrx 2 23 6500 124
+    scrx 2 23 6500 1001
+
+* Hooch Cup
+    scrx 2 9 6500 1
+    scrx 2 9 6500 5
+    scrx 2 9 6500 6
+    scrx 2 9 6500 9
+    scrx 2 9 6500 12
+endi
+
+doif totl 2 21 6501 eq 0
+    * TOP
+    scrx 2 21 6501 1
+    scrx 2 21 6501 2
+    scrx 2 21 6501 3
+    scrx 2 21 6501 4
+    scrx 2 21 6501 6
+    scrx 2 21 6501 9
+    scrx 2 21 6501 1000
+endi
+
+* Pianola
+doif totl 2 21 6504 eq 0
+    scrx 2 21 6504 1
+    scrx 2 21 6504 2
+    scrx 2 21 6504 3
+    scrx 2 21 6504 124
+    scrx 2 21 6504 1000
+endi
+
+* Bees, Hives and Honey
+doif totl 2 17 6500 eq 0 and totl 2 15 6503 eq 0 and totl 2 11 6505 eq 0
+* Hive
+    scrx 2 17 6500 1
+    scrx 2 17 6500 2
+    scrx 2 17 6500 3
+    scrx 2 17 6500 9
+    scrx 2 17 6500 1003
+    scrx 2 17 6500 1004
+
+* Bee
+    scrx 2 15 6503 1
+    scrx 2 15 6503 3
+    scrx 2 15 6503 4
+    scrx 2 15 6503 6
+    scrx 2 15 6503 9
+    scrx 2 15 6503 12
+    scrx 2 15 6503 1001
+    scrx 2 15 6503 1002
+
+*Honey
+    scrx 2 11 6505 1
+    scrx 2 11 6505 4
+    scrx 2 11 6505 5
+    scrx 2 11 6505 6
+    scrx 2 11 6505 9
+    scrx 2 11 6505 12
 endi
 
 delg "C1_to_DS_Lite_Loading"
@@ -193,7 +263,7 @@ delg "C1_to_DS_Lite_UNINSTALLING"
 * Kills agent only if not marked as Independently installed
 * i.e. va88 == 0
 subr kill
-    doif va88 eq 0
+    doif va88 eq gmap posl post
         kill targ
     endi
 retn
