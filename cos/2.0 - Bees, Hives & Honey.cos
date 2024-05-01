@@ -38,7 +38,7 @@ setv game "C1_Bee_frat" 1.6
 setv game "C1_Bee_Total" 4
 
 
-doif game "C1_to_DS_Lite_Loaded" = 0 or totl 2 17 6500 > 1
+doif game "C1_to_DS_Lite_Installing" = 0 or totl 2 17 6500 > 1
 *	just inject one
     new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
     part 0

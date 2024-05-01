@@ -46,7 +46,7 @@ elas 0
 perm 60
 tick 30
 
-doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 9 6500 <= 1
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 9 6500 <= 1
     mvsf 898 18983
 * make some hooch
     setv va02 955

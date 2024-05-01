@@ -33,7 +33,7 @@ accg 3
 elas 0
 perm 60
 
-doif game "C1_to_DS_Lite_Loaded" eq 1 and totl 2 21 6504  <= 1
+doif game "C1_to_DS_Lite_Installing" eq 1 and totl 2 21 6504  <= 1
     mvsf 4054 18800
 elif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only

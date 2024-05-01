@@ -32,7 +32,7 @@ aero 10
 elas 30
 perm 60
 
-doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 6502 <= 1
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6502 <= 1
 * 	helicopter under ettin palace
     mvsf 4085 19025
 elif type game "ds_game_type" ne 2

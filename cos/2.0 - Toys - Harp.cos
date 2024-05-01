@@ -50,7 +50,7 @@ pat: butt 3 "c1harp" 5 2 35 48 0 [] 1003 0
 pat: butt 4 "c1harp" 7 2 41 56 0 [] 1004 0
 pat: butt 5 "c1harp" 9 2 47 62 0 [] 1005 0
 
-doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 6515 <= 1
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6515 <= 1
 * 	Harp in music room
     mvsf 790 18812
 elif type game "ds_game_type" ne 2

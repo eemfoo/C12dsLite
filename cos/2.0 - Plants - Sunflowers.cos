@@ -40,7 +40,7 @@ mesg wrt+ targ 0 0 0 10
 
 
 
-doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6502 <= 1
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6502 <= 1
 * 	SunflowerSeed plant by pump
     mvsf 2100 18842
 

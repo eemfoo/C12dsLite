@@ -35,7 +35,7 @@ cabv -1
 seta va20 targ
 bhvr 11
 
-doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 4 6500 <= 1
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6500 <= 1
     setv va00 3079
     setv va01 18794
     mvto va00 va01

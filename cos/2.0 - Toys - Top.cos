@@ -35,7 +35,7 @@ setv ov99 0
 setv ov98 180
 addv ov91 5
 
-doif game "C1_to_DS_Lite_Loaded" eq 1 and totl 2 21 6504 <= 1
+doif game "C1_to_DS_Lite_Installing" eq 1 and totl 2 21 6504 <= 1
     mvsf 2131 18878
 elif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only

@@ -41,7 +41,7 @@ perm 70
 tick 2
 
 
-doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 21 6500 <= 1
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6500 <= 1
 
 * new ball in norn house
     mvsf 1707 18705

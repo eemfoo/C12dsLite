@@ -12,4 +12,5 @@
 
 inst
 setv game "C1_to_DS_Lite_Loaded" 1
+setv game "C1_to_DS_Lite_Installing" 1
 setv game "C1_to_DS_Lite_Clickable_Food" 0
