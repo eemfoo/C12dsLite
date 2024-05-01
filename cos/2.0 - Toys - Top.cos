@@ -161,11 +161,15 @@ endm
 
 
 rscr
+doif game "C1_to_DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    setv va00 -1
+endi
 * top remover
 enum 2 21 6501
-    kill targ
+    * Do not delete top in metaroom
+    doif gmap posl post ne va00
+        kill targ
+    endi
 next
-scrx 2 21 6501 1
-scrx 2 21 6501 4
-scrx 2 21 6501 6
-scrx 2 21 6501 9

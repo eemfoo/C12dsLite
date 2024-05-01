@@ -285,21 +285,24 @@ scrp 2 8 6500 12
 endm
 
 rscr
+
+doif game "C1_to_DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    * If C12DSL is not installed, make metaroom ID negative and impossible to match
+    setv va00 -1
+endi
+
 enum 2 8 6500
-    kill targ
+    * Do not remove lemons in metaroom
+    doif gmap posl post ne va00
+        kill targ
+    endi
 next
+
 enum 2 4 6500
-    kill targ
+    * Do not remove trellis in metaroom
+    doif gmap posl post ne va00
+        kill targ
+    endi
 next
-
-* Trellis Scripts
-scrx 2 4 6500 4
-scrx 2 4 6500 9
-
-* Lemon Scripts
-scrx 2 8 6500 1
-scrx 2 8 6500 4
-scrx 2 8 6500 5
-scrx 2 8 6500 6
-scrx 2 8 6500 12
-scrx 2 8 6500 124

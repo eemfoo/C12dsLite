@@ -147,11 +147,16 @@ endm
 
 * helicopter remover
 rscr
+
+doif game "C1_to_DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    * If C12DSL is not installed, make metaroom ID negative and impossible to match
+    setv va00 -1
+endi
+
 enum 2 21 6502
-    kill targ
+    doif gmap posl post ne va00
+        kill targ
+    endi
 next
-scrx 2 21 6502 1
-scrx 2 21 6502 2
-scrx 2 21 6502 3
-scrx 2 21 6502 4
-scrx 2 21 6502 6

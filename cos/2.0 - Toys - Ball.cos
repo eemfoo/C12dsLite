@@ -207,3 +207,19 @@ scrp 2 21 6500 9
         aero 0
     endi
 endm
+
+rscr
+
+doif game "C1_to_DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    * If C12DSL is not installed, make metaroom ID negative and impossible to match
+    setv va00 -1
+endi
+
+enum 2 21 6500
+    * Do not remove ball in metaroom
+    doif gmap posl post eq va00
+        kill targ
+    endi
+next
