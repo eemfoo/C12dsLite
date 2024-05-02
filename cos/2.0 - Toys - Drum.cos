@@ -1,0 +1,134 @@
+****************************
+* C1 Drum
+****************************
+
+* Classifiers
+*  2 21 6516 - Drum
+*
+* Dependencies:
+*  C1Drum.c16
+*  C1d4.wav
+*  C1d2.wav
+***************************************
+**CAOS2Pray Join
+*# DS-Name "C12DS-Lite Drums"
+*# C3-Name "C12DS-Lite Drums (C3)"
+*# Agent Description = "Percussive entertainment for creatures. Bang the drum slowly!"
+*# Agent Animation Gallery = "c1drum"
+*# Agent Animation File = "c1drum.c16"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Attach "../images/c1drum.c16"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../sounds/c1d4.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+***************************************
+
+* Installers
+inst
+
+new: simp 2 21 6516 "c1drum" 0 0 200
+attr 199
+accg 5
+bhvr 11
+fric 12.5
+aero 10
+elas 0
+perm 60
+
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6516 <= 1
+* 	Drum in music room
+	mvsf 0885 18812
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 30 40 -5
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	endi
+endi
+
+****************************
+* Scripts
+
+
+scrp 2 21 6516 1
+*	Drum is pushed
+	inst
+	lock
+	stim writ from 97 1
+	stpc
+	sndc "c1d4"
+endm
+
+scrp 2 21 6516 2
+*	Drum is pulled
+	inst
+	lock
+	stim writ from 97 1
+	stpc
+	sndc "c1d4"
+endm
+
+scrp 2 21 6516 3
+*	Drum is hit
+	inst
+	lock
+	stim writ from 97 1
+	velo rand -10 10 rand -10 -20
+	sndc "c1d2"
+	setv ov00 0
+endm
+
+scrp 2 21 6516 4
+*	Drum is picked up	
+	stpc
+endm
+
+scrp 2 21 6516 6
+*	Drum collides
+	inst
+	lock
+	doif ov00 = 0
+		doif vely < 10 or vely > 10
+			stpc
+			sndc "c1d2"
+		elif vely > -2 and vely < 2
+			stpc
+		endi
+	endi
+endm
+
+****************************
+* Removers
+
+* Drum remover
+rscr
+doif game "C1_to_DS_Lite_Loaded" eq 1
+	setv va00 game "c12dsl::metaroom::id"
+else
+	* If C12DSL is not installed, make metaroom ID negative and impossible to match
+	setv va00 -1
+endi
+
+enum 2 21 6516
+	doif gmap posl post ne va00
+		kill targ
+	endi
+next
