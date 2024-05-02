@@ -1,0 +1,406 @@
+****************************
+* C1 Jukebox
+****************************
+* Classifier
+*  2 21 6517 - Jukebox
+*
+* warning: bitmaps less than 3x3
+* Dependencies:
+*  C1Jukebox.c16
+*  c1j1.wav
+*  c1j2.wav
+*  c1d2.wav
+****************************
+**CAOS2Pray Join
+*# DS-Name "C12DS-Lite Jukebox"
+*# Agent Description = "This jukebox provides music and a light show for creatures"
+*# Agent Bioenergy Value = 0
+*# Agent Animation String = "0"
+*# Agent Sprite First Image = 0
+*# Agent Animation Gallery = "c1jukebox"
+*# Agent Animation File = "c1jukebox.c16"
+*# Attach "../images/c1jukebox.c16"
+*# Attach "../sounds/c1j1.wav"
+*# Attach "../sounds/c1j2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+****************************
+
+* Installers
+inst
+
+new: comp 2 21 6517 "c1jukebox" 2 0 200
+attr 199
+accg 25
+bhvr 11
+fric 100
+aero 10
+elas 0
+perm 60
+frat 1.6
+pat: dull 1 "c1jukebox" 1 30 24 -1
+pat: dull 2 "c1jukebox" 9 30 24 -2
+
+*	green lights
+pat: dull 3 "c1jukebox" 10 21 80 0
+pat: dull 4 "c1jukebox" 12 21 59 0
+pat: dull 5 "c1jukebox" 14 21 53 0
+pat: dull 6 "c1jukebox" 16 21 43 0
+pat: dull 7 "c1jukebox" 18 23 25 0
+pat: dull 8 "c1jukebox" 20 31 9 0
+pat: dull 9 "c1jukebox" 22 55 9 0
+pat: dull 10 "c1jukebox" 24 71 25 0
+pat: dull 11 "c1jukebox" 26 79 43 0
+pat: dull 12 "c1jukebox" 28 79 53 0
+pat: dull 13 "c1jukebox" 30 79 59 0
+pat: dull 14 "c1jukebox" 32 79 80 0
+
+*	red lights
+pat: dull 15 "c1jukebox" 34 15 80 0
+pat: dull 16 "c1jukebox" 36 15 59 0
+pat: dull 17 "c1jukebox" 38 15 53 0
+pat: dull 18 "c1jukebox" 40 15 43 0
+pat: dull 19 "c1jukebox" 42 15 21 0
+pat: dull 20 "c1jukebox" 44 24 4 0
+pat: dull 21 "c1jukebox" 46 60 4 0
+pat: dull 22 "c1jukebox" 48 78 21 0
+pat: dull 23 "c1jukebox" 50 85 43 0
+pat: dull 24 "c1jukebox" 52 85 53 0
+pat: dull 25 "c1jukebox" 54 85 59 0
+pat: dull 26 "c1jukebox" 56 85 80 0
+
+*	pink lights
+pat: dull 27 "c1jukebox" 58 30 73 0
+pat: dull 28 "c1jukebox" 60 38 85 0
+pat: dull 29 "c1jukebox" 62 54 85 0
+pat: dull 30 "c1jukebox" 64 67 73 0
+
+*	blue lights
+pat: dull 31 "c1jukebox" 66 29 81 0
+pat: dull 32 "c1jukebox" 68 29 44 0
+pat: dull 33 "c1jukebox" 70 45 1 0
+pat: dull 34 "c1jukebox" 72 65 44 0
+pat: dull 35 "c1jukebox" 74 63 81 0
+
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6517 <= 1
+* 	Jukebox in music room
+	mvsf 0936 18497
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 30 40 -5
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	endi
+endi
+
+****************************
+* Scripts
+
+
+scrp 2 21 6517 1
+*	Jukebox is pushed
+	call 1001 from 0
+endm
+scrp 2 21 6517 2
+*	Jukebox is pushed
+	call 1001 from 0
+endm
+
+
+scrp 2 21 6517 3
+*	Jukebox is hit
+	inst
+	lock
+	stim writ from 97 1
+	velo rand -10 10 rand -10 -20
+	sndc "c1d2"
+	setv ov00 0
+endm
+
+scrp 2 21 6517 4
+*	Jukebox is picked up	
+endm
+
+scrp 2 21 6517 5
+*	Jukebox is dropped
+endm
+
+scrp 2 21 6517 9
+	inst
+	setv ov99 0
+	tick 0
+	mesg writ ownr 1000
+endm
+
+scrp 2 21 6517 1000
+*	Stop lights
+	inst
+	targ ownr
+	setv va00 3
+	loop
+		part va00
+		pose 0
+		addv va00 1
+	untl va00 > 35
+endm
+
+scrp 2 21 6517 1001
+	inst
+	doif ov99 = 0
+		setv ov99 1
+		stim writ _p1_ 97 1
+		stpc
+		part 1
+		setv va00 rand 0 1
+		doif pose = 4
+			doif va00 = 0
+				anim [4 5 6 7 0 1 2 3 4]
+			else
+				anim [4 3 2 1 0]
+			endi
+		else
+			doif va00 = 1
+				anim [0 1 2 3 4 5 6 7 0]
+			else
+				anim [0 7 6 5 4]
+			endi
+		endi
+		over
+		inst
+		setv va01 rand 1002 1004
+		doif va00 = 0
+			sndc "c1j1"
+			mesg writ ownr va01
+			tick 340
+		elif va00 = 1
+			sndc "c1j2"
+			mesg writ ownr va01
+			tick 90
+		endi
+		mesg writ ownr va01
+		setv ov99 0
+	endi
+endm
+
+scrp 2 21 6517 1002
+*	Chasing lights animation
+	inst
+	targ ownr
+*	blue lights
+	part 31
+	anim [0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 255]
+	part 32
+	anim [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 255]
+	part 33
+	anim [1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 255]
+	part 34
+	anim [0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 255]
+	part 35
+	anim [0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 255]
+* 	pink lights
+	part 27
+	anim [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 255]
+	part 28
+	anim [0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 255]
+	part 29
+	anim [0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 30
+	anim [0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 255]
+*	red lights
+	part 15
+	anim [0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 255]
+	part 16
+	anim [0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 255]
+	part 17
+	anim [1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 255]
+	part 18
+	anim [0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 255]
+	part 19
+	anim [0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 20
+	anim [0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 255]
+	part 21
+	anim [0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 255]
+	part 22
+	anim [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 255]
+	part 23
+	anim [0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 255]
+	part 24
+	anim [0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 255]
+	part 25
+	anim [0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 255]
+	part 26
+	anim [0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 255]
+*	Green lights 
+	part 3
+	anim [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 255]
+	part 4
+	anim [0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 255]
+	part 5
+	anim [0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 255]
+	part 6
+	anim [0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 255]
+	part 7
+	anim [0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 255]
+	part 8
+	anim [0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 255]
+	part 9
+	anim [0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 255]
+	part 10
+	anim [1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 255]
+	part 11
+	anim [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 255]
+	part 12
+	anim [0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 255]
+	part 13
+	anim [0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 255]
+	part 14
+	anim [0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 255]
+endm
+
+scrp 2 21 6517 1003
+*	Flashing lights
+	inst
+	targ ownr
+*	blue lights
+	part 31
+	anim [0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 255]
+	part 32
+	anim [0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 255]
+	part 33
+	anim [0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 255]
+	part 34
+	anim [0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 255]
+	part 35
+	anim [0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 255]
+* 	pink lights
+	part 27
+	anim [0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 255]
+	part 28
+	anim [0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 255]
+	part 29
+	anim [0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 255]
+	part 30
+	anim [0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 255]
+*	red lights
+	part 15
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 16
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 17
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 18
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 19
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 20
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 21
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 22
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 23
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 24
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 25
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+	part 26
+	anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+*	Green lights
+	part 3
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 4
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 5
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 6
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 7
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 8
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 9
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 10
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 11
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 12
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 13
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+	part 14
+	anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+endm
+
+scrp 2 21 6517 1004
+*	Random lights
+	inst
+	targ ownr
+	setv va00 3
+	loop
+		part va00
+		setv va01 rand 1 12
+		doif va01 = 1
+			anim [0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 255]
+		elif va01 = 2
+			anim [1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 255]
+		elif va01 = 3
+			anim [0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 255]
+		elif va01 = 4
+			anim [0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 255]
+		elif va01 = 5
+			anim [0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 255]
+		elif va01 = 6
+			anim [1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 255]
+		elif va01 = 7
+			anim [1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 255]
+		elif va01 = 8
+			anim [0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 255]
+		elif va01 = 9
+			anim [0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 255]
+		elif va01 = 10
+			anim [0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 255]
+		elif va01 = 11
+			anim [0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 255]
+		elif va01 = 12
+			anim [1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255]
+		endi
+		addv va00 1
+	untl va00 > 35
+endm
+
+****************************
+* Removers
+
+* Jukebox remover
+rscr
+
+doif game "C1_to_DS_Lite_Loaded" eq 1
+	setv va00 game "c12dsl::metaroom::id"
+else
+	* If C12DSL is not installed, make metaroom ID negative and impossible to match
+	setv va00 -1
+endi
+
+enum 2 21 6517
+	doif gmap posl post ne va00
+		kill targ
+	endi
+next
