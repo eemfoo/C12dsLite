@@ -1,0 +1,169 @@
+****************************
+* C1 robot
+****************************
+* Classifier:
+*  2 21 6505 - Robot
+* Dependencies:
+*  c1robot.c16
+*  c1sq.wav
+*  c1d2.wav
+***************************************
+**CAOS2Pray Join
+*# C3-Name "Robot Toy (C3)"
+*# DS-Name "Robot Toy"
+*# Agent Description = "A clockwork robot that is fun to play with"
+*# Agent Animation Gallery = "c1robot"
+*# Agent Animation File = "c1robot.c16"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Attach "../images/c1robot.c16"
+*# Attach "../sounds/c1sq.wav"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+***************************************
+* Installers
+inst
+
+new: simp 2 21 6505 "c1robot" 8 0 200
+attr 199
+accg 5
+bhvr 43
+fric 12.5
+aero 10
+elas 25
+perm 60
+frat 1.5
+
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6505 <= 1
+* 	robot near hives
+	mvsf 922 18536
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 30 40 -5
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	endi
+endi
+
+****************************
+* Scripts
+
+scrp 2 21 6505 1
+*	robot is pushed
+	inst
+	lock
+	stim writ from 97 1
+	doif ov00 = 0
+		setv ov00 1
+		anim [0 1 2 3 255]
+		sndl "c1sq"
+		tick 20
+		mesg writ ownr 9
+	endi
+endm
+
+scrp 2 21 6505 2
+*	robot is pulled
+	inst
+	lock
+	stim writ from 97 1
+	doif ov00 = 0
+		setv ov00 1
+		anim [0 1 2 3 255]
+		sndl "c1sq"
+		tick 20
+		mesg writ ownr 9
+	endi
+endm
+
+scrp 2 21 6505 3
+*	robot is hit
+	inst
+	lock
+	stim writ from 97 1
+	velo rand -10 10 rand -10 -20
+	sndc "c1d2"
+endm
+
+scrp 2 21 6505 4
+*	robot is picked up
+	stpc
+	setv ov00 0
+endm
+
+scrp 2 21 6505 6
+*	robot collides
+	inst
+	lock
+	doif velx > 0
+		mira 1
+	elif velx < 0
+		mira 0
+	endi
+	sndc "c1d2"
+endm
+
+scrp 2 21 6505 9
+*	robot timer
+	inst
+	lock
+	doif ov00 = 1
+		doif mira = 0
+			mira 0
+			velo -5 0
+		else
+			mira 1
+			velo 5 0
+		endi
+		addv ov00 1
+	elif ov00 = 2
+		doif mira = 0
+			mira 1
+			velo 5 0
+		else
+			mira 0
+			velo -5 0
+		endi
+		addv ov00 1
+	else
+		setv ov00 0
+		velo 0 0
+		stpc
+		pose 0
+	endi
+endm
+
+****************************
+* Removers
+
+* robot remover
+rscr
+doif game "C1_to_DS_Lite_Loaded" eq 1
+	setv va00 game "c12dsl::metaroom::id"
+else
+	* If C12DSL is not installed, make metaroom ID negative and impossible to match
+	setv va00 -1
+endi
+
+enum 2 21 6505
+	doif gmap posl post ne va00
+		kill targ
+	endi
+next
