@@ -31,7 +31,7 @@ inst
 new: simp 2 21 6506 "c1trumpet" 0 0 200
 attr 199
 accg 5
-bhvr 11
+bhvr 43
 fric 12.5
 aero 10
 elas 0
