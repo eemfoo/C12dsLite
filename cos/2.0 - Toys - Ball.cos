@@ -219,7 +219,7 @@ endi
 
 enum 2 21 6500
     * Do not remove ball in metaroom
-    doif gmap posl post eq va00
+    doif gmap posl post ne va00
         kill targ
     endi
 next
