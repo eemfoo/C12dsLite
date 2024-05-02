@@ -30,7 +30,48 @@ const badLocationX = /(?:mvto|mvsf|mvft|va00)\s+(\d+)/gi
 const badLocationY = /(?:mvto|mvsf|mvft|va01)\s+\d+\s+(\d+)/gi
 const stimDisapointment = /stim\s+writ\s+[^ ]+\s+0/gi
 const scriptHeader = /scrp\s+\d+\s+\d+\s+\d+\s+\d+/gi
+const newGenus = /new:\s+[^ ]+\s+(\d+)\s+(\d+)/gi
+const behaviorRegex = /bhvr\s+(\d+)/gi
 let warning = "";
+
+
+const behaviorStandards = {
+    "2 2": 3, // Dopr
+    "2 3": 48, // Seed
+    "2 4": 11, // GoodPlant
+    "2 5": 11, // BadPlant
+    "2 6": 48, // Leaf
+    "2 7": 0, //flower
+    "2 8": 48, // Good Fruit
+    "2 9": 48, // Bad Fruit
+    "2 10": 48, // Detritus
+    "2 11": 48, // Food
+    "2 12": 48, // Buttons and Switches
+    "2 13": 59, // Good Bug
+    "2 14": 59, // Bad Bug
+    "2 15": 59, // Good Critter
+    "2 16": 11, // Bad critter
+    "2 17": 11, // Nest
+    "2 18": 48, // Agent Egg
+    "2 19": 0, // Weather
+    "2 20": 43, //BAD
+    "2 21": 43, //Toy
+    "2 22": 0, // Incubator
+    "2 23": 11, // Vendors
+    "2 24": 43, // tools
+    "2 25": 48, // Potions
+    "3 1": 3, // Lifts
+    "3 2": 3, // Teleporters
+    "3 3": 11, //Machinery (Fixed Non Moveable)
+    "3 4": 32, // Creature egg
+    "3 5": 0, //Norn Home
+    "3 6": 0, // Grendel Home
+    "3 7": 0, // Ettin Home
+    "3 8": 43, // Gadgets
+    "3 9": 3, // Portals
+    "3 10": 0, // Vehicles
+}
+
 
 /**
  * Adds link statements for all CAOS files in relative path
@@ -147,6 +188,31 @@ function linkCos(text, relativePath, prefixComment = null) {
                 }
             } catch (e) {
                 console.error("Regex for Y threw error; @ " + locationString, e);
+            }
+        }
+
+        const newOffsets = [...content.matchAll(newGenus)];
+        for (let i = 0; i < newOffsets.length; i++) {
+            const match = newOffsets[i];
+            const genus = match[1] + " " + match[2];
+            if (typeof behaviorStandards[genus] === "undefined") {
+                continue;
+            }
+            const start = match.index;
+            const end = i < (newOffsets.length - 1) ? newOffsets[i + 1].index : content.length;
+            let behaviorMatch = [...content.substring(start, end).matchAll(behaviorRegex) ?? []];
+            behaviorMatch = behaviorMatch ? behaviorMatch[0] : null;
+            const behavior = behaviorMatch != null && behaviorMatch.length ? parseInt(behaviorMatch[1], 10) : null;
+            if (behavior == null) {
+                continue;
+            }
+            if (genus === "2 21" && behavior === 11) {
+                // Allow toys to not be pickupable
+                continue;
+            }
+            if (behaviorStandards[genus] !== behavior && behavior !== 0) {
+                const [locationString] = getStringLocation(content, match.index);
+                warning += "Possibly out of standards behavior: " + behavior + "; Expected: " + behaviorStandards[genus] + " for genus " + genus + " in " + fileRelative + " @ " + locationString + "\n";
             }
         }
     }
