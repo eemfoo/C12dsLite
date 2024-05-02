@@ -1,0 +1,163 @@
+****************************
+* Coffee Pot
+****************************
+* Classifiers:
+*  2 25 6500 - Coffee
+
+* Dependencies:
+*  C1CoffeePot.c16
+*  C1d2.wav
+*  C1d3.wav
+* ***************************
+**CAOS2Pray Join
+*# C3-Name "Coffee Pot (C3)"
+*# DS-Name "Coffee Pot"
+*# Agent Animation File = "c1coffeepot.c16"
+*# Agent Animation Gallery = "c1coffeepot"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Agent Description = "Coffee will wake a creature up, warm it from the inside, and reduce its appetite. Yummy!"
+*# Attach "../images/c1coffeepot.c16"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../sounds/c1d3.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+
+**************************
+* Installers
+new: simp 2 25 6500 "c1coffeepot" 2 0 200
+attr 199
+pose 1
+bhvr 48
+elas 1
+accg 5
+fric 95
+perm 60
+
+doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 25 6500 <= 1
+*	C1 to DS
+    setv ov62 1
+    mvto 1863 18820
+    etch 1 7 6500
+        doif type targ = 6
+            gpas 2 25 6500 0
+        endi
+    next
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+
+endi
+**************************
+* Scripts
+
+scrp 2 25 6500 1
+*	Coffee gets clicked
+    inst
+    doif keyd 17 eq 1
+        kill ownr
+        stop
+    endi
+    doif game "C1L_Clickable_Food" = 1
+        setv va00 posl
+        setv va01 post
+        new: simp 2 25 6500 "c1coffeepot" 2 0 200
+        attr 199
+        pose 1
+        bhvr 48
+        elas 1
+        accg 5
+        fric 95
+        perm 60
+        mvsf va00 va01
+        velo rand -15 15 rand -15 -5
+    endi
+endm
+
+scrp 2 25 6500 4
+*	picked up the coffee
+    inst
+    lock
+    doif from = pntr
+        pose 0
+    endi
+endm
+
+scrp 2 25 6500 5
+*	dropping the coffee
+    inst
+    lock
+    pose 1
+endm
+
+scrp 2 25 6500 6
+*	coffee collides
+    inst
+    lock
+    sndc "c1d2"
+endm
+
+scrp 2 25 6500 12
+*	eating the coffee
+    inst
+    lock
+    targ ownr
+    anim [1 0]
+    over
+    sndc "c1d3"
+    anim [0 1]
+    stim writ from 26 1.0
+    targ from
+    chem 3 .25
+    chem 1 .25
+    chem 5 .25
+    chem 12 .25
+    chem 34 .25
+    chem 75 -1.0
+    chem 93 .25
+    chem 100 .25
+    chem 113 .25
+    chem 152 -0.125
+    chem 153 0.125
+    chem 154 -1.0
+    chem 155 -1.0
+    chem 204 .25
+*	targ from
+*	zomb 0
+endm
+
+
+**************************
+* Removers
+rscr
+doif game "C1_to_DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    * If C12DSL is not installed, make metaroom ID negative and impossible to match
+    setv va00 -1
+endi
+
+enum 2 25 6500
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
