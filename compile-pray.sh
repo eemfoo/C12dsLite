@@ -28,6 +28,8 @@ const badDepends = /^\s*[*]#\s*depend\s+"\/?([.]+\/)+[a-zA-Z0-9\\/]+\.[a-zA-Z]+"
 const badClassifier = /(scrp|new:\s+[^ ]{4})\s+[23]\s+\d+\s+(?:[^6]|6[^5])\d*/gi;
 const badLocationX = /(?:mvto|mvsf|mvft|va00)\s+(\d+)/gi
 const badLocationY = /(?:mvto|mvsf|mvft|va01)\s+\d+\s+(\d+)/gi
+const stimDisapointment = /stim\s+writ\s+[^ ]+\s+0/gi
+const scriptHeader = /scrp\s+\d+\s+\d+\s+\d+\s+\d+/gi
 let warning = "";
 
 /**
@@ -101,6 +103,21 @@ function linkCos(text, relativePath, prefixComment = null) {
             okay = false;
             const [locationString] = getStringLocation(content, match.index);
             console.error("Depend statements should be filename only not relative paths. Found " + match[0] + " in " + fileRelative + " @ " + locationString);
+        }
+
+        for (const match of content.matchAll(stimDisapointment)) {
+            const index = match.index;
+            const scriptIndex = content.substring(0, index).lastIndexOf("scrp");
+            let script = "";
+            if (scriptIndex >= 0) {
+                const scriptTextUntil = content.substring(scriptIndex, index);
+                const scriptHead = scriptHeader.exec(scriptTextUntil);
+                if (scriptHead) {
+                    script = " for " + scriptHead[0];
+                }
+            }
+            const [locationString] = getStringLocation(content, index);
+            warning += ("Agent stimming disappointment may be incorrect. Found " + match[0] + script + " in " + fileRelative) + " @ " + locationString + "\n";
         }
 
         for (const match of content.matchAll(badLocationX)) {
