@@ -95,7 +95,6 @@ function linkCos(text, relativePath, prefixComment = null) {
     }
 
     const agentNamePrefixLastChar = AGENT_NAME_PREFIX ? AGENT_NAME_PREFIX[AGENT_NAME_PREFIX.length - 1] : null;
-    console.log("AgentPrefix LastChar: ", agentNamePrefixLastChar);
     const agentNamePrefix = (agentNamePrefixLastChar >= 'a' && agentNamePrefixLastChar <= 'z') ||
     (agentNamePrefixLastChar >= '0' && agentNamePrefixLastChar <= '9')
         ? (AGENT_NAME_PREFIX + " ")
@@ -110,7 +109,6 @@ function linkCos(text, relativePath, prefixComment = null) {
             return path;
         }
         const fileName = Path.basename(path);
-        console.log("FileName: ", fileName, "; Path: ", path);
         const outFile = Path.join(tempCAOSDirectory, fileName);
         if (contents) {
             fs.writeFileSync(outFile, contents, "latin1");
