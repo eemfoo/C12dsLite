@@ -2,7 +2,7 @@
 // noinspection SpellCheckingInspection
 
 const version = "1.2.4";
-
+const AGENT_NAME_PREFIX = "C12DS-Lite"
 // Node libararies
 const Path = require("node:path");
 const fs = require("node:fs");
@@ -15,7 +15,7 @@ const {platform, arch, exit: _exitProcess, argv} = require("node:process");
 // ============== //
 
 const trueStart = Date.now();
-
+const tempCAOSDirectory = Path.join(__dirname, ".tmp");
 // CAOS Vars
 const caos2PrayFilePath = Path.join(__dirname, ".caos2pray.cos");
 let outputMapFile = null;
@@ -24,14 +24,15 @@ const mainCos = "0.0 - Main.cos";
 // Joins
 const useJoins = argv.find((arg) => arg.toLowerCase() === "--with-joins") != null;
 const joins = [];
-const badDepends = /^\s*[*]#\s*depend\s+"\/?([.]+\/)+[a-zA-Z0-9\\/]+\.[a-zA-Z]+"/gi
+const badDepends = /^\s*[*]#\s*depend\s+"\/?([.]+\/)+[a-zA-Z0-9\\/]+\.[a-zA-Z]+"/gi;
 const badClassifier = /(scrp|new:\s+[^ ]{4})\s+[23]\s+\d+\s+(?:[^6]|6[^5])\d*/gi;
-const badLocationX = /(?:mvto|mvsf|mvft|va00)\s+(\d+)/gi
-const badLocationY = /(?:mvto|mvsf|mvft|va01)\s+\d+\s+(\d+)/gi
-const stimDisapointment = /stim\s+writ\s+[^ ]+\s+0/gi
-const scriptHeader = /scrp\s+\d+\s+\d+\s+\d+\s+\d+/gi
-const newGenus = /new:\s+[^ ]+\s+(\d+)\s+(\d+)/gi
-const behaviorRegex = /bhvr\s+(\d+)/gi
+const badLocationX = /(?:mvto|mvsf|mvft|va00)\s+(\d+)/gi;
+const badLocationY = /(?:mvto|mvsf|mvft|va01)\s+\d+\s+(\d+)/gi;
+const stimDisapointment = /stim\s+writ\s+[^ ]+\s+0/gi;
+const scriptHeader = /scrp\s+\d+\s+\d+\s+\d+\s+\d+/gi;
+const newGenus = /new:\s+[^ ]+\s+(\d+)\s+(\d+)/gi;
+const behaviorRegex = /bhvr\s+(\d+)/gi;
+const caos2PrayAgentName = /^[ \t]*[*]#\s*((?:C3|DS|[A-Za-z0-9_]{4})-Name)\s+"/gim;
 let warning = "";
 
 
@@ -93,76 +94,116 @@ function linkCos(text, relativePath, prefixComment = null) {
         text.push(`* ${prefixComment}`);
     }
 
+    const agentNamePrefixLastChar = AGENT_NAME_PREFIX ? AGENT_NAME_PREFIX[AGENT_NAME_PREFIX.length - 1] : null;
+    console.log("AgentPrefix LastChar: ", agentNamePrefixLastChar);
+    const agentNamePrefix = (agentNamePrefixLastChar >= 'a' && agentNamePrefixLastChar <= 'z') ||
+    (agentNamePrefixLastChar >= '0' && agentNamePrefixLastChar <= '9')
+        ? (AGENT_NAME_PREFIX + " ")
+        : AGENT_NAME_PREFIX;
+
+    if (!fs.existsSync(tempCAOSDirectory)) {
+        fs.mkdirSync(tempCAOSDirectory);
+    }
+
+    const copy = (path, contents) => {
+        if (!AGENT_NAME_PREFIX) {
+            return path;
+        }
+        const fileName = Path.basename(path);
+        console.log("FileName: ", fileName, "; Path: ", path);
+        const outFile = Path.join(tempCAOSDirectory, fileName);
+        if (contents) {
+            fs.writeFileSync(outFile, contents, "latin1");
+        } else {
+            fs.copyFileSync(path, outFile);
+        }
+        text.push(`*# Link \"${outFile}\"`);
+        return outFile;
+    }
+
     let okay = true
     for (const file of files) {
         if (Path.extname(file).toLowerCase() !== ".cos") {
             continue;
         }
+
         if (file.toLowerCase().indexOf("99.0") >= 0) {
             continue;
         }
+
         if (file.toLowerCase() === mainCos.toLowerCase()) {
             continue;
         }
+
         if (file.toLowerCase().indexOf(mainCos.toLowerCase()) >= 0) {
             continue;
         }
 
-        const fileRelative = Path.join(relativePath, file);
-        text.push(`*# Link \"${fileRelative}\"`);
+        let fileRelative = Path.join(relativePath, file);
 
         if (fileRelative.toLowerCase().endsWith(" map.cos")) {
+            copy(fileRelative);
             continue;
         }
 
-        const content = fs.readFileSync(Path.join(__dirname, fileRelative), "latin1").toLowerCase().trim();
-        if (useJoins && content.indexOf("**caos2pray join") >= 0) {
+        // Get file contents for checks and Joined agent names
+        let rawContent = fs.readFileSync(Path.join(__dirname, fileRelative), "latin1");
+
+        // Add AGENT prefixes if any
+        rawContent = rawContent.replaceAll(caos2PrayAgentName, "*# $1 \"" + agentNamePrefix);
+        fileRelative = copy(fileRelative, rawContent);
+
+        // Format CAOS for checks
+        const contentLowercase = rawContent.toLowerCase().trim();
+
+        // Add file to joins if needed
+        if (useJoins && contentLowercase.indexOf("**caos2pray join") >= 0) {
             joins.push(fileRelative);
         }
 
-        const dsLoadedIndex = content.indexOf("game \"c1_to_ds_loaded\"");
+        const dsLoadedIndex = contentLowercase.indexOf("game \"c1_to_ds_loaded\"");
         if (dsLoadedIndex >= 0) {
             okay = false
-            const [locationString] = getStringLocation(content, dsLoadedIndex);
+            const [locationString] = getStringLocation(contentLowercase, dsLoadedIndex);
             console.error("Incorrect `game \"C1_to_DS_Loaded\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Lite_Loaded\" @ " + locationString);
         }
 
-        const clickableFoodIndex = content.indexOf("game \"c1_clickable_food\"");
+        const clickableFoodIndex = contentLowercase.indexOf("game \"c1_clickable_food\"");
         if (clickableFoodIndex >= 0) {
             okay = false
-            const [locationString] = getStringLocation(content, clickableFoodIndex);
+            const [locationString] = getStringLocation(contentLowercase, clickableFoodIndex);
             console.error("Incorrect `game \"C1_Clickable_Food\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Clickable_Food\" @ " + locationString);
         }
 
-        for (const match of content.matchAll(badClassifier)) {
+        for (const match of contentLowercase.matchAll(badClassifier)) {
             okay = false;
-            const [locationString] = getStringLocation(content, match.index);
+            const [locationString] = getStringLocation(contentLowercase, match.index);
             console.error("Old C12DS classifier;. Found " + match[0] + " in " + fileRelative + " @ " + locationString);
         }
 
-        for (const match of content.matchAll(badDepends)) {
+        for (const match of contentLowercase.matchAll(badDepends)) {
             okay = false;
-            const [locationString] = getStringLocation(content, match.index);
+            const [locationString] = getStringLocation(contentLowercase, match.index);
             console.error("Depend statements should be filename only not relative paths. Found " + match[0] + " in " + fileRelative + " @ " + locationString);
         }
 
-        for (const match of content.matchAll(stimDisapointment)) {
+        for (const match of contentLowercase.matchAll(stimDisapointment)) {
             const index = match.index;
-            const scriptIndex = content.substring(0, index).lastIndexOf("scrp");
+            const scriptIndex = contentLowercase.substring(0, index).lastIndexOf("scrp");
             let script = "";
             if (scriptIndex >= 0) {
-                const scriptTextUntil = content.substring(scriptIndex, index);
+                const scriptTextUntil = contentLowercase.substring(scriptIndex, index);
                 const scriptHead = scriptHeader.exec(scriptTextUntil);
                 if (scriptHead) {
                     script = " for " + scriptHead[0];
                 }
             }
-            const [locationString] = getStringLocation(content, index);
+            const [locationString] = getStringLocation(contentLowercase, index);
             warning += ("Agent stimming disappointment may be incorrect. Found " + match[0] + script + " in " + fileRelative) + " @ " + locationString + "\n";
         }
 
-        for (const match of content.matchAll(badLocationX)) {
-            const [locationString] = getStringLocation(content, match.index);
+        for (const match of contentLowercase.matchAll(badLocationX)) {
+            const [locationString] = getStringLocation(contentLowercase, match.index);
             try {
                 const x = parseInt(match[1], 10);
                 if (x > 6000 && x < 7000) {
@@ -176,8 +217,8 @@ function linkCos(text, relativePath, prefixComment = null) {
             }
         }
 
-        for (const match of content.matchAll(badLocationY)) {
-            const [locationString] = getStringLocation(content, match.index);
+        for (const match of contentLowercase.matchAll(badLocationY)) {
+            const [locationString] = getStringLocation(contentLowercase, match.index);
             try {
                 const y = parseInt(match[1], 10);
                 if (y > 9100 && y < 9300) {
@@ -191,7 +232,7 @@ function linkCos(text, relativePath, prefixComment = null) {
             }
         }
 
-        const newOffsets = [...content.matchAll(newGenus)];
+        const newOffsets = [...contentLowercase.matchAll(newGenus)];
         for (let i = 0; i < newOffsets.length; i++) {
             const match = newOffsets[i];
             const genus = match[1] + " " + match[2];
@@ -199,8 +240,8 @@ function linkCos(text, relativePath, prefixComment = null) {
                 continue;
             }
             const start = match.index;
-            const end = i < (newOffsets.length - 1) ? newOffsets[i + 1].index : content.length;
-            let behaviorMatch = [...content.substring(start, end).matchAll(behaviorRegex) ?? []];
+            const end = i < (newOffsets.length - 1) ? newOffsets[i + 1].index : contentLowercase.length;
+            let behaviorMatch = [...contentLowercase.substring(start, end).matchAll(behaviorRegex) ?? []];
             behaviorMatch = behaviorMatch ? behaviorMatch[0] : null;
             const behavior = behaviorMatch != null && behaviorMatch.length ? parseInt(behaviorMatch[1], 10) : null;
             if (behavior == null) {
@@ -211,7 +252,7 @@ function linkCos(text, relativePath, prefixComment = null) {
                 continue;
             }
             if (behaviorStandards[genus] !== behavior && behavior !== 0) {
-                const [locationString] = getStringLocation(content, match.index);
+                const [locationString] = getStringLocation(contentLowercase, match.index);
                 warning += "Possibly out of standards behavior: " + behavior + "; Expected: " + behaviorStandards[genus] + " for genus " + genus + " in " + fileRelative + " @ " + locationString + "\n";
             }
         }
@@ -597,10 +638,35 @@ function cleanTemporaryFiles(keepPray = false) {
     }
 
     try {
+        deleteTempCaosFiles();
+    } catch (e) {
+        console.error("Failed to remove all files from temp directory");
+    }
+
+    try {
         if (!keepPray && fs.existsSync(caos2PrayFilePath)) {
             fs.rmSync(caos2PrayFilePath);
         }
     } catch {
+    }
+}
+
+function deleteTempCaosFiles() {
+    const files = fs.readdirSync(tempCAOSDirectory);
+    let removedAll = true;
+    for (let file of files) {
+        if (!Path.isAbsolute(file)) {
+            file = Path.join(tempCAOSDirectory, file);
+        }
+        try {
+            fs.rmSync(file);
+        } catch (e) {
+            removedAll = false;
+            console.error("Failed to remove file: " + file);
+        }
+    }
+    if (removedAll) {
+        fs.rmdirSync(tempCAOSDirectory);
     }
 }
 

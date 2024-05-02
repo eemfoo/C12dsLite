@@ -10,8 +10,8 @@
 *  c1d2.wav
 ***************************************
 **CAOS2Pray Join
-*# DS-Name "C12DS-Lite Trumpet"
-*# C3-Name "C12DS-Lite Trumpet (C3)"
+*# C3-Name "Trumpet (C3)"
+*# DS-Name "Trumpet"
 *# Agent Description = "Playing the trumpet is fun for creatures"
 *# Agent Animation Gallery = "c1trumpet"
 *# Agent Animation File = "c1trumpet.c16"

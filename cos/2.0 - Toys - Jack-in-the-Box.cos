@@ -13,8 +13,8 @@
 *  c1p6.wav
 ****************************
 **CAOS2Pray Join
-*# C3-Name "C12DS-Lite Jack-in-the-Box (C3)"
-*# DS-Name "C12DS-Lite Jack-in-the-Box"
+*# C3-Name "Jack-in-the-Box (C3)"
+*# DS-Name "Jack-in-the-Box"
 *# Agent Description = "The jack-in-the-box toy provides surprising entertainment for creatures."
 *# Agent Sprite First Image = 0
 *# Agent Animation File = "c1jackinthebox.c16"

@@ -13,7 +13,8 @@
 *  c1dr.wav
 ****************************
 **CAOS2Pray Join
-*# DS-Name "C1-Lite Hooch and Still"
+*# C3-Name "Hooch and Still (C3)"
+*# DS-Name "Hooch and Still"
 *# Agent Animation Gallery = "c1hoochstill"
 *# Agent Animation File = "c1hoochstill.c16"
 *# Agent Description = "A vendor and still of hooch, an alcoholic beverage for your creatures"

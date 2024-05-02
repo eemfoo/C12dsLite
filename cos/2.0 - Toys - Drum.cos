@@ -11,8 +11,8 @@
 *  C1d2.wav
 ***************************************
 **CAOS2Pray Join
-*# DS-Name "C12DS-Lite Drums"
-*# C3-Name "C12DS-Lite Drums (C3)"
+*# C3-Name "Drum (C3)"
+*# DS-Name "Drum"
 *# Agent Description = "Percussive entertainment for creatures. Bang the drum slowly!"
 *# Agent Animation Gallery = "c1drum"
 *# Agent Animation File = "c1drum.c16"

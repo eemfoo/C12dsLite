@@ -16,7 +16,8 @@
 *  c1d2.wav
 **********************************
 **CAOS2Pray Join
-*# DS-Name "C12DS-Lite Harp"
+*# C3-Name "Harp (C3)"
+*# DS-Name "Harp"
 *# Agent Description = "Creatures can play music with this harp."
 *# Agent Animation Gallery = "c1harp"
 *# Agent Animation File = "c1harp.c16"

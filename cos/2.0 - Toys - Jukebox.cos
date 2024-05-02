@@ -12,7 +12,8 @@
 *  c1d2.wav
 ****************************
 **CAOS2Pray Join
-*# DS-Name "C12DS-Lite Jukebox"
+*# C3-Name "Jukebox (C3)"
+*# DS-Name "Jukebox"
 *# Agent Description = "This jukebox provides music and a light show for creatures"
 *# Agent Bioenergy Value = 0
 *# Agent Animation String = "0"

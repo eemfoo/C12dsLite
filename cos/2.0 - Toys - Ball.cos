@@ -11,8 +11,8 @@
 *  c1s3.wav splash
 *****************************
 **CAOS2Pray Join
-*# C3-Name "C12DS-Lite Red Ball (C3)"
-*# DS-Name "C12DS-Lite Red Ball"
+*# C3-Name "Red Ball (C3)"
+*# DS-Name "Red Ball"
 *# Agent Description = "Pushing the ball is fun for the hand and creatures!"
 *# Agent Animation File = "c1ball.c16"
 *# Agent Animation Gallery = "c1ball"
