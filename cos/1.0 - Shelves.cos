@@ -58,6 +58,18 @@ new: simp 1 7 6500 "c1table" 1 1 200
 mvto 1951 18754
 
 
+* Jungle Tree Shelf
+new: vhcl 1 7 6500 "c1ljungleshelf" 1 0 0
+cabn 0 0 203 121
+attr 520
+accg 0
+aero 100
+fric 100
+bhvr 0
+elas 0
+perm 60
+mvto 4958 18544
+
 * Shelf Scripts
 
 * Got agent
