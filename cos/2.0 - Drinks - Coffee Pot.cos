@@ -149,11 +149,15 @@ endm
 **************************
 * Removers
 rscr
+doif game "C1_to_DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    * If C12DSL is not installed, make metaroom ID negative and impossible to match
+    setv va00 -1
+endi
+
 enum 2 25 6500
-    kill targ
+    doif gmap posl post ne va00
+        kill targ
+    endi
 next
-scrx 2 25 6500 1
-scrx 2 25 6500 4
-scrx 2 25 6500 5
-scrx 2 25 6500 6
-scrx 2 25 6500 12
