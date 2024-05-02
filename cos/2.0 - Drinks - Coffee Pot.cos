@@ -10,7 +10,8 @@
 *  C1d3.wav
 * ***************************
 **CAOS2Pray Join
-*# DS-Name "C1L Coffee Pot"
+*# C3-Name "Coffee Pot (C3)"
+*# DS-Name "Coffee Pot"
 *# Agent Animation File = "c1coffeepot.c16"
 *# Agent Animation Gallery = "c1coffeepot"
 *# Agent Sprite First Image = 0
