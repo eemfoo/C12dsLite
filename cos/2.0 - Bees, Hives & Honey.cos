@@ -350,10 +350,14 @@ scrp 2 15 6503 1
 *	bee is pushed
     inst
     doif from = pntr
-        mesg wrt+ ownr 1001 from 0 0
+        call 1001 from 0
     else
-        mesg wrt+ ownr 1002 from 0 0
+        call 1002 from 0
     endi
+endm
+
+scrp 2 15 6503 2
+    call 1002 from 0
 endm
 
 scrp 2 15 6503 3
@@ -582,7 +586,7 @@ scrp 2 17 6500 1003
             fric 100
             aero 10
             accg 0
-            bhvr 56
+            bhvr 59
             perm 50
             anim [0 1 255]
             tick rand 17 23
