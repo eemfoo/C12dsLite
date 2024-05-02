@@ -76,51 +76,60 @@ function linkCos(text, relativePath, prefixComment = null) {
         if (useJoins && content.indexOf("**caos2pray join") >= 0) {
             joins.push(fileRelative);
         }
-        if (content.indexOf("game \"c1_to_ds_loaded\"") >= 0) {
+
+        const dsLoadedIndex = content.indexOf("game \"c1_to_ds_loaded\"");
+        if (dsLoadedIndex >= 0) {
             okay = false
-            console.error("Incorrect `game \"C1_to_DS_Loaded\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Lite_Loaded\"");
+            const [locationString] = getStringLocation(content, dsLoadedIndex);
+            console.error("Incorrect `game \"C1_to_DS_Loaded\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Lite_Loaded\" @ " + locationString);
         }
 
-        if (content.indexOf("game \"c1_clickable_food\"") >= 0) {
+        const clickableFoodIndex = content.indexOf("game \"c1_clickable_food\"");
+        if (clickableFoodIndex >= 0) {
             okay = false
-            console.error("Incorrect `game \"C1_Clickable_Food\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Clickable_Food\"");
+            const [locationString] = getStringLocation(content, clickableFoodIndex);
+            console.error("Incorrect `game \"C1_Clickable_Food\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Clickable_Food\" @ " + locationString);
         }
 
         for (const match of content.matchAll(badClassifier)) {
             okay = false;
-            console.error("Old C12DS classifier;. Found " + match[0] + " in " + fileRelative);
+            const [locationString] = getStringLocation(content, match.index);
+            console.error("Old C12DS classifier;. Found " + match[0] + " in " + fileRelative + " @ " + locationString);
         }
 
         for (const match of content.matchAll(badDepends)) {
             okay = false;
-            console.error("Depend statements should be filename only not relative paths. Found " + match[0] + " in " + fileRelative);
+            const [locationString] = getStringLocation(content, match.index);
+            console.error("Depend statements should be filename only not relative paths. Found " + match[0] + " in " + fileRelative + " @ " + locationString);
         }
 
         for (const match of content.matchAll(badLocationX)) {
+            const [locationString] = getStringLocation(content, match.index);
             try {
                 const x = parseInt(match[1], 10);
                 if (x > 6000 && x < 7000) {
                     continue;
                 }
                 if (x > 5500) {
-                    warning += ("Possibly invalid X value: " + match[0] + " in " + fileRelative) + "\n";
+                    warning += ("Possibly invalid X value: " + match[0] + " in " + fileRelative) + " @ " + locationString + "\n";
                 }
             } catch (e) {
-                console.error("Regex for X threw error; ", e);
+                console.error("Regex for X threw error; @ " + locationString, e);
             }
         }
 
         for (const match of content.matchAll(badLocationY)) {
+            const [locationString] = getStringLocation(content, match.index);
             try {
                 const y = parseInt(match[1], 10);
                 if (y > 9100 && y < 9300) {
                     continue;
                 }
                 if (y < 18000) {
-                    warning += ("Possibly invalid Y value: " + match[0] + " in " + fileRelative) + "\n";
+                    warning += ("Possibly invalid Y value: " + match[0] + " in " + fileRelative) + " @ " + locationString + "\n";
                 }
             } catch (e) {
-                console.error("Regex for Y threw error; ", e);
+                console.error("Regex for Y threw error; @ " + locationString, e);
             }
         }
     }
@@ -510,6 +519,13 @@ function cleanTemporaryFiles(keepPray = false) {
         }
     } catch {
     }
+}
+
+function getStringLocation(content, index) {
+    const lines = content.substring(0, index).split("\n");
+    const lineCount = lines.length
+    const charIndex = (lines.pop() ?? "").length
+    return [lineCount + ":" + charIndex, lines.length, charIndex];
 }
 
 // ================= //
