@@ -26,13 +26,13 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 1182 1292 18800 18745 18926 18926
     rtyp va00 3
     setv game "map_tmp_6" va00
-  setv va00 addr va01 1090 1182 18800 18800 18926 18926
+  setv va00 addr va01 1090 1182 18789 18789 18926 18926
     rtyp va00 3
     setv game "map_tmp_7" va00
-  setv va00 addr va01 975 1090 18800 18800 18926 18926
+  setv va00 addr va01 975 1090 18789 18789 18926 18926
     rtyp va00 3
     setv game "map_tmp_8" va00
-  setv va00 addr va01 867 975 18800 18800 18926 18926
+  setv va00 addr va01 867 975 18789 18789 18926 18926
     rtyp va00 3
     setv game "map_tmp_9" va00
   setv va00 addr va01 1481 1560 18603 18603 18735 18735
