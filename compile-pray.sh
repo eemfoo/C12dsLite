@@ -25,6 +25,9 @@ const mainCos = "0.0 - Main.cos";
 const useJoins = argv.find((arg) => arg.toLowerCase() === "--with-joins") != null;
 const joins = [];
 const badDepends = /^\s*[*]#\s*depend\s+"\/?([.]+\/)+[a-zA-Z0-9\\/]+\.[a-zA-Z]+"/gi
+const badLocationX = /(?:mvto|mvsf|mvft|va00)\s+(\d+)/gi
+const badLocationY = /(?:mvto|mvsf|mvft|va01)\s+\d+\s+(\d+)/gi
+let warning = "";
 
 /**
  * Adds link statements for all CAOS files in relative path
@@ -88,6 +91,34 @@ function linkCos(text, relativePath, prefixComment = null) {
             console.error("Depend statements should be filename only not relative paths. Found " + match[0] + " in " + fileRelative);
         }
 
+        for (const match of content.matchAll(badLocationX)) {
+            try {
+                const x = parseInt(match[1], 10);
+                if (x > 6000 && x < 7000) {
+                    continue;
+                }
+                if (x > 5500) {
+                    warning += ("Possibly invalid X value: " + match[0] + " in " + fileRelative) + "\n";
+                }
+            } catch (e) {
+                console.error("Regex for X threw error; ", e);
+            }
+        }
+
+        for (const match of content.matchAll(badLocationY)) {
+            try {
+                const y = parseInt(match[1], 10);
+                if (y > 9100 && y < 9300) {
+                    continue;
+                }
+                if (y < 18000) {
+                    warning += ("Possibly invalid Y value: " + match[0] + " in " + fileRelative) + "\n";
+                }
+            } catch (e) {
+                console.error("Regex for Y threw error; ", e);
+            }
+        }
+    }
     if (!okay) {
         exitProcess(1);
     }
@@ -541,6 +572,13 @@ function compile() {
                 const now = Date.now();
                 const compileTimeString = formatTime(now - time);
                 const timeString = formatTime(now - trueStart);
+                if (warning) {
+                    const bar = "===================================";
+                    let head = "Validation Warnings"
+                    let padLength = (bar.length - (head.length + 2)) / 2;
+                    head = "=".repeat(padLength) + " " + head + " " + "=".repeat(padLength);
+                    console.warn(bar + "\n" + head + "\n" + warning.trim() + "\n" + bar);
+                }
                 if (compileTimeString === timeString) {
                     console.info("Compiled agent successfully in " + timeString);
                 } else {
