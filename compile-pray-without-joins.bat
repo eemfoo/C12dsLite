@@ -1,2 +1,3 @@
-node "compile-pray.sh" --no-joins
+node "compile-pray.sh"
+ECHO compile-pray.sh compiles without JOINS by default now
 set /p DUMMY=Hit ENTER to continue...

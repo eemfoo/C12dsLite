@@ -22,7 +22,7 @@ let outputMapFile = null;
 const attachmentExtensions = [".c16", ".s16", ".blk", ".mng", ".wav", ".catalogue"];
 const mainCos = "0.0 - Main.cos";
 // Joins
-const useJoins = argv.find((arg) => arg.toLowerCase() === "--no-joins") == null;
+const useJoins = argv.find((arg) => arg.toLowerCase() === "--with-joins") != null;
 const joins = [];
 const badDepends = /^\s*[*]#\s*depend\s+"\/?([.]+\/)+[a-zA-Z0-9\\/]+\.[a-zA-Z]+"/gi
 
