@@ -38,7 +38,7 @@ sndl "c1ti"
 
 * STOVE
 new: simp 1 1 6500 "c1stove" 8 0 0
-mvto 3767 10870
+mvto 1767 18870
 anim [0 1 2 3 4 5 6 7 255]
 sndl "c1st"
 
