@@ -46,6 +46,7 @@ function linkCos(text, relativePath, prefixComment = null) {
         text.push(`* ${prefixComment}`);
     }
 
+    let okay = true
     for (const file of files) {
         if (Path.extname(file).toLowerCase() !== ".cos") {
             continue;
@@ -63,30 +64,32 @@ function linkCos(text, relativePath, prefixComment = null) {
         const fileRelative = Path.join(relativePath, file);
         text.push(`*# Link \"${fileRelative}\"`);
 
+        if (fileRelative.toLowerCase().endsWith(" map.cos")) {
+            continue;
+        }
+
         const content = fs.readFileSync(Path.join(__dirname, fileRelative), "latin1").toLowerCase().trim();
         if (useJoins && content.indexOf("**caos2pray join") >= 0) {
             joins.push(fileRelative);
         }
-
         if (content.indexOf("game \"c1_to_ds_loaded\"") >= 0) {
+            okay = false
             console.error("Incorrect `game \"C1_to_DS_Loaded\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Lite_Loaded\"");
-            exitProcess(1);
         }
 
         if (content.indexOf("game \"c1_clickable_food\"") >= 0) {
+            okay = false
             console.error("Incorrect `game \"C1_Clickable_Food\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Clickable_Food\"");
-            exitProcess(1);
         }
 
-        let foundBadDepends = false;
+
         for (const match of content.matchAll(badDepends)) {
-            foundBadDepends = true;
+            okay = false;
             console.error("Depend statements should be filename only not relative paths. Found " + match[0] + " in " + fileRelative);
         }
-        if (foundBadDepends) {
-            exitProcess(1);
-        }
 
+    if (!okay) {
+        exitProcess(1);
     }
 }
 
