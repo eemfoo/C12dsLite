@@ -25,6 +25,7 @@ const mainCos = "0.0 - Main.cos";
 const useJoins = argv.find((arg) => arg.toLowerCase() === "--with-joins") != null;
 const joins = [];
 const badDepends = /^\s*[*]#\s*depend\s+"\/?([.]+\/)+[a-zA-Z0-9\\/]+\.[a-zA-Z]+"/gi
+const badClassifier = /(scrp|new:\s+[^ ]{4})\s+[23]\s+\d+\s+(?:[^6]|6[^5])\d*/gi;
 const badLocationX = /(?:mvto|mvsf|mvft|va00)\s+(\d+)/gi
 const badLocationY = /(?:mvto|mvsf|mvft|va01)\s+\d+\s+(\d+)/gi
 let warning = "";
@@ -85,6 +86,10 @@ function linkCos(text, relativePath, prefixComment = null) {
             console.error("Incorrect `game \"C1_Clickable_Food\"` encountered in " + fileRelative + "; Should Be game \"C1_to_DS_Clickable_Food\"");
         }
 
+        for (const match of content.matchAll(badClassifier)) {
+            okay = false;
+            console.error("Old C12DS classifier;. Found " + match[0] + " in " + fileRelative);
+        }
 
         for (const match of content.matchAll(badDepends)) {
             okay = false;
