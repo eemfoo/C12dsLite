@@ -2,6 +2,7 @@ const Path = require("node:path");
 const fs = require("node:fs");
 const {AGENT_NAME_PREFIX, mainCos, tempCAOSDirectory, warnings, ROOT} = require("./consts");
 const {validate} = require("./validate-build");
+const {getOutputMapFile} = require("./mapfile");
 const {exitProcess} = require("./exitprocess");
 
 // File Local Variables
@@ -34,9 +35,6 @@ function linkCos(text, relativePath, prefixComment = null) {
         : AGENT_NAME_PREFIX;
 
     const copy = (path, contents) => {
-        if (!AGENT_NAME_PREFIX) {
-            return path;
-        }
         const fileName = Path.basename(path);
         const outFile = Path.join(tempCAOSDirectory, fileName);
         if (contents) {
@@ -47,6 +45,8 @@ function linkCos(text, relativePath, prefixComment = null) {
         text.push(`*# Link \"${outFile}\"`);
         return outFile;
     }
+
+    text.push("*# Link \"" + getOutputMapFile() + "\"");
 
     let okay = true
     for (const file of files) {
