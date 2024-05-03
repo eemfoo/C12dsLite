@@ -43,7 +43,7 @@ frat 1.5
 
 doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6514 <= 1
 * 	Radio in music room
-	mvsf 2287 19050
+	mvsf 2247 19050
 elif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
