@@ -10,7 +10,7 @@
 *  c1d2.wav
 ******************************
 **CAOS2Pray Join
-*# C3-Name "Lemon Trellis"
+*# C3-Name "Lemon Trellis (C3)"
 *# DS-Name "Lemon Trellis"
 *# bioenergy = 0
 *# Agent Description = "Grow lemons on your ship"
@@ -21,6 +21,7 @@
 *# Attach "../images/c1plants.c16"
 *# Attach "../sounds/c1d2.wav"
 *# Attach "../catalogue/c12dsl.catalogue"
+******************************
 inst
 lock
 
