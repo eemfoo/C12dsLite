@@ -31,3 +31,4 @@ CAOS/*.cosx
 assets/Teleporter-Cheese.afphoto
 assets/Slices.afphoto
 .tmp
+**/*~lock~
