@@ -9,9 +9,12 @@ const badLocationX = /(?:mvto|mvsf|mvft|va00)\s+(\d+)/gi;
 const badLocationY = /(?:mvto|mvsf|mvft|va01)\s+\d+\s+(\d+)/gi;
 const stimDisappointment = /stim\s+writ\s+[^ ]+\s+0/gi;
 const scriptHeader = /scrp\s+\d+\s+\d+\s+\d+\s+\d+/gi;
+const eatScriptHeader = /scrp\s+(\d+)\s+(\d+)\s+(\d+)\s+12\D/gim;
 const newGenus = /new:\s+[^ ]+\s+(\d+)\s+(\d+)/gi;
 const behaviorRegex = /bhvr\s+(\d+)/gi;
 const doifC12DSLoaded = /doif\s+game\s+"C1_to_DS_Loaded"\s+(eq|=)\s+1\s+and\s+totl/gim;
+const hasEatScript = Object.keys(classifierData)
+    .filter((genus) => (classifierData[genus].bhvr & 16) === 16);
 
 function validate(fileRelative, rawContent, copy, warnings) {
 
@@ -39,6 +42,7 @@ function validate(fileRelative, rawContent, copy, warnings) {
     validateStimDisappointment(validationData);
     validateLocation(validationData);
     validateBehavior(validationData);
+    shouldHaveEatScript(validationData);
 
     if (localWarnings.length) {
         warnings.push(basename(fileRelative) + "\n\t- " + localWarnings.join("\n\t- "));
@@ -220,6 +224,21 @@ function validateBehavior(validationData) {
             );
         }
     }
+}
+
+function shouldHaveEatScript(validationData) {
+    for (const match of validationData.contentLowercase.matchAll(eatScriptHeader)) {
+        const genus = match[1] + " " + match[2];
+        if (typeof classifierData[genus] === "undefined") {
+            continue;
+        }
+        if (hasEatScript.indexOf(genus) >= 0) {
+            continue;
+        }
+        const location = getStringLocation(validationData.contentLowercase, match.index);
+        validationData.warnings.push("Agent [" + genus + "  " + match[3] + "] of type " + classifierData[genus].name + " should not have eat script @ " + location);
+    }
+    return true;
 }
 
 module.exports = {
