@@ -1,0 +1,125 @@
+****************************
+* C1 Cheese
+****************************
+* Classifiers:
+*  2 11 6510
+*
+* Dependencies:
+*  c1cheese.c16
+*  c1ds.wav
+****************************
+**CAOS2Pray Join
+*# C3-Name "Cheese (C3)"
+*# DS-Name "Cheese"
+*# bioenergy = 0
+*# Agent Animation String = "0"
+*# Agent Sprite First Image = 0
+*# Agent Animation Gallery = "c1cheese"
+*# Agent Animation File = "c1cheese.c16"
+*# Agent Description = "A tasty piece of C1 cheese. With fat and vitamin-c"
+*# Attach "../images/c1cheese.c16"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+
+inst
+* basement mushroom
+new: simp 2 11 6510 "c1lplants" 1 0 200
+mvsf 1378 19041
+
+* cheese on the main floor in norn house
+new: simp 2 11 6510 "c1cheese" 3 0 200
+mvsf 1685 18901
+
+* cheese upstairs in the norn house
+    new: simp 2 11 6510 "c1cheese" 3 0 200
+    mvsf 1625 18715
+
+* cheese in the treehouse
+    new: simp 2 11 6510 "c1cheese" 3 0 200
+    mvsf 3723 18509
+
+* cheese in the grendel tree
+    new: simp 2 11 6510 "c1cheese" 3 0 200
+    mvsf 4815 18509
+
+***********************
+* Scripts
+
+scrp 2 11 6510 1
+*	Cheese gets clicked
+    inst
+    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+        setv ov88 mv88
+        setv va00 posl
+        setv va01 post
+        new: simp 2 11 6510 "c1cheese" 3 0 200
+        attr 199
+        accg 5
+        aero 10
+        fric 100
+        bhvr 48
+        elas 0
+        perm 60
+        pose 2
+        emit 8 .3
+        mvsf va00 va01
+        velo rand -15 15 rand -15 -5
+    endi
+endm
+
+* Cheese - Pickup
+scrp 2 11 6510 4
+    inst
+    accg 5
+    pose 1
+    mira rand 0 1
+endm
+
+
+* Cheese - Collision
+scrp 2 11 6510 6
+    inst
+    pose 2
+    doif _p2_ > 8 or _p2_ < -8
+        snde "c1d2"
+    endi
+endm
+
+* Cheese - Constructor
+scrp 2 11 6510 10
+    * Set cheese properties
+    attr 199
+    accg 5
+    aero 10
+    fric 100
+    bhvr 48
+    elas 0
+    perm 60
+    pose 2
+    emit 8 .3
+endm
+
+* Cheese - Eat
+scrp 2 11 6510 12
+
+    inst
+    snde "chwp"
+    chem 99 .05
+    stim writ from 79 1
+    kill targ
+endm
+
+rscr
+
+doif game "C1_to_DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    * If C12DSL is not installed, make metaroom ID negative and impossible to match
+    setv va00 -1
+endi
+
+enum 2 11 6510
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
