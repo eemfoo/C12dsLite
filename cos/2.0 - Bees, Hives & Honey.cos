@@ -239,7 +239,7 @@ scrp 2 11 6505 1
         stop
     endi
 
-    doif game "C1L_Clickable_Food" = 1
+    doif game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 11 6505 "c1beehivehoney" 3 13 502

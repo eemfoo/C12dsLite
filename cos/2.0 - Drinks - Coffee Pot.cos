@@ -77,7 +77,7 @@ scrp 2 25 6500 1
         kill ownr
         stop
     endi
-    doif game "C1L_Clickable_Food" = 1
+    doif game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 25 6500 "c1coffeepot" 2 0 200
