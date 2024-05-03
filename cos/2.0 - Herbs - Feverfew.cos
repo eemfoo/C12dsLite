@@ -213,12 +213,6 @@ else
     setv va00 -1
 endi
 
-enum 1 1 6506
-    doif gmap posl post ne va00
-        kill targ
-    endi
-next
-
 enum 2 4 6504
     doif gmap posl post ne va00
         kill targ
