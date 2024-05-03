@@ -30,3 +30,4 @@ CAOS/*.cosx
 *.command
 assets/Teleporter-Cheese.afphoto
 assets/Slices.afphoto
+.tmp
