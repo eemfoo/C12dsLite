@@ -14,25 +14,11 @@ function cleanTemporaryFiles(keepPray = false) {
     }
 
     try {
-        const outputMapFile = getOutputMapFile();
-        if (outputMapFile) {
-            fs.rmSync(outputMapFile);
-        }
-    } catch {
-    }
-
-    try {
         deleteTempCaosFiles();
     } catch (e) {
         console.error("Failed to remove all files from temp directory");
     }
 
-    try {
-        if (!keepPray && fs.existsSync(caos2PrayFilePath)) {
-            fs.rmSync(caos2PrayFilePath);
-        }
-    } catch {
-    }
 }
 
 function deleteTempCaosFiles() {
