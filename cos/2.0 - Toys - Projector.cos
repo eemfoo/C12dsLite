@@ -1,0 +1,191 @@
+****************************
+* C1 Projector
+****************************
+* Classifier:
+*   2 21 6512 - Projector
+* Dependencies
+*  c1projector.c16
+*  c1p1.wav
+*  c1p2.wav
+*  c1d2.wav
+* ***************************
+**CAOS2Pray Join
+*# C3-Name "Slide Projector (C3)"
+*# DS-Name "Slide Projector"
+*# Agent Description = "The Slide Projector displays various photos of beautiful Albia when pushed"
+*# Agent Animation File = "c1projector.c16"
+*# Agent Animation Gallery = "c1projector"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Attach "../images/c1projector.c16"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../sounds/c1p1.wav"
+*# Attach "../sounds/c1p2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+*#
+**************************
+
+* Installers
+
+inst
+
+*	part 0 is screen stand
+new: comp 2 21 6512 "c1projector" 1 0 200
+attr 199
+accg 5
+bhvr 43
+fric 90
+aero 0
+elas 0
+perm 60
+*	make actual projector part
+pat: butt 1 "c1projector" 1 3 0 43 2 [] 1001 1
+*	make actual screen part
+pat: butt 2 "c1projector" 4 8 26 0 1 [] 1002 1
+*	make image part
+pat: dull 3 "c1projector" 12 41 27 1
+
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6512 <= 1
+* 	projector in theater room
+	mvsf 0912 18675
+
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 30 40 -5
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	endi
+
+endi
+
+****************************
+* Scripts
+
+scrp 2 21 6512 1
+*	projector is pushed
+	inst
+	lock
+	stim writ from 97 1
+	part 1
+	doif pose <> 0
+		mesg writ ownr 1001
+	else
+		mesg writ ownr 1002
+	endi
+endm
+
+scrp 2 21 6512 2
+*	projector is pushed
+	inst
+	lock
+	stim writ from 97 1
+	part 1
+	doif pose <> 0
+		mesg writ ownr 1001
+	else
+		mesg writ ownr 1002
+	endi
+endm
+
+scrp 2 21 6512 3
+*	projector is hit
+	inst
+	lock
+	sndc "c1d2"
+	stim writ from 97 1
+endm
+
+scrp 2 21 6512 4
+*	projector is picked up	
+endm
+
+scrp 2 21 6512 6
+*	projector collides
+	inst
+	lock
+	sndc "c1d2"
+endm
+
+scrp 2 21 6512 1001
+*	change projector slide
+	inst
+	lock
+	part 3
+	doif pose > 0 and pose < 9
+		sndc "c1p2"
+		setv va00 pose
+		addv va00 1
+		pose va00
+	elif pose = 9
+		sndc "c1p2"
+		pose 1
+	endi
+endm
+
+scrp 2 21 6512 1002
+*	turn on/off
+	inst
+	lock
+	part 1
+	doif pose <> 0
+*		projector is on
+		part 1
+		pose 0
+		part 3
+		pose 0
+		part 2
+		sndc "c1p1"
+		anim [7 6 5 4 3 2 1 0]
+		over
+		inst
+	else
+*		projector is off
+		part 2
+		sndc "c1p1"
+		anim [0 1 2 3 4 5 6 7]
+		over
+		inst
+		part 1
+		anim [1 2 255]
+		part 3
+		pose 9
+	endi
+endm
+
+
+
+****************************
+* Removers
+
+* projector remover
+rscr
+
+doif game "C1_to_DS_Lite_Loaded" eq 1
+	setv va00 game "c12dsl::metaroom::id"
+else
+	* If C12DSL is not installed, make metaroom ID negative and impossible to match
+	setv va00 -1
+endi
+
+enum 2 21 6512
+	doif gmap posl post ne va00
+		kill targ
+	endi
+next
