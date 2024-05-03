@@ -1,7 +1,28 @@
+******************************
 * C1 Feverfew
-
+******************************
+*
+* Classifiers:
+*   2 4 6504 - Feverfew Plant
+*   2 25 6501 - Feverfew Flower
+*
 * Dependencies:
-*  C1plants.c16
+*  c1plants.c16
+******************************
+**CAOS2Pray Join
+*# C3-Name "Feverfew (C3)"
+*# DS-Name "Feverfew"
+*# Agent Description = "Feverfew provides pain relief properties and good source of energy"
+*# Agent Animation File = "c1plants.c16"
+*# Agent Animation Gallery = "c1plants"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# bioenergy = 0
+*# Attach "../images/c1plants.c16"
+*# Attach "../catalogue/c12dsl.catalogue"
+******************************
+
+* Installation
 inst
 lock
 
