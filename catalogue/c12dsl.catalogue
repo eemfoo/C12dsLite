@@ -101,19 +101,19 @@ TAG "Agent Help 2 5 6511"
 
 
 # Flowers
-TAG "Agent Help 2 7 6500"
+TAG "Agent Help 2 25 6501"
 "Feverfew"
 "Provides pain relief properties and good source of energy."
 
-TAG "Agent Help 2 7 6501"
+TAG "Agent Help 2 25 6502"
 "Morning Glory"
 "Reduces tiredness and makes a Norn alert. This is a useful herb."
 
-TAG "Agent Help 2 7 6502"
+TAG "Agent Help 2 25 6503"
 "Baobab"
 "Energy source, but can induce a bad reaction in some creatures, including tiredness."
 
-TAG "Agent Help 2 7 6503"
+TAG "Agent Help 2 25 6504"
 "Gentian"
 "Reduces feeling extremes of temperature. Useful to alleviate symptoms of fever."
 
@@ -340,6 +340,10 @@ TAG "Agent Help 1 5 6500"
 TAG "Agent Help 1 1 6501"
 "Clock"
 "This clock is an amusement for creatures."
+
+TAG "Agent Help 1 1 6506"
+"Feverfew Pot"
+"A pot for your feverfew"
 
 TAG "Agent Help 3 2 6500"
 "C1-Lite Teleporter"
