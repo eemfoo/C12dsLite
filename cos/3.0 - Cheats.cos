@@ -76,6 +76,9 @@ endm
 
 * Disable Stackable Lemons
 scrp 1 1 6509 1012
+
+	setv game "C1_to_DS_Lite_Stackable_Lemons" 0
+
 	enum 2 8 6500
 		cabw 1
 		dpas 0 0 0
