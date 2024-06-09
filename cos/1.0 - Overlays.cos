@@ -88,7 +88,6 @@ frat 1.65
 tick rand 81 101
 mvto 4951 19120
 
-
 * Stove
 new: simp 1 1 6500 "c1stove" 8 0 0
 mvto 1767 18870
