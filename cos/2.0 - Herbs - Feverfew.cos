@@ -27,7 +27,13 @@ inst
 lock
 
 new: vhcl 2 4 6504 "c1plants" 1 17 200
-attr 735
+attr 731
+setv name "C1_to_DS_Lite_Clickable_Food" 1
+doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    setv va88 attr
+    orrv va88 4
+    attr va88
+endi
 cabn 10 -3 40 30
 accg 5
 fric 100
@@ -43,6 +49,18 @@ doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6504 <= 1
 *and totl 2 4 6504 < 1
 * 	Feverfew plant
     mvsf 3374 18863
+    setv va88 attr
+    setv va89 va88
+    andv va89 1
+    doif va89 ne 0
+        subv va88 1
+    endi
+    setv va89 va88
+    andv va89 2
+    doif va89 ne 0
+        subv va88 2
+    endi
+    attr va88
 
 * 	hide the Feverfew pot
     new: simp 1 1 6506 "c1plants" 1 38 0
@@ -108,10 +126,11 @@ scrp 2 25 6501 1
 *	Feverfew weed clicked
     inst
     lock
-    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 25 6501 "c1plants" 2 18 101
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
         seta va20 targ
         fric 100
         aero 10
@@ -156,6 +175,13 @@ scrp 2 4 6504 1001
             setv va00 posl
             setv va01 post
             new: simp 2 25 6501 "c1plants" 2 18 101
+            setv name "C1_to_DS_Lite_Clickable_Food" 1
+            attr 195
+            doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+                setv va88 attr
+                orrv va88 4
+                attr va88
+            endi
             addv va00 10
             addv va01 10
             seta va20 targ
@@ -187,7 +213,6 @@ scrp 2 4 6504 1001
             endi
             targ va20
             accg 3
-            attr 199
             fric 90
             aero 10
         endi

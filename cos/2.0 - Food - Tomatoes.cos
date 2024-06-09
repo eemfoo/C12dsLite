@@ -26,7 +26,13 @@ inst
 lock
 
 new: vhcl 2 4 6508 "c1plants" 1 23 100
-attr 735
+attr 729
+setv name "C1_to_DS_Lite_Clickable_Food" 1
+doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+	setv va88 attr
+	orrv va88 4
+	attr va88
+endi
 cabn -5 7 25 30
 accg 5
 fric 100
@@ -40,7 +46,7 @@ mesg wrt+ targ 1000 0 0 0
 doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6508 <= 1
 * 	Tomato plant
 	mvsf 1322 19045
-	attr 732
+	attr 724
 elif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
@@ -113,6 +119,13 @@ scrp 2 4 6508 1000
 			setv va00 posl
 			setv va01 post
 			new: simp 2 8 6501 "c1plants" 1 24 101
+			setv name "C1_to_DS_Lite_Clickable_Food" 1
+			attr 195
+			doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+				setv va88 attr
+				orrv va88 4
+				attr va88
+			endi
 			mira 1
 			addv va00 -4
 			addv va01 15
@@ -120,7 +133,6 @@ scrp 2 4 6508 1000
 			mvsf va00 va01
 			seta va20 targ
 			accg 0
-			attr 199
 			fric 100
 			elas 0
 			aero 100
@@ -144,7 +156,6 @@ scrp 2 4 6508 1000
 			accg 5
 			fric 100
 			aero 10
-			attr 199
 		endi
 	endi
 endm
@@ -153,10 +164,11 @@ endm
 scrp 2 8 6501 1
 *	Tomato clicked
 	inst
-	doif game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
 		setv va00 posl
 		setv va01 post
 		new: simp 2 8 6501 "c1plants" 1 24 101
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
 		mira 1
 		emit 6 .20
 		seta va20 targ
@@ -177,7 +189,12 @@ scrp 2 8 6501 4
 	inst
 	lock
 	mira rand 0 1
-	attr 199
+	attr 195
+	doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+		setv va88 attr
+		orrv va88 4
+		attr va88
+	endi
 	accg 3
 	fric 90
 	aero 10

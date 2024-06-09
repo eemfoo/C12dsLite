@@ -104,11 +104,12 @@ endi
 scrp 2 11 6501 1
 *	Cheese gets clicked
     inst
-    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
         setv ov88 mv88
         setv va00 posl
         setv va01 post
         new: simp 2 11 6501 "c1cheese" 3 0 200
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
         attr 199
         accg 5
         aero 10
@@ -144,7 +145,13 @@ endm
 * Cheese - Constructor
 scrp 2 11 6501 10
     * Set cheese properties
-    attr 199
+    setv name "C1_to_DS_Lite_Clickable_Food" 1
+    attr 195
+    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        setv va88 attr
+        orrv va88 4
+        attr va88
+    endi
     accg 5
     aero 10
     fric 100

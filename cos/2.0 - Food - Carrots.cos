@@ -22,6 +22,7 @@ reps 2
     setv va04 0
     reps 5
         new: simp 2 11 6500 "c1plants" 9 40 7001
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
         pose 6
         attr 3
         bhvr 48
@@ -52,6 +53,11 @@ scrp 2 11 6500 4
     endi
     setv mv00 1
     attr 195
+    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        setv va88 attr
+        orrv va88 4
+        attr va88
+    endi
     accg 3
     fric 90
     aero 10
@@ -302,6 +308,7 @@ scrp 1 1 6504 1000
         endi
 
         new: simp 2 11 6500 "c1plants" 9 40 7001
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
         pose 0
         attr 16
         bhvr 0

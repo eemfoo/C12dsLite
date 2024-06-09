@@ -28,7 +28,13 @@ inst
 lock
 
 new: vhcl 2 4 6507 "c1plants" 1 20 100
-attr 719
+attr 715
+setv name "C1_to_DS_Lite_Clickable_Food" 1
+doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    setv va88 attr
+    orrv va88 4
+    attr va88
+endi
 cabn 8 1 46 39
 accg 25
 fric 100
@@ -41,6 +47,18 @@ mesg wrt+ targ 1000 0 0 10
 
 doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6507 <= 1
     mvsf 4382 18879
+    setv va88 attr
+    setv va89 va88
+    andv va89 1
+    doif va89 ne 0
+        subv va88 1
+    endi
+    setv va89 va88
+    andv va89 2
+    doif va89 ne 0
+        subv va88 2
+    endi
+    attr va88
 
 elif type game "ds_game_type" ne 2
 * 		it's NOT a string, this must be C3 only
@@ -113,13 +131,13 @@ scrp 2 4 6507 1000
         setv va00 posl
         setv va01 post
         new: simp 2 25 6502 "c1plants" 2 21 101
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
         mira 1
         addv va00 9
         addv va01 9
         mvsf va00 va01
         seta va20 targ
         accg 0
-        attr 199
         fric 100
         elas 0
         aero 10
@@ -141,7 +159,12 @@ scrp 2 4 6507 1000
             pose 1
             velo rand -10 10 rand 1 5
         endi
-        attr 199
+        attr 195
+        doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+            setv va88 attr
+            orrv va88 4
+            attr va88
+        endi
         accg 5
     endi
 endm
@@ -149,10 +172,11 @@ endm
 scrp 2 25 6502 1
 *	Morning Glory clicked
     inst
-    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 25 6502 "c1plants" 2 21 101
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
         mira 1
         addv va00 9
         addv va01 9
@@ -193,7 +217,6 @@ scrp 2 25 6502 12
 endm
 
 rscr
-
 
 doif game "C1_to_DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"

@@ -54,13 +54,6 @@ doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 9 6500 <= 1
     setv va03 18983
     reps 4
         new: simp 2 9 6500 "C1HoochCups" 2 0 502
-        attr 199
-        elas 0
-        fric 100
-        aero 10
-        accg 5
-        bhvr 48
-        perm 60
         mvto va02 va03
         seta va50 targ
         addv va02 20
@@ -76,13 +69,6 @@ doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 9 6500 <= 1
 
 * make the hooch next to the still
     new: simp 2 9 6500 "C1HoochCups" 2 0 502
-    attr 199
-    elas 0
-    fric 100
-    aero 10
-    accg 5
-    perm 60
-    bhvr 48
     mvsf 948 19073
 
 * put hooch on top of any pianola
@@ -90,13 +76,6 @@ doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 9 6500 <= 1
         seta va51 targ
         new: simp 2 9 6500 "C1HoochCups" 2 0 502
         seta va50 targ
-        attr 199
-        elas 0
-        fric 100
-        aero 10
-        accg 5
-        bhvr 48
-        perm 60
         rnge 300
         setv ov62 1
         targ va51
@@ -150,7 +129,7 @@ scrp 2 9 6500 1
         stop
     endi
 
-    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 9 6500 "C1HoochCups" 2 0 502
@@ -176,7 +155,12 @@ scrp 2 9 6500 5
     doif va20 > 0
         pose 0
         bhvr 48
-        attr 199
+        attr 195
+        doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+            setv va88 attr
+            orrv va88 4
+            attr va88
+        endi
     endi
 endm
 
@@ -190,13 +174,34 @@ scrp 2 9 6500 6
     doif va20 > 0
         pose 0
         bhvr 48
-        attr 199
+        attr 195
+        doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+            setv va88 attr
+            orrv va88 4
+            attr va88
+        endi
     endi
 endm
 
 scrp 2 9 6500 9
     inst
     kill targ
+endm
+
+scrp 2 9 6500 10
+    setv name "C1_to_DS_Lite_Clickable_Food" 1
+    attr 195
+    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        setv va88 attr
+        orrv va88 4
+        attr va88
+    endi
+    elas 0
+    fric 100
+    aero 10
+    accg 5
+    bhvr 48
+    perm 60
 endm
 
 scrp 2 9 6500 12
@@ -218,7 +223,12 @@ scrp 2 9 6500 12
     targ ownr
     mesg writ ownr 5
     bhvr 0
-    attr 215
+    attr 211
+    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        setv va88 attr
+        orrv va88 4
+        attr va88
+    endi
     tick rand 19 73
     slow
     unlk
@@ -248,7 +258,12 @@ scrp 2 23 6500 1
     addv va00 45
     addv va01 70
     new: simp 2 9 6500 "c1hoochcups" 2 0 502
-    attr 199
+    attr 195
+    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        setv va88 attr
+        orrv va88 4
+        attr va88
+    endi
     elas 0
     fric 100
     aero 10
@@ -309,10 +324,15 @@ endm
 
 scrp 2 23 6500 124
     epas 0 0 0
-        doif gnus eq 2 and fmly eq 9
+        doif fmly eq 2 and gnus eq 9 and spcs eq 6500
             pose 0
             bhvr 48
-            attr 199
+            attr 195
+            doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+                setv va88 attr
+                orrv va88 4
+                attr va88
+            endi
             rpas ownr targ
         else
             rpas ownr targ

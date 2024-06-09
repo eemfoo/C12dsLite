@@ -25,8 +25,14 @@ inst
 lock
 
 new: vhcl 2 4 6505 "c1plants" 1 28 7001
+setv name "C1_to_DS_Lite_Clickable_Food" 1
 cabn 28 10 66 48
-attr 735
+attr 731
+doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+	setv va88 attr
+	orrv va88 4
+	attr va88
+endi
 accg 5
 fric 100
 aero 10
@@ -38,7 +44,18 @@ mesg wrt+ targ 1000 0 0 10
 
 doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6505 <= 1
 	mvsf 3673 18882
-
+	setv va88 attr
+	setv va89 va88
+	andv va89 1
+	doif va89 ne 0
+		subv va88 1
+	endi
+	setv va89 va88
+	andv va89 2
+	doif va89 ne 0
+		subv va88 2
+	endi
+	attr va88
 elif type game "ds_game_type" ne 2
 * 		it's NOT a string, this must be C3 only
 * 		choose a safe C3 location
@@ -116,6 +133,7 @@ scrp 2 4 6505 1000
 		setv va00 posl
 		setv va01 post
 		new: simp 2 25 6504 "c1plants" 2 29 7001
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
 		puhl 0 18 18
 		puhl 1 18 18
 		addv va00 30
@@ -123,12 +141,17 @@ scrp 2 4 6505 1000
 		mvsf va00 va01
 		seta va20 targ
 		accg 0
-		attr 199
 		fric 100
 		elas 0
 		aero 100
 		bhvr 48
 		perm 60
+		attr 195
+		doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+			setv va88 attr
+			orrv va88 4
+			attr va88
+		endi
 		targ ownr
 		doif _p1_ <> 1
 			setv va52 0
@@ -145,7 +168,6 @@ scrp 2 4 6505 1000
 			pose 1
 			velo rand -10 10 rand 1 5
 		endi
-		attr 199
 		accg 3
 		fric 100
 		aero 10
@@ -155,10 +177,11 @@ endm
 scrp 2 25 6504 1
 *	Gentian clicked
 	inst
-	doif game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
 		setv va00 posl
 		setv va01 post
 		new: simp 2 25 6504 "c1plants" 2 29 7001
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
 		puhl 0 18 18
 		puhl 1 18 18
 		elas 0

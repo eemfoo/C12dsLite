@@ -1,0 +1,69 @@
+* 1 1 6509 - Cheat Controller
+
+new: simp 1 1 6509 "blnk" 1 0 0
+attr 16
+bhvr 0
+
+* ========================== *
+* ===== Clickable Food ===== *
+* ========================== *
+
+* Toggle Clickable Food
+scrp 1 1 6509 1000
+	inst
+	setv va00 1001
+	addv va00 game "C1_to_DS_Lite_Clickable_Food"
+	call va00 0 0
+endm
+
+* Set clickable food to true
+scrp 1 1 6509 1001
+	inst
+
+	setv game "C1_to_DS_Lite_Clickable_Food" 1
+
+	enum 2 0 0
+		doif name "C1_to_DS_Lite_Clickable_Food" eq 1
+			gsub make_clickable
+		endi
+	next
+
+	subr make_clickable
+		setv va00 attr
+		orrv va00 4
+		attr va00
+	retn
+endm
+
+* Set clickable food to true
+scrp 1 1 6509 1002
+	inst
+	setv game "C1_to_DS_Lite_Clickable_Food" 0
+
+	enum 2 0 0
+		doif name "C1_to_DS_Lite_Clickable_Food" eq 1
+			gsub remove_clickable
+		endi
+	next
+
+	subr remove_clickable
+		setv va00 attr
+		andv va00 4
+		doif va00 ne 0
+			setv va00 attr
+			subv va00 4
+			attr va00
+		endi
+	retn
+
+endm
+
+rscr
+enum 1 1 6509
+	kill targ
+next
+
+* Clickable Food
+scrx 1 1 6509 1000
+scrx 1 1 6509 1001
+scrx 1 1 6509 1001

@@ -38,7 +38,6 @@ lock
 setv game "C1_Bee_frat" 1.6
 setv game "C1_Bee_Total" 4
 
-
 doif game "C1_to_DS_Lite_Installing" = 0 or totl 2 17 6500 > 1
 *	just inject one
     new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
@@ -149,79 +148,30 @@ else
 
 * make some honey under middle hive
     new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    attr 199
-    elas 0
-    fric 100
-    aero 10
-    accg 5
-    bhvr 48
-    perm 60
-    emit 8 0.5
     mvsf 1297 18567
-    setv ov62 1
-    setv ov99 5
 
 * make some honey to left of hives
     new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    attr 199
-    elas 0
-    fric 100
-    aero 10
-    accg 5
-    bhvr 48
-    perm 60
-    emit 8 0.5
+    setv name "C1_to_DS_Lite_Clickable_Food" 1
     mvsf 1245 18567
-    setv ov62 1
-    setv ov99 5
 
 * make some honey on kitchen table
     new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    attr 199
-    elas 0
-    fric 100
-    aero 10
-    accg 5
-    bhvr 48
-    perm 60
-    emit 8 0.5
     mvsf 1949 18844
-    setv ov62 1
-    setv ov99 5
     etch 1 7 32332
         gpas 2 11 6505 0
     next
 
 * make some honey on greenhouse shelf
     new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    attr 199
-    elas 0
-    fric 100
-    aero 10
-    accg 5
-    bhvr 48
-    perm 60
-    emit 8 0.5
     mvsf 2885 18872
-    setv ov62 1
-    setv ov99 5
     etch 1 7 32332
         gpas 2 11 6505 0
     next
 
 * make some honey in treehouse
     new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    attr 199
-    elas 0
-    fric 100
-    aero 10
-    accg 5
-    bhvr 48
-    perm 60
-    emit 8 0.5
     mvsf 3630 18495
-    setv ov62 1
-    setv ov99 5
     etch 1 7 32332
         gpas 2 11 6505 0
     next
@@ -239,19 +189,10 @@ scrp 2 11 6505 1
         stop
     endi
 
-    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-        attr 199
-        elas 0
-        fric 100
-        aero 10
-        accg 5
-        bhvr 48
-        perm 60
-        emit 8 0.5
-        setv ov99 5
         mvsf va00 va01
         velo rand -15 15 rand -15 -5
     endi
@@ -314,6 +255,28 @@ endm
 scrp 2 11 6505 9
     inst
     kill ownr
+endm
+
+scrp 2 11 6505 10
+    setv name "C1_to_DS_Lite_Clickable_Food" 1
+
+    * Set attribute, making clickable if needed
+    attr 195
+    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        setv va00 attr
+        orrv va00 4
+        attr va00
+    endi
+
+    elas 0
+    fric 100
+    aero 10
+    accg 5
+    bhvr 48
+    perm 60
+    emit 8 0.5
+    setv ov62 1
+    setv ov99 5
 endm
 
 scrp 2 11 6505 12
@@ -511,21 +474,11 @@ scrp 2 17 6500 1
         endi
     next
     doif va20 < 5
-
         setv va00 posl
         setv va01 post
         addv va00 45
         addv va01 70
         new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-        attr 199
-        elas 0
-        fric 100
-        aero 10
-        accg 5
-        bhvr 48
-        perm 60
-        pose 0
-        emit 8 0.5
         setv ov99 5
         mvsf va00 va01
         velo rand -10 10 rand -5 -2
@@ -612,7 +565,6 @@ scrp 2 17 6500 1004
     targ from
     setv ov23 va20
 endm
-
 
 ***************************************
 * Remover

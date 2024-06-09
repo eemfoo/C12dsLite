@@ -25,9 +25,8 @@
 inst
 lock
 
-* 	Lemon trellis
+* Lemon trellis
 new: vhcl 2 4 6500 "c1plants" 1 49 100
-attr 711
 tick 200
 fric 100
 aero 100
@@ -45,7 +44,7 @@ doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6500 <= 1
 * 	C1 to DS Injection Location Script
 * 	have to make verify that game_type variable is a string value
 elif type game "ds_game_type" ne 2
-    attr 215
+    attr 723
 * 	it's NOT a string, this must be C3 only
 * 	choose a safe C3 location
     setv va00 5440
@@ -53,7 +52,7 @@ elif type game "ds_game_type" ne 2
     velo rand 30 40 -5
     mvsf va00 va01
 else
-    attr 215
+    attr 723
 * 	it IS a string, but what is the value?
     doif game "ds_game_type" eq "undocked"
 * 		this is an undocked world, location needs to be DS safe
@@ -130,10 +129,16 @@ scrp 2 4 6500 9
                     cabp 0
                     cabw 1
                     cabn -10 -25 34 4
+                    attr 715
+                    setv name "C1_to_DS_Lite_Clickable_Food" 1
+                    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+                        setv va88 attr
+                        orrv va88 4
+                        attr va88
+                    endi
                     pose 2
                     mira rand 0 1
                     accg 5
-                    attr 719
                     fric 100
                     elas 0
                     aero 100
@@ -195,7 +200,7 @@ scrp 2 8 6500 1
 *	Lemon clicked
     inst
     lock
-    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
 
         * Create new lemon
         setv va00 posl
@@ -211,6 +216,7 @@ scrp 2 8 6500 1
             cabn -10 -25 34 4
             attr 719
         endi
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
         setv ov00 1
         pose 2
         mira rand 0 1
@@ -232,11 +238,19 @@ scrp 2 8 6500 4
     inst
     lock
     setv mv00 1
+
     doif type ownr = 6
-        attr 719
+        attr 715
     else
-        attr 199
+        attr 195
     endi
+
+    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        setv va00 attr
+        orrv va00 4
+        attr va00
+    endi
+
     mira rand 0 1
     accg 3
     fric 90

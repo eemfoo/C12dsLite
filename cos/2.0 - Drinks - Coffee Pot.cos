@@ -26,7 +26,13 @@
 **************************
 * Installers
 new: simp 2 25 6500 "c1coffeepot" 2 0 200
-attr 199
+attr 195
+setv name "C1_to_DS_Lite_Clickable_Food" 1
+doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    setv va88 attr
+    orrv va88 4
+    attr va88
+endi
 pose 1
 bhvr 48
 elas 1
@@ -65,7 +71,6 @@ else
         velo rand 30 40 -5
         mvsf va00 va01
     endi
-
 endi
 **************************
 * Scripts
@@ -77,7 +82,7 @@ scrp 2 25 6500 1
         kill ownr
         stop
     endi
-    doif game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 25 6500 "c1coffeepot" 2 0 200
