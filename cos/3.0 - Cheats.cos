@@ -58,6 +58,30 @@ scrp 1 1 6509 1002
 
 endm
 
+* Toggle Stackable lemons
+scrp 1 1 6509 1010
+	inst
+	setv va00 1011
+	addv va00 game "C1_to_DS_Lite_Stackable_Lemons"
+	call va00 0 0
+endm
+
+* Enable Stackable lemons
+scrp 1 1 6509 1011
+	setv game "C1_to_DS_Lite_Stackable_Lemons" 1
+	enum 2 8 6500
+		cabw 0
+	next
+endm
+
+* Disable Stackable Lemons
+scrp 1 1 6509 1012
+	enum 2 8 6500
+		cabw 1
+		dpas 0 0 0
+	next
+endm
+
 rscr
 enum 1 1 6509
 	kill targ
@@ -67,3 +91,8 @@ next
 scrx 1 1 6509 1000
 scrx 1 1 6509 1001
 scrx 1 1 6509 1001
+
+* Stackable Lemons
+scrx 1 1 6509 1010
+scrx 1 1 6509 1011
+scrx 1 1 6509 1012
