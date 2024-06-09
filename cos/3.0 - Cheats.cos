@@ -20,6 +20,11 @@ endm
 scrp 1 1 6509 1001
 	inst
 
+	* Do not run if already set
+	doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+		stop
+	endi
+
 	setv game "C1_to_DS_Lite_Clickable_Food" 1
 
 	enum 2 0 0
@@ -38,6 +43,12 @@ endm
 * Set clickable food to true
 scrp 1 1 6509 1002
 	inst
+
+	* Do not run if already set
+	doif game "C1_to_DS_Lite_Clickable_Food" eq 0
+		stop
+	endi
+
 	setv game "C1_to_DS_Lite_Clickable_Food" 0
 
 	enum 2 0 0
@@ -68,6 +79,12 @@ endm
 
 * Enable Stackable lemons
 scrp 1 1 6509 1011
+
+	* Do not run if already set
+	doif game "C1_to_DS_Lite_Stackable_Lemons" eq 1
+		stop
+	endi
+
 	setv game "C1_to_DS_Lite_Stackable_Lemons" 1
 	enum 2 8 6500
 		cabw 0
@@ -76,6 +93,11 @@ endm
 
 * Disable Stackable Lemons
 scrp 1 1 6509 1012
+
+	* Do not run if already set
+	doif game "C1_to_DS_Lite_Stackable_Lemons" eq 0
+		stop
+	endi
 
 	setv game "C1_to_DS_Lite_Stackable_Lemons" 0
 
