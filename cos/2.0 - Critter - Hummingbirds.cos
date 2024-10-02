@@ -5,6 +5,7 @@
 *  2 15 6500 - Flying Birds
 *  1 1 6502 - Hummingbirds
 *  1 1 6503 - NestingBird
+*  1 1 6510 - Bird Manager
 *
 * Dependencies:
 *  c1birds.c16
@@ -15,561 +16,655 @@
 inst
 lock
 
-doif game "C1_to_DS_Lite_Installing" = 1
-
-* Flying Birds
-    reps 6
-        new: simp 2 15 6500 "c1birds" 11 0 7001
-        attr 199
-        accg 0
-        aero 10
-        fric 100
-        bhvr 59
-        elas 100
-        perm 40
-        tick 20
-        aero 0
-        anim [0 1 2 3 2 1 255]
-        setv va99 1
-        setv va00 2734
-        setv va01 18680
-        addv va01 rand -100 100
-        addv va00 rand -200 200
-        mvsf va00 va01
-        velo rand -6 6 rand -6 6
-    repe
-
-* Hummingbirds
-    reps 3
-        new: simp 1 1 6502 "c1birds" 11 0 7001
-        attr 215
-        accg 0
-        aero 10
-        fric 0
-        bhvr 0
-        elas 100
-        perm 1
-        tick 10
-        anim [4 5 6 5 255]
-        setv va99 1
-        setv ov00 2130
-        setv ov01 18300
-        setv ov02 2520
-        setv ov03 18530
-        setv ov04 ov00
-        subv ov04 10
-        setv ov05 ov01
-        subv ov05 10
-        setv ov06 ov02
-        addv ov06 10
-        setv ov07 ov03
-        addv ov07 10
-        setv ov20 ov02
-        subv ov20 ov00
-        divv ov20 2
-        addv ov20 ov00
-        setv ov21 ov03
-        subv ov21 ov01
-        divv ov21 2
-        addv ov21 ov01
-        subv ov20 20
-        subv ov21 18
-        mvsf ov20 ov21
-        velo rand -2 2 rand -2 2
-    repe
-
-* Nesting Bird
-    new: simp 1 1 6503 "c1birds" 11 0 7001
-    attr 215
-    accg 0
-    aero 10
-    fric 100
-    bhvr 0
-    elas 10
-    perm 1
-    tick 5
-    pose 7
-    setv va99 1
-    setv ov00 3797
-    setv ov01 18576
-    setv ov02 3861
-    setv ov03 18632
-
-    setv ov04 3787
-    setv ov05 18566
-    setv ov06 3871
-    setv ov07 18642
-
-    setv ov20 ov02
-    subv ov20 ov00
-    divv ov20 2
-    addv ov20 ov00
-    setv ov21 ov03
-    subv ov21 ov01
-    divv ov21 2
-    addv ov21 ov01
-    subv ov20 20
-    subv ov21 18
-    mvsf ov20 ov21
+doif game "C1_to_DS_Lite_Installing" = 1 or 1 eq 1
+	new: simp 1 1 6510 "blnk" 1 0 0
+	tick 1
 endi
 
 *******************************
 * Scripts
 
 scrp 2 15 6500 1
-    stpc
-    sndc "c1b1"
-    stim writ from 86 1.0
+	stpc
+	sndc "c1b1"
+	stim writ from 86 1.0
 endm
 
 scrp 2 15 6500 2
-    stpc
-    sndc "c1b1"
-    stim writ from 86 1.0
+	stpc
+	sndc "c1b1"
+	stim writ from 86 1.0
 endm
 
 scrp 1 1 6502 1
-    stpc
-    sndc "c1b2"
-    stim writ from 86 1.0
+	stpc
+	sndc "c1b2"
+	stim writ from 86 1.0
 endm
 
 scrp 1 1 6503 1
-    stpc
-    sndc "c1b3"
-    stim writ from 86 1.0
+	stpc
+	sndc "c1b3"
+	stim writ from 86 1.0
 endm
 
 scrp 2 15 6500 3
-    stpc
-    sndc "c1b1"
-    stim writ from 87 1.0
+	stpc
+	sndc "c1b1"
+	stim writ from 87 1.0
 endm
 
 scrp 2 15 6500 4
 *	flying bird picked up
-    inst
-    accg 0
-    doif velx > 0
-        mira 0
-    elif velx < 0
-        mira 1
-    endi
-    doif pose <> 7
-        pose 7
-    endi
+	inst
+	accg 0
+	doif velx > 0
+		mira 0
+	elif velx < 0
+		mira 1
+	endi
+	doif pose <> 7
+		pose 7
+	endi
 endm
 
 scrp 2 15 6500 5
 *	flying bird dropped
-    inst
-    doif velx > 0
-        mira 0
-    elif velx < 0
-        mira 1
-    endi
-    doif movs = 0 and pose = 7
-        anim [0 1 2 3 2 1 255]
-    endi
+	inst
+	doif velx > 0
+		mira 0
+	elif velx < 0
+		mira 1
+	endi
+	doif movs = 0 and pose = 7
+		anim [0 1 2 3 2 1 255]
+	endi
 endm
 
 scrp 2 15 6500 6
 *	flying bird collides
-    inst
-    doif velx > 0
-        mira 0
-    elif velx < 0
-        mira 1
-    endi
-    doif wall = down
-        accg 2
-        elas 0
-        pose 8
-        tick 0
-        wait rand 20 40
-        inst
-        tick 20
-        mesg writ ownr 9
-    endi
-    doif wall = _up_
-        setv va01 vely
-        mulv vely -1
-        velo velx va01
-        mesg writ ownr 9
-    endi
+	inst
+	doif velx > 0
+		mira 0
+	elif velx < 0
+		mira 1
+	endi
+	doif wall = down
+		accg 2
+		elas 0
+		pose 8
+		tick 0
+		wait rand 20 40
+		inst
+		tick 20
+		mesg writ ownr 9
+	endi
+	doif wall = _up_
+		setv va01 vely
+		mulv vely -1
+		velo velx va01
+		mesg writ ownr 9
+	endi
 endm
 
 scrp 2 15 6500 9
 *	Flying birds timer
-    inst
-    lock
-    setv va12 rand 1 100
-    doif va12 > 97
-        sndc "c1b1"
-    endi
-    doif pose >= 8
+	inst
+	doif totl 1 1 6510 eq 0
+		new: simp 1 1 6510 "blnk" 1 0 0
+	endi
+	lock
+	setv va12 rand 1 100
+	doif va12 > 97
+		sndc "c1b1"
+	endi
+	doif pose >= 8
 *		bird is resting
-        setv va20 rand 0 8
-        doif va20 = 0
+		setv va20 rand 0 8
+		doif va20 = 0
 *			look the same
-        elif va20 = 1
+		elif va20 = 1
 *			peck at something once
-            anim [8 9 8]
-        elif va20 = 2
+			anim [8 9 8]
+		elif va20 = 2
 *			flutter wings
-            anim [10 8 8 10 8 8 8 10 8 10 8]
-        elif va20 = 3
+			anim [10 8 8 10 8 8 8 10 8 10 8]
+		elif va20 = 3
 *			peck a bit more
-            anim [8 9 8 8 8 8 8 9 8]
-        elif va20 = 4
+			anim [8 9 8 8 8 8 8 9 8]
+		elif va20 = 4
 *			turn around
-            doif mira = 0
-                mira 1
-            else
-                mira 0
-            endi
-        elif va20 = 5
+			doif mira = 0
+				mira 1
+			else
+				mira 0
+			endi
+		elif va20 = 5
 *			hop
-            anim [10 10 10 10 8]
-            setv va21 rand 0 1
-            doif va21 = 0
-                velo rand -6 -4 rand -6 -4
-            else
-                velo rand 4 6 rand -6 -4
-            endi
-        elif va20 > 5
+			anim [10 10 10 10 8]
+			setv va21 rand 0 1
+			doif va21 = 0
+				velo rand -6 -4 rand -6 -4
+			else
+				velo rand 4 6 rand -6 -4
+			endi
+		elif va20 > 5
 *			fly away
-            accg 0
-            elas 100
-            anim [0 1 2 3 2 1 255]
-            mesg writ ownr 9
-        endi
-    elif movs = 0 and pose < 8
-        doif rtyp grap posl posb = -1 or rtyp grap posl posb = 8 or rtyp grap posl posb = 9
-            velo 6 -6
-        elif rtyp grap posr posb = -1 or rtyp grap posr posb = 8 or rtyp grap posr posb = 9
-            velo -6 -6
-        elif rtyp grap posl post = -1 or rtyp grap posl post = 8 or rtyp grap posl post = 9
-            velo 6 6
-        elif rtyp grap posr post = -1 or rtyp grap posr post = 8 or rtyp grap posr post = 9
-            velo -6 -6
-        endi
-        setv va20 rtyp grap posl post
-        doif va20 <> 8 and va20 <> 9 and va20 <> -1
-            doif accg < 0
-                accg 0
-                elas 100
-                velo 0 0
-            endi
-            setv va00 velx
-            setv va01 vely
+			accg 0
+			elas 100
+			anim [0 1 2 3 2 1 255]
+			unlk
+			mesg writ ownr 9
+		endi
+	elif movs = 0 and pose < 8
+		doif rtyp grap posl posb = -1 or rtyp grap posl posb = 8 or rtyp grap posl posb = 9
+			velo 6 -6
+		elif rtyp grap posr posb = -1 or rtyp grap posr posb = 8 or rtyp grap posr posb = 9
+			velo -6 -6
+		elif rtyp grap posl post = -1 or rtyp grap posl post = 8 or rtyp grap posl post = 9
+			velo 6 6
+		elif rtyp grap posr post = -1 or rtyp grap posr post = 8 or rtyp grap posr post = 9
+			velo -6 -6
+		endi
+		setv va20 rtyp grap posl post
+		doif va20 <> 8 and va20 <> 9 and va20 <> -1
+			doif accg < 0
+				accg 0
+				elas 100
+				velo 0 0
+			endi
+			setv va00 velx
+			setv va01 vely
 
 *			Slightly modify velocity to appear more random
-            doif rand 1 100 > 50
-                addv va00 rand -2 2
-                addv va01 rand -2 2
-                velo va00 va01
-            endi
+			doif rand 1 100 > 50
+				addv va00 rand -2 2
+				addv va01 rand -2 2
+				velo va00 va01
+			endi
 
 *			Speed damping
-            doif velx > 6 or velx < -6 or vely > 6 or vely < -6
-                setv va00 velx
-                setv va01 vely
-                mulv va00 .75
-                mulv va01 .75
-                velo va00 va01
-            endi
+			doif velx > 6 or velx < -6 or vely > 6 or vely < -6
+				setv va00 velx
+				setv va01 vely
+				mulv va00 .75
+				mulv va01 .75
+				velo va00 va01
+			endi
 
-            doif velx > -2 and velx < 2 and vely > -2 and vely < 2 and movs = 0
+			doif velx > -2 and velx < 2 and vely > -2 and vely < 2 and movs = 0
 *				not moving much - move more!
-                setv ov10 rand 0 1
-                doif ov10 = 0
-                    setv ov10 rand -6 -4
-                else
-                    setv ov10 rand 4 6
-                endi
-                setv ov11 rand 0 1
-                doif ov11 = 0
-                    setv ov11 rand -3 1
-                else
-                    setv ov11 rand 1 3
-                endi
-                velo ov10 ov11
-            endi
+				setv ov10 rand 0 1
+				doif ov10 = 0
+					setv ov10 rand -6 -4
+				else
+					setv ov10 rand 4 6
+				endi
+				setv ov11 rand 0 1
+				doif ov11 = 0
+					setv ov11 rand -3 1
+				else
+					setv ov11 rand 1 3
+				endi
+				velo ov10 ov11
+			endi
 
-        else
+		else
 *			in water - let's get out of it!
-            setv ov10 rand -6 6
-            setv ov11 rand -6 6
-            divv ov11 2
-            velo ov10 ov11
-            accg -6
-            elas 0
-            wait 10
-            elas 100
-            accg 0
-            setv ov10 rand -6 6
-            setv ov11 rand -6 6
-            divv ov11 2
-            velo ov10 ov11
-        endi
-    endi
-    slow
-    unlk
-    doif velx > 0
-        mira 0
-    elif velx < 0
-        mira 1
-    endi
+			setv ov10 rand -6 6
+			setv ov11 rand -6 6
+			divv ov11 2
+			velo ov10 ov11
+			accg -6
+			elas 0
+			wait 10
+			elas 100
+			accg 0
+			setv ov10 rand -6 6
+			setv ov11 rand -6 6
+			divv ov11 2
+			velo ov10 ov11
+		endi
+	endi
+	unlk
+	mesg writ ownr 1001
+	slow
+	doif velx > 0
+		mira 0
+	elif velx < 0
+		mira 1
+	endi
+endm
+
+scrp 2 15 6500 10
+	inst
+	attr 199
+	accg 0
+	aero 10
+	fric 100
+	bhvr 59
+	elas 100
+	perm 40
+	tick 20
+	aero 0
+	anim [0 1 2 3 2 1 255]
+	setv va80 0
+	loop
+		setv va00 2734
+		setv va01 18680
+		addv va01 rand -100 100
+		addv va00 rand -200 200
+		addv va80 1
+	untl tmvt va00 va01 eq 1 or va80 ge 200
+	mvsf va00 va01
+	velo rand -6 6 rand -6 6
+	mesg writ ownr 1001
 endm
 
 scrp 2 15 6500 12
 *	Flying birds eaten
-    inst
-    snde "chwp"
-    stim writ from 80 1.0
-    mesg writ ownr 5
-    slow
-    wait 1
-    gsub respawn
-    subr respawn
-        targ ownr
-        tick 20
-        anim [0 1 2 3 2 1 255]
-        setv va99 1
-        setv va00 2734
-        setv va01 18680
-        addv va01 rand -100 100
-        addv va00 rand -200 200
-        mvsf va00 va01
-        velo rand -6 6 rand -6 6
-    retn
+	inst
+	snde "chwp"
+	stim writ from 80 1.0
+	mesg writ ownr 5
+	slow
+	wait 1
+	gsub respawn
+	subr respawn
+		targ ownr
+		tick 20
+		anim [0 1 2 3 2 1 255]
+		setv va00 2734
+		setv va01 18680
+		addv va01 rand -100 100
+		addv va00 rand -200 200
+		mvsf va00 va01
+		velo rand -6 6 rand -6 6
+		mesg writ ownr 1001
+	retn
+endm
+
+scrp 2 15 6500 1001
+	inst
+	lock
+
+*	sets va99 "Hummingbirds."
+*	adds va99  vtos mv80
+*	adds va99 ".txt"
+*	file oope 1 va99  1
+	setv va00 perm
+	setv va01 plne
+*	outs "Bird[" outv ov80 outs "]\n"
+	doif vely lt 0
+*		outs "Flying downward\n"
+		doif posx gt 4430
+*			outs "Too far right\n"
+			stop
+		endi
+		doif posy lt 18380
+			outs "Set plane and perm\n"
+*			doif rand 0 100 ne 0
+			setv va00 41
+			setv va01 6998
+*			endi
+		elif posy lt 18530
+			outs "In bridge ropes, do nothing\n"
+			stop
+		else
+			outs "Below bridge\n"
+			stop
+		endi
+	else
+*		outs "Not flying downward\n"
+		setv va00 40
+		setv va01 7001
+	endi
+
+	doif perm ne va00
+		perm va00
+		plne va01
+	endi
 endm
 
 scrp 1 1 6502 9
 *	Hummingbird timer
-    inst
-    lock
-    setv va12 rand 1 100
-    doif va12 > 97
-        sndc "c1b2"
-    endi
-    doif movs = 0
+	inst
+	doif totl 1 1 6510 eq 0
+		new: simp 1 1 6510 "blnk" 1 0 0
+	endi
+	lock
+	setv va12 rand 1 100
+	doif va12 > 97
+		sndc "c1b2"
+	endi
+	doif movs = 0
 
-        setv va60 rand 1 100
-        doif va60 > 80
-            setv va61 rand -6 6
-            divv va61 2
-            setv va62 rand -6 6
-            divv va62 2
-            velo va61 va62
-        endi
-        doif velx > 0
-            mira 0
-        elif velx < 0
-            mira 1
-        endi
+		setv va60 rand 1 100
+		doif va60 > 80
+			setv va61 rand -6 6
+			divv va61 2
+			setv va62 rand -6 6
+			divv va62 2
+			velo va61 va62
+		endi
+		doif velx > 0
+			mira 0
+		elif velx < 0
+			mira 1
+		endi
 
-        doif posl < ov00 or posr > ov02 or post < ov01 or posb > ov03
-            doif velx > 0
-                mira 0
-            elif velx < 0
-                mira 1
-            endi
-            doif rtyp grap posl posb = -1 or rtyp grap posl posb = 8 or rtyp grap posl posb = 9
-                velo 6 -6
-            elif rtyp grap posr posb = -1 or rtyp grap posr posb = 8 or rtyp grap posr posb = 9
-                velo -6 -6
-            elif rtyp grap posl post = -1 or rtyp grap posl post = 8 or rtyp grap posl post = 9
-                velo 6 6
-            elif rtyp grap posr post = -1 or rtyp grap posr post = 8 or rtyp grap posr post = 9
-                velo -6 -6
-            endi
-            setv va20 rtyp grap posl post
-            doif va20 <> 8 and va20 <> 9 and va20 <> -1
-                doif accg < 0
-                    accg 0
-                    aero 10
-                    elas 100
-                    velo 0 0
-                endi
-                doif posl < ov04 and posr < ov06
-                    setv ov10 6
-                elif posl < ov00 and posr < ov02
+		doif posl < ov00 or posr > ov02 or post < ov01 or posb > ov03
+			doif velx > 0
+				mira 0
+			elif velx < 0
+				mira 1
+			endi
+			doif rtyp grap posl posb = -1 or rtyp grap posl posb = 8 or rtyp grap posl posb = 9
+				velo 6 -6
+			elif rtyp grap posr posb = -1 or rtyp grap posr posb = 8 or rtyp grap posr posb = 9
+				velo -6 -6
+			elif rtyp grap posl post = -1 or rtyp grap posl post = 8 or rtyp grap posl post = 9
+				velo 6 6
+			elif rtyp grap posr post = -1 or rtyp grap posr post = 8 or rtyp grap posr post = 9
+				velo -6 -6
+			endi
+			setv va20 rtyp grap posl post
+			doif va20 <> 8 and va20 <> 9 and va20 <> -1
+				doif accg < 0
+					accg 0
+					aero 10
+					elas 100
+					velo 0 0
+				endi
+				doif posl < ov04 and posr < ov06
+					setv ov10 6
+				elif posl < ov00 and posr < ov02
 *					mvsf ov20 post
-                    setv ov10 6
-                    divv ov10 2
-                elif posl >= ov00 and posr <= ov02
-                    setv ov10 0
-                endi
-                doif posl > ov04 and posr > ov06
-                    setv ov10 -6
-                elif posl > ov00 and posr > ov02
+					setv ov10 6
+					divv ov10 2
+				elif posl >= ov00 and posr <= ov02
+					setv ov10 0
+				endi
+				doif posl > ov04 and posr > ov06
+					setv ov10 -6
+				elif posl > ov00 and posr > ov02
 *					mvsf ov20 post
-                    setv ov10 -6
-                    divv ov10 2
-                elif posl >= ov00 and posr <= ov02
-                    setv ov10 0
-                endi
-                doif post < ov05 and posb < ov07
-                    setv ov11 6
-                elif post < ov01 and posb < ov03
+					setv ov10 -6
+					divv ov10 2
+				elif posl >= ov00 and posr <= ov02
+					setv ov10 0
+				endi
+				doif post < ov05 and posb < ov07
+					setv ov11 6
+				elif post < ov01 and posb < ov03
 *					mvsf posl ov21
-                    setv ov11 6
-                    divv ov11 2
-                elif post >= ov01 and posb <= ov03
-                    setv ov11 0
-                endi
-                doif post > ov05 and posb > ov07
-                    setv ov11 -6
-                elif post > ov01 and posb > ov03
+					setv ov11 6
+					divv ov11 2
+				elif post >= ov01 and posb <= ov03
+					setv ov11 0
+				endi
+				doif post > ov05 and posb > ov07
+					setv ov11 -6
+				elif post > ov01 and posb > ov03
 *					mvsf posl ov21
-                    setv ov11 -6
-                    divv ov11 2
-                elif post >= ov01 and posb <= ov03
-                    setv ov11 0
-                endi
-                velo ov10 ov11
-            else
-                setv ov10 rand -6 6
-                setv ov11 rand -6 6
-                velo ov10 ov11
-                accg -6
-                aero 0
-                elas 0
-            endi
-        endi
-    endi
-    slow
-    unlk
-    doif movs = 0
-        doif velx <> 0 or vely <> 0 and pose = 7
-            anim [4 5 6 5 255]
-        endi
-    elif movs = 4 or movs = 3 and pose <> 7
-        pose 7
-    elif pose <> 7
-        pose 7
-    endi
+					setv ov11 -6
+					divv ov11 2
+				elif post >= ov01 and posb <= ov03
+					setv ov11 0
+				endi
+				velo ov10 ov11
+			else
+				setv ov10 rand -6 6
+				setv ov11 rand -6 6
+				velo ov10 ov11
+				accg -6
+				aero 0
+				elas 0
+			endi
+		endi
+	endi
+
+	slow
+	unlk
+	doif movs = 0
+		doif velx <> 0 or vely <> 0 and pose = 7
+			anim [4 5 6 5 255]
+		endi
+	elif movs = 4 or movs = 3 and pose <> 7
+		pose 7
+	elif pose <> 7
+		pose 7
+	endi
 endm
 
 scrp 1 1 6503 9
 *	Nesting bird timer
-    inst
-    lock
-    setv va12 rand 1 100
-    doif va12 > 95
-        sndc "c1b3"
-    endi
-    doif movs = 0
-        doif posl < ov00 or posr > ov02 or post < ov01 or posb > ov03
-            doif velx > 0
-                mira 0
-            elif velx < 0
-                mira 1
-            endi
-            doif rtyp grap posl posb = -1 or rtyp grap posl posb = 8 or rtyp grap posl posb = 9
-                velo 6 -6
-            elif rtyp grap posr posb = -1 or rtyp grap posr posb = 8 or rtyp grap posr posb = 9
-                velo -6 -6
-            elif rtyp grap posl post = -1 or rtyp grap posl post = 8 or rtyp grap posl post = 9
-                velo 6 6
-            elif rtyp grap posr post = -1 or rtyp grap posr post = 8 or rtyp grap posr post = 9
-                velo -6 -6
-            endi
-            setv va20 rtyp grap posl post
-            doif va20 <> 8 and va20 <> 9 and va20 <> -1
-                doif accg < 0
-                    accg 0
-                    aero 10
-                    elas 100
-                    velo 0 0
-                endi
-                doif posl < ov04 and posr < ov06
-                    setv ov10 6
-                elif posl < ov00 and posr < ov02
-                    mvsf ov20 post
-                    setv ov10 6
-                    divv ov10 2
-                elif posl >= ov00 and posr <= ov02
-                    setv ov10 0
-                endi
-                doif posl > ov04 and posr > ov06
-                    setv ov10 -6
-                elif posl > ov00 and posr > ov02
-                    mvsf ov20 post
-                    setv ov10 -6
-                    divv ov10 2
-                elif posl >= ov00 and posr <= ov02
-                    setv ov10 0
-                endi
-                doif post < ov05 and posb < ov07
-                    setv ov11 6
-                elif post < ov01 and posb < ov03
-                    mvsf posl ov21
-                    setv ov11 6
-                    divv ov11 2
-                elif post >= ov01 and posb <= ov03
-                    setv ov11 0
-                endi
-                doif post > ov05 and posb > ov07
-                    setv ov11 -6
-                elif post > ov01 and posb > ov03
-                    mvsf posl ov21
-                    setv ov11 -6
-                    divv ov11 2
-                elif post >= ov01 and posb <= ov03
-                    setv ov11 0
-                endi
-                velo ov10 ov11
-            else
-                setv ov10 rand -6 6
-                setv ov11 rand -6 6
-                velo ov10 ov11
-                accg -6
-                aero 0
-                elas 0
-            endi
-        else
-            setv va00 ov02
-            subv va00 ov00
-            divv va00 2
-            addv va00 ov00
-            setv va01 ov03
-            subv va01 ov01
-            divv va01 2
-            addv va01 ov01
-            subv va00 20
-            subv va01 18
-            mvsf va00 va01
-            accg 0
-        endi
-    endi
-    slow
-    unlk
+	inst
+	lock
+	setv va12 rand 1 100
+	doif va12 > 95
+		sndc "c1b3"
+	endi
+	doif movs = 0
+		doif posl < ov00 or posr > ov02 or post < ov01 or posb > ov03
+			doif velx > 0
+				mira 0
+			elif velx < 0
+				mira 1
+			endi
+			doif rtyp grap posl posb = -1 or rtyp grap posl posb = 8 or rtyp grap posl posb = 9
+				velo 6 -6
+			elif rtyp grap posr posb = -1 or rtyp grap posr posb = 8 or rtyp grap posr posb = 9
+				velo -6 -6
+			elif rtyp grap posl post = -1 or rtyp grap posl post = 8 or rtyp grap posl post = 9
+				velo 6 6
+			elif rtyp grap posr post = -1 or rtyp grap posr post = 8 or rtyp grap posr post = 9
+				velo -6 -6
+			endi
+			setv va20 rtyp grap posl post
+			doif va20 <> 8 and va20 <> 9 and va20 <> -1
+				doif accg < 0
+					accg 0
+					aero 10
+					elas 100
+					velo 0 0
+				endi
+				doif posl < ov04 and posr < ov06
+					setv ov10 6
+				elif posl < ov00 and posr < ov02
+					mvsf ov20 post
+					setv ov10 6
+					divv ov10 2
+				elif posl >= ov00 and posr <= ov02
+					setv ov10 0
+				endi
+				doif posl > ov04 and posr > ov06
+					setv ov10 -6
+				elif posl > ov00 and posr > ov02
+					mvsf ov20 post
+					setv ov10 -6
+					divv ov10 2
+				elif posl >= ov00 and posr <= ov02
+					setv ov10 0
+				endi
+				doif post < ov05 and posb < ov07
+					setv ov11 6
+				elif post < ov01 and posb < ov03
+					mvsf posl ov21
+					setv ov11 6
+					divv ov11 2
+				elif post >= ov01 and posb <= ov03
+					setv ov11 0
+				endi
+				doif post > ov05 and posb > ov07
+					setv ov11 -6
+				elif post > ov01 and posb > ov03
+					mvsf posl ov21
+					setv ov11 -6
+					divv ov11 2
+				elif post >= ov01 and posb <= ov03
+					setv ov11 0
+				endi
+				velo ov10 ov11
+			else
+				setv ov10 rand -6 6
+				setv ov11 rand -6 6
+				velo ov10 ov11
+				accg -6
+				aero 0
+				elas 0
+			endi
+		else
+			setv va00 ov02
+			subv va00 ov00
+			divv va00 2
+			addv va00 ov00
+			setv va01 ov03
+			subv va01 ov01
+			divv va01 2
+			addv va01 ov01
+			subv va00 20
+			subv va01 18
+			mvsf va00 va01
+			accg 0
+		endi
+	endi
+	slow
+	unlk
 
-    doif posl < ov00 or posr > ov02 or post < ov01 or posb > ov03 and movs = 0
-        doif pose = 7
-            anim [0 1 2 3 2 1 255]
-        endi
-    elif movs = 4 or movs = 3 and pose <> 7
-        pose 7
-    elif pose <> 7
-        pose 7
-    endi
+	doif posl < ov00 or posr > ov02 or post < ov01 or posb > ov03 and movs = 0
+		doif pose = 7
+			anim [0 1 2 3 2 1 255]
+		endi
+	elif movs = 4 or movs = 3 and pose <> 7
+		pose 7
+	elif pose <> 7
+		pose 7
+	endi
+endm
+
+scrp  1 1 6502 10
+	attr 215
+	accg 0
+	aero 10
+	fric 0
+	bhvr 0
+	elas 100
+	perm 1
+	tick 10
+	anim [4 5 6 5 255]
+	setv ov00 2130
+	setv ov01 18300
+	setv ov02 2520
+	setv ov03 18530
+	setv ov04 ov00
+	subv ov04 10
+	setv ov05 ov01
+	subv ov05 10
+	setv ov06 ov02
+	addv ov06 10
+	setv ov07 ov03
+	addv ov07 10
+	setv ov20 ov02
+	subv ov20 ov00
+	divv ov20 2
+	addv ov20 ov00
+	setv ov21 ov03
+	subv ov21 ov01
+	divv ov21 2
+	addv ov21 ov01
+	subv ov20 20
+	subv ov21 18
+	mvsf ov20 ov21
+	velo rand -2 2 rand -2 2
+endm
+
+scrp 1 1 6510 9
+	inst
+	lock
+	setv va00 6
+	subv va00 totl 2 15 6500
+	doif va00 gt 0
+		reps va00
+			new: simp 2 15 6500 "c1birds" 11 0 7001
+			addv mv00 1
+			setv ov80 mv00
+		repe
+	endi
+	setv va00 3
+	subv va00 totl 1 1 6502
+	doif va00 gt 0
+		reps va00
+			new: simp 1 1 6502 "c1birds" 11 0 7001
+		repe
+	endi
+
+	doif totl 1 1 6503 eq 0
+		gsub nesting_bird
+	endi
+	tick rand 200 300
+
+* Make Nesting Bird
+	subr nesting_bird
+		new: simp 1 1 6503 "c1birds" 11 0 7001
+		attr 215
+		accg 0
+		aero 10
+		fric 100
+		bhvr 0
+		elas 10
+		perm 1
+		tick 5
+		pose 7
+		setv ov00 3797
+		setv ov01 18576
+		setv ov02 3861
+		setv ov03 18632
+
+		setv ov04 3787
+		setv ov05 18566
+		setv ov06 3871
+		setv ov07 18642
+
+		setv ov20 ov02
+		subv ov20 ov00
+		divv ov20 2
+		addv ov20 ov00
+		setv ov21 ov03
+		subv ov21 ov01
+		divv ov21 2
+		addv ov21 ov01
+		subv ov20 20
+		subv ov21 18
+		mvsf ov20 ov21
+	retn
+endm
+
+scrp 1 1 6510 10
+	inst
+	doif totl 1 1 6510 gt 1
+		kill ownr
+		stop
+	endi
+	tick rand 200 300
 endm
 
 rscr
+inst
+enum 1 1 6510
+	kill targ
+next
+
 enum 2 15 6500
-    kill targ
+	kill targ
 next
 
 enum 1 1 6502
-    kill targ
+	kill targ
 next
 
 enum 1 1 6503
-    kill targ
+	kill targ
 next
 
 scrx 1 1 6502 1
