@@ -11,7 +11,6 @@ TAG "Agent Help 2 3 6502"
 "Sunflower Seed"
 "Sunflower Seeds are a delicious way to get the starch every creature needs."
 
-
 # Good Plant
 TAG "Agent Help 2 4 6500"
 "Baobab Plant"
@@ -55,7 +54,7 @@ TAG "Agent Help 2 5 6500"
 "Pyrethium Weed Plant"
 "Pyrethium reacts badly with Norns to cause pain. Pyrethium also makes creatures hungry even if they do not need food! Is a small energy source."
 
-TAG "Agent Help 2 5 6501"
+TAG "Agent Help 2 9 6501"
 "Pyrethium Weed"
 "Pyrethium reacts badly with Norns to cause pain. Pyrethium also makes creatures hungry even if they do not need food! Is a small energy source."
 
@@ -63,7 +62,7 @@ TAG "Agent Help 2 5 6502"
 "Nightshade Plant"
 "Nightshade causes sleepiness. Just a small amount of Nightshade is enough to send most Norns to sleep."
 
-TAG "Agent Help 2 5 6503"
+TAG "Agent Help 2 9 6503"
 "Nightshade"
 "Nightshade causes sleepiness. Just a small amount of Nightshade is enough to send most Norns to sleep."
 
@@ -71,7 +70,7 @@ TAG "Agent Help 2 5 6504"
 "Ugly Tomato Plant"
 "Easily confused with a tomato plant, however this plant has the opposite and dangerous effects. It reduces sex drive and increases aging."
 
-TAG "Agent Help 2 5 6505"
+TAG "Agent Help 2 9 6505"
 "Ugly Tomato"
 "Although easy to confuse with the tomato, this has the totally opposite properties. It reduces sex drive, affects the aging process and can be dangerous."
 
@@ -79,7 +78,7 @@ TAG "Agent Help 2 5 6506"
 "Campanula Weed"
 "Campanula causes a fever and coughing. It is a source of energy."
 
-TAG "Agent Help 2 5 6507"
+TAG "Agent Help 2 9 6507"
 "Campanula"
 "Causes a fever and coughing. Is a source of energy."
 
@@ -87,7 +86,7 @@ TAG "Agent Help 2 5 6508"
 "Laburnum Plant"
 "This is a very dangerous herb with unpleasant side effects, such as sneezing, coughing, sleepiness and a fever."
 
-TAG "Agent Help 2 5 6509"
+TAG "Agent Help 2 9 6509"
 "Laburnum"
 "This is a very dangerous herb with unpleasant side effects, such as sneezing, coughing, sleepiness and a fever."
 
@@ -95,7 +94,7 @@ TAG "Agent Help 2 5 6510"
 "Death Cap"
 "AVOID! The Death Cap is nearly always fatal in young Norns. It causes a huge fever, and a rapid loss of energy stores."
 
-TAG "Agent Help 2 5 6511"
+TAG "Agent Help 2 9 6511"
 "Death Cap Fungus"
 "AVOID! The Death Cap is nearly always fatal in young Norns. It causes a huge fever, and a rapid loss of energy stores."
 
@@ -370,3 +369,7 @@ TAG "Agent Help 3 1 6500"
 TAG "Agent Help 2 12 6500"
 "Lift Call Button"
 "Pressing this button calls the lift from another floor."
+
+TAG "FishCake"
+"Tasty"
+"Goody"
