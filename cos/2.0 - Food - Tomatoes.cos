@@ -95,7 +95,7 @@ endm
 scrp 2 4 6508 9
 *	Tomato plant timer
 	inst
-	mesg wrt+ ownr 1000 0 0 0
+	mesg writ ownr 1000
 endm
 
 scrp 2 4 6508 125

@@ -68,17 +68,17 @@ setv ov91 post
 
 scrp 2 21 6501 1
 *   top is pushed
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 21 6501 2
 *	top is pulled
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 21 6501 3
 *	top is hit
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 21 6501 1000

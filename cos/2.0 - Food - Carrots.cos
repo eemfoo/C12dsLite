@@ -229,12 +229,12 @@ scrp 1 1 6504 10
     bhvr 0
     attr 0
     setv name "metaroom_id" game "c12dsl::metaroom::id"
-    call 1000 0 0
+    mesg writ ownr 1000
 endm
 
 
 scrp 1 1 6504 9
-    call 1000 0 0
+    mesg writ ownr 1000
 endm
 
 

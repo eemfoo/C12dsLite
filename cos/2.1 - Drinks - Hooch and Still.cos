@@ -238,7 +238,7 @@ endm
 scrp 2 23 6500 1
 
     doif from ne pntr
-        call 1001 from 0
+        mesg wrt+ ownr 1001  from 0 0
         stop
     endi
 
@@ -276,7 +276,7 @@ scrp 2 23 6500 1
 endm
 
 scrp 2 23 6500 2
-    call 1001 from 0
+    mesg wrt+ ownr 1001  from 0 0
 endm
 
 scrp 2 23 6500 1001

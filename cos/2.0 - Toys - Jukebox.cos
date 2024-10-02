@@ -115,11 +115,11 @@ endi
 
 scrp 2 21 6517 1
 *	Jukebox is pushed
-	call 1001 from 0
+	mesg wrt+ ownr 1001  from 0 0
 endm
 scrp 2 21 6517 2
 *	Jukebox is pushed
-	call 1001 from 0
+	mesg wrt+ ownr 1001  from 0 0
 endm
 
 

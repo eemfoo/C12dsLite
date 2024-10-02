@@ -104,7 +104,7 @@ scrp 2 4 6504 1
 *	Feverfew plant clicked
     inst
     doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
-        call 1001 1 0
+        mesg wrt+ ownr 1001  1 0 0
     else
         stim writ from 84 1
     endi

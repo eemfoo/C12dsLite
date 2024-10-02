@@ -314,14 +314,14 @@ scrp 2 15 6503 1
 *	bee is pushed
     inst
     doif from = pntr
-        call 1001 from 0
+        mesg wrt+ ownr 1001  from 0 0
     else
-        call 1002 from 0
+        mesg wrt+ ownr 1002  from 0 0
     endi
 endm
 
 scrp 2 15 6503 2
-    call 1002 from 0
+    mesg wrt+ ownr 1002  from 0 0
 endm
 
 scrp 2 15 6503 3

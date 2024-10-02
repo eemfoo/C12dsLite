@@ -127,15 +127,15 @@ endi
 ***********
 * Scripts
 scrp 2 4 6502 1
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 4 6502 2
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 4 6502 3
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 4 6502 1000

@@ -61,15 +61,15 @@ else
 endi
 
 scrp 2 21 6504 1
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 21 6504 2
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 21 6504 3
-    call 1000 from 0
+    mesg wrt+ ownr 1000  from 0 0
 endm
 
 scrp 2 21 6504 1000
