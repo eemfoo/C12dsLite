@@ -66,7 +66,7 @@ function validateC12DSLoaded(validationData) {
     const dsLoadedIndex = contentLowercase.indexOf("doif game \"c1_to_ds_loaded\"");
     if (dsLoadedIndex >= 0) {
         const [locationString] = getStringLocation(contentLowercase, dsLoadedIndex);
-        const message = "Incorrect `game \"C1_to_DS_Loaded\"` encountered; Should Be game \"C1_to_DS_Lite_Installing\" @ " + locationString;
+        const message = "Incorrect `game \"C1_to_DS_Loaded\"` encountered; Should Be game \"C1_to_DS_Lite_Installing\" @ " + locationString + "\n\t    * Corrected in copy before compile *";
         let temp = rawContent.replaceAll(doifC12DSLoaded, "doif game \"C1_to_DS_Lite_Installing\" = 1 and totl");
         if (temp !== rawContent) {
             warnings.push(message);
