@@ -1,0 +1,262 @@
+******************************
+* C1 Nightshade
+*******************************
+* Classifiers:
+*  2 5 6502 - Nightshade Plant
+*  2 9 6503 - Nightshade Fruit
+* Dependencies:
+*  c1plants.c16
+*  chwp.wav
+******************************
+**CAOS2Pray Join
+*# C3-Name "Nightshade (C3)"
+*# DS-Name "Nightshade"
+*# Agent Description = "Nightshade causes sleepiness"
+*# Agent Animation File = "c1plants.c16"
+*# Agent Animation Gallery = "c1plants"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# bioenergy = 0
+*# Attach "../images/c1plants.c16"
+*# Attach "../catalogue/c12dsl.catalogue"
+*# Depend "chwp.wav"
+******************************
+inst
+lock
+
+new: vhcl 2 5 6502 "c1plants" 1 9 100
+setv name "C1_to_DS_Lite_Clickable_Food" 1
+attr 715
+doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    setv va88 attr
+    orrv va88 4
+    attr va88
+endi
+cabn 8 1 46 39
+accg 5
+fric 100
+aero 10
+elas 0
+bhvr 11
+perm 60
+tick rand 900 1000
+mesg wrt+ targ 1000 0 0 0
+
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 5 6502 <= 1
+    mvsf 5104 18465
+    setv va88 attr
+    setv va89 va88
+    andv va89 1
+    doif va89 ne 0
+        subv va88 1
+    endi
+    setv va89 va88
+    andv va89 2
+    doif va89 ne 0
+        subv va88 2
+    endi
+    attr va88
+elif type game "ds_game_type" ne 2
+* 		it's NOT a string, this must be C3 only
+* 		choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 		it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 			this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 			this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+endi
+
+***********
+* Scripts
+
+scrp 2 5 6502 1
+*	Nightshade plant clicked
+    inst
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+        mesg wrt+ ownr 1000 1 0 0
+    else
+        stim writ from 83 1
+    endi
+endm
+
+scrp 2 5 6502 2
+    stim writ from 83 1
+endm
+
+scrp 2 5 6502 3
+    stim writ from 83 1
+endm
+
+scrp 2 5 6502 9
+*	Nightshade plant timer
+    inst
+    mesg wrt+ ownr 1000 9 0 0
+endm
+
+scrp 2 5 6502 125
+*	Nightshade plant lost weed
+    inst
+    mesg wrt+ ownr 1000 0 0 rand 20 110
+endm
+
+scrp 2 5 6502 1000
+*	Nightshade plant's timer
+    inst
+    setv va20 0
+    epas 2 9 6503
+        addv va20 1
+    next
+
+    doif va20 < 1 or _p1_ = 1
+*		no flower exists, so better make one
+        setv va00 posl
+        setv va01 post
+        new: simp 2 9 6503 "c1plants" 2 10 101
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
+        puhl 0 16 16
+        puhl 1 16 16
+        addv va00 10
+        addv va01 10
+        seta va20 targ
+        mvsf va00 va01
+        accg 0
+        attr 195
+        doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+            setv va88 attr
+            orrv va88 4
+            attr va88
+        endi
+        fric 100
+        elas 0
+        aero 100
+        bhvr 48
+        perm 60
+        targ ownr
+        doif _p1_ <> 1
+            setv va52 0
+            loop
+                spas ownr va20
+                wait 1
+                inst
+                addv va52 1
+                targ va20
+            untl targ = null or carr = ownr or va52 > 10
+            inst
+        else
+            targ va20
+            pose 1
+            velo rand -10 10 rand 1 5
+        endi
+        accg 5
+        fric 100
+        aero 10
+    endi
+endm
+
+scrp 2 9 6503 1
+*	Nightshade clicked
+    inst
+    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+        setv va00 posl
+        setv va01 post
+        new: simp 2 9 6503 "c1plants" 2 10 101
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
+        puhl 0 16 16
+        puhl 1 16 16
+        addv va00 10
+        addv va01 10
+        attr 199
+        accg 5
+        fric 100
+        elas 0
+        aero 100
+        bhvr 48
+        perm 60
+        fric 100
+        aero 10
+        pose 1
+        mvsf va00 va01
+        velo rand -10 10 rand -10 -5
+    else
+        stim writ from 81 1
+    endi
+endm
+
+scrp 2 9 6503 4
+*	I've been picked up
+*	Nightshade
+    inst
+    lock
+    pose 1
+    mira rand 0 1
+endm
+
+scrp 2 9 6503 12
+*	eating a weed
+*	Nightshade
+    inst
+    lock
+    seta va20 norn
+    targ from
+    doif crea targ = 1
+        chem 5 0.9
+        chem 155 1.0
+        chem 154 1.0
+        snde "chwp"
+        stim writ from 81 1
+    endi
+    targ ownr
+    kill targ
+endm
+
+rscr
+
+
+doif game "C1_to_DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    * If C12DSL is not installed, make metaroom ID negative and impossible to match
+    setv va00 -1
+endi
+
+enum 2 5 6502
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
+
+enum 2 9 6503
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
+
+doif game "C1_to_DS_Lite_Loaded" eq 0
+
+    * Plant
+    scrx 2 5 6502 1
+    scrx 2 5 6502 2
+    scrx 2 5 6502 3
+    scrx 2 5 6502 9
+    scrx 2 5 6502 125
+    scrx 2 5 6502 1000
+
+    * Flower
+    scrx 2 9 6503 1
+    scrx 2 9 6503 4
+    scrx 2 9 6503 12
+endi
