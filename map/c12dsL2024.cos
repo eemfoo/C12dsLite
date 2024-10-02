@@ -128,40 +128,40 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 3376 3510 18745 18745 18936 18934
     rtyp va00 4
     setv game "map_tmp_40" va00
-  setv va00 addr va01 3510 3666 18745 18745 18934 18934
+  setv va00 addr va01 3510 3664 18745 18745 18934 18934
     rtyp va00 4
     setv game "map_tmp_41" va00
-  setv va00 addr va01 3666 3834 18745 18736 18934 18925
+  setv va00 addr va01 3664 3832 18745 18736 18934 18925
     rtyp va00 4
     setv game "map_tmp_42" va00
-  setv va00 addr va01 3834 4044 18736 18736 18925 18925
+  setv va00 addr va01 3832 4044 18736 18736 18925 18925
     rtyp va00 4
     setv game "map_tmp_43" va00
-  setv va00 addr va01 4044 4173 18736 18736 18925 18925
+  setv va00 addr va01 4044 4175 18736 18736 18925 18925
     rtyp va00 3
     setv game "map_tmp_44" va00
-  setv va00 addr va01 4173 4300 18736 18736 18925 18925
+  setv va00 addr va01 4175 4303 18736 18736 18925 18925
     rtyp va00 3
     setv game "map_tmp_45" va00
-  setv va00 addr va01 4300 4412 18736 18736 18925 18925
+  setv va00 addr va01 4303 4413 18736 18736 18925 18925
     rtyp va00 3
     setv game "map_tmp_46" va00
-  setv va00 addr va01 4412 4523 18736 18736 18925 18925
+  setv va00 addr va01 4413 4524 18736 18736 18925 18925
     rtyp va00 7
     setv game "map_tmp_47" va00
-  setv va00 addr va01 4523 4644 18736 18736 18925 18925
+  setv va00 addr va01 4524 4649 18736 18736 18925 18925
     rtyp va00 7
     setv game "map_tmp_48" va00
-  setv va00 addr va01 4644 4778 18736 18736 18925 18925
+  setv va00 addr va01 4649 4774 18736 18736 18925 18925
     rtyp va00 7
     setv game "map_tmp_49" va00
-  setv va00 addr va01 4778 4920 18736 18736 18925 18925
+  setv va00 addr va01 4774 4923 18736 18736 18925 18925
     rtyp va00 7
     setv game "map_tmp_50" va00
-  setv va00 addr va01 4920 5109 18736 18736 18925 18925
+  setv va00 addr va01 4923 5111 18736 18736 18925 18925
     rtyp va00 7
     setv game "map_tmp_51" va00
-  setv va00 addr va01 5109 5231 18736 18773 18925 18925
+  setv va00 addr va01 5111 5231 18736 18773 18925 18925
     rtyp va00 1
     setv game "map_tmp_52" va00
   setv va00 addr va01 5231 5357 18773 18805 18925 18925
@@ -323,40 +323,40 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 3219 3376 18545 18545 18745 18745
     rtyp va00 0
     setv game "map_tmp_105" va00
-  setv va00 addr va01 3376 3510 18545 18545 18745 18745
+  setv va00 addr va01 3376 3510 18528 18528 18745 18745
     rtyp va00 0
     setv game "map_tmp_106" va00
-  setv va00 addr va01 3510 3666 18545 18545 18745 18745
+  setv va00 addr va01 3510 3664 18528 18528 18745 18745
     rtyp va00 0
     setv game "map_tmp_107" va00
-  setv va00 addr va01 3666 3834 18545 18542 18745 18736
+  setv va00 addr va01 3664 3832 18528 18528 18745 18736
     rtyp va00 0
     setv game "map_tmp_108" va00
-  setv va00 addr va01 3834 4044 18542 18542 18736 18736
+  setv va00 addr va01 3832 4044 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_109" va00
-  setv va00 addr va01 4044 4173 18542 18542 18736 18736
+  setv va00 addr va01 4044 4175 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_110" va00
-  setv va00 addr va01 4173 4300 18542 18542 18736 18736
+  setv va00 addr va01 4175 4303 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_111" va00
-  setv va00 addr va01 4300 4412 18542 18542 18736 18736
+  setv va00 addr va01 4303 4413 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_112" va00
-  setv va00 addr va01 4412 4523 18542 18542 18736 18736
+  setv va00 addr va01 4413 4524 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_113" va00
-  setv va00 addr va01 4523 4644 18542 18542 18736 18736
+  setv va00 addr va01 4524 4649 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_114" va00
-  setv va00 addr va01 4644 4778 18542 18542 18736 18736
+  setv va00 addr va01 4649 4774 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_115" va00
-  setv va00 addr va01 4778 4920 18542 18542 18736 18736
+  setv va00 addr va01 4774 4923 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_116" va00
-  setv va00 addr va01 4920 5109 18542 18542 18736 18736
+  setv va00 addr va01 4923 5111 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_117" va00
   setv va00 addr va01 1988 2038 18010 18012 18541 18544
@@ -401,10 +401,10 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 3664 3832 18306 18306 18528 18528
     rtyp va00 1
     setv game "map_tmp_131" va00
-  setv va00 addr va01 3832 4040 18306 18306 18528 18528
+  setv va00 addr va01 3832 4044 18306 18306 18528 18528
     rtyp va00 1
     setv game "map_tmp_132" va00
-  setv va00 addr va01 4040 4175 18306 18306 18528 18528
+  setv va00 addr va01 4044 4175 18306 18306 18528 18528
     rtyp va00 1
     setv game "map_tmp_133" va00
   setv va00 addr va01 4175 4303 18306 18306 18528 18528
@@ -440,10 +440,10 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 3664 3832 18016 18016 18306 18306
     rtyp va00 0
     setv game "map_tmp_144" va00
-  setv va00 addr va01 3832 4040 18016 18016 18306 18306
+  setv va00 addr va01 3832 4044 18016 18016 18306 18306
     rtyp va00 0
     setv game "map_tmp_145" va00
-  setv va00 addr va01 4040 4175 18016 18016 18306 18306
+  setv va00 addr va01 4044 4175 18016 18016 18306 18306
     rtyp va00 0
     setv game "map_tmp_146" va00
   setv va00 addr va01 4175 4303 18016 18016 18306 18306
@@ -670,6 +670,20 @@ door game "map_tmp_138" game "map_tmp_151" 100
 door game "map_tmp_139" game "map_tmp_151" 100
 door game "map_tmp_150" game "map_tmp_151" 100
 door game "map_tmp_36" game "map_tmp_152" 100
+door game "map_tmp_106" game "map_tmp_128" 100
+door game "map_tmp_106" game "map_tmp_129" 40
+door game "map_tmp_107" game "map_tmp_129" 40
+door game "map_tmp_107" game "map_tmp_130" 40
+door game "map_tmp_108" game "map_tmp_131" 40
+door game "map_tmp_109" game "map_tmp_132" 40
+door game "map_tmp_110" game "map_tmp_133" 40
+door game "map_tmp_111" game "map_tmp_134" 40
+door game "map_tmp_112" game "map_tmp_135" 40
+door game "map_tmp_113" game "map_tmp_136" 40
+door game "map_tmp_114" game "map_tmp_137" 40
+door game "map_tmp_115" game "map_tmp_138" 40
+door game "map_tmp_116" game "map_tmp_139" 40
+door game "map_tmp_117" game "map_tmp_140" 40
 
 *ROOMIE Delete temporary variables
 delg "map_tmp_0"
