@@ -309,7 +309,7 @@ scrp 2 8 6500 12
 endm
 
 rscr
-
+inst
 doif game "C1_to_DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"
 else
