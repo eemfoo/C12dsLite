@@ -3,8 +3,9 @@
 
 // Node libararies
 const Path = require("node:path");
+const os = require("node:os");
 const fs = require("node:fs");
-const {spawn} = require('node:child_process');
+const {spawn, execSync} = require('node:child_process');
 const {argv} = require("node:process");
 const {linkCos} = require("./buildscripts/link-caos");
 const {attachFilesIn} = require("./buildscripts/attach");
@@ -132,6 +133,23 @@ async function _compile() {
     });
 }
 
+function postBuild() {
+
+    let script = Path.join(__dirname, "postbuild.sh");
+    if (os.platform() === "win32") {
+        let script = Path.join(__dirname, "postbuild.bat");
+    }
+
+    if (fs.existsSync(script)) {
+        try {
+            execSync(script);
+        } catch (e) {
+            console.error("Failed to run post build step; " + e);
+            return 1;
+        }
+    }
+}
+
 
 /**
  * Compile agent and log result
@@ -168,6 +186,7 @@ function compile() {
             return 1;
         })
         .then((code) => {
+            postBuild();
             exitProcess(code)
         })
 }
