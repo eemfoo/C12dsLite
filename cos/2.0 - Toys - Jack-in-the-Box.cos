@@ -19,7 +19,7 @@
 *# Agent Sprite First Image = 0
 *# Agent Animation File = "c1jackinthebox.c16"
 *# Agent Animation Gallery = "c1jackinthebox"
-*# Agent Animation String = "0"
+*# Agent Animation String = "5"
 *# Agent Bioenergy Value = 0
 * Attach
 *# Attach "../images/c1jackinthebox.c16"

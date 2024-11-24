@@ -20,7 +20,7 @@
 *# Agent Description = "A vendor and still of hooch, an alcoholic beverage for your creatures"
 *# Agent Bioenergy Value = 0
 *# Agent Sprite First Image = 0
-*# Agent Animation String = "0"
+*# Agent Animation String = "0 0 1 1 2 2 3 3 255"
 *# Attach "../images/c1hoochstill.c16"
 *# Attach "../images/c1hoochcups.c16"
 *# Attach "../sounds/c1d2.wav"

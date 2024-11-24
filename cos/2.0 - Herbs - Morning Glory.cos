@@ -15,8 +15,8 @@
 *# Agent Description = "Herb reduces tiredness and makes a Norn alert"
 *# Agent Animation File = "c1plants.c16"
 *# Agent Animation Gallery = "c1plants"
-*# Agent Sprite First Image = 0
-*# Agent Animation String = "0"
+*# Agent Sprite First Image = 20
+*# Agent Animation String = "2"
 *# bioenergy = 0
 *# Attach "../images/c1plants.c16"
 *# Attach "../catalogue/c12dsl.catalogue"

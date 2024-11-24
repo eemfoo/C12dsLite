@@ -15,8 +15,8 @@
 *# bioenergy = 0
 *# Agent Animation File = "c1plants.c16"
 *# Agent Animation Gallery = "c1plants"
-*# Agent Sprite First Image = 0
-*# Agent Animation String = "0"
+*# Agent Sprite First Image = 28
+*# Agent Animation String = "2"
 *# Attach "../images/c1plants.c16"
 *# Attach "../catalogue/c12dsl.catalogue"
 ******************************

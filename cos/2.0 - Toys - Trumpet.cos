@@ -16,7 +16,7 @@
 *# Agent Animation Gallery = "c1trumpet"
 *# Agent Animation File = "c1trumpet.c16"
 *# Agent Sprite First Image = 0
-*# Agent Animation String = "0"
+*# Agent Animation String = "1"
 *# Agent Bioenergy Value = 0
 *# Attach "../images/c1trumpet.c16"
 *# Attach "../sounds/c1t1.wav"

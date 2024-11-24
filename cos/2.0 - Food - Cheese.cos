@@ -12,7 +12,7 @@
 *# C3-Name "Cheese (C3)"
 *# DS-Name "Cheese"
 *# bioenergy = 0
-*# Agent Animation String = "0"
+*# Agent Animation String = "2"
 *# Agent Sprite First Image = 0
 *# Agent Animation Gallery = "c1cheese"
 *# Agent Animation File = "c1cheese.c16"

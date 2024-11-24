@@ -14,8 +14,8 @@
 *# Agent Description = "Nightshade causes sleepiness"
 *# Agent Animation File = "c1plants.c16"
 *# Agent Animation Gallery = "c1plants"
-*# Agent Sprite First Image = 0
-*# Agent Animation String = "0"
+*# Agent Sprite First Image = 9
+*# Agent Animation String = "1"
 *# bioenergy = 0
 *# Attach "../images/c1plants.c16"
 *# Attach "../catalogue/c12dsl.catalogue"
@@ -246,7 +246,6 @@ enum 2 9 6503
 next
 
 doif game "C1_to_DS_Lite_Loaded" eq 0
-
     * Plant
     scrx 2 5 6502 1
     scrx 2 5 6502 2

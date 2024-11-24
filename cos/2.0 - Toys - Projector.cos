@@ -16,7 +16,7 @@
 *# Agent Animation File = "c1projector.c16"
 *# Agent Animation Gallery = "c1projector"
 *# Agent Sprite First Image = 0
-*# Agent Animation String = "0"
+*# Agent Animation String = "2"
 *# Agent Bioenergy Value = 0
 *# Attach "../images/c1projector.c16"
 *# Attach "../sounds/c1d2.wav"

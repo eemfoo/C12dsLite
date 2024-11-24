@@ -15,8 +15,8 @@
 *# Agent Description = "Feverfew provides pain relief properties and good source of energy"
 *# Agent Animation File = "c1plants.c16"
 *# Agent Animation Gallery = "c1plants"
-*# Agent Sprite First Image = 0
-*# Agent Animation String = "0"
+*# Agent Sprite First Image = 17
+*# Agent Animation String = "2"
 *# bioenergy = 0
 *# Attach "../images/c1plants.c16"
 *# Attach "../catalogue/c12dsl.catalogue"
