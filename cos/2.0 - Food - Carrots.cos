@@ -47,8 +47,9 @@ scrp 2 11 6500 1
     doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
-        new: simp 2 11 6500 "c1plants" 3 13 502
-        pose rand 7 8
+        new: simp 2 11 6500 "c1plants" 9 40 502
+        pose 7
+        mira rand 0 1
         setv name "C1_to_DS_Garbage_Collect" 1
         mvsf va00 va01
         velo rand -15 15 rand -15 -5
