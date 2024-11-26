@@ -151,9 +151,8 @@ else
     mvsf 1297 18567
 
 * make some honey to left of hives
-    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    setv name "C1_to_DS_Lite_Clickable_Food" 1
-    mvsf 1245 18567
+	new: simp 2 11 6505 "c1beehivehoney" 3 13 502
+	mvsf 1245 18567
 
 * make some honey on kitchen table
 	new: simp 2 11 6505 "c1beehivehoney" 3 13 502
