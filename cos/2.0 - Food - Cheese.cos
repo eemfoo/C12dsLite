@@ -85,7 +85,6 @@ else
 *	make some cheese at the agent injector
     reps rand 3 5
         new: simp 2 11 6501 "c1cheese" 3 0 200
-        attr 199
         accg 5
         aero 10
         fric 100
