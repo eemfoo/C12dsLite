@@ -1,0 +1,92 @@
+* C1 Coconut Piece
+
+* Dependencies:
+*  c1coconut.c16
+
+
+inst
+lock
+
+***********
+* Scripts
+scrp 2 3 6500 1
+*	Coconut clicked by hand
+	inst
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+		setv va01 posl
+		setv va02 post
+		new: simp 2 3 6500 "c1coconut" 2 6 201
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		setv name "C1_to_DS_Garbage_Collect" 1
+		attr 199
+		bhvr 48
+		accg 6
+		aero 0
+		elas 25
+		perm 60
+		emit 7 0.3
+		pose rand 0 1
+		mira rand 0 1
+		tick rand 900 1200
+		setv ov99 1
+		mvsf va01 va02
+		velo rand -15 15 rand -15 -5
+	endi
+endm
+
+scrp 2 3 6500 4
+*	Coconut picked up
+	inst
+	doif ov99 = 0
+		accg 6
+		perm rand 40 60
+	endi
+endm
+
+scrp 2 3 6500 5
+*	Coconut dropped
+	inst
+	doif ov99 = 0
+		accg 6
+	endi
+endm
+
+
+scrp 2 3 6500 6
+*	Coconut collides
+	inst
+	snde "c1dr"
+endm
+
+scrp 2 3 6500 12
+*	eating a seed
+*	Coconut
+	inst
+	lock
+	seta va20 norn
+	targ from
+	doif crea targ = 1
+		chem 100 0.5
+		snde "chwp"
+		stim writ from 77 1
+	endi
+	targ ownr
+	kill targ
+endm
+
+scrp 2 3 6500 255
+	inst
+	kill targ
+endm
+
+rscr
+enum 2 3 6500
+	kill targ
+next
+
+scrx 2 3 6500 1
+scrx 2 3 6500 4
+scrx 2 3 6500 5
+scrx 2 3 6500 6
+scrx 2 3 6500 12
+scrx 2 3 6500 255

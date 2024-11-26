@@ -1,0 +1,128 @@
+****************************
+* C1 CarrotVendor Carrot
+****************************
+* 2 11 6510 - Carrot Vendor Carrot
+* Dependencies:
+*  C1CarrotVendorCarrot.c16
+***************************
+scrp 2 11 6510 1
+*	carrot was clicked
+	inst
+	doif game "C1_to_DS_Lite_Clickable_Food" = 1
+* 		Make Carrot
+		setv va00 posl
+		setv va01 post
+		new: simp 2 11 6510 "c1carrotvendorcarrot" 3 0 7001
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		setv name "C1_to_DS_Garbage_Collect" 1
+		pose 1
+		accg 3
+		attr 199
+		bhvr 48
+		fric 100
+		elas 0
+		aero 0
+*		carrot scent
+		emit 6 .20
+		emit 7 .20
+		emit 8 .20
+		perm 60
+		mvsf va00 va01
+		velo rand -10 10 rand -10 -5
+		targ ownr
+	endi
+endm
+
+scrp 2 11 6510 4
+*	carrot has been picked up
+	inst
+	lock
+	doif pose = 6
+		mira rand 0 1
+		pose 7
+		tick 0
+		attr 199
+		accg 3
+		fric 90
+		aero 10
+	else
+		attr 199
+		accg 3
+		fric 90
+		aero 10
+	endi
+	setv name "C1_to_DS_Garbage_Collect" 1
+endm
+
+scrp 2 11 6510 5
+	setv name "C1_to_DS_Garbage_Collect" 1
+endm
+
+scrp 2 11 6510 6
+*	carrot has collided!
+	sndc "dr64"
+endm
+
+scrp 2 11 6510 9
+*	Carrot's timer
+	inst
+	lock
+	doif pose = 2
+		targ ownr
+		kill targ
+	endi
+endm
+
+scrp 2 11 6510 12
+*	eating a carrot
+	inst
+	lock
+*	attr 208
+	bhvr 0
+	doif pose = 1
+		targ ownr
+		setv va00 posl
+		setv va01 post
+		pose 2
+		tick rand 100 200
+		targ from
+		snde "chwp"
+		stim writ from 79 1
+		mesg writ ownr 5
+	elif pose = 2
+		targ ownr
+		kill targ
+	endi
+endm
+
+****************************
+* Removers
+
+* CarrotVendor Carrot remover
+rscr
+inst
+
+doif game "C1_to_DS_Lite_Loaded" eq 1
+	setv va00 game "c12dsl::metaroom::id"
+else
+	* If C12DSL is not installed, make metaroom ID negative and impossible to match
+	setv va00 -1
+endi
+
+enum 2 11 6510
+	doif gmap posl post ne va00
+		doif carr ne null
+			mesg writ targ 5
+		endi
+		kill targ
+	endi
+next
+
+doif va99 eq 1 or game "C1_to_DS_Lite_Loaded" eq 0
+	scrx 2 11 6510 1
+	scrx 2 11 6510 4
+	scrx 2 11 6510 5
+	scrx 2 11 6510 6
+	scrx 2 11 6510 9
+	scrx 2 11 6510 12
+endi

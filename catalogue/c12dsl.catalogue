@@ -138,6 +138,11 @@ TAG "Agent Help 2 11 6500"
 "Carrot (C1 Variety)"
 "Carrots are good food for norns."
 
+# FOOD
+TAG "Agent Help 2 11 6510"
+"Carrot (C1 Variety)"
+"Carrots are good food for norns."
+
 TAG "Agent Help 2 11 6501"
 "Cheese"
 "Good old fashioned Albian cheese. This food provides good nutrition for creatures."
@@ -276,8 +281,8 @@ TAG "Agent Help 2 23 6500"
 "The hooch still creates more hooch. Pushing on the still vends more hooch.\n\nCTRL+click still to mute sound"
 
 TAG "Agent Help 2 23 6501"
-"Carrot Vendor"
-"This machine vends delicious and nutritious carrots when activated."
+"Refrigerator"
+"The C1 refrigerator vends food, fruit, and seeds for a nutritionally balanced diet"
 
 TAG "Agent Help 2 23 6502"
 "Breakable Jug Vendor"

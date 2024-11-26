@@ -1,0 +1,486 @@
+**CAOS2Pray Join
+*# C3-Name "Refrigerator (C3)"
+*# DS-Name "Refrigerator"
+*# Agent Animation File = "c1fridgeicon.c16"
+*# Agent Animation Gallery = "c1fridgeicon"
+*# Agent Animation String = "0"
+*# Agent Sprite First Image = 0
+*# Agent Description = "The C1 refrigerator vends food, fruit, and seeds for a nutritionally balanced diet."
+*# Attach "../images/c1fridgeicon.c16"
+*# Attach "../images/c1refrigerator.c16"
+*# Attach "../images/c1beehivehoney.c16"
+*# Attach "../images/c1carrotvendorcarrot.c16"
+*# Attach "../images/c1plants.c16"
+*# Attach "../images/c1seeds.c16"
+*# Attach "../images/c1coconut.c16"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../sounds/c1h1.wav"
+*# Attach "../sounds/c1r1.wav"
+*# Attach "../sounds/c1r2.wav"
+*# Attach "../images/c1cheese.c16"
+*# Attach "../catalogue/c12dsl.catalogue"
+*# Link "2.0 - Bees, Hives & Honey.cos"
+*# Link "2.0 - Food - Carrot Vendor Carrot.cos"
+*# Link "2.0 - Food - Cheese.cos"
+*# Link "2.0 - Food - Lemons.cos"
+*# Link "2.0 - Food - Tomatoes.cos"
+*# Link "2.0 - Plants - Sunflowers.cos"
+*# Link "2.0 - Food - Coconut Sliver.cos"
+* top shelf: 25  4 64 30
+* middle shelf: 25 30 64 56
+* bottom shelf:	25 56 62 81
+
+iscr
+inst
+lock
+
+enum 1 1 6511
+	kill targ
+next
+
+new: vhcl 2 23 6501 "c1refrigerator" 1 0 200
+pat: butt 1 "c1refrigerator" 1 3 0 0 1000 [] 1001 0
+seta va50 targ
+pose 0
+cabn 22 2 65 79
+attr 710
+elas 10
+accg 25
+bhvr 0
+perm 60
+aero 0
+tick 40
+emit 8 0.5
+rnge 250
+mesg writ targ 1004
+
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 23 6501 <= 1
+*	C1 to DS
+	setv va00 1684
+	setv va01 18816
+	mvsf va00 va01
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 30 40 -5
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	endi
+
+
+endi
+*************************
+** Scripts
+
+scrp 1 1 6511 9
+*	monitor timer
+	inst
+	lock
+	doif movs = 0 and carr eq null
+*		not being carried, so refrigerator must have been removed
+		setv va00 0
+		targ ownr
+		etch 2 11 0
+			kill targ
+		next
+		targ ownr
+		etch 2 8 0
+			kill targ
+		next
+		targ ownr
+		etch 2 3 0
+			kill targ
+		next
+		doif va00 = 0
+			targ ownr
+			kill targ
+		endi
+	endi
+endm
+
+scrp 2 23 6501 1004
+* 	the shelf spawn script
+	inst
+	lock
+
+	part 1
+	doif pose eq 2
+		setv va99 100
+	endi
+
+*	check for the refrigerator monitor
+	setv va20 0
+	epas 1 1 6511
+		addv va20 1
+	next
+
+	targ ownr
+	doif va20 <> 1
+*		not right number of monitors!
+		epas 1 1 6511
+			kill targ
+		next
+		targ ownr
+		setv va00 posl
+		setv va01 post
+		addv va00 25
+		addv va01 4
+* 		make the refrigerator monitor
+		new: simp 1 1 6511 "c1refrigerator" 1 4 200
+		seta ov20 ownr
+		tick 20
+		attr 17
+		accg 0
+		fric 100
+		aero 100
+		mvsf va00 va01
+		setv va02 0
+		loop
+			spas ownr targ
+			wait 1
+			inst
+			addv va02 1
+		untl targ = null or carr = ownr or va02 > 100
+	endi
+	targ ownr
+
+*	check for enough food
+	setv va20 0
+	epas 2 11 0
+		addv va20 1
+	next
+
+	targ ownr
+	doif va20 < 3 and movs = 0
+*		not enough food (top shelf)
+		setv va00 posl
+		setv va01 post
+		addv va00 30
+		addv va01 9
+		setv va03 rand 1 3
+		doif va03 = 1
+*			make honey
+			new: simp 2 11 6505 "c1beehivehoney" 3 13 va99
+			setv ov99 5
+			addv va01 1
+			addv va00 2
+		elif va03 = 2
+*			make carrot
+			new: simp 2 11 6510 "c1carrotvendorcarrot" 3 0 va99
+			pose 1
+			mira 1
+			addv va01 14
+			subv va00 3
+		elif va03 = 3
+*			make cheese
+			new: simp 2 11 6501 "c1cheese" 3 0 va99
+			pose 2
+			addv va00 4
+			addv va01 3
+		endi
+		setv name "C1_to_DS_From_Fridge" 1
+		attr 3
+		wait 1
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		attr 195
+		doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+			setv va88 attr
+			orrv va88 4
+			attr va88
+		endi
+		elas 0
+		fric 100
+		aero 0
+		accg 0
+		bhvr 48
+		perm 60
+		emit 8 0.5
+		mvsf va00 va01
+*		add food to shelf
+		setv va02 0
+		loop
+			spas ownr targ
+			wait 1
+			inst
+			addv va02 1
+		untl targ = null or carr = ownr or va02 > 10000
+	endi
+	targ ownr
+
+*	check for enough fruit (second shelf)
+	setv va20 0
+	epas 2 8 0
+		addv va20 1
+	next
+	doif va20 < 3 and movs = 0
+		setv va00 posl
+		setv va01 post
+		addv va00 26
+		addv va01 41
+
+		setv va03 rand 1 10
+		doif va03 <= 9
+*			make lemon
+			new: vhcl 2 8 6500 "c1plants" 3 0 va99
+			cabp 0
+			cabw 1
+			cabn -10 -25 34 4
+			pose 0
+			attr 715
+			addv va01 1
+			addv va00 6
+		elif va03 = 10
+*			make tomato			
+			new: simp 2 8 6501 "c1plants" 1 24 va99
+			mira 1
+			attr 195
+			addv va00 2
+		endi
+		setv name "C1_to_DS_From_Fridge" 1
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+			setv va88 attr
+			orrv va88 4
+			attr va88
+		endi
+		accg 0
+		fric 100
+		elas 0
+		aero 100
+		bhvr 48
+		perm 60
+		emit 6 .50
+		mvsf va00 va01
+		setv va02 0
+		loop
+			spas ownr targ
+			wait 1
+			inst
+			addv va02 1
+		untl targ = null or carr = ownr or va02 > 10
+	endi
+	targ ownr
+
+*check for enough seeds (bottom shelf)
+	setv va20 0
+	epas 2 3 0
+		addv va20 1
+	next
+
+	doif va20 < 3 and movs = 0
+		setv va00 posl
+		setv va01 post
+		addv va00 11
+		addv va01 86
+
+*		make seeds here
+		setv va03 rand 1 3
+		doif va03 = 1
+*			make sunflower seed
+			new: simp 2 3 6501 "c1seeds" 4 1 va99
+			setv ov99 0
+			accg .8
+		elif va03 = 2
+*			make jungle seed
+			new: simp 2 3 6501 "c1seeds" 4 5 va99
+			setv ov99 0
+			accg .8
+		else
+*			make coconut piece
+			new: simp 2 3 6500 "c1coconut" 2 6 va99
+			accg 6
+			setv ov99 1
+		endi
+		setv name "C1_to_DS_From_Fridge" 1
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		attr 195
+		doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+			setv va88 attr
+			orrv va88 4
+			attr va88
+		endi
+		bhvr 48
+		aero 0
+		elas 25
+		perm 60
+		fric 100
+		emit 7 0.5
+		mvsf va00 va01
+		setv va02 0
+		loop
+			spas ownr targ
+			wait 1
+			inst
+			addv va02 1
+		untl targ = null or carr = ownr or va02 > 10
+	endi
+	targ ownr
+	part 1
+	doif pose = 0
+		epas 2 0 0
+			doif gnus = 11 or gnus = 8 or gnus = 3
+				paus 1
+			endi
+		next
+	else
+		epas 2 0 0
+			doif gnus = 11 or gnus = 8 or gnus = 3
+				paus 0
+			endi
+		next
+	endi
+endm
+
+scrp 2 23 6501 0
+*	refrigerator is deactivated
+	inst
+	lock
+	stim writ from 15 1.0
+	mesg writ ownr 1001
+endm
+
+scrp 2 23 6501 1
+*	refrigerator is activated
+	inst
+	lock
+	stim writ from 13 1.0
+	mesg writ ownr 1001
+endm
+
+scrp 2 23 6501 4
+*	refrigerator is picked up
+	inst
+	part 1
+	doif pose <> 0
+		mesg writ ownr 1001
+	endi
+
+endm
+
+scrp 2 23 6501 6
+*	refrigerator hits something
+	setv va00 velx
+	absv va00
+	setv va01 vely
+	absv va01
+	doif va00 > 2 or va01 > 2
+		sndc "c1d2"
+	endi
+endm
+
+scrp 2 23 6501 9
+*	refrigerator timer
+	inst
+	lock
+	tick 40
+	mesg writ ownr 1004
+	setv va00 0
+	esee 4 0 0
+		addv va00 1
+	next
+	targ ownr
+	part 1
+	doif va00 = 0 and pose <> 0
+		mesg writ ownr 1001
+	elif va00 > 0 and pose = 0
+		mesg writ ownr 1001
+	endi
+
+endm
+
+scrp 2 23 6501 125
+	inst
+	lock
+	targ from
+	doif name "C1_to_DS_From_Fridge" eq 1
+		setv name "C1_to_DS_Garbage_Collect" 1
+	endi
+	targ ownr
+	mesg wrt+ ownr 1004 0 0 rand 20 40
+endm
+
+scrp 2 23 6501 1001
+*	refrigerator opens or closes
+	inst
+	lock
+	doif from = pntr
+		tick 200
+	endi
+	part 1
+	doif pose = 0
+		sndc "c1r1"
+		anim [0 1 2]
+*		make the cabin open air
+		attr 710
+		epas 0 0 0
+			doif targ <> ownr and fmly <> 1 and gnus <> 1
+				paus 0
+				plne 201
+			endi
+		next
+		targ ownr
+	elif pose = 2
+		sndc "c1r2"
+		anim [2 1 0]
+*		make the cabin closed 
+		attr 198
+		epas 0 0 0
+			doif targ <> ownr and fmly <> 1 and gnus <> 1
+				paus 1
+			endi
+		next
+		targ ownr
+	endi
+endm
+
+
+rscr
+inst
+doif game "C1_to_DS_Lite_Loaded" eq 1
+	setv va00 game "c12dsl::metaroom::id"
+else
+	* If C12DSL is not installed, make metaroom ID negative and impossible to match
+	setv va00 -1
+endi
+
+enum 2 23 6501
+	doif gmap posl post ne va00
+		kill targ
+	endi
+next
+
+enum 1 1 6511
+	mesg writ targ 9
+next
+
+doif game "C1_to_DS_Lite_Loaded" eq 0
+	scrx 1 1 6511 9
+
+	scrx 2 23 6501 0
+	scrx 2 23 6501 1
+	scrx 2 23 6501 4
+	scrx 2 23 6501 6
+	scrx 2 23 6501 9
+	scrx 2 23 6501 125
+	scrx 2 23 6501 1001
+	scrx 2 23 6501 1004
+endi
+
+enum 1 1 6511
+	mesg writ targ 9
+next
