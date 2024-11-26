@@ -1,0 +1,202 @@
+* C1 Campanula
+
+* Dependencies:
+*  C1Plants.c16
+
+
+inst
+lock
+
+* Campanula Plant
+new: vhcl 2 5 6506 "c1plants" 1 14 100
+setv name "C1_to_DS_Lite_Clickable_Food" 1
+cabn 28 10 66 48
+attr 731
+doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+	setv va88 attr
+	orrv va88 4
+	attr va88
+endi
+accg 5
+fric 100
+aero 10
+elas 0
+bhvr 0
+perm 60
+tick rand 900 1000
+mesg wrt+ targ 1000 0 0 10
+
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 5 6506 <= 1 or 1 eq 1
+	mvsf 6574 18611
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 30 40 -5
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	endi
+endi
+
+
+*****************************
+* Scripts
+
+scrp 2 5 6506 1
+* 	Campanula plant clicked
+	inst
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+		mesg wrt+ ownr 1000 1 0 0
+	endi
+endm
+
+scrp 2 5 6506 9
+*	Campanula plant timer
+	inst
+	doif movs = 0
+		mesg wrt+ ownr 1000 0 0 0
+	endi
+endm
+
+scrp 2 5 6506 125
+*	Campanula lost flower
+	inst
+	doif movs = 0
+		mesg wrt+ ownr 1000 0 0 rand 20 90
+	endi
+endm
+
+scrp 2 5 6506 1000
+*	Campanula plant's timer
+	inst
+	setv va20 0
+	epas 2 9 6507
+		addv va20 1
+	next
+
+	doif va20 < 1 or _p1_ = 1
+*		no flower exists, so better make one
+		setv va00 posl
+		setv va01 post
+		new: simp 2 9 6507 "c1plants" 2 15 101
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		puhl 0 16 18
+		puhl 1 16 18
+		addv va00 28
+		addv va01 20
+		mvsf va00 va01
+		seta va20 targ
+		accg 0
+		attr 199
+		fric 100
+		elas 0
+		aero 100
+		bhvr 48
+		perm 60
+		targ ownr
+		doif _p1_ <> 1
+			setv va52 0
+			loop
+				spas ownr va20
+				wait 1
+				inst
+				addv va52 1
+				targ va20
+			untl targ = null or carr = ownr or va52 > 10
+			inst
+		else
+			targ va20
+			pose 1
+			velo rand -10 10 rand 1 5
+		endi
+		accg 3
+		fric 100
+		aero 10
+		attr 195
+		doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+			setv va88 attr
+			orrv va88 4
+			attr va88
+		endi
+	endi
+endm
+
+scrp 2 9 6507 1
+* 	Campanula plant clicked
+	inst
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+		mesg wrt+ ownr 1000 1 0 0
+	endi
+endm
+
+scrp 2 9 6507 4
+*	Campanula picked up
+	inst
+	lock
+	pose 1
+	attr 195
+	doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+		setv va88 attr
+		orrv va88 4
+		attr va88
+	endi
+	accg 3
+	fric 90
+	aero 10
+endm
+
+scrp 2 9 6507 5
+	setv name "C1_to_DS_Garbage_Collect" 1
+endm
+
+scrp 2 9 6507 12
+*	eating a weed
+*	Campanula
+	inst
+	lock
+	seta va20 norn
+	targ from
+	doif crea targ = 1
+		chem 5 0.9
+		chem 73 1.0
+		chem 72 1.0
+*		chem 74 0.25
+*		chem 34 0.5
+		snde "chwp"
+		stim writ from 83 1
+	endi
+	targ ownr
+	kill targ
+endm
+
+rscr
+
+enum 2 5 6506
+	kill targ
+next
+scrx 2 5 6506 1
+scrx 2 5 6506 9
+scrx 2 5 6506 125
+scrx 2 5 6506 1000
+
+enum 2 9 6507
+	kill targ
+next
+scrx 2 9 6507 1
+scrx 2 9 6507 4
+scrx 2 9 6507 5
+scrx 2 9 6507 12
