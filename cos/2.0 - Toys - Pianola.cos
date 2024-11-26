@@ -107,3 +107,11 @@ enum 2 21 6504
     endi
 next
 
+doif game "C1_to_DS_Lite_Loaded" eq 0
+    scrx 2 21 6504 1
+    scrx 2 21 6504 2
+    scrx 2 21 6504 3
+    scrx 2 21 6504 124
+    scrx 2 21 6504 1000
+endi
+

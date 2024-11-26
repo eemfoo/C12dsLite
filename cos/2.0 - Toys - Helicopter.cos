@@ -161,3 +161,11 @@ enum 2 21 6502
         kill targ
     endi
 next
+
+doif game "C1_to_DS_Lite_Loaded" eq 0
+    scrx 2 21 6502 1
+    scrx 2 21 6502 2
+    scrx 2 21 6502 3
+    scrx 2 21 6502 4
+    scrx 2 21 6502 6
+endi

@@ -227,24 +227,16 @@ else
 	setv va00 -1
 endi
 
-*enum 2 5 6504
-*	doif gmap posl post ne va00
-*		kill targ
-*	endi
-*next
-*
-*enum 2 9 6505
-*	doif gmap posl post ne va00
-*		kill targ
-*	endi
-*next
-
 enum 2 5 6504
-	kill targ
+	doif gmap posl post ne va00
+		kill targ
+	endi
 next
 
 enum 2 9 6505
-	kill targ
+	doif gmap posl post ne va00
+		kill targ
+	endi
 next
 
 doif game "C1_to_DS_Lite_Loaded" eq 0

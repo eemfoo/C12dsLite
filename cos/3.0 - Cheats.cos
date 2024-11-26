@@ -108,16 +108,19 @@ scrp 1 1 6509 1012
 endm
 
 rscr
+
 enum 1 1 6509
 	kill targ
 next
 
 * Clickable Food
+delg "C1_to_DS_Lite_Clickable_Food"
 scrx 1 1 6509 1000
 scrx 1 1 6509 1001
-scrx 1 1 6509 1001
+scrx 1 1 6509 1002
 
 * Stackable Lemons
+delg "C1_to_DS_Lite_Stackable_Lemons"
 scrx 1 1 6509 1010
 scrx 1 1 6509 1011
 scrx 1 1 6509 1012
