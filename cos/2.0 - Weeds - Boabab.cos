@@ -1,0 +1,255 @@
+* C1 Baobab
+
+* Dependencies:
+*  c1plants.c16
+*  c1d7.wav
+
+inst
+lock
+
+* Baobab plant
+new: vhcl 2 4 6510 "c1plants" 1 25 100
+setv name "C1_to_DS_Lite_Clickable_Food" 1
+tick 100
+fric 100
+aero 10
+accg 5
+perm 60
+cabn 10 -7 36 14
+cabp 1
+elas 0
+seta va20 targ
+
+* C1 to DS Injection Location Script
+* have to make verify that game_type variable is a string value
+doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6510 <= 1 or 1 eq 1
+	setv va00 3232
+	setv va01 18872
+	attr 728
+
+	mvto va00 va01
+else
+	attr 731
+	doif type game "ds_game_type" ne 2
+* 		it's NOT a string, this must be C3 only
+* 		choose a safe C3 location
+		setv va00 5440
+		setv va01 3580
+		velo rand 30 40 -5
+		mvsf va00 va01
+	else
+* 		it IS a string, but what is the value?
+		doif game "ds_game_type" eq "undocked"
+* 			this is an undocked world, location needs to be DS safe
+			setv va00 6100
+			setv va01 9200
+			velo rand 30 40 -5
+			mvsf va00 va01
+		elif game "ds_game_type" eq "docked"
+* 			this is a docked world, location can be anywhere in the DS/C3 realm
+			setv va00 6100
+			setv va01 9200
+			velo rand 30 40 -5
+			mvsf va00 va01
+		endi
+	endi
+endi
+doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+	setv va88 attr
+	orrv va88 4
+	attr va88
+endi
+mesg wrt+ targ 9 0 0 0
+
+
+scrp 2 4 6510 9
+*	Baobab Plant timer
+	inst
+	lock
+	setv va20 0
+	epas 2 25 6503
+		addv va20 1
+	next
+	doif va20 < 1 or _p1_ <> 0
+*		no/not enough fruit exists or asked to vend
+		doif _p1_ <> 0
+			setv va21 _p1_
+		else
+			setv va21 1
+			subv va21 va20
+		endi
+		doif va21 > 0
+			reps va21
+				new: simp 2 25 6503 "c1plants" 2 26 101
+				setv name "C1_to_DS_Lite_Clickable_Food" 1
+				seta va51 targ
+				targ ownr
+				setv va00 posl
+				setv va01 post
+				targ va51
+				addv va00 0
+				addv va01 20
+				mvsf va00 va01
+				targ va51
+				accg 5
+				aero 10
+				attr 195
+				doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+					setv va88 attr
+					orrv va88 4
+					attr va88
+				endi
+				fric 100
+				elas 0
+				bhvr 48
+				perm 60
+				doif _p1_ <> 1
+					setv va52 0
+					loop
+						spas ownr targ
+						wait 1
+						addv va52 1
+						targ va51
+					untl carr = ownr or va52 > 100
+					inst
+				else
+					pose 1
+					accg 5
+					fric 100
+					aero 10
+					velo rand -10 10 rand 1 5
+				endi
+			repe
+		endi
+	endi
+endm
+
+scrp 2 4 6510 1
+	inst
+	lock
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+		mesg wrt+ ownr 9 1 0 0
+	endi
+endm
+
+scrp 2 25 6503 1
+*	Baobab clicked
+	inst
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+		setv va00 posl
+		setv va01 post
+		new: simp 2 25 6503 "c1plants" 2 26 101
+		setv name "C1_to_DS_Garbage_Collect" 1
+		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		accg 5
+		attr 199
+		fric 100
+		elas 0
+		bhvr 48
+		perm 60
+		pose 1
+		accg 5
+		fric 100
+		aero 10
+		mvsf va00 va01
+		velo rand -10 10 rand -15 -5
+	endi
+endm
+
+scrp 2 25 6503 4
+*	Baobab has been picked up
+	inst
+	lock
+	pose 1
+	mira rand 0 1
+	accg 3
+	fric 90
+	aero 10
+	setv name "C1_to_DS_Garbage_Collect" 1
+endm
+
+scrp 2 25 6503 5
+*	Baobab has been dropped!
+	inst
+*	pose 0
+	mira rand 0 1
+	accg 3
+	fric 90
+	aero 10
+endm
+
+scrp 2 25 6503 6
+*	Baobab has hit something!
+	sndc "c1d7"
+endm
+
+scrp 2 4 6510 124
+*	Baobab got a passenger
+	epas 0 0 0
+		doif fmly = 2 and gnus = 7 and spcs = 32399
+*			it's Ok - C1 to DS Baobab
+			mira 1
+		else
+			rpas ownr targ
+		endi
+	next
+endm
+
+scrp 2 4 6510 125
+*	Baobab lost a passenger
+	inst
+	lock
+	mesg wrt+ ownr 9 0 0 rand 90 200
+endm
+
+scrp 2 25 6503 12
+*	eating a flower
+*	Baobab
+	inst
+	lock
+	seta va20 norn
+	targ from
+	doif crea targ = 1
+		chem 5 0.9
+		chem 73 1.0
+		chem 74 1.0
+		snde "chwp"
+		stim writ from 84 1
+	endi
+	targ ownr
+	kill targ
+endm
+
+rscr
+inst
+doif game "C1_to_DS_Lite_Loaded" eq 1
+	setv va00 game "c12dsl::metaroom::id"
+else
+	* If C12DSL is not installed, make metaroom ID negative and impossible to match
+	setv va00 -1
+endi
+
+enum 2 25 6503
+	doif gmap posl post ne va00
+		kill targ
+	endi
+next
+
+enum 2 4 6510
+	doif gmap posl post ne va00
+		kill targ
+	endi
+next
+
+doif game "C1_to_DS_Lite_Loaded" eq 0
+	scrx 2 4 6510 1
+	scrx 2 4 6510 9
+	scrx 2 4 6510 124
+	scrx 2 4 6510 125
+
+	scrx 2 25 6503 1
+	scrx 2 25 6503 4
+	scrx 2 25 6503 5
+	scrx 2 25 6503 6
+	scrx 2 25 6503 12
+endi
