@@ -292,12 +292,12 @@ scrp 2 23 6501 1004
 		setv va03 rand 1 3
 		doif va03 = 1
 *			make sunflower seed
-			new: simp 2 3 6501 "c1seeds" 4 1 va99
+			new: simp 2 3 6502 "c1seeds" 4 1 va99
 			setv ov99 0
 			accg .8
 		elif va03 = 2
 *			make jungle seed
-			new: simp 2 3 6501 "c1seeds" 4 5 va99
+			new: simp 2 3 6502 "c1seeds" 4 5 va99
 			setv ov99 0
 			accg .8
 		else
