@@ -253,8 +253,10 @@ scrp 2 11 6505 6
 endm
 
 scrp 2 11 6505 9
-    inst
-    kill ownr
+	inst
+	doif pose eq 2
+		kill ownr
+	endi
 endm
 
 scrp 2 11 6505 10
