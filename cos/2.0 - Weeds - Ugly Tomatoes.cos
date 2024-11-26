@@ -77,7 +77,7 @@ endi
 scrp 2 5 6504 1
 *	Ugly Tomato plant clicked
 	inst
-	doif game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
 		setv va00 posl
 		setv va01 post
 		new: simp 2 9 6505 "c1plants" 1 13 101
@@ -162,7 +162,7 @@ endm
 scrp 2 9 6505 1
 *	Ugly Tomato clicked
 	inst
-	doif game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
 		setv va00 posl
 		setv va01 post
 		new: simp 2 9 6505 "c1plants" 1 13 101
