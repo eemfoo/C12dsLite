@@ -40,115 +40,115 @@ setv game "C1_Bee_Total" 4
 
 doif game "C1_to_DS_Lite_Installing" = 0 or totl 2 17 6500 > 1
 *	just inject one
-    new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
-    part 0
-    pose 0
-    cabp 1
-    cabn 0 0 68 84
-    attr 199
-    bhvr 11
-    fric 100
-    accg 25
-    elas 0
-    perm 60
-    tick rand 90 110
-    rnge 500
-    anim [0 1 2 3 4 5 6 7 8 255]
-    frat game "C1_Bee_frat"
+	new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
+	part 0
+	pose 0
+	cabp 1
+	cabn 0 0 68 84
+	attr 199
+	bhvr 11
+	fric 100
+	accg 25
+	elas 0
+	perm 60
+	tick rand 90 110
+	rnge 500
+	anim [0 1 2 3 4 5 6 7 8 255]
+	frat game "C1_Bee_frat"
 
 
-    doif type game "ds_game_type" ne 2
+	doif type game "ds_game_type" ne 2
 * it's NOT a string, this must be C3 only
 * choose a safe C3 location
-        setv va00 5440
-        setv va01 3580
-        velo rand 30 40 -5
-        mvsf va00 va01
-    else
+		setv va00 5440
+		setv va01 3580
+		velo rand 30 40 -5
+		mvsf va00 va01
+	else
 * it IS a string, but what is the value?
-        doif game "ds_game_type" eq "undocked"
+		doif game "ds_game_type" eq "undocked"
 * this is an undocked world, location needs to be DS safe
-            setv va00 6100
-            setv va01 9200
-            velo rand 30 40 -5
-            mvsf va00 va01
-        elif game "ds_game_type" eq "docked"
+			setv va00 6100
+			setv va01 9200
+			velo rand 30 40 -5
+			mvsf va00 va01
+		elif game "ds_game_type" eq "docked"
 * this is a docked world, location can be anywhere in the DS/C3 realm
-            setv va00 6100
-            setv va01 9200
-            velo rand 30 40 -5
-            mvsf va00 va01
-        endi
-    endi
+			setv va00 6100
+			setv va01 9200
+			velo rand 30 40 -5
+			mvsf va00 va01
+		endi
+	endi
 else
 
 * make Bee Hive 1
-    setv va00 1282
-    setv va01 18505
-    new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
-    part 0
-    pose 0
-    cabp 1
-    cabn 0 0 68 84
-    attr 199
-    bhvr 11
-    fric 100
-    accg 25
-    elas 0
-    perm 60
-    emit 8 0.5
-    mvsf va00 va01
-    tick rand 90 110
-    rnge 500
-    anim [0 1 2 3 4 5 6 7 8 255]
-    frat game "C1_Bee_frat"
+	setv va00 1282
+	setv va01 18505
+	new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
+	part 0
+	pose 0
+	cabp 1
+	cabn 0 0 68 84
+	attr 199
+	bhvr 11
+	fric 100
+	accg 25
+	elas 0
+	perm 60
+	emit 8 0.5
+	mvsf va00 va01
+	tick rand 90 110
+	rnge 500
+	anim [0 1 2 3 4 5 6 7 8 255]
+	frat game "C1_Bee_frat"
 
 * make Bee Hive 2
-    setv va00 1362
-    setv va01 18505
-    new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
-    part 0
-    pose 0
-    cabp 1
-    cabn 0 0 68 84
-    attr 199
-    bhvr 11
-    fric 100
-    accg 25
-    elas 0
-    perm 60
-    emit 8 0.5
-    tick rand 90 110
-    mvsf va00 va01
-    rnge 500
-    anim [4 5 6 7 8 0 1 2 3 255]
-    frat game "C1_Bee_frat"
+	setv va00 1362
+	setv va01 18505
+	new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
+	part 0
+	pose 0
+	cabp 1
+	cabn 0 0 68 84
+	attr 199
+	bhvr 11
+	fric 100
+	accg 25
+	elas 0
+	perm 60
+	emit 8 0.5
+	tick rand 90 110
+	mvsf va00 va01
+	rnge 500
+	anim [4 5 6 7 8 0 1 2 3 255]
+	frat game "C1_Bee_frat"
 
 * make Bee Hive 3
-    setv va00 1312
-    setv va01 18505
-    new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
-    part 0
-    pose 0
-    cabp 1
-    cabn 0 0 68 84
-    attr 199
-    bhvr 11
-    fric 100
-    accg 25
-    elas 0
-    perm 60
-    tick rand 90 110
-    emit 8 0.5
-    mvsf va00 va01
-    rnge 500
-    anim [7 8 0 1 2 3 4 5 6 255]
-    frat game "C1_Bee_frat"
-    mesg wrt+ targ 1003 0 0 0
+	setv va00 1312
+	setv va01 18505
+	new: vhcl 2 17 6500 "c1beehivehoney" 9 4 500
+	part 0
+	pose 0
+	cabp 1
+	cabn 0 0 68 84
+	attr 199
+	bhvr 11
+	fric 100
+	accg 25
+	elas 0
+	perm 60
+	tick rand 90 110
+	emit 8 0.5
+	mvsf va00 va01
+	rnge 500
+	anim [7 8 0 1 2 3 4 5 6 255]
+	frat game "C1_Bee_frat"
+	mesg wrt+ targ 1003 0 0 0
 
 * make some honey under middle hive
-    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    mvsf 1297 18567
+	new: simp 2 11 6505 "c1beehivehoney" 3 13 502
+	mvsf 1297 18567
 
 * make some honey to left of hives
 	new: simp 2 11 6505 "c1beehivehoney" 3 13 502
@@ -157,7 +157,7 @@ else
 * make some honey on kitchen table
 	new: simp 2 11 6505 "c1beehivehoney" 3 13 502
 	mvsf 1949 18844
-	
+
 	etch 1 7 6500
 		gpas 2 11 6505 0
 	next
@@ -182,12 +182,12 @@ endi
 
 scrp 2 11 6505 1
 *	honey is clicked
-    inst
+	inst
 
-    doif keyd 17 eq 1
-        kill ownr
-        stop
-    endi
+	doif keyd 17 eq 1
+		kill ownr
+		stop
+	endi
 
 	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
 		setv va00 posl
@@ -201,56 +201,56 @@ endm
 
 scrp 2 11 6505 4
 *	honey is picked up
-    doif ov99 >= 1 and carr = pntr
-        pose 1
-    endi
+	doif ov99 >= 1 and carr = pntr
+		pose 1
+	endi
 endm
 
 scrp 2 11 6505 5
-    inst
-    lock
+	inst
+	lock
 *	honey is dropped
-    doif ov99 <= 0
-        pose 2
-        tick rand 83 123
-    else
-        pose 0
-    endi
-    fric 100
-    aero 10
-    accg 5
-    setv va20 0
-    inst
-    etch 2 17 6500
-        addv va20 1
-    next
-    lock
-    inst
-    doif va20 > 0
-        pose 0
-        bhvr 48
-        tick 0
-        setv ov99 5
-        emit 8 0.5
-        attr 199
-    endi
+	doif ov99 <= 0
+		pose 2
+		tick rand 83 123
+	else
+		pose 0
+	endi
+	fric 100
+	aero 10
+	accg 5
+	setv va20 0
+	inst
+	etch 2 17 6500
+		addv va20 1
+	next
+	lock
+	inst
+	doif va20 > 0
+		pose 0
+		bhvr 48
+		tick 0
+		setv ov99 5
+		emit 8 0.5
+		attr 199
+	endi
 endm
 
 scrp 2 11 6505 6
 *	honey collides with something
-    inst
-    sndc "c1d2"
-    setv va20 0
-    inst
-    etch 2 17 6500
-        addv va20 1
-    next
-    doif va20 > 0
-        pose 0
-        bhvr 48
-        tick 0
-        setv ov99 5
-    endi
+	inst
+	sndc "c1d2"
+	setv va20 0
+	inst
+	etch 2 17 6500
+		addv va20 1
+	next
+	doif va20 > 0
+		pose 0
+		bhvr 48
+		tick 0
+		setv ov99 5
+	endi
 endm
 
 scrp 2 11 6505 9
@@ -261,312 +261,312 @@ scrp 2 11 6505 9
 endm
 
 scrp 2 11 6505 10
-    setv name "C1_to_DS_Lite_Clickable_Food" 1
+	setv name "C1_to_DS_Lite_Clickable_Food" 1
 
-    * Set attribute, making clickable if needed
-    attr 195
-    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
-        setv va00 attr
-        orrv va00 4
-        attr va00
-    endi
+	* Set attribute, making clickable if needed
+	attr 195
+	doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+		setv va00 attr
+		orrv va00 4
+		attr va00
+	endi
 
-    elas 0
-    fric 100
-    aero 10
-    accg 5
-    bhvr 48
-    perm 60
-    emit 8 0.5
-    setv ov62 1
-    setv ov99 5
+	elas 0
+	fric 100
+	aero 10
+	accg 5
+	bhvr 48
+	perm 60
+	emit 8 0.5
+	setv ov62 1
+	setv ov99 5
 endm
 
 scrp 2 11 6505 12
 *	honey is being eaten
-    inst
-    lock
-    sndc "c1h1"
-    stim writ from 79 1.0
-    targ ownr
-    subv ov99 1
-    doif ov99 <= 0
-        bhvr 0
-        attr 215
-        pose 2
-        tick rand 83 123
-        targ from
-        doif crea targ = 1
-            zomb 1
-            wait 5
-            inst
-            mesg writ targ 23
-            wait 5
-            inst
-            zomb 0
-        endi
-        slow
-        emit 0 0
-        wait 5
-        mesg writ ownr 5
-    endi
-    unlk
+	inst
+	lock
+	sndc "c1h1"
+	stim writ from 79 1.0
+	targ ownr
+	subv ov99 1
+	doif ov99 <= 0
+		bhvr 0
+		attr 215
+		pose 2
+		tick rand 83 123
+		targ from
+		doif crea targ = 1
+			zomb 1
+			wait 5
+			inst
+			mesg writ targ 23
+			wait 5
+			inst
+			zomb 0
+		endi
+		slow
+		emit 0 0
+		wait 5
+		mesg writ ownr 5
+	endi
+	unlk
 endm
 
 scrp 2 15 6503 1
 *	bee is pushed
-    inst
-    doif from = pntr
-        mesg wrt+ ownr 1001  from 0 0
-    else
-        mesg wrt+ ownr 1002  from 0 0
-    endi
+	inst
+	doif from = pntr
+		mesg wrt+ ownr 1001 from 0 0
+	else
+		mesg wrt+ ownr 1002 from 0 0
+	endi
 endm
 
 scrp 2 15 6503 2
-    mesg wrt+ ownr 1002  from 0 0
+	mesg wrt+ ownr 1002 from 0 0
 endm
 
 scrp 2 15 6503 3
 *	bee was hit
-    stim writ from 87 1.0
-    mesg wrt+ ownr 1001 from 0 0
+	stim writ from 87 1.0
+	mesg wrt+ ownr 1001 from 0 0
 endm
 
 scrp 2 15 6503 4
 *	bee was picked up
-    doif crea from = 1 and rand 1 100 > 90
+	doif crea from = 1 and rand 1 100 > 90
 *		sting the picker upper
-        mesg wrt+ ownr 1002 from 0 0
-    endi
+		mesg wrt+ ownr 1002 from 0 0
+	endi
 endm
 
 scrp 2 15 6503 6
-    doif pose > 2
-        pose 3
-    endi
+	doif pose > 2
+		pose 3
+	endi
 endm
 
 scrp 2 15 6503 9
-    inst
-    doif pose > 1
-        wait 10
-        inst
-        kill targ
-    elif movs = 0 and pose < 2
-        setv va20 10000000
-        enum 2 17 6500
-            doif disq ownr < va20 and seee ownr targ = 1
-                seta va21 targ
-                setv va00 posl
-                setv va01 post
-                setv va02 posr
-                setv va03 posb
-                setv va20 disq ownr
-            endi
-        next
-        targ ownr
-        doif va20 >= 10000 and va20 < 10000000
-            doif touc ownr va21 = 1
-                velo rand -3 3 rand -3 3
-            endi
-            doif posl > va02
-                velo -6 vely
-            endi
+	inst
+	doif pose > 1
+		wait 10
+		inst
+		kill targ
+	elif movs = 0 and pose < 2
+		setv va20 10000000
+		enum 2 17 6500
+			doif disq ownr < va20 and seee ownr targ = 1
+				seta va21 targ
+				setv va00 posl
+				setv va01 post
+				setv va02 posr
+				setv va03 posb
+				setv va20 disq ownr
+			endi
+		next
+		targ ownr
+		doif va20 >= 10000 and va20 < 10000000
+			doif touc ownr va21 = 1
+				velo rand -3 3 rand -3 3
+			endi
+			doif posl > va02
+				velo -6 vely
+			endi
 
-            doif posr < va00
-                velo 6 vely
-            endi
+			doif posr < va00
+				velo 6 vely
+			endi
 
-            doif va03 < post
-                velo velx -6
-            endi
+			doif va03 < post
+				velo velx -6
+			endi
 
-            doif va01 > posb
-                velo velx 6
-            endi
-        else
-            doif rand 0 100 > 20
-                velo rand -4 4 rand -1 1
-            endi
-        endi
-    elif pose > 2
-        targ ownr
-        kill targ
-    endi
-    doif pose < 3
-        doif velx < 0
-            mira 1
-        elif velx > 0
-            mira 0
-        endi
-    endi
-    doif pose < 2
-        doif rand 1 100 > 80
-            wait rand 0 7
-            sndl "c1bb"
-        endi
-    endi
+			doif va01 > posb
+				velo velx 6
+			endi
+		else
+			doif rand 0 100 > 20
+				velo rand -4 4 rand -1 1
+			endi
+		endi
+	elif pose > 2
+		targ ownr
+		kill targ
+	endi
+	doif pose < 3
+		doif velx < 0
+			mira 1
+		elif velx > 0
+			mira 0
+		endi
+	endi
+	doif pose < 2
+		doif rand 1 100 > 80
+			wait rand 0 7
+			sndl "c1bb"
+		endi
+	endi
 endm
 
 scrp 2 15 6503 12
 *	bee gets eaten!
-    doif crea from = 1
-        doif rand 1 100 > 50
-            mesg wrt+ ownr 1002 from 0 0
-        endi
-    endi
-    stim writ from 80 1.0
-    kill ownr
+	doif crea from = 1
+		doif rand 1 100 > 50
+			mesg wrt+ ownr 1002 from 0 0
+		endi
+	endi
+	stim writ from 80 1.0
+	kill ownr
 endm
 
 scrp 2 15 6503 1001
 *	bee gets killed
-    inst
-    doif _p1_ = pntr
-        stpc
-        anim [2 3]
-        accg 3
-        snde "spnk"
-        targ _p1_
-        anim [10 11 12 11 10 0]
-    elif crea _p1_ = 1
-        stpc
-        anim [2 3]
-        accg 3
-        targ _p1_
-        snde "spnk"
-        stim writ targ 85 1.0
-    elif _p1_ = ownr
-        stpc
-        anim [2 3]
-        accg 3
-    endi
+	inst
+	doif _p1_ = pntr
+		stpc
+		anim [2 3]
+		accg 3
+		snde "spnk"
+		targ _p1_
+		anim [10 11 12 11 10 0]
+	elif crea _p1_ = 1
+		stpc
+		anim [2 3]
+		accg 3
+		targ _p1_
+		snde "spnk"
+		stim writ targ 85 1.0
+	elif _p1_ = ownr
+		stpc
+		anim [2 3]
+		accg 3
+	endi
 endm
 
 scrp 2 15 6503 1002
 *	bee stings
-    inst
-    doif crea _p1_ = 1
-        snde "c1s2"
-        targ _p1_
+	inst
+	doif crea _p1_ = 1
+		snde "c1s2"
+		targ _p1_
 *		creature flinches
-        mesg writ targ 64
-        stim writ targ 76 .5
-        chem 72 .5
-        chem 148 .5
-    endi
+		mesg writ targ 64
+		stim writ targ 76 .5
+		chem 72 .5
+		chem 148 .5
+	endi
 *	tell the bee to die now
-    wait 20
-    mesg wrt+ ownr 1001 ownr 0 0
+	wait 20
+	mesg wrt+ ownr 1001 ownr 0 0
 endm
 
 
 scrp 2 17 6500 1
 
-    doif from ne pntr
-        stop
-    endi
+	doif from ne pntr
+		stop
+	endi
 
 *	hive is pushed, so vend a pot of honey
-    inst
-    setv va20 0
-    esee 2 11 6505
-        doif pose <> 2
-            addv va20 1
-        endi
-    next
-    doif va20 < 5
-        setv va00 posl
-        setv va01 post
-        addv va00 45
-        addv va01 70
-        new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-        setv ov99 5
-        mvsf va00 va01
-        velo rand -10 10 rand -5 -2
-        stim writ from 13 1
-    endi
+	inst
+	setv va20 0
+	esee 2 11 6505
+		doif pose <> 2
+			addv va20 1
+		endi
+	next
+	doif va20 < 5
+		setv va00 posl
+		setv va01 post
+		addv va00 45
+		addv va01 70
+		new: simp 2 11 6505 "c1beehivehoney" 3 13 502
+		setv ov99 5
+		mvsf va00 va01
+		velo rand -10 10 rand -5 -2
+		stim writ from 13 1
+	endi
 endm
 
 scrp 2 17 6500 2
-    doif from ne pntr
-        stop
-    endi
+	doif from ne pntr
+		stop
+	endi
 endm
 
 scrp 2 17 6500 3
-    doif from ne pntr
-        stop
-    endi
+	doif from ne pntr
+		stop
+	endi
 endm
 
 scrp 2 17 6500 9
 *	bee hive timer
-    inst
-    doif movs = 0
-        part 0
-        anim [0 1 2 3 4 5 6 7 8 255]
-    endi
-    doif totl 2 15 6503 < game "C1_Bee_Total"
-        mesg writ ownr 1003
-    endi
-    setv va23 0
-    targ ownr
-    esee 2 11 6505
-        addv va23 1
-    next
-    doif va23 = 0 and movs = 0
-        mesg writ ownr 0
-    endi
-    doif rand 1 100 > 80
-        wait rand 0 7
-        sndl "c1bb"
-    endi
+	inst
+	doif movs = 0
+		part 0
+		anim [0 1 2 3 4 5 6 7 8 255]
+	endi
+	doif totl 2 15 6503 < game "C1_Bee_Total"
+		mesg writ ownr 1003
+	endi
+	setv va23 0
+	targ ownr
+	esee 2 11 6505
+		addv va23 1
+	next
+	doif va23 = 0 and movs = 0
+		mesg writ ownr 0
+	endi
+	doif rand 1 100 > 80
+		wait rand 0 7
+		sndl "c1bb"
+	endi
 endm
 
 scrp 2 17 6500 1003
 *	make new bee(s)
-    inst
-    setv va00 posl
-    setv va01 post
-    addv va00 rand 0 60
-    addv va01 rand 0 84
-    setv va20 totl 2 15 6503
-    doif va20 < 4
-        subv va20 4
-        absv va20
-        reps va20
-            new: simp 2 15 6503 "c1beehivehoney" 4 0 7001
-            attr 199
-            elas 0
-            fric 100
-            aero 10
-            accg 0
-            bhvr 59
-            perm 50
-            anim [0 1 255]
-            tick rand 17 23
-            rnge 1999
-            seta va21 targ
-            mvsf va00 va01
-            velo rand -1 1 rand -1 1
-        repe
-    endi
+	inst
+	setv va00 posl
+	setv va01 post
+	addv va00 rand 0 60
+	addv va01 rand 0 84
+	setv va20 totl 2 15 6503
+	doif va20 < 4
+		subv va20 4
+		absv va20
+		reps va20
+			new: simp 2 15 6503 "c1beehivehoney" 4 0 7001
+			attr 199
+			elas 0
+			fric 100
+			aero 10
+			accg 0
+			bhvr 59
+			perm 50
+			anim [0 1 255]
+			tick rand 17 23
+			rnge 1999
+			seta va21 targ
+			mvsf va00 va01
+			velo rand -1 1 rand -1 1
+		repe
+	endi
 endm
 
 scrp 2 17 6500 1004
 *	Count honey pots near this hive and return to the total to the caller's ov23 variable
-    inst
-    lock
-    setv va20 0
-    esee 2 11 6505
-        doif pose <> 2
-            addv va20 1
-        endi
-    next
-    targ from
-    setv ov23 va20
+	inst
+	lock
+	setv va20 0
+	esee 2 11 6505
+		doif pose <> 2
+			addv va20 1
+		endi
+	next
+	targ from
+	setv ov23 va20
 endm
 
 ***************************************
@@ -575,28 +575,28 @@ endm
 rscr
 
 doif game "C1_to_DS_Lite_Loaded" eq 1
-    setv va00 game "c12dsl::metaroom::id"
+	setv va00 game "c12dsl::metaroom::id"
 else
-    * If C12DSL is not installed, make metaroom ID negative and impossible to match
-    setv va00 -1
+	* If C12DSL is not installed, make metaroom ID negative and impossible to match
+	setv va00 -1
 endi
 
 enum 2 11 6505
-    doif gmap posl post ne va00
-        kill targ
-    endi
+	doif gmap posl post ne va00
+		kill targ
+	endi
 next
 
 enum 2 15 6503
-    doif gmap posl post ne va00
-        kill targ
-    endi
+	doif gmap posl post ne va00
+		kill targ
+	endi
 next
 
 enum 2 17 6500
-    doif gmap posl post ne va00
-        kill targ
-    endi
+	doif gmap posl post ne va00
+		kill targ
+	endi
 next
 
 doif game "C1_to_DS_Lite_Loaded" eq 0
@@ -612,10 +612,10 @@ doif game "C1_to_DS_Lite_Loaded" eq 0
 	scrx 2 15 6503 2
 	scrx 2 15 6503 3
 	scrx 2 15 6503 4
-	scrx 2 15 6503 6   
-	scrx 2 15 6503 9  
+	scrx 2 15 6503 6
+	scrx 2 15 6503 9
 	scrx 2 15 6503 12
-	
+
 	scrx 2 17 6500 1
 	scrx 2 17 6500 2
 	scrx 2 17 6500 3
