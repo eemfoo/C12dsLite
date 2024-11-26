@@ -61,6 +61,7 @@ scrp 2 11 6500 4
     accg 3
     fric 90
     aero 10
+    setv name "C1_to_DS_Garbage_Collect" 1
 endm
 
 scrp 2 11 6500 5

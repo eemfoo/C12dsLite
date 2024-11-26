@@ -181,6 +181,7 @@ scrp 2 25 6504 1
 		setv va00 posl
 		setv va01 post
 		new: simp 2 25 6504 "c1plants" 2 29 7001
+		setv name "C1_to_DS_Garbage_Collect" 1
 		setv name "C1_to_DS_Lite_Clickable_Food" 1
 		puhl 0 18 18
 		puhl 1 18 18
@@ -203,6 +204,7 @@ scrp 2 25 6504 4
 	inst
 	lock
 	pose 1
+	setv name "C1_to_DS_Garbage_Collect" 1
 endm
 
 scrp 2 25 6504 12

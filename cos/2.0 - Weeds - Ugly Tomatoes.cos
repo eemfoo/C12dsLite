@@ -166,6 +166,7 @@ scrp 2 9 6505 1
 		setv va00 posl
 		setv va01 post
 		new: simp 2 9 6505 "c1plants" 1 13 101
+		setv name "C1_to_DS_Garbage_Collect" 1
 		addv va00 -1
 		addv va01 15
 		seta va20 targ
@@ -186,6 +187,7 @@ scrp 2 9 6505 4
 *	Ugly Tomato
 	inst
 	lock
+	setv name "C1_to_DS_Garbage_Collect" 1
 	mira rand 0 1
 	attr 195
 	doif game "C1_to_DS_Lite_Clickable_Food" eq 1

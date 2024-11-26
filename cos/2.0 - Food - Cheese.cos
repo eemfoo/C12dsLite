@@ -110,6 +110,7 @@ scrp 2 11 6501 1
         setv va01 post
         new: simp 2 11 6501 "c1cheese" 3 0 200
         setv name "C1_to_DS_Lite_Clickable_Food" 1
+        setv name "C1_to_DS_Garbage_Collect" 1
         attr 199
         accg 5
         aero 10

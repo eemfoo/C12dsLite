@@ -201,8 +201,9 @@ scrp 2 8 6500 1
     inst
     lock
     doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
-
         * Create new lemon
+        setv name "C1_to_DS_Lite_Clickable_Food" 1
+        setv name "C1_to_DS_Garbage_Collect" 1
         setv va00 posl
         setv va01 post
         new: vhcl 2 8 6500 "c1plants" 3 0 101
@@ -210,7 +211,6 @@ scrp 2 8 6500 1
         cabw 1
         cabn -10 -25 34 4
         attr 719
-        setv name "C1_to_DS_Lite_Clickable_Food" 1
         setv ov00 1
         pose 2
         mira rand 0 1
@@ -249,6 +249,7 @@ scrp 2 8 6500 4
     accg 3
     fric 90
     aero 10
+    setv name "C1_to_DS_Garbage_Collect" 1
 endm
 
 scrp 2 8 6500 5
