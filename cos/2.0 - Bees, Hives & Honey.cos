@@ -156,25 +156,26 @@ else
     mvsf 1245 18567
 
 * make some honey on kitchen table
-    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    mvsf 1949 18844
-    etch 1 7 32332
-        gpas 2 11 6505 0
-    next
+	new: simp 2 11 6505 "c1beehivehoney" 3 13 502
+	mvsf 1949 18844
+	
+	etch 1 7 6500
+		gpas 2 11 6505 0
+	next
 
 * make some honey on greenhouse shelf
-    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    mvsf 2885 18872
-    etch 1 7 32332
-        gpas 2 11 6505 0
-    next
+	new: simp 2 11 6505 "c1beehivehoney" 3 13 502
+	mvsf 2885 18872
+	etch 1 7 6500
+		gpas 2 11 6505 0
+	next
 
 * make some honey in treehouse
-    new: simp 2 11 6505 "c1beehivehoney" 3 13 502
-    mvsf 3630 18495
-    etch 1 7 32332
-        gpas 2 11 6505 0
-    next
+	new: simp 2 11 6505 "c1beehivehoney" 3 13 502
+	mvsf 3630 18495
+	etch 1 7 6500
+		gpas 2 11 6505 0
+	next
 endi
 
 ***************************************
