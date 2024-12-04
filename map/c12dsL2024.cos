@@ -110,13 +110,13 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 2603 2720 18745 18745 18934 18934
     rtyp va00 5
     setv game "map_tmp_34" va00
-  setv va00 addr va01 2720 2826 18745 18745 18934 18934
+  setv va00 addr va01 2720 2824 18745 18762 18934 18934
     rtyp va00 5
     setv game "map_tmp_35" va00
-  setv va00 addr va01 2826 2978 18745 18745 18934 18934
+  setv va00 addr va01 2824 2978 18762 18762 18934 18934
     rtyp va00 5
     setv game "map_tmp_36" va00
-  setv va00 addr va01 2978 3082 18745 18745 18934 18934
+  setv va00 addr va01 2978 3082 18762 18745 18934 18934
     rtyp va00 5
     setv game "map_tmp_37" va00
   setv va00 addr va01 3082 3219 18745 18745 18934 18934
@@ -308,13 +308,13 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 2603 2720 18546 18547 18745 18745
     rtyp va00 0
     setv game "map_tmp_100" va00
-  setv va00 addr va01 2720 2824 18547 18546 18745 18745
+  setv va00 addr va01 2720 2824 18547 18546 18745 18762
     rtyp va00 0
     setv game "map_tmp_101" va00
-  setv va00 addr va01 2824 2978 18546 18546 18745 18745
+  setv va00 addr va01 2824 2978 18546 18546 18762 18762
     rtyp va00 0
     setv game "map_tmp_102" va00
-  setv va00 addr va01 2978 3082 18546 18544 18745 18745
+  setv va00 addr va01 2978 3082 18546 18544 18762 18745
     rtyp va00 0
     setv game "map_tmp_103" va00
   setv va00 addr va01 3082 3219 18544 18545 18745 18745
@@ -461,9 +461,6 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 4649 4774 18110 18163 18306 18306
     rtyp va00 0
     setv game "map_tmp_151" va00
-  setv va00 addr va01 2955 2960 18934 18934 18939 18939
-    rtyp va00 0
-    setv game "map_tmp_152" va00
 
 *ROOMIE Add doors between rooms
 door game "map_tmp_0" game "map_tmp_1" 100
@@ -579,8 +576,7 @@ door game "map_tmp_34" game "map_tmp_100" 100
 door game "map_tmp_99" game "map_tmp_100" 100
 door game "map_tmp_35" game "map_tmp_101" 100
 door game "map_tmp_100" game "map_tmp_101" 100
-door game "map_tmp_35" game "map_tmp_102" 100
-door game "map_tmp_36" game "map_tmp_102" 100
+door game "map_tmp_36" game "map_tmp_102" 0
 door game "map_tmp_101" game "map_tmp_102" 100
 door game "map_tmp_37" game "map_tmp_103" 100
 door game "map_tmp_102" game "map_tmp_103" 100
@@ -669,7 +665,6 @@ door game "map_tmp_149" game "map_tmp_150" 100
 door game "map_tmp_138" game "map_tmp_151" 100
 door game "map_tmp_139" game "map_tmp_151" 100
 door game "map_tmp_150" game "map_tmp_151" 100
-door game "map_tmp_36" game "map_tmp_152" 100
 door game "map_tmp_106" game "map_tmp_128" 100
 door game "map_tmp_106" game "map_tmp_129" 40
 door game "map_tmp_107" game "map_tmp_129" 40
@@ -838,7 +833,6 @@ delg "map_tmp_148"
 delg "map_tmp_149"
 delg "map_tmp_150"
 delg "map_tmp_151"
-delg "map_tmp_152"
 
 *ROOMIE Add overlays
 new: simp 1 1 6500 "c1l_overlays_cellar" 1 0 7000
