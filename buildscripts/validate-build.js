@@ -12,7 +12,7 @@ const scriptHeader = /scrp\s+\d+\s+\d+\s+\d+\s+\d+/gi;
 const eatScriptHeader = /scrp\s+(\d+)\s+(\d+)\s+(\d+)\s+12\D/gim;
 const newGenus = /new:\s+[^ ]+\s+(\d+)\s+(\d+)/gi;
 const behaviorRegex = /bhvr\s+(\d+)/gi;
-const doifC12DSLoaded = /doif\s+game\s+"C1_to_DS_Loaded"\s+(eq|=)\s+1\s+and\s+totl/gim;
+const doifC12DSLoaded = /doif\s+game\s+"C12DS_Loaded"\s+(eq|=)\s+1\s+and\s+totl/gim;
 const hasEatScript = Object.keys(classifierData)
     .filter((genus) => (classifierData[genus].bhvr & 16) === 16);
 
@@ -66,8 +66,8 @@ function validateC12DSLoaded(validationData) {
     const dsLoadedIndex = contentLowercase.indexOf("doif game \"c1_to_ds_loaded\"");
     if (dsLoadedIndex >= 0) {
         const [locationString] = getStringLocation(contentLowercase, dsLoadedIndex);
-        const message = "Incorrect `game \"C1_to_DS_Loaded\"` encountered; Should Be game \"C1_to_DS_Lite_Installing\" @ " + locationString + "\n\t    * Corrected in copy before compile *";
-        let temp = rawContent.replaceAll(doifC12DSLoaded, "doif game \"C1_to_DS_Lite_Installing\" = 1 and totl");
+        const message = "Incorrect `game \"C12DS_Loaded\"` encountered; Should Be game \"C12DS_Lite_Installing\" @ " + locationString + "\n\t    * Corrected in copy before compile *";
+        let temp = rawContent.replaceAll(doifC12DSLoaded, "doif game \"C12DS_Lite_Installing\" = 1 and totl");
         if (temp !== rawContent) {
             warnings.push(message);
             validationData.transformed = true;
@@ -88,8 +88,8 @@ function validateClickableFood(validationData) {
     const clickableFoodIndex = contentLowercase.indexOf("game \"c1_clickable_food\"");
     if (clickableFoodIndex >= 0) {
         const [locationString] = getStringLocation(contentLowercase, clickableFoodIndex);
-        const message = "Incorrect `game \"C1_Clickable_Food\"` encountered; Should Be game \"C1_to_DS_Lite_Clickable_Food\" @ " + locationString;
-        let temp = rawContent.replaceAll(/game "c1_clickable_food"/gmi, "game \"C1_to_DS_Lite_Clickable_Food\"");
+        const message = "Incorrect `game \"C1_Clickable_Food\"` encountered; Should Be game \"C12DS_Lite_Clickable_Food\" @ " + locationString;
+        let temp = rawContent.replaceAll(/game "c1_clickable_food"/gmi, "game \"C12DS_Lite_Clickable_Food\"");
         if (temp !== rawContent) {
             warnings.push(message);
             validationData.transformed = true;
