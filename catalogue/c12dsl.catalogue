@@ -133,6 +133,11 @@ TAG "Agent Help 2 9 6500"
 "Hooch, also known as manky, is an alcoholic beverage for your creatures. Like all alcoholic beverages, it is slightly toxic and makes creatures sleepy.\n\nCTRL+Click hooch cup to delete"
 
 
+# Detritus
+TAG "Agent Help 2 10 6500"
+"Cacoon Detritus"
+"Remains of a cloud butterflies cacoon"
+
 # FOOD
 TAG "Agent Help 2 11 6500"
 "Carrot (C1 Variety)"
