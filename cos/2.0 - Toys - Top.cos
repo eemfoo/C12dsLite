@@ -36,7 +36,7 @@ setv ov99 0
 setv ov98 180
 addv ov91 5
 
-doif game "C1_to_DS_Lite_Installing" eq 1 and totl 2 21 6504 <= 1
+doif game "C12DS_Lite_Installing" eq 1 and totl 2 21 6504 <= 1
     mvsf 2131 18878
 elif type game "ds_game_type" ne 2
 * 	it's NOT a string, this must be C3 only
@@ -162,7 +162,7 @@ endm
 
 
 rscr
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"
 else
     setv va00 -1
@@ -175,7 +175,7 @@ enum 2 21 6501
     endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
     scrx 2 21 6501 1
     scrx 2 21 6501 2
     scrx 2 21 6501 3

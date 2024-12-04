@@ -47,7 +47,7 @@ elas 0
 perm 60
 tick 30
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 9 6500 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 9 6500 <= 1
     mvsf 898 18983
 * make some hooch
     setv va02 955
@@ -129,11 +129,11 @@ scrp 2 9 6500 1
         stop
     endi
 
-    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 9 6500 "C1HoochCups" 2 0 502
-        setv name "C1_to_DS_Garbage_Collect" 1
+        setv name "C12DS_Garbage_Collect" 1
         attr 199
         elas 0
         fric 100
@@ -157,7 +157,7 @@ scrp 2 9 6500 5
         pose 0
         bhvr 48
         attr 195
-        doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        doif game "C12DS_Lite_Clickable_Food" eq 1
             setv va88 attr
             orrv va88 4
             attr va88
@@ -176,7 +176,7 @@ scrp 2 9 6500 6
         pose 0
         bhvr 48
         attr 195
-        doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        doif game "C12DS_Lite_Clickable_Food" eq 1
             setv va88 attr
             orrv va88 4
             attr va88
@@ -190,9 +190,9 @@ scrp 2 9 6500 9
 endm
 
 scrp 2 9 6500 10
-    setv name "C1_to_DS_Lite_Clickable_Food" 1
+    setv name "C12DS_Lite_Clickable_Food" 1
     attr 195
-    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    doif game "C12DS_Lite_Clickable_Food" eq 1
         setv va88 attr
         orrv va88 4
         attr va88
@@ -225,7 +225,7 @@ scrp 2 9 6500 12
     mesg writ ownr 5
     bhvr 0
     attr 211
-    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    doif game "C12DS_Lite_Clickable_Food" eq 1
         setv va88 attr
         orrv va88 4
         attr va88
@@ -260,7 +260,7 @@ scrp 2 23 6500 1
     addv va01 70
     new: simp 2 9 6500 "c1hoochcups" 2 0 502
     attr 195
-    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    doif game "C12DS_Lite_Clickable_Food" eq 1
         setv va88 attr
         orrv va88 4
         attr va88
@@ -329,7 +329,7 @@ scrp 2 23 6500 124
             pose 0
             bhvr 48
             attr 195
-            doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+            doif game "C12DS_Lite_Clickable_Food" eq 1
                 setv va88 attr
                 orrv va88 4
                 attr va88
@@ -346,7 +346,7 @@ endm
 
 rscr
 
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"
 else
     * If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -365,7 +365,7 @@ enum 2 9 6500
     endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
     scrx 2 9 6500 1
     scrx 2 9 6500 5
     scrx 2 9 6500 6

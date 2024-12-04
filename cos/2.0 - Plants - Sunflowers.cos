@@ -41,7 +41,7 @@ mesg wrt+ targ 0 0 0 10
 
 
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6502 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 4 6502 <= 1
 * 	SunflowerSeed plant by pump
     mvsf 2100 18842
 
@@ -163,9 +163,9 @@ scrp 2 4 6502 1000
                 new: simp 2 3 6502 "c1seeds" 4 5 200
                 setv ov99 0
             endi
-            setv name "C1_to_DS_Lite_Clickable_Food" 1
+            setv name "C12DS_Lite_Clickable_Food" 1
             attr 195
-            doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+            doif game "C12DS_Lite_Clickable_Food" eq 1
                 setv va88 attr
                 orrv va88 4
                 attr va88
@@ -222,9 +222,9 @@ scrp 2 4 6502 9
                     new: simp 2 3 6502 "c1seeds" 4 5 200
                     setv ov99 0
                 endi
-                setv name "C1_to_DS_Lite_Clickable_Food" 1
+                setv name "C12DS_Lite_Clickable_Food" 1
                 attr 195
-                doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+                doif game "C12DS_Lite_Clickable_Food" eq 1
                     setv va88 attr
                     orrv va88 4
                     attr va88
@@ -250,7 +250,7 @@ endm
 scrp 2 3 6502 1
 *	SunflowerSeed clicked by hand
     inst
-    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
         setv va01 posl
         setv va02 post
         doif ov99 = 1
@@ -260,8 +260,8 @@ scrp 2 3 6502 1
             new: simp 2 3 6502 "c1seeds" 4 5 200
             setv ov99 0
         endi
-        setv name "C1_to_DS_Garbage_Collect" 1
-        setv name "C1_to_DS_Lite_Clickable_Food" 1
+        setv name "C12DS_Garbage_Collect" 1
+        setv name "C12DS_Lite_Clickable_Food" 1
         attr 199
         bhvr 48
         accg .8
@@ -319,7 +319,7 @@ endm
 
 rscr
 
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"
 else
     * If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -340,7 +340,7 @@ enum 2 3 6502
     endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
     scrx 2 3 6502 1
     scrx 2 3 6502 4
     scrx 2 3 6502 5

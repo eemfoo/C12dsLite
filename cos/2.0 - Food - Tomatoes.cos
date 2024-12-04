@@ -27,8 +27,8 @@ lock
 
 new: vhcl 2 4 6508 "c1plants" 1 23 100
 attr 729
-setv name "C1_to_DS_Lite_Clickable_Food" 1
-doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+setv name "C12DS_Lite_Clickable_Food" 1
+doif game "C12DS_Lite_Clickable_Food" eq 1
 	setv va88 attr
 	orrv va88 4
 	attr va88
@@ -43,7 +43,7 @@ perm 60
 tick rand 90 100
 mesg wrt+ targ 1000 0 0 0
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6508 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 4 6508 <= 1
 * 	Tomato plant
 	mvsf 1322 19045
 	attr 724
@@ -77,7 +77,7 @@ endi
 scrp 2 4 6508 1
 *	Tomato plant clicked
 	inst
-	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
 		mesg wrt+ ownr 1000 1 0 0
 	else
 		stim writ from 84 1
@@ -119,9 +119,9 @@ scrp 2 4 6508 1000
 			setv va00 posl
 			setv va01 post
 			new: simp 2 8 6501 "c1plants" 1 24 101
-			setv name "C1_to_DS_Lite_Clickable_Food" 1
+			setv name "C12DS_Lite_Clickable_Food" 1
 			attr 195
-			doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+			doif game "C12DS_Lite_Clickable_Food" eq 1
 				setv va88 attr
 				orrv va88 4
 				attr va88
@@ -164,11 +164,11 @@ endm
 scrp 2 8 6501 1
 *	Tomato clicked
 	inst
-	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
 		setv va00 posl
 		setv va01 post
 		new: simp 2 8 6501 "c1plants" 1 24 101
-		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		setv name "C12DS_Lite_Clickable_Food" 1
 		mira 1
 		emit 6 .20
 		seta va20 targ
@@ -190,7 +190,7 @@ scrp 2 8 6501 4
 	lock
 	mira rand 0 1
 	attr 195
-	doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+	doif game "C12DS_Lite_Clickable_Food" eq 1
 		setv va88 attr
 		orrv va88 4
 		attr va88
@@ -198,7 +198,7 @@ scrp 2 8 6501 4
 	accg 3
 	fric 90
 	aero 10
-	setv name "C1_to_DS_Garbage_Collect" 1
+	setv name "C12DS_Garbage_Collect" 1
 endm
 
 scrp 2 8 6501 12
@@ -220,7 +220,7 @@ endm
 
 rscr
 
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
 	setv va00 game "c12dsl::metaroom::id"
 else
 	* If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -239,7 +239,7 @@ enum 2 8 6501
 	endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
 	scrx 2 4 6508 1
 	scrx 2 4 6508 2
 	scrx 2 4 6508 3

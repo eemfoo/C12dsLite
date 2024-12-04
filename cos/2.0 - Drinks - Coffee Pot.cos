@@ -27,8 +27,8 @@
 * Installers
 new: simp 2 25 6500 "c1coffeepot" 2 0 200
 attr 195
-setv name "C1_to_DS_Lite_Clickable_Food" 1
-doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+setv name "C12DS_Lite_Clickable_Food" 1
+doif game "C12DS_Lite_Clickable_Food" eq 1
     setv va88 attr
     orrv va88 4
     attr va88
@@ -40,7 +40,7 @@ accg 5
 fric 95
 perm 60
 
-doif game "C1_to_DS_Lite_Loaded" = 1 and totl 2 25 6500 <= 1
+doif game "C12DS_Lite_Loaded" = 1 and totl 2 25 6500 <= 1
 *	C1 to DS
     setv ov62 1
     mvto 1863 18820
@@ -82,7 +82,7 @@ scrp 2 25 6500 1
         kill ownr
         stop
     endi
-    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 25 6500 "c1coffeepot" 2 0 200
@@ -154,7 +154,7 @@ endm
 **************************
 * Removers
 rscr
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"
 else
     * If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -168,7 +168,7 @@ enum 2 25 6500
 next
 
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
     scrx 2 25 6500 1
     scrx 2 25 6500 4
     scrx 2 25 6500 5

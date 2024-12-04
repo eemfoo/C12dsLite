@@ -29,8 +29,8 @@ lock
 
 new: vhcl 2 4 6507 "c1plants" 1 20 100
 attr 715
-setv name "C1_to_DS_Lite_Clickable_Food" 1
-doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+setv name "C12DS_Lite_Clickable_Food" 1
+doif game "C12DS_Lite_Clickable_Food" eq 1
     setv va88 attr
     orrv va88 4
     attr va88
@@ -45,7 +45,7 @@ perm 60
 tick rand 900 1000
 mesg wrt+ targ 1000 0 0 10
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6507 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 4 6507 <= 1
     mvsf 4382 18879
     setv va88 attr
     setv va89 va88
@@ -90,7 +90,7 @@ endi
 scrp 2 4 6507 1
 *	Morning Glory clicked
     inst
-    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
         mesg wrt+ ownr 1000 1 0 0
     else
         stim writ from 84 1
@@ -131,7 +131,7 @@ scrp 2 4 6507 1000
         setv va00 posl
         setv va01 post
         new: simp 2 25 6502 "c1plants" 2 21 101
-        setv name "C1_to_DS_Lite_Clickable_Food" 1
+        setv name "C12DS_Lite_Clickable_Food" 1
         mira 1
         addv va00 9
         addv va01 9
@@ -160,7 +160,7 @@ scrp 2 4 6507 1000
             velo rand -10 10 rand 1 5
         endi
         attr 195
-        doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+        doif game "C12DS_Lite_Clickable_Food" eq 1
             setv va88 attr
             orrv va88 4
             attr va88
@@ -172,12 +172,12 @@ endm
 scrp 2 25 6502 1
 *	Morning Glory clicked
     inst
-    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 25 6502 "c1plants" 2 21 101
-        setv name "C1_to_DS_Lite_Clickable_Food" 1
-        setv name "C1_to_DS_Garbage_Collect" 1
+        setv name "C12DS_Lite_Clickable_Food" 1
+        setv name "C12DS_Garbage_Collect" 1
         mira 1
         addv va00 9
         addv va01 9
@@ -202,7 +202,7 @@ scrp 2 25 6502 4
     lock
     pose 1
     mira rand 0 1
-    setv name "C1_to_DS_Garbage_Collect" 1
+    setv name "C12DS_Garbage_Collect" 1
 endm
 
 scrp 2 25 6502 12
@@ -220,7 +220,7 @@ endm
 
 rscr
 
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"
 else
     * If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -239,7 +239,7 @@ enum 2 25 6502
     endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
     scrx 2 4 6507 1
     scrx 2 4 6507 2
     scrx 2 4 6507 3

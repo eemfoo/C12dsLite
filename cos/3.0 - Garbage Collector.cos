@@ -22,7 +22,7 @@ doif totl 1 1 6512 gt 1
 endi
 
 
-setv va00 game "C1_to_DS_Garbage_Limit"
+setv va00 game "C12DS_Garbage_Limit"
 doif va00 eq 0
 	setv va00 15
 endi
@@ -79,7 +79,7 @@ scrp 1 1 6512 1000
 
 	enum 2 _p1_ _p2_
 		seta va10 targ
-		doif name "C1_to_DS_Garbage_Collect" eq 1
+		doif name "C12DS_Garbage_Collect" eq 1
 			doif rand 0 10 eq 0
 				doif movs eq 0
 					setv va30 gmap posl post

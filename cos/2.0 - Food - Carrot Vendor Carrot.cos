@@ -8,13 +8,13 @@
 scrp 2 11 6510 1
 *	carrot was clicked
 	inst
-	doif game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif game "C12DS_Lite_Clickable_Food" = 1
 * 		Make Carrot
 		setv va00 posl
 		setv va01 post
 		new: simp 2 11 6510 "c1carrotvendorcarrot" 3 0 7001
-		setv name "C1_to_DS_Lite_Clickable_Food" 1
-		setv name "C1_to_DS_Garbage_Collect" 1
+		setv name "C12DS_Lite_Clickable_Food" 1
+		setv name "C12DS_Garbage_Collect" 1
 		pose 1
 		accg 3
 		attr 199
@@ -51,11 +51,11 @@ scrp 2 11 6510 4
 		fric 90
 		aero 10
 	endi
-	setv name "C1_to_DS_Garbage_Collect" 1
+	setv name "C12DS_Garbage_Collect" 1
 endm
 
 scrp 2 11 6510 5
-	setv name "C1_to_DS_Garbage_Collect" 1
+	setv name "C12DS_Garbage_Collect" 1
 endm
 
 scrp 2 11 6510 6
@@ -102,7 +102,7 @@ endm
 rscr
 inst
 
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
 	setv va00 game "c12dsl::metaroom::id"
 else
 	* If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -118,7 +118,7 @@ enum 2 11 6510
 	endi
 next
 
-doif va99 eq 1 or game "C1_to_DS_Lite_Loaded" eq 0
+doif va99 eq 1 or game "C12DS_Lite_Loaded" eq 0
 	scrx 2 11 6510 1
 	scrx 2 11 6510 4
 	scrx 2 11 6510 5

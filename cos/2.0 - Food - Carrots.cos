@@ -22,7 +22,7 @@ reps 2
     setv va04 0
     reps 5
         new: simp 2 11 6500 "c1plants" 9 40 7001
-        setv name "C1_to_DS_Lite_Clickable_Food" 1
+        setv name "C12DS_Lite_Clickable_Food" 1
         pose 6
         attr 3
         bhvr 48
@@ -44,13 +44,13 @@ endi
 * CARROT Scripts
 
 scrp 2 11 6500 1
-    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
         setv va00 posl
         setv va01 post
         new: simp 2 11 6500 "c1plants" 9 40 502
         pose 7
         mira rand 0 1
-        setv name "C1_to_DS_Garbage_Collect" 1
+        setv name "C12DS_Garbage_Collect" 1
         mvsf va00 va01
         velo rand -15 15 rand -15 -5
         attr 199
@@ -67,7 +67,7 @@ scrp 2 11 6500 4
     endi
     setv mv00 1
     attr 195
-    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    doif game "C12DS_Lite_Clickable_Food" eq 1
         setv va88 attr
         orrv va88 4
         attr va88
@@ -75,7 +75,7 @@ scrp 2 11 6500 4
     accg 3
     fric 90
     aero 10
-    setv name "C1_to_DS_Garbage_Collect" 1
+    setv name "C12DS_Garbage_Collect" 1
 endm
 
 scrp 2 11 6500 5
@@ -323,7 +323,7 @@ scrp 1 1 6504 1000
         endi
 
         new: simp 2 11 6500 "c1plants" 9 40 7001
-        setv name "C1_to_DS_Lite_Clickable_Food" 1
+        setv name "C12DS_Lite_Clickable_Food" 1
         pose 0
         attr 16
         bhvr 0
@@ -371,7 +371,7 @@ enum 2 11 6500
     kill targ
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
     scrx 2 11 6500 1
     scrx 2 11 6500 4
     scrx 2 11 6500 5

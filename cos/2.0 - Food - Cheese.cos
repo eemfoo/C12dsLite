@@ -23,7 +23,7 @@
 
 inst
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 11 6501 < 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 11 6501 < 1
 
 * cheese on the main floor in norn house
     new: simp 2 11 6501 "c1cheese" 3 0 200
@@ -103,13 +103,13 @@ endi
 scrp 2 11 6501 1
 *	Cheese gets clicked
     inst
-    doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+    doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
         setv ov88 mv88
         setv va00 posl
         setv va01 post
         new: simp 2 11 6501 "c1cheese" 3 0 200
-        setv name "C1_to_DS_Lite_Clickable_Food" 1
-        setv name "C1_to_DS_Garbage_Collect" 1
+        setv name "C12DS_Lite_Clickable_Food" 1
+        setv name "C12DS_Garbage_Collect" 1
         attr 199
         accg 5
         aero 10
@@ -145,9 +145,9 @@ endm
 * Cheese - Constructor
 scrp 2 11 6501 10
     * Set cheese properties
-    setv name "C1_to_DS_Lite_Clickable_Food" 1
+    setv name "C12DS_Lite_Clickable_Food" 1
     attr 195
-    doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+    doif game "C12DS_Lite_Clickable_Food" eq 1
         setv va88 attr
         orrv va88 4
         attr va88
@@ -174,7 +174,7 @@ endm
 
 rscr
 
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"
 else
     * If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -187,7 +187,7 @@ enum 2 11 6501
     endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
     scrx 2 11 6501 1
     scrx 2 11 6501 4
     scrx 2 11 6501 6

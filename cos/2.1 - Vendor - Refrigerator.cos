@@ -54,7 +54,7 @@ emit 8 0.5
 rnge 250
 mesg writ targ 1004
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 23 6501 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 23 6501 <= 1
 *	C1 to DS
 	setv va00 1684
 	setv va01 18816
@@ -193,12 +193,12 @@ scrp 2 23 6501 1004
 			addv va00 4
 			addv va01 3
 		endi
-		setv name "C1_to_DS_From_Fridge" 1
+		setv name "C12DS_From_Fridge" 1
 		attr 3
 		wait 1
-		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		setv name "C12DS_Lite_Clickable_Food" 1
 		attr 195
-		doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+		doif game "C12DS_Lite_Clickable_Food" eq 1
 			setv va88 attr
 			orrv va88 4
 			attr va88
@@ -251,9 +251,9 @@ scrp 2 23 6501 1004
 			attr 195
 			addv va00 2
 		endi
-		setv name "C1_to_DS_From_Fridge" 1
-		setv name "C1_to_DS_Lite_Clickable_Food" 1
-		doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+		setv name "C12DS_From_Fridge" 1
+		setv name "C12DS_Lite_Clickable_Food" 1
+		doif game "C12DS_Lite_Clickable_Food" eq 1
 			setv va88 attr
 			orrv va88 4
 			attr va88
@@ -306,10 +306,10 @@ scrp 2 23 6501 1004
 			accg 6
 			setv ov99 1
 		endi
-		setv name "C1_to_DS_From_Fridge" 1
-		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		setv name "C12DS_From_Fridge" 1
+		setv name "C12DS_Lite_Clickable_Food" 1
 		attr 195
-		doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+		doif game "C12DS_Lite_Clickable_Food" eq 1
 			setv va88 attr
 			orrv va88 4
 			attr va88
@@ -407,8 +407,8 @@ scrp 2 23 6501 125
 	inst
 	lock
 	targ from
-	doif name "C1_to_DS_From_Fridge" eq 1
-		setv name "C1_to_DS_Garbage_Collect" 1
+	doif name "C12DS_From_Fridge" eq 1
+		setv name "C12DS_Garbage_Collect" 1
 	endi
 	targ ownr
 	mesg wrt+ ownr 1004 0 0 rand 20 40
@@ -451,7 +451,7 @@ endm
 
 rscr
 inst
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
 	setv va00 game "c12dsl::metaroom::id"
 else
 	* If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -468,7 +468,7 @@ enum 1 1 6511
 	mesg writ targ 9
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
 	scrx 1 1 6511 9
 
 	scrx 2 23 6501 0

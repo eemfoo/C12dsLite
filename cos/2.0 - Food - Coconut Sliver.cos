@@ -12,12 +12,12 @@ lock
 scrp 2 3 6500 1
 *	Coconut clicked by hand
 	inst
-	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
 		setv va01 posl
 		setv va02 post
 		new: simp 2 3 6500 "c1coconut" 2 6 201
-		setv name "C1_to_DS_Lite_Clickable_Food" 1
-		setv name "C1_to_DS_Garbage_Collect" 1
+		setv name "C12DS_Lite_Clickable_Food" 1
+		setv name "C12DS_Garbage_Collect" 1
 		attr 199
 		bhvr 48
 		accg 6

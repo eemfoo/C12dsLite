@@ -37,7 +37,7 @@ aero 10
 elas 0
 perm 60
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6516 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 21 6516 <= 1
 * 	Drum in music room
 	mvsf 0885 18812
 elif type game "ds_game_type" ne 2
@@ -120,7 +120,7 @@ endm
 
 * Drum remover
 rscr
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
 	setv va00 game "c12dsl::metaroom::id"
 else
 	* If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -133,7 +133,7 @@ enum 2 21 6516
 	endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
 	scrx 2 21 6516 1
 	scrx 2 21 6516 2
 	scrx 2 21 6516 3

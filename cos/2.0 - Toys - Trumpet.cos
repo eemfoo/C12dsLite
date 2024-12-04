@@ -41,7 +41,7 @@ puhl 1 22 34
 pupt 0 22 34
 pupt 1 22 34
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6506 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 21 6506 <= 1
 * 	Trumpet in music room
 	mvsf 0930 18812
 elif type game "ds_game_type" ne 2
@@ -138,7 +138,7 @@ endm
 
 * Trumpet remover
 rscr
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
 	setv va00 game "c12dsl::metaroom::id"
 else
 	* If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -151,7 +151,7 @@ enum 2 21 6506
 	endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
 	scrx 2 21 6506 1
 	scrx 2 21 6506 2
 	scrx 2 21 6506 3

@@ -41,7 +41,7 @@ elas 0
 perm 60
 frat 1.5
 
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 21 6514 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 21 6514 <= 1
 * 	Radio in music room
 	mvsf 2247 19050
 elif type game "ds_game_type" ne 2
@@ -162,7 +162,7 @@ endm
 * Radio remover
 rscr
 
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
 	setv va00 game "c12dsl::metaroom::id"
 else
 	* If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -175,7 +175,7 @@ enum 2 21 6514
 	endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
 	scrx 2 21 6514 1
 	scrx 2 21 6514 2
 	scrx 2 21 6514 3

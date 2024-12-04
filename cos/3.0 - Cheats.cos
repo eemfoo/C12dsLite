@@ -12,7 +12,7 @@ bhvr 0
 scrp 1 1 6509 1000
 	inst
 	setv va00 1001
-	addv va00 game "C1_to_DS_Lite_Clickable_Food"
+	addv va00 game "C12DS_Lite_Clickable_Food"
 	call va00 0 0
 endm
 
@@ -21,14 +21,14 @@ scrp 1 1 6509 1001
 	inst
 
 	* Do not run if already set
-	doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+	doif game "C12DS_Lite_Clickable_Food" eq 1
 		stop
 	endi
 
-	setv game "C1_to_DS_Lite_Clickable_Food" 1
+	setv game "C12DS_Lite_Clickable_Food" 1
 
 	enum 2 0 0
-		doif name "C1_to_DS_Lite_Clickable_Food" eq 1
+		doif name "C12DS_Lite_Clickable_Food" eq 1
 			gsub make_clickable
 		endi
 	next
@@ -45,14 +45,14 @@ scrp 1 1 6509 1002
 	inst
 
 	* Do not run if already set
-	doif game "C1_to_DS_Lite_Clickable_Food" eq 0
+	doif game "C12DS_Lite_Clickable_Food" eq 0
 		stop
 	endi
 
-	setv game "C1_to_DS_Lite_Clickable_Food" 0
+	setv game "C12DS_Lite_Clickable_Food" 0
 
 	enum 2 0 0
-		doif name "C1_to_DS_Lite_Clickable_Food" eq 1
+		doif name "C12DS_Lite_Clickable_Food" eq 1
 			gsub remove_clickable
 		endi
 	next
@@ -73,7 +73,7 @@ endm
 scrp 1 1 6509 1010
 	inst
 	setv va00 1011
-	addv va00 game "C1_to_DS_Lite_Stackable_Lemons"
+	addv va00 game "C12DS_Lite_Stackable_Lemons"
 	call va00 0 0
 endm
 
@@ -81,11 +81,11 @@ endm
 scrp 1 1 6509 1011
 
 	* Do not run if already set
-	doif game "C1_to_DS_Lite_Stackable_Lemons" eq 1
+	doif game "C12DS_Lite_Stackable_Lemons" eq 1
 		stop
 	endi
 
-	setv game "C1_to_DS_Lite_Stackable_Lemons" 1
+	setv game "C12DS_Lite_Stackable_Lemons" 1
 	enum 2 8 6500
 		cabw 0
 	next
@@ -95,11 +95,11 @@ endm
 scrp 1 1 6509 1012
 
 	* Do not run if already set
-	doif game "C1_to_DS_Lite_Stackable_Lemons" eq 0
+	doif game "C12DS_Lite_Stackable_Lemons" eq 0
 		stop
 	endi
 
-	setv game "C1_to_DS_Lite_Stackable_Lemons" 0
+	setv game "C12DS_Lite_Stackable_Lemons" 0
 
 	enum 2 8 6500
 		cabw 1
@@ -114,13 +114,13 @@ enum 1 1 6509
 next
 
 * Clickable Food
-delg "C1_to_DS_Lite_Clickable_Food"
+delg "C12DS_Lite_Clickable_Food"
 scrx 1 1 6509 1000
 scrx 1 1 6509 1001
 scrx 1 1 6509 1002
 
 * Stackable Lemons
-delg "C1_to_DS_Lite_Stackable_Lemons"
+delg "C12DS_Lite_Stackable_Lemons"
 scrx 1 1 6509 1010
 scrx 1 1 6509 1011
 scrx 1 1 6509 1012

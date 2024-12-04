@@ -9,7 +9,7 @@ lock
 
 * Baobab plant
 new: vhcl 2 4 6510 "c1plants" 1 25 100
-setv name "C1_to_DS_Lite_Clickable_Food" 1
+setv name "C12DS_Lite_Clickable_Food" 1
 tick 100
 fric 100
 aero 10
@@ -22,7 +22,7 @@ seta va20 targ
 
 * C1 to DS Injection Location Script
 * have to make verify that game_type variable is a string value
-doif game "C1_to_DS_Lite_Installing" = 1 and totl 2 4 6510 <= 1 or 1 eq 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 4 6510 <= 1 or 1 eq 1
 	setv va00 3232
 	setv va01 18872
 	attr 728
@@ -54,7 +54,7 @@ else
 		endi
 	endi
 endi
-doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+doif game "C12DS_Lite_Clickable_Food" eq 1
 	setv va88 attr
 	orrv va88 4
 	attr va88
@@ -81,7 +81,7 @@ scrp 2 4 6510 9
 		doif va21 > 0
 			reps va21
 				new: simp 2 25 6503 "c1plants" 2 26 101
-				setv name "C1_to_DS_Lite_Clickable_Food" 1
+				setv name "C12DS_Lite_Clickable_Food" 1
 				seta va51 targ
 				targ ownr
 				setv va00 posl
@@ -94,7 +94,7 @@ scrp 2 4 6510 9
 				accg 5
 				aero 10
 				attr 195
-				doif game "C1_to_DS_Lite_Clickable_Food" eq 1
+				doif game "C12DS_Lite_Clickable_Food" eq 1
 					setv va88 attr
 					orrv va88 4
 					attr va88
@@ -127,7 +127,7 @@ endm
 scrp 2 4 6510 1
 	inst
 	lock
-	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
 		mesg wrt+ ownr 9 1 0 0
 	endi
 endm
@@ -135,12 +135,12 @@ endm
 scrp 2 25 6503 1
 *	Baobab clicked
 	inst
-	doif from eq pntr and game "C1_to_DS_Lite_Clickable_Food" = 1
+	doif from eq pntr and game "C12DS_Lite_Clickable_Food" = 1
 		setv va00 posl
 		setv va01 post
 		new: simp 2 25 6503 "c1plants" 2 26 101
-		setv name "C1_to_DS_Garbage_Collect" 1
-		setv name "C1_to_DS_Lite_Clickable_Food" 1
+		setv name "C12DS_Garbage_Collect" 1
+		setv name "C12DS_Lite_Clickable_Food" 1
 		accg 5
 		attr 199
 		fric 100
@@ -165,7 +165,7 @@ scrp 2 25 6503 4
 	accg 3
 	fric 90
 	aero 10
-	setv name "C1_to_DS_Garbage_Collect" 1
+	setv name "C12DS_Garbage_Collect" 1
 endm
 
 scrp 2 25 6503 5
@@ -222,7 +222,7 @@ endm
 
 rscr
 inst
-doif game "C1_to_DS_Lite_Loaded" eq 1
+doif game "C12DS_Lite_Loaded" eq 1
 	setv va00 game "c12dsl::metaroom::id"
 else
 	* If C12DSL is not installed, make metaroom ID negative and impossible to match
@@ -241,7 +241,7 @@ enum 2 4 6510
 	endi
 next
 
-doif game "C1_to_DS_Lite_Loaded" eq 0
+doif game "C12DS_Lite_Loaded" eq 0
 	scrx 2 4 6510 1
 	scrx 2 4 6510 9
 	scrx 2 4 6510 124

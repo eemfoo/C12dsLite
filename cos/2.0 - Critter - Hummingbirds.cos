@@ -16,7 +16,7 @@
 inst
 lock
 
-doif game "C1_to_DS_Lite_Installing" = 1 or 1 eq 1
+doif game "C12DS_Lite_Installing" = 1 or 1 eq 1
 	new: simp 1 1 6510 "blnk" 1 0 0
 	tick 1
 endi
