@@ -355,7 +355,7 @@ TAG "Agent Help 1 1 6506"
 "A pot for your feverfew"
 
 TAG "Agent Help 3 2 6500"
-"C1-Lite Teleporter"
+"C12DS-Lite Teleporter"
 "Pushing this teleporter takes the hand or creatures to and from Albia-Lite."
 
 TAG "Agent Help 3 2 6501"
@@ -379,7 +379,3 @@ TAG "Agent Help 3 1 6500"
 TAG "Agent Help 2 12 6500"
 "Lift Call Button"
 "Pressing this button calls the lift from another floor."
-
-TAG "FishCake"
-"Tasty"
-"Goody"

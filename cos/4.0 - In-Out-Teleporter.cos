@@ -1,0 +1,387 @@
+* C1 to DS/C3 Teleporters
+
+* Dependencies:
+*  c1porter.c16
+*  c1te.wav
+*  buzz.wav
+
+
+inst
+
+doif game "C12DS_Lite_Installing" = 1 and totl 3 2 6500 = 0
+
+*teleporter with c1 image
+    new: comp 3 2 6500 "c1lteleporter" 11 0 500
+
+
+    doif type game "ds_game_type" ne 2
+* 		it's NOT a string, this must be C3 only
+* 		choose a safe C3 location
+        setv va00 5440
+        setv va01 3580
+*		velo rand 30 40 -5
+        mvsf va00 va01
+    else
+* 		it IS a string, but what is the value?
+        doif game "ds_game_type" eq "undocked"
+* 			this is an undocked world, location needs to be DS safe
+            setv va00 2760
+            setv va01 9028.544922
+*			velo rand 30 40 -5
+            mvsf va00 va01
+        elif game "ds_game_type" eq "docked"
+* 			this is a docked world, location can be anywhere in the DS/C3 realm
+            setv va00 2760
+            setv va01 9028.544922
+*			velo rand 30 40 -5
+            mvsf va00 va01
+        endi
+    endi
+    seta va00 targ
+    doif carr eq null
+        setv va10 grap posx posy
+    else
+        setv va10 -1
+    endi
+
+*teleporter with ds image
+    new: comp 3 2 6500 "c1lteleporter" 11 0 500
+    mvsf 1614 18585
+    doif carr eq null
+        setv va11 grap posx posy
+    else
+        setv va11 -1
+    endi
+*set the pointer to/from the other teleporter
+    seta ov00 va00
+    seta avar va00 0 targ
+
+    setv game "C12DS_Lite::ROOM_1" -1
+    setv game "C12DS_Lite::ROOM_2" -1
+    mesg writ va00 1010
+endi
+
+************
+* Scripts
+
+scrp 3 2 6500 9
+    setv va00 0
+    part 0
+    doif pose ne 0
+        pose 0
+    endi
+
+    part 1
+    doif pose ne 0
+        pose 0
+    endi
+endm
+
+scrp 3 2 6500 1
+    inst
+    call 1010 0 0
+    part 1
+    setv va00 0
+    doif pose ne 0
+        loop
+            addv va00 1
+            wait 5
+        untl pose eq 0 or va00 gt 20
+        call 1000 from 0
+    endi
+endm
+
+scrp 3 2 6500 2
+    stim writ from 14 0
+endm
+
+
+scrp 3 2 6500 4
+    inst
+    call 1012 0 0
+endm
+
+scrp 3 2 6500 5
+    inst
+    call 1012 0 0
+    call 1011 0 0
+endm
+
+scrp 3 2 6500 1000
+    inst
+    lock
+    doif type from eq 4 or type from eq  7
+        seta _p1_ from
+    endi
+    doif mv00 eq null
+        stop
+    endi
+    part 1
+    doif pose ge 18 and pose le 21
+        unlk
+        call 1000 from 0
+        stop
+    endi
+    targ mv00
+    setv va10 100
+    subv va10 mv90
+    doif va10 le 1
+        setv va10 0
+    else
+        setv va10 rand 0 va10
+    endi
+    doif gmap posx posy <> -1
+        targ ownr
+        sndc "c1te"
+        part 0
+        anim [0 1 2 3 4 5 6 7 8 255 5]
+
+        targ mv00
+        anim [0 1 2 3 4 5 6 7 8 255 5]
+        doif carr <> null
+            seta va02 carr
+        else
+            seta va02 null
+        endi
+
+        sndc "c1te"
+        setv va00 posx
+        setv va01 posb
+        doif va10 ne 0
+            sets va11 "0 1 2 3 4 5 6"
+        else
+            sets va11 "0 1 2 3 4 5 6 7 8 9"
+        endi
+        setv va80 0
+        reps 2
+            doif va80 eq 0
+                targ ownr
+            else
+                targ mv00
+            endi
+            part 1
+            addv va80 1
+            doif va10 ne 0
+                pat: move 1 0 29
+                base 0
+                pose 0
+            else
+                pat: move 1 -4 29
+                base 12
+                pose 0
+            endi
+            anms va11
+        repe
+
+        targ mv00
+        over
+
+        doif type _p1_ eq 4
+            etch 0 0 0
+                doif crea targ eq 1
+                    gsub send
+                endi
+            next
+        elif type _p1_ eq 7
+            targ _p1_
+            gsub send
+        endi
+
+        doif type _p1_ = 4
+            cmrp va00 va01 0
+        endi
+
+        doif va10 ne 0
+            sets va11 "7 8 9 10 11 0"
+        else
+            base 10
+            sets va11 "7 8 9 10 11 12"
+        endi
+        targ ownr
+        part 1
+        anms va11
+        targ mv00
+        part 1
+        anms va11
+        over
+        tick 200
+        unlk
+        targ ownr
+        part 0
+        pose 0
+        part 1
+        base 0
+        pose 0
+
+        targ mv00
+        part 0
+        pose 0
+        part 1
+        base 0
+        pose 0
+    else
+        targ ownr
+        sndc "buzz"
+    endi
+    subr send
+        doif movs ne 0
+            retn
+        endi
+        mvsf va00 va01
+        stim writ targ 95 1.0
+        doif va02 <> null
+            setv va03 0
+            loop
+                spas va02 targ
+                wait 1
+                addv va03 1
+                inst
+            untl va03 > 100 or carr <> null
+        endi
+    retn
+endm
+
+
+scrp 3 2 6500 10
+    pat: dull 1 "c1lteleporter" 12 0 29 9999
+    tran 1 1
+    part 1
+    pose 0
+    attr 194
+    bhvr 3
+    accg 4
+    fric 99
+    elas 5
+    perm 100
+    puhl -1 37 29
+    pat: butt 2 "c1lteleporter" 46 1 76 81 2 [0] 1000 1
+endm
+
+
+scrp 3 2 6500 1010
+    inst
+    lock
+    doif mv00 ne null
+        stop
+    endi
+
+    setv va00 attr
+    andv va00 16
+
+    doif mv00 eq null
+        bhvr 0
+        orrv va00 16
+        attr va00
+        stop
+    elif va00 ne 0
+        bhvr 3
+        setv va00 attr
+        doif va00 ne 0
+            subv va00 16
+        endi
+        attr va00
+    endi
+
+    doif _p1_ eq 0
+        stop
+    endi
+
+    targ ownr
+    setv va00 gmap posx posy
+
+    new: comp 3 2 6500 "c1lteleporter" 11 0 500
+    seta va99 targ
+
+    doif va00 = game "c12dsl::metaroom::id"
+        doif type game "ds_game_type" ne 2
+* 		it's NOT a string, this must be C3 only
+* 		choose a safe C3 location
+            setv va00 5440
+            setv va01 3580
+*		velo rand 30 40 -5
+            mvsf va00 va01
+        else
+* 		it IS a string, but what is the value?
+            doif game "ds_game_type" eq "undocked"
+* 			this is an undocked world, location needs to be DS safe
+                setv va00 2760
+                setv va01 9028.544922
+*			velo rand 30 40 -5
+                mvsf va00 va01
+            elif game "ds_game_type" eq "docked"
+* 			this is a docked world, location can be anywhere in the DS/C3 realm
+                setv va00 2760
+                setv va01 9028.544922
+            endi
+        endi
+    else
+        setv va00 1614
+        setv va01 18585
+    endi
+    doif tmvt va00 va01 eq 0
+        kill va99
+        stop
+    endi
+    setv mv00 va99
+    seta avar va99 0 ownr
+    call 1012 0 0
+    call 1011 0 0
+endm
+
+scrp 3 2 6500 1011
+    inst
+    lock
+
+    setv va10 game "C12DS_Lite::ROOM_1"
+    setv va11 game "C12DS_Lite::ROOM_2"
+    doif va10 ge 0 and va11 ge 0 and va10 ne va11
+        link va10 va11 0
+    endi
+
+    targ ownr
+    doif carr eq null
+        setv va10 grap posx post
+    else
+        setv va10 -1
+    endi
+
+    targ mv00
+    doif targ eq null
+        stop
+    endi
+
+    doif carr eq null
+        setv va11 grap posx post
+    else
+        setv va11 -1
+    endi
+
+    setv game "C12DS_Lite::ROOM_1" va10
+    setv game "C12DS_Lite::ROOM_2" va11
+    doif va10 ge 0 and va11 ge 0 and va10 ne va11
+        link va10 va11 100
+    endi
+endm
+
+scrp 3 2 6500 1012
+    inst
+    lock
+    setv va10 game "C12DS_Lite::ROOM_1"
+    setv va11 game "C12DS_Lite::ROOM_2"
+    doif va10 lt 0 or va11 lt 0
+        stop
+    endi
+    doif va10 eq va11
+        setv game "C12DS_Lite::ROOM_1" -1
+        setv game "C12DS_Lite::ROOM_2" -1
+        stop
+    endi
+    link va10 va11 0
+    unlk
+endm
+
+rscr
+enum 3 2 6500
+    kill targ
+next
+scrx 3 2 6500 1
