@@ -24,34 +24,47 @@
 *	2 13 6501
 
 inst
+
+new: simp 1 13 6501 "blnk" 1 0 0
+
+file jdel 1 "Caterpillars.txt"
+
 reps rand 5 7
 	new: simp 2 13 6501 "c1cloudbutterfly" 20 0 525
-	attr 71
-	attr 199
-	bhvr 59
-	tick 4
-	accg 2
-	aero 25
-	fric 75
-	elas 20
-	perm 40
-	frat 1.5
-	pose 19
-	rnge 500
-	setv ov00 6
-	setv ov01 0
-	setv ov02 0
-	setv ov10 2080
-	setv ov20 3230
-	setv ov11 18650
-	setv ov21 18920
-	setv ov22 rand 2 3
-	setv va00 rand ov10 ov20
-	setv va01 rand ov11 ov21
-	setv ov97 0
-	seta ov98 null
-	mvsf va00 va01
+	mesg writ targ 1003
 repe
+
+scrp 1 13 6501 9
+	lock
+	inst
+	doif totl 2 13 6501 > 7
+		tick rand 100 300
+		stop
+	endi
+	setv va00 rand 1 2
+	slow
+	reps va00
+		new: simp 2 13 6501 "c1cloudbutterfly" 20 0 525
+		mesg writ targ 1003
+		tick 4
+		wait rand 10 40
+	repe
+
+	targ ownr
+	doif totl 2 13 6501 lt 7
+		tick rand 40 200
+	else
+		tick rand 600 800
+	endi
+endm
+
+
+scrp 1 13 6501 10
+	inst
+	attr 16
+	bhvr 0
+	call 9 0 0
+endm
 
 scrp 2 10 6500 9
 *	Butterfly husk timer
@@ -125,6 +138,11 @@ endm
 
 scrp 2 13 6501 9
 *	butterfly/caterpillar timer
+	inst
+	doif totl 1 13 6501 eq 0
+		new: simp 1 13 6501 "blnk" 1 0 0
+	endi
+	slow
 
 	setv mv01 rand -1 1
 	doif velx < 0.0 or mv01 = -1
@@ -532,6 +550,32 @@ scrp 2 13 6501 9
 	retn
 endm
 
+scrp 2 13 6501 10
+	inst
+	lock
+	seta mv98 null
+	seta mv97 null
+	attr 199
+	bhvr 59
+	accg 2
+	aero 25
+	fric 75
+	elas 20
+	perm 40
+	frat 1.5
+	pose 19
+	rnge 500
+	setv mv00 6
+	setv mv01 0
+	setv mv02 0
+	setv mv10 2080
+	setv mv20 3230
+	setv mv11 18650
+	setv mv21 18920
+	setv mv22 rand 2 3
+	setv mv95 0
+	tick 4
+	unlk
 endm
 
 scrp 2 13 6501 12
@@ -578,36 +622,22 @@ endm
 scrp 2 13 6501 1001
 *	caterpillar spawn
 	inst
-	doif totl 2 13 6501 < 13
+	doif totl 2 13 6501 < 4
+		setv va00 rand 1 2
+	else
+		setv va00 1
+	endi
+
+	reps va00
 		setv va00 posl
 		setv va01 post
 		new: simp 2 13 6501 "c1cloudbutterfly" 20 0 525
-		attr 71
-		attr 199
-		bhvr 59
-		tick 4
-		accg 2
-		aero 25
-		fric 75
-		elas 20
-		perm 60
-		frat 1.5
-		pose 19
-		rnge 500
-		setv ov00 6
-		setv ov01 0
-		setv ov02 0
-		setv ov10 4080
-		setv ov20 5230
-		setv ov11 10650
-		setv ov21 10920
-		setv ov22 rand 2 3
-		setv ov97 0
-		seta ov98 null
-		mvsf va00 va01
-*	targ ownr
-*	setv mv00 5
-	endi
+		doif tmvt va00 va01 eq 1
+			mvsf va00 va01
+		else
+			mesg writ targ 1003
+		endi
+	repe
 endm
 
 scrp 2 13 6501 1002
@@ -630,8 +660,16 @@ scrp 2 13 6501 1002
 	bhvr 0
 	tick rand 380 480
 	mvsf va00 va01
+	unlk
 endm
 
+
+scrp 2 13 6501 1003
+	inst
+	setv va00 rand ov10 ov20
+	setv va01 rand ov11 ov21
+	mvsf va00 va01
+endm
 
 rscr
 enum 2 10 6500
