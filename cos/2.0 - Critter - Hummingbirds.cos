@@ -112,6 +112,7 @@ scrp 2 15 6500 9
 	inst
 	doif totl 1 1 6510 eq 0
 		new: simp 1 1 6510 "blnk" 1 0 0
+		targ ownr
 	endi
 	lock
 	setv va12 rand 1 100
