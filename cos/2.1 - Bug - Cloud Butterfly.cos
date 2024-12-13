@@ -14,7 +14,8 @@
 *	ov21 = bottom boundary
 *	ov22 = butterfly speed
 *	ov50 = life timer
-*	ov97 = height
+*	ov95 = height
+*   ov97 = move target
 *	ov98 = target food
 *	ov99 = food meter
 
@@ -124,6 +125,7 @@ endm
 scrp 2 13 6501 9
 *	butterfly/caterpillar timer
 
+	setv mv01 rand -1 1
 	doif velx < 0.0 or mv01 = -1
 		mira 0
 	elif velx > 0.0 or mv01 = 1
@@ -142,13 +144,24 @@ scrp 2 13 6501 9
 			setv mv00 1
 		else
 			setv mv00 0
+			targ ownr
+			doif rand 0 8 eq 0
+				setv mv01 rand -1 1
+			endi
+			setv va80 gmap posl post
+			gsub set_direction
+			doif mv98 eq null
+				gsub set_direction
+			endi
 		endi
+		endi
+		slow
 	elif mv00 = 1
 *		you found food
 		doif mv99 > 1
 *			you have eaten enough to make a cocoon
 			setv mv00 2
-		elif mv98 <> null and mv97 < 2
+		elif mv98 <> null and mv95 < 2
 			targ ownr
 			accg 0
 			reps rand 1 3
@@ -158,8 +171,8 @@ scrp 2 13 6501 9
 				wait rand 30 40
 			repe
 *			accg .5
-			addv mv97 1
-		elif mv98 <> null and mv97 >= 2
+			addv mv95 1
+		elif mv98 <> null and mv95 >= 2
 			targ mv98
 			doif targ <> null
 				setv mv00 1
@@ -167,7 +180,7 @@ scrp 2 13 6501 9
 *					mesg writ targ 12
 				endi
 				addv mv99 1
-				setv mv97 0
+				setv mv95 0
 				seta mv98 null
 				targ ownr
 				sndc "chwp"
@@ -445,6 +458,74 @@ scrp 2 13 6501 9
 			endi
 		endi
 	endi
+	subr set_direction
+		doif rand 0 1 eq 1
+			setv mv01 -1
+		else
+			setv mv01 1
+		endi
+		doif type mv97 lt 3
+			seta mv97 null
+		endi
+		doif mv97 <> null or rand 0 5 eq 0
+			setv va90 2000
+			seta mv97 null
+			etch 2 11 0
+				inst
+				doif mv97 eq null
+					seta mv97 targ
+				endi
+				slow
+			next
+			setv va92 posy
+			doif mv97 eq null
+				esee 2 11 6500
+					inst
+					gsub set_food
+					slow
+				next
+			endi
+			doif mv97 eq null
+				esee 2 11 0
+					inst
+					gsub set_food
+					slow
+				next
+			endi
+			doif mv97 eq null
+				esee 2 3 0
+					inst
+					gsub set_food
+					slow
+				next
+			endi
+			targ ownr
+		endi
+	retn
+
+	subr set_food
+		doif gmap posl post eq va80
+			setv va88 relx ownr targ
+			setv va89 va88
+			absv va89
+			doif va89 lt va90
+				setv va93 rely ownr targ
+				absv va93
+				doif va93 < 8
+					setv va90 va89
+					seta mv97 targ
+					doif va88 lt 0
+						setv mv01 -1
+					else
+						setv mv01 1
+					endi
+				endi
+			endi
+		endi
+		targ ownr
+	retn
+endm
+
 endm
 
 scrp 2 13 6501 12
