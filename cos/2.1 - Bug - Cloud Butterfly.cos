@@ -26,6 +26,10 @@
 
 inst
 
+enum 1 13 6501
+	kill targ
+next
+
 new: simp 1 13 6501 "blnk" 1 0 0
 
 file jdel 1 "Caterpillars.txt"
@@ -635,18 +639,33 @@ scrp 2 13 6501 1003
 endm
 
 rscr
+inst
+
+enum 1 13 6501
+	kill targ
+next
+
 enum 2 10 6500
 	kill targ
 next
+
 enum 2 13 6501
 	kill targ
 next
 
+scrx 1 13 6501 9
+scrx 1 13 6501 10
+
 scrx 2 10 6500 9
+
 scrx 2 13 6501 1
+scrx 2 13 6501 2
+scrx 2 13 6501 3
 scrx 2 13 6501 6
 scrx 2 13 6501 9
+scrx 2 13 6501 10
 scrx 2 13 6501 12
 scrx 2 13 6501 1000
 scrx 2 13 6501 1001
 scrx 2 13 6501 1002
+scrx 2 13 6501 1003
