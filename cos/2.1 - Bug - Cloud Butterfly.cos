@@ -1,10 +1,14 @@
 * Cloud Butterfly
-*	ov00 = 0 is caterpillar 
+*   1 13 6501 - Butterfly Manager
+*	2 13 6501 - Cloud Butterfly
+*   2 10 6500 - Butterfly Detritus
+*
+*	ov00 = 0 is caterpillar
 *	ov00 = 1 is feeding
-*	ov00 = 2 is cocoon 
+*	ov00 = 2 is cocoon
 *	ov00 = 3 is butterfly normal
 *	ov00 = 4 is butterfly mating
-*	ov00 = 5 is butterfly die 
+*	ov00 = 5 is butterfly die
 *	ov00 = 6 is butterfly egg
 *	ov01 = left/right
 *	ov02 = up/down
@@ -19,9 +23,6 @@
 *   ov97 = move target
 *	ov98 = target food
 *	ov99 = food meter
-
-** Cloud Butterfly 
-*	2 13 6501
 
 inst
 
