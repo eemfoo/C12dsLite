@@ -1,10 +1,14 @@
 * Cloud Butterfly
-*	ov00 = 0 is caterpillar 
+*   1 13 6501 - Butterfly Manager
+*	2 13 6501 - Cloud Butterfly
+*   2 10 6500 - Butterfly Detritus
+*
+*	ov00 = 0 is caterpillar
 *	ov00 = 1 is feeding
-*	ov00 = 2 is cocoon 
+*	ov00 = 2 is cocoon
 *	ov00 = 3 is butterfly normal
 *	ov00 = 4 is butterfly mating
-*	ov00 = 5 is butterfly die 
+*	ov00 = 5 is butterfly die
 *	ov00 = 6 is butterfly egg
 *	ov01 = left/right
 *	ov02 = up/down
@@ -14,42 +18,58 @@
 *	ov21 = bottom boundary
 *	ov22 = butterfly speed
 *	ov50 = life timer
-*	ov97 = height
+*   ov51 = force cocoon timer
+*	ov95 = height
+*   ov97 = move target
 *	ov98 = target food
 *	ov99 = food meter
 
-** Cloud Butterfly 
-*	2 13 6501
-
 inst
+
+enum 1 13 6501
+	kill targ
+next
+
+new: simp 1 13 6501 "blnk" 1 0 0
+
+file jdel 1 "Caterpillars.txt"
+
 reps rand 5 7
 	new: simp 2 13 6501 "c1cloudbutterfly" 20 0 525
-	attr 71
-	attr 199
-	bhvr 59
-	tick 4
-	accg 2
-	aero 25
-	fric 75
-	elas 20
-	perm 40
-	frat 1.5
-	pose 19
-	rnge 500
-	setv ov00 6
-	setv ov01 0
-	setv ov02 0
-	setv ov10 2080
-	setv ov20 3230
-	setv ov11 18650
-	setv ov21 18920
-	setv ov22 rand 2 3
-	setv va00 rand ov10 ov20
-	setv va01 rand ov11 ov21
-	setv ov97 0
-	seta ov98 null
-	mvsf va00 va01
+	mesg writ targ 1003
 repe
+
+scrp 1 13 6501 9
+	lock
+	inst
+	doif totl 2 13 6501 > 7
+		tick rand 100 300
+		stop
+	endi
+	setv va00 rand 1 2
+	slow
+	reps va00
+		new: simp 2 13 6501 "c1cloudbutterfly" 20 0 525
+		mesg writ targ 1003
+		tick 4
+		wait rand 10 40
+	repe
+
+	targ ownr
+	doif totl 2 13 6501 lt 7
+		tick rand 40 200
+	else
+		tick rand 600 800
+	endi
+endm
+
+
+scrp 1 13 6501 10
+	inst
+	attr 16
+	bhvr 0
+	call 9 0 0
+endm
 
 scrp 2 10 6500 9
 *	Butterfly husk timer
@@ -60,18 +80,22 @@ scrp 2 10 6500 9
 endm
 
 scrp 2 13 6501 1
+	inst
 	stim writ from 85 1
 endm
 
 scrp 2 13 6501 2
+	inst
 	stim writ from 85 1
 endm
 
 scrp 2 13 6501 3
+	inst
 	stim writ from 25 1
 endm
 
 scrp 2 13 6501 6
+	inst
 *	butterfly collides
 	doif pose >= 17 and pose <= 18 and mv00 <> 5
 		doif obst down < 10
@@ -123,7 +147,13 @@ endm
 
 scrp 2 13 6501 9
 *	butterfly/caterpillar timer
+	inst
+	doif totl 1 13 6501 eq 0
+		new: simp 1 13 6501 "blnk" 1 0 0
+	endi
+	slow
 
+	setv mv01 rand -1 1
 	doif velx < 0.0 or mv01 = -1
 		mira 0
 	elif velx > 0.0 or mv01 = 1
@@ -132,6 +162,8 @@ scrp 2 13 6501 9
 
 *	check your state
 	doif mv00 = 0
+		inst
+		addv mv51 1
 *		just a caterpillar wandering around looking for nothing
 *		let's see if you can eat something
 		etch 2 11 0
@@ -141,14 +173,29 @@ scrp 2 13 6501 9
 *			you can eat
 			setv mv00 1
 		else
-			setv mv00 0
+			targ ownr
+			doif rand 0 8 eq 0
+				setv mv01 rand -1 1
+			endi
+			setv va80 gmap posl post
+			gsub set_direction
+			doif mv98 eq null
+				gsub set_direction
+			endi
 		endi
+		doif mv97 eq null and mv98 eq null
+			doif mv51 gt 150
+				setv mv00 2
+			endi
+		endi
+		slow
 	elif mv00 = 1
 *		you found food
 		doif mv99 > 1
 *			you have eaten enough to make a cocoon
 			setv mv00 2
-		elif mv98 <> null and mv97 < 2
+		elif mv98 <> null and mv95 < 2
+			lock
 			targ ownr
 			accg 0
 			reps rand 1 3
@@ -157,9 +204,10 @@ scrp 2 13 6501 9
 				mvby 0 -2
 				wait rand 30 40
 			repe
-*			accg .5
-			addv mv97 1
-		elif mv98 <> null and mv97 >= 2
+			accg 2
+			addv mv95 1
+			unlk
+		elif mv98 <> null and mv95 >= 2
 			targ mv98
 			doif targ <> null
 				setv mv00 1
@@ -167,7 +215,7 @@ scrp 2 13 6501 9
 *					mesg writ targ 12
 				endi
 				addv mv99 1
-				setv mv97 0
+				setv mv95 0
 				seta mv98 null
 				targ ownr
 				sndc "chwp"
@@ -192,11 +240,9 @@ scrp 2 13 6501 9
 			setv mv00 3
 			doif mv69 = 0
 				inst
-				lock
 				mesg writ ownr 1002
 				setv mv69 1
 				slow
-				unlk
 			endi
 		endi
 	elif mv00 = 3
@@ -293,7 +339,7 @@ scrp 2 13 6501 9
 			elas 0
 			accg 2
 			doif obst down < 10
-				anim [0 1 2 3 4 5 0]
+				anim [0 1 2 3]
 			else
 				pose 0
 			endi
@@ -318,65 +364,27 @@ scrp 2 13 6501 9
 		doif movs = 0
 			inst
 			targ ownr
-			setv va80 gmap posl post
-			doif mv00 <> 2 and mv00 <> 5
-				doif rand 0 1 eq 1
-					setv mv01 -1
-				else
-					setv mv01 1
-				endi
-				doif type mv88 lt 3
-					seta mv88 null
-				endi
-				doif mv88 <> null or rand 0 5 eq 0
-					setv va90 2000
-					seta mv88 null
-					etch 2 11 0
-						doif mv88 eq null
-							seta mv88 targ
-						endi
-					next
-					doif mv88 eq null
-						esee 2 11 0
-							doif gmap posl post eq va80
-								setv va88 relx ownr targ
-								setv va89 va88
-								absv va89
-								doif va89 lt va90
-									setv va90 va89
-									seta mv88 targ
-									doif va88 lt 0
-										setv mv01 -1
-									else
-										setv mv01 1
-									endi
-								endi
-							endi
-							targ ownr
-						next
-					endi
-					targ ownr
-				endi
-			endi
-			slow
+			inst
 			doif mv00 = 0 or mv00 = 1
 				doif obst down < 10
 					setv va00 mv01
 					mulv va00 ov22
 					mulv va00 2
-					setv va01 ov02
-					mulv va01 ov22
+					setv va01 mv02
+					mulv va01 mv22
 					setv va10 posl
-					setv va11 post
 					addv va10 va00
+					setv va11 post
 					addv va11 va01
 					addv va11 8
+					slow
+					anim [ 4 5 0 ]
 					doif movs = 0
 						mvsf va10 va11
-						velo 0 1
+*						velo 0 1
 					endi
 				endi
-			elif ov00 = 3 or ov00 = 4
+			elif mv00 = 3 or mv00 = 4
 				doif obst down >= 10
 					doif accg <> 0
 						accg 0
@@ -445,6 +453,100 @@ scrp 2 13 6501 9
 			endi
 		endi
 	endi
+	subr set_direction
+		doif rand 0 1 eq 1
+			setv mv01 -1
+		else
+			setv mv01 1
+		endi
+		doif type mv97 lt 3
+			seta mv97 null
+		endi
+		doif mv97 <> null or rand 0 5 eq 0
+			setv va90 2000
+			seta mv97 null
+			etch 2 11 0
+				inst
+				doif mv97 eq null
+					seta mv97 targ
+				endi
+				slow
+			next
+			setv va92 posy
+			doif mv97 eq null
+				esee 2 11 6500
+					inst
+					gsub set_food
+					slow
+				next
+			endi
+			doif mv97 eq null
+				esee 2 11 0
+					inst
+					gsub set_food
+					slow
+				next
+			endi
+			doif mv97 eq null
+				esee 2 3 0
+					inst
+					gsub set_food
+					slow
+				next
+			endi
+			targ ownr
+		endi
+	retn
+
+	subr set_food
+		doif gmap posl post eq va80
+			setv va88 relx ownr targ
+			setv va89 va88
+			absv va89
+			doif va89 lt va90
+				setv va93 rely ownr targ
+				absv va93
+				doif va93 < 8
+					setv va90 va89
+					seta mv97 targ
+					doif va88 lt 0
+						setv mv01 -1
+					else
+						setv mv01 1
+					endi
+				endi
+			endi
+		endi
+		targ ownr
+	retn
+endm
+
+scrp 2 13 6501 10
+	inst
+	lock
+	seta mv98 null
+	seta mv97 null
+	attr 199
+	bhvr 59
+	accg 2
+	aero 25
+	fric 75
+	elas 20
+	perm 40
+	frat 1.5
+	pose 19
+	rnge 500
+	setv mv00 6
+	setv mv01 0
+	setv mv02 0
+	setv mv10 2080
+	setv mv20 3230
+	setv mv11 18650
+	setv mv21 18920
+	setv mv22 rand 2 3
+	setv mv95 0
+	tick 4
+	unlk
 endm
 
 scrp 2 13 6501 12
@@ -491,36 +593,22 @@ endm
 scrp 2 13 6501 1001
 *	caterpillar spawn
 	inst
-	doif totl 2 13 6501 < 13
+	doif totl 2 13 6501 < 4
+		setv va00 rand 1 2
+	else
+		setv va00 1
+	endi
+
+	reps va00
 		setv va00 posl
 		setv va01 post
 		new: simp 2 13 6501 "c1cloudbutterfly" 20 0 525
-		attr 71
-		attr 199
-		bhvr 59
-		tick 4
-		accg 2
-		aero 25
-		fric 75
-		elas 20
-		perm 60
-		frat 1.5
-		pose 19
-		rnge 500
-		setv ov00 6
-		setv ov01 0
-		setv ov02 0
-		setv ov10 4080
-		setv ov20 5230
-		setv ov11 10650
-		setv ov21 10920
-		setv ov22 rand 2 3
-		setv ov97 0
-		seta ov98 null
-		mvsf va00 va01
-*	targ ownr
-*	setv mv00 5
-	endi
+		doif tmvt va00 va01 eq 1
+			mvsf va00 va01
+		else
+			mesg writ targ 1003
+		endi
+	repe
 endm
 
 scrp 2 13 6501 1002
@@ -543,22 +631,45 @@ scrp 2 13 6501 1002
 	bhvr 0
 	tick rand 380 480
 	mvsf va00 va01
+	unlk
 endm
 
 
+scrp 2 13 6501 1003
+	inst
+	setv va00 rand ov10 ov20
+	setv va01 rand ov11 ov21
+	mvsf va00 va01
+endm
+
 rscr
+inst
+
+enum 1 13 6501
+	kill targ
+next
+
 enum 2 10 6500
 	kill targ
 next
+
 enum 2 13 6501
 	kill targ
 next
 
+scrx 1 13 6501 9
+scrx 1 13 6501 10
+
 scrx 2 10 6500 9
+
 scrx 2 13 6501 1
+scrx 2 13 6501 2
+scrx 2 13 6501 3
 scrx 2 13 6501 6
 scrx 2 13 6501 9
+scrx 2 13 6501 10
 scrx 2 13 6501 12
 scrx 2 13 6501 1000
 scrx 2 13 6501 1001
 scrx 2 13 6501 1002
+scrx 2 13 6501 1003
