@@ -1,0 +1,102 @@
+******
+* 2 21 6523 Carp Lanterns
+* Agent Sprite, Code and sounds by SG, used by permission
+
+iscr
+inst
+
+new: simp 2 21 6523 "c1lcarplanterns" 7 0 800
+mvto 3244 18334
+* Creature-to-agent Permissions: 1 push, 2 pull, 8 hit
+bhvr 11
+* Agent Properties: 2 Mouseable, 4 Activateable
+attr 6
+* Acceleration - none
+accg 0
+* Permeability - can be set anywhere
+perm 100
+* Friction - never slides
+fric 100
+* Elasticity - none
+elas 0
+
+
+scrp 2 21 6523 1
+	inst
+	doif from eq pntr
+*Check if the lamp is off and turn it on
+		doif pose = 0
+			sndc "c1c4"
+			pose 3
+			emit 1 0.8
+*If the lamp is already on, turn it off
+		elif pose = 3
+			sndc "c1c4"
+			pose 0
+			emit 1 0
+*End do-if-else sequence
+		endi
+	else
+*Stimulate creature, play a sound, and sway (lamp off)
+		doif pose = 0
+			stim writ from 97 1
+			sndc "c1d7"
+			anim [0 1 0 2 0]
+*Stimulate creature, play a sound, and sway (lamp on)
+		elif pose = 3
+			stim writ from 97 1
+			sndc "c1d7"
+			anim [3 4 5 6 5 3]
+		endi
+	endi
+endm
+
+scrp 2 21 6523 2
+
+*Stimulate creature, play a sound, and sway (lamp off)
+	doif pose = 0
+		stim writ from 97 1
+		sndc "c1d7"
+		anim [0 1 0 2 0]
+*Stimulate creature, play a sound, and sway (lamp on)
+	elif pose = 3
+		stim writ from 97 1
+		sndc "c1d7"
+		anim [3 4 5 6 5 3]
+	endi
+*End script
+endm
+
+*SCRIPT 3: Hit
+scrp 2 21 6523 3
+
+*Stimulate creature, play a sound, and sway (lamp off)
+	doif pose = 0
+		stim writ from 97 1
+		sndc "c1d7"
+		anim [0 1 0 2 0]
+*Stimulate creature, play a sound, and sway (lamp on)
+	elif pose = 3
+		stim writ from 97 1
+		sndc "c1d7"
+		anim [3 4 5 6 5 3]
+	endi
+*End script
+endm
+
+
+rscr
+
+*Find all instances of the lanterns
+enum 2 21 6523
+
+*Remove the lanterns from the game
+	kill targ
+
+*Move on to next thing to remove
+next
+
+*Removes all the lantern's scripts
+scrx 2 21 6523 1
+scrx 2 21 6523 2
+scrx 2 21 6523 3

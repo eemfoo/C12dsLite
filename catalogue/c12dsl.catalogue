@@ -273,6 +273,9 @@ TAG "Agent Help 2 21 6518"
 "Learning Computer"
 "The Learning Computer helps you teach creatures how to speak when pushed. You can set the Learning Computer to automatically advance, go to the Previous word, go to the Next word, and switch word libraries."
 
+TAG "Agent Help 2 21 6523"
+"SG's C1 Carp Lanterns"
+"When on, they emit light at a level of 0.8. Classified as a toy, they sway gently when creatures interact with them"
 
 # Incubator
 TAG "Agent Help 2 22 6500"
