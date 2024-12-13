@@ -330,7 +330,7 @@ scrp 2 13 6501 9
 			elas 0
 			accg 2
 			doif obst down < 10
-				anim [0 1 2 3 4 5 0]
+				anim [0 1 2 3]
 			else
 				pose 0
 			endi
@@ -355,65 +355,27 @@ scrp 2 13 6501 9
 		doif movs = 0
 			inst
 			targ ownr
-			setv va80 gmap posl post
-			doif mv00 <> 2 and mv00 <> 5
-				doif rand 0 1 eq 1
-					setv mv01 -1
-				else
-					setv mv01 1
-				endi
-				doif type mv88 lt 3
-					seta mv88 null
-				endi
-				doif mv88 <> null or rand 0 5 eq 0
-					setv va90 2000
-					seta mv88 null
-					etch 2 11 0
-						doif mv88 eq null
-							seta mv88 targ
-						endi
-					next
-					doif mv88 eq null
-						esee 2 11 0
-							doif gmap posl post eq va80
-								setv va88 relx ownr targ
-								setv va89 va88
-								absv va89
-								doif va89 lt va90
-									setv va90 va89
-									seta mv88 targ
-									doif va88 lt 0
-										setv mv01 -1
-									else
-										setv mv01 1
-									endi
-								endi
-							endi
-							targ ownr
-						next
-					endi
-					targ ownr
-				endi
-			endi
-			slow
+			inst
 			doif mv00 = 0 or mv00 = 1
 				doif obst down < 10
 					setv va00 mv01
 					mulv va00 ov22
 					mulv va00 2
-					setv va01 ov02
-					mulv va01 ov22
+					setv va01 mv02
+					mulv va01 mv22
 					setv va10 posl
-					setv va11 post
 					addv va10 va00
+					setv va11 post
 					addv va11 va01
 					addv va11 8
+					slow
+					anim [ 4 5 0 ]
 					doif movs = 0
 						mvsf va10 va11
-						velo 0 1
+*						velo 0 1
 					endi
 				endi
-			elif ov00 = 3 or ov00 = 4
+			elif mv00 = 3 or mv00 = 4
 				doif obst down >= 10
 					doif accg <> 0
 						accg 0
