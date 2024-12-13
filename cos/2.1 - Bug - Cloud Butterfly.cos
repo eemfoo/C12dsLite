@@ -164,7 +164,7 @@ scrp 2 13 6501 9
 			doif targ <> null
 				setv mv00 1
 				doif targ <> null
-					mesg writ targ 12
+*					mesg writ targ 12
 				endi
 				addv mv99 1
 				setv mv97 0
