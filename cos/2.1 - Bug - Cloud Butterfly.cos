@@ -270,16 +270,16 @@ scrp 2 13 6501 9
 
 	targ ownr
 *	check if you are motile
-	doif ov00 <> 2 and ov00 <> 5
+	doif mv00 <> 2 and mv00 <> 5
 *		now check if you are out of bounds
-		doif ov01 = -1 and posl < ov10
-			setv ov01 1
+		doif mv01 = -1 and posl < mv10
+			setv mv01 1
 			mira 1
-		elif ov01 = 1 and posr > ov20
-			setv ov01 -1
+		elif mv01 = 1 and posr > mv20
+			setv mv01 -1
 			mira 0
 		endi
-		doif ov00 = 3 or ov00 = 4
+		doif mv00 = 3 or mv00 = 4
 			doif post < ov11
 				setv ov02 1
 			elif posb > ov21
@@ -287,7 +287,7 @@ scrp 2 13 6501 9
 			endi
 		endi
 *		set your movement style
-		doif ov00 = 0 or ov00 = 1
+		doif mv00 = 0 or mv00 = 1
 			fric 75
 			aero 0
 			elas 0
@@ -297,7 +297,7 @@ scrp 2 13 6501 9
 			else
 				pose 0
 			endi
-		elif ov00 = 3 or ov00 = 4
+		elif mv00 = 3 or mv00 = 4
 			fric 0
 			aero 5
 			elas 20
@@ -316,16 +316,52 @@ scrp 2 13 6501 9
 
 *		move
 		doif movs = 0
-			doif ov01 = 0 and ov00 <> 2 and ov00 <> 5
-				doif rand 0 1 = 1
-					setv ov01 -1
+			inst
+			targ ownr
+			setv va80 gmap posl post
+			doif mv00 <> 2 and mv00 <> 5
+				doif rand 0 1 eq 1
+					setv mv01 -1
 				else
-					setv ov01 1
+					setv mv01 1
+				endi
+				doif type mv88 lt 3
+					seta mv88 null
+				endi
+				doif mv88 <> null or rand 0 5 eq 0
+					setv va90 2000
+					seta mv88 null
+					etch 2 11 0
+						doif mv88 eq null
+							seta mv88 targ
+						endi
+					next
+					doif mv88 eq null
+						esee 2 11 0
+							doif gmap posl post eq va80
+								setv va88 relx ownr targ
+								setv va89 va88
+								absv va89
+								doif va89 lt va90
+									setv va90 va89
+									seta mv88 targ
+									doif va88 lt 0
+										setv mv01 -1
+									else
+										setv mv01 1
+									endi
+								endi
+							endi
+							targ ownr
+						next
+					endi
+					targ ownr
 				endi
 			endi
-			doif ov00 = 0 or ov00 = 1
+			slow
+			doif mv00 = 0 or mv00 = 1
 				doif obst down < 10
-					setv va00 ov01
+					setv va00 mv01
 					mulv va00 ov22
 					mulv va00 2
 					setv va01 ov02
