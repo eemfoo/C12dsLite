@@ -80,18 +80,22 @@ scrp 2 10 6500 9
 endm
 
 scrp 2 13 6501 1
+	inst
 	stim writ from 85 1
 endm
 
 scrp 2 13 6501 2
+	inst
 	stim writ from 85 1
 endm
 
 scrp 2 13 6501 3
+	inst
 	stim writ from 25 1
 endm
 
 scrp 2 13 6501 6
+	inst
 *	butterfly collides
 	doif pose >= 17 and pose <= 18 and mv00 <> 5
 		doif obst down < 10
@@ -191,6 +195,7 @@ scrp 2 13 6501 9
 *			you have eaten enough to make a cocoon
 			setv mv00 2
 		elif mv98 <> null and mv95 < 2
+			lock
 			targ ownr
 			accg 0
 			reps rand 1 3
@@ -199,8 +204,9 @@ scrp 2 13 6501 9
 				mvby 0 -2
 				wait rand 30 40
 			repe
-*			accg .5
+			accg 2
 			addv mv95 1
+			unlk
 		elif mv98 <> null and mv95 >= 2
 			targ mv98
 			doif targ <> null
@@ -234,11 +240,9 @@ scrp 2 13 6501 9
 			setv mv00 3
 			doif mv69 = 0
 				inst
-				lock
 				mesg writ ownr 1002
 				setv mv69 1
 				slow
-				unlk
 			endi
 		endi
 	elif mv00 = 3
