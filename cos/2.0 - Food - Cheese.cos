@@ -144,6 +144,7 @@ endm
 
 * Cheese - Constructor
 scrp 2 11 6501 10
+    lock
     * Set cheese properties
     setv name "C12DS_Lite_Clickable_Food" 1
     attr 195
