@@ -5,7 +5,7 @@ mapd 200000 200000
 
 *ROOMIE Create new metaroom
 setv va01 addm 770 18000 4736 1280 "c12dsl"
-  setv va00 addr va01 1292 1440 18745 18745 18926 18926
+  setv va00 addr va01 1292 1440 18720 18720 18926 18926
     rtyp va00 3
     setv game "map_tmp_0" va00
   setv va00 addr va01 1440 1561 18745 18745 18926 18926
@@ -23,7 +23,7 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 1971 2038 18745 18745 18926 18926
     rtyp va00 3
     setv game "map_tmp_5" va00
-  setv va00 addr va01 1182 1292 18800 18745 18926 18926
+  setv va00 addr va01 1182 1292 18800 18720 18926 18926
     rtyp va00 3
     setv game "map_tmp_6" va00
   setv va00 addr va01 1090 1182 18789 18789 18926 18926
@@ -576,7 +576,7 @@ door game "map_tmp_34" game "map_tmp_100" 100
 door game "map_tmp_99" game "map_tmp_100" 100
 door game "map_tmp_35" game "map_tmp_101" 100
 door game "map_tmp_100" game "map_tmp_101" 100
-door game "map_tmp_36" game "map_tmp_102" 0
+door game "map_tmp_36" game "map_tmp_102" 100
 door game "map_tmp_101" game "map_tmp_102" 100
 door game "map_tmp_37" game "map_tmp_103" 100
 door game "map_tmp_102" game "map_tmp_103" 100

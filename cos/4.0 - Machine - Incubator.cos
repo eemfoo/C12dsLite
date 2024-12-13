@@ -1,0 +1,260 @@
+* C1 Incubator
+
+* Dependencies:
+*  C1Incu.c16
+*  c1i1.wav
+*  c1i2.wav
+
+
+* need to add population control portion
+* need to encourage creatures nearby to place eggs in machine
+* still hatches random gender!
+* I think ov01 holds the gender
+
+
+inst
+lock
+
+new: vhcl 2 22 6500 "c1incu" 1 1 200
+cabn 34 19 122 124
+cabp 1
+cabw 1
+rnge 600
+attr 207
+accg 25
+aero 10
+fric 100
+bhvr 0
+elas 10
+perm 60
+clac 0
+tick 5
+setv ov61 100
+
+* interior
+pat: dull 1 "c1incu" 2 50 59 0
+
+* front doors
+pat: dull 2 "c1incu" 4 33 59 2
+
+* top window
+pat: dull 3 "c1incu" 7 51 18 0
+
+* meter at top
+pat: dull 4 "c1incu" 9 61 0 0
+
+* light at top
+pat: dull 5 "c1incu" 12 109 14 0
+
+* left traffic light display
+pat: dull 6 "c1incu" 16 17 82 0
+
+* thermo thing on left
+pat: dull 7 "c1incu" 20 13 102 0
+
+* neon light at bottom
+pat: dull 8 "c1incu" 24 105 157 0
+
+
+*doif game "C12DS_Lite_Installing" = 1 and totl 2 22 6500 <= 1
+doif totl 2 22 6500 <= 1
+    mvsf 1283 18733
+elif type game "ds_game_type" ne 2
+* 		it's NOT a string, this must be C3 only
+* 		choose a safe C3 location
+    setv va00 5440
+    setv va01 3580
+    velo rand 30 40 -5
+    mvsf va00 va01
+else
+* 		it IS a string, but what is the value?
+    doif game "ds_game_type" eq "undocked"
+* 			this is an undocked world, location needs to be DS safe
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    elif game "ds_game_type" eq "docked"
+* 			this is a docked world, location can be anywhere in the DS/C3 realm
+        setv va00 6100
+        setv va01 9200
+        velo rand 30 40 -5
+        mvsf va00 va01
+    endi
+endi
+
+
+**********
+* Scripts
+
+scrp 2 22 6500 1001
+*	hatch an egg
+    wait 5
+    inst
+    lock
+    attr 196
+    epas 3 4 0
+        doif gtos 1 = "" and targ <> null
+            kill targ
+        endi
+    next
+
+    epas 3 4 0
+** 		get egg agent
+        seta va99 targ
+        setv va01 ov01
+        doif gtos 1 = "" and targ <> null
+            kill targ
+        elif gtos 1 <> "" and targ <> null
+            attr 196
+            targ ownr
+            part 1
+            anim [0 1]
+            part 2
+            anim [0 1 2]
+            part 3
+            anim [0 1]
+            part 4
+            anim [1 2 1 2 2 2 255]
+            part 5
+            anim [0 1 2 3 2 1 255]
+            part 6
+            anim [0 1 2 3 255]
+            part 7
+            anim [0 1 2 3 255]
+            part 8
+            anim [0 1 2 3 2 1 255]
+            sndc "c1i1"
+            sndl "c1i2"
+            wait 5
+            doif va01 = 0 or va01 = 1 or va01 = 2
+                new: crea 4 va99 1 va01 0
+            else
+                new: crea 4 va99 1 0 0
+            endi
+            accg game "c3_creature_accg"
+            bhvr game "c3_creature_bhvr"
+            attr game "c3_creature_attr"
+            perm game "c3_creature_perm"
+            setv va91 11
+            addv va91 gnus
+            emit va91 0.5
+            drea 1
+            seta va05 targ
+            targ va99
+            wait 40
+            doif spcs = 1
+                anim [4 5 6 4 5 6 4 5 6 5 6 5 6 4 5 6 4 5 6 6 6 5 6 5 6 5 6 5 4 5 6 255]
+                wait 40
+            else
+                anim [4 5 4 5 4 5 5 5 4 5 4 5 5 5 5 5 4 5 255]
+                wait 40
+            endi
+            snde "crak"
+            wait 40
+            setv va00 posl
+            setv va01 posb
+            targ ownr
+            part 1
+            pose 0
+            part 3
+            pose 0
+            part 4
+            pose 0
+            part 5
+            pose 0
+            part 6
+            pose 0
+            part 7
+            pose 0
+            part 8
+            pose 0
+            targ va99
+            doif spcs = 1
+                anim [6 7]
+                wait 5
+            else
+                anim [5 6]
+                wait 5
+            endi
+            fade
+            inst
+            targ va05
+            pose 75
+            subv va01 10
+            mvsf va00 va01
+            aslp 0
+            born
+            over
+
+            targ va99
+            kill targ
+        endi
+    next
+    targ ownr
+    part 2
+    pose 0
+    stpc
+    attr 207
+    slow
+    wait rand 20 30
+    epas 3 4 0
+        doif gtos 1 = "" and targ <> null
+            kill targ
+        endi
+    next
+    unlk
+endm
+
+
+scrp 2 22 6500 255
+*	error
+    inst
+    setv va00 posl
+    setv va01 post
+    addv va01 5
+    mvsf va00 va01
+endm
+
+
+scrp 2 22 6500 124
+* just got something
+*	wait 5
+    inst
+    lock
+    setv va00 0
+    epas 0 0 0
+
+        doif fmly ne 3 or gnus ne 4
+            rpas ownr targ
+        else
+            plne 201
+            setv va00 1
+        endi
+    next
+    doif va00 eq 1
+        mesg wrt+ ownr 1001 255 0 0
+    endi
+endm
+
+
+* Drum remover
+rscr
+doif game "C12DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    * If C12DSL is not installed, make metaroom ID negative and impossible to match
+    setv va00 -1
+endi
+
+enum 2 22 6500
+*    doif gmap posl post ne va00
+        kill targ
+*    endi
+next
+
+doif game "C12DS_Lite_Loaded" eq 0
+    scrx 2 22 6500 124
+    scrx 2 22 6500 255
+    scrx 2 22 6500 1001
+endi
