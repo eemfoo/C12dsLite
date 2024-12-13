@@ -898,7 +898,7 @@ new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 0 7000
 new: simp 1 1 6500 "c1l_overlays_underground_wood" 1 6 7000
   mvto 1837 18934
 new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 1 7000
-  mvto 2650 18933
+  mvto 2652 18933
 new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 2 7000
   mvto 2938 18934
 new: simp 1 1 6500 "c1l_overlays_underground_brick" 1 4 7000
