@@ -14,6 +14,7 @@
 *	ov21 = bottom boundary
 *	ov22 = butterfly speed
 *	ov50 = life timer
+*   ov51 = force cocoon timer
 *	ov95 = height
 *   ov97 = move target
 *	ov98 = target food
@@ -134,6 +135,8 @@ scrp 2 13 6501 9
 
 *	check your state
 	doif mv00 = 0
+		inst
+		addv mv51 1
 *		just a caterpillar wandering around looking for nothing
 *		let's see if you can eat something
 		etch 2 11 0
@@ -143,7 +146,6 @@ scrp 2 13 6501 9
 *			you can eat
 			setv mv00 1
 		else
-			setv mv00 0
 			targ ownr
 			doif rand 0 8 eq 0
 				setv mv01 rand -1 1
@@ -154,6 +156,10 @@ scrp 2 13 6501 9
 				gsub set_direction
 			endi
 		endi
+		doif mv97 eq null and mv98 eq null
+			doif mv51 gt 150
+				setv mv00 2
+			endi
 		endi
 		slow
 	elif mv00 = 1
