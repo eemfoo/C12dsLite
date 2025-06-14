@@ -12,8 +12,8 @@ doif game "C12DS_Lite_Installing" = 1 and totl 3 2 6500 = 0
 
 *teleporter with c1 image
     new: comp 3 2 6500 "c1lteleporter" 11 0 500
-
-
+    
+* Place teleporter
     doif type game "ds_game_type" ne 2
 * 		it's NOT a string, this must be C3 only
 * 		choose a safe C3 location
@@ -95,7 +95,6 @@ scrp 3 2 6500 2
     stim writ from 14 0
 endm
 
-
 scrp 3 2 6500 4
     inst
     call 1012 0 0
@@ -110,7 +109,7 @@ endm
 scrp 3 2 6500 1000
     inst
     lock
-    doif type from eq 4 or type from eq  7
+    doif type from eq 4 or type from eq 7
         seta _p1_ from
     endi
     doif mv00 eq null
@@ -241,8 +240,9 @@ scrp 3 2 6500 1000
     retn
 endm
 
-
 scrp 3 2 6500 10
+    inst
+    lock
     pat: dull 1 "c1lteleporter" 12 0 29 9999
     tran 1 1
     part 1
@@ -256,7 +256,6 @@ scrp 3 2 6500 10
     puhl -1 37 29
     pat: butt 2 "c1lteleporter" 46 1 76 81 2 [0] 1000 1
 endm
-
 
 scrp 3 2 6500 1010
     inst
