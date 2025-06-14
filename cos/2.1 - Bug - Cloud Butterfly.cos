@@ -499,6 +499,10 @@ scrp 2 13 6501 9
 	retn
 
 	subr set_food
+		inst
+		doif targ = null
+			retn
+		endi
 		doif gmap posl post eq va80
 			setv va88 relx ownr targ
 			setv va89 va88
