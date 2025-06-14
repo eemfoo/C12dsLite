@@ -1,0 +1,199 @@
+* C1 Teleporters
+
+* Dependencies:
+*  c1transporters.c16
+*  c1t3.wav
+
+
+inst
+lock
+setv game "C12DS_Lite_Teleporter_Cooldown" 20
+*doif game "C12DS_Lite_Installing" = 1 and totl 3 2 6501 = 0
+doif 1 = 1
+* Norn house teleporter
+	new: vhcl 3 2 6501 "c1transporters" 11 0 300
+	pat: dull 1 "c1transporters" 11 1 29 0
+	seta va01 targ
+	setv ov00 1
+	attr 196
+	fric 100
+	accg 25
+	elas 0
+	aero 0
+	cabp -1
+	bhvr 3
+	perm 60
+	mvsf 1875 18600
+	setv va98 grap posx posy
+	seta name "last_creature" null
+
+* Garden teleporter
+	new: vhcl 3 2 6501 "c1transporters" 11 0 300
+	pat: dull 1 "c1transporters" 11 1 29 0
+	seta va02 targ
+	setv ov00 0
+	attr 196
+	fric 100
+	accg 25
+	elas 0
+	aero 0
+	cabp -1
+	bhvr 3
+	perm 60
+	mvsf 2990 18826
+	targ va01
+	seta ov01 va02
+	targ va02
+	seta ov01 va01
+	seta name "last_creature" null
+
+	setv va99 grap posx posy
+	link va98 va99 100
+
+endi
+
+
+scrp 3 2 6501 1
+	inst
+	call 1001 from 0
+endm
+
+scrp 3 2 6501 2
+	inst
+	call 1001 from 0
+endm
+
+scrp 3 2 6501 1001
+	inst
+	lock
+
+	doif type _p1_ lt 3
+		seta _p1_ from
+	endi
+	doif type _p1_ lt 3
+		seta _p1_ null
+	endi
+	targ mv01
+	doif gmap posl post <> -1
+		targ ownr
+		frat 2.0
+		part 0
+		anim [0 1 2 3 4 5 6]
+		part 1
+		anim [0 1 2 3 4 5 6]
+
+		targ mv01
+		frat 2.0
+		part 0
+		anim [0 1 2 3 4 5 6]
+		part 1
+		anim [0 1 2 3 4 5 6]
+
+		targ ownr
+		snde "c1t3"
+		targ mv01
+		doif carr <> null
+			seta va02 carr
+		else
+			seta va02 null
+		endi
+		setv va00 posr
+		subv va00 posl
+		divv va00 2
+		addv va00 posl
+		setv va01 posb
+		subv va01 10
+		doif _p1_ eq pntr
+			etch 0 0 0
+				doif crea targ eq 1
+					doif movs = 0
+						spas mv01 targ
+						rpas mv01 targ
+					endi
+				endi
+			next
+			cmrp va00 va01 0
+		endi
+
+		targ ownr
+		part 0
+		anim [6 7 8 9 10 0]
+		part 1
+		anim [6 7 8 9 10 0]
+		targ ov01
+		part 0
+		anim [6 7 8 9 10 0]
+		part 1
+		anim [6 7 8 9 10 0]
+
+		targ ownr
+		doif crea _p1_ eq 1
+			inst
+			targ _p1_
+			zomb 1
+			doif type carr eq 6
+				rpas carr targ
+			elif carr ne null
+				mesg writ carr 5
+			endi
+			doif movs = 0
+				stim writ _p1_  75 1
+				mvft va00 va01
+				wait 5
+				stim writ _p1_ 96 1.0
+				zomb 0
+			endi
+		elif _p1_ eq pntr
+			etch 0 0 0
+				inst
+				doif crea targ eq 1
+					doif carr <> null
+						rpas carr targ
+					endi
+					doif movs = 0
+						zomb 1
+						stim writ _p1_  75 1
+						mvft va00 va01
+						stim writ _p1_ 96 1.0
+						zomb 0
+						doif va02 <> null
+							setv va03 0
+							loop
+								spas va02 targ
+								wait 1
+								addv va03 1
+								inst
+							untl va03 > 100 or carr <> null
+						endi
+					endi
+				endi
+			next
+		endi
+*		over
+		stpc
+		targ ownr
+		drop
+		targ mv01
+		drop
+		slow
+		mesg writ mv01 1002
+		wait 20
+	endi
+endm
+
+scrp 3 2 6501 1002
+* Lock usage for a bit
+	lock
+	drop
+	setv va00 game "C12DS_Lite_Teleporter_Cooldown"
+	divv va00 4
+	mulv va00 3
+	wait va00
+endm
+
+rscr
+enum 3 2 6501
+	kill targ
+next
+
+scrx 3 2 6501 1
