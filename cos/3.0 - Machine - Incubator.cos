@@ -6,10 +6,23 @@
 *  c1i2.wav
 
 
-* need to add population control portion
-* need to encourage creatures nearby to place eggs in machine
-* still hatches random gender!
-* I think ov01 holds the gender
+* Classifier: 2 22 6500 - Incubator
+**CAOS2Pray Join
+*# C3-Name "Incubator (C3)"
+*# DS-Name "Incubator"
+*# Agent Animation File = "c1incu.c16"
+*# Agent Animation Gallery = "c1incu"
+*# Agent Sprite First Image = 1
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Agent Description = "Drop a creature egg into the incubator to hatch it."
+*# Attach "../images/c1incu.c16"
+*# Attach "../sounds/c1i1.wav"
+*# Attach "../sounds/c1i2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+
+* Port of the C12DS Incubator hatching behavior.
+* The original author's proposed enhancements are outside this port.
 
 
 inst
@@ -28,7 +41,6 @@ bhvr 0
 elas 10
 perm 60
 clac 0
-tick 5
 setv ov61 100
 
 * interior
@@ -56,8 +68,7 @@ pat: dull 7 "c1incu" 20 13 102 0
 pat: dull 8 "c1incu" 24 105 157 0
 
 
-*doif game "C12DS_Lite_Installing" = 1 and totl 2 22 6500 <= 1
-doif totl 2 22 6500 <= 1
+doif game "C12DS_Lite_Installing" = 1 and totl 2 22 6500 <= 1
     mvsf 1283 18733
 elif type game "ds_game_type" ne 2
 * 		it's NOT a string, this must be C3 only
@@ -93,117 +104,175 @@ scrp 2 22 6500 1001
     inst
     lock
     attr 196
+    seta va05 null
     epas 3 4 0
-        doif gtos 1 = "" and targ <> null
-            kill targ
+        doif targ <> null
+            doif gtos 1 = ""
+                kill targ
+            endi
         endi
     next
 
     epas 3 4 0
-** 		get egg agent
-        seta va99 targ
-        setv va01 ov01
-        doif gtos 1 = "" and targ <> null
-            kill targ
-        elif gtos 1 <> "" and targ <> null
-            attr 196
-            targ ownr
-            part 1
-            anim [0 1]
-            part 2
-            anim [0 1 2]
-            part 3
-            anim [0 1]
-            part 4
-            anim [1 2 1 2 2 2 255]
-            part 5
-            anim [0 1 2 3 2 1 255]
-            part 6
-            anim [0 1 2 3 255]
-            part 7
-            anim [0 1 2 3 255]
-            part 8
-            anim [0 1 2 3 2 1 255]
-            sndc "c1i1"
-            sndl "c1i2"
-            wait 5
-            doif va01 = 0 or va01 = 1 or va01 = 2
-                new: crea 4 va99 1 va01 0
+**      get egg agent
+        doif targ ne null
+            seta va99 targ
+            setv va01 ov01
+            setv va98 attr
+            doif gtos 1 = ""
+                kill targ
             else
-                new: crea 4 va99 1 0 0
-            endi
-            accg game "c3_creature_accg"
-            bhvr game "c3_creature_bhvr"
-            attr game "c3_creature_attr"
-            perm game "c3_creature_perm"
-            setv va91 11
-            addv va91 gnus
-            emit va91 0.5
-            drea 1
-            seta va05 targ
-            targ va99
-            wait 40
-            doif spcs = 1
-                anim [4 5 6 4 5 6 4 5 6 5 6 5 6 4 5 6 4 5 6 6 6 5 6 5 6 5 6 5 4 5 6 255]
-                wait 40
-            else
-                anim [4 5 4 5 4 5 5 5 4 5 4 5 5 5 5 5 4 5 255]
-                wait 40
-            endi
-            snde "crak"
-            wait 40
-            setv va00 posl
-            setv va01 posb
-            targ ownr
-            part 1
-            pose 0
-            part 3
-            pose 0
-            part 4
-            pose 0
-            part 5
-            pose 0
-            part 6
-            pose 0
-            part 7
-            pose 0
-            part 8
-            pose 0
-            targ va99
-            doif spcs = 1
-                anim [6 7]
+                attr 196
+                targ ownr
+                part 1
+                anim [0 1]
+                part 2
+                anim [0 1 2]
+                part 3
+                anim [0 1]
+                part 4
+                anim [1 2 1 2 2 2 255]
+                part 5
+                anim [0 1 2 3 2 1 255]
+                part 6
+                anim [0 1 2 3 255]
+                part 7
+                anim [0 1 2 3 255]
+                part 8
+                anim [0 1 2 3 2 1 255]
+                sndc "c1i1"
+                sndl "c1i2"
                 wait 5
-            else
-                anim [5 6]
-                wait 5
-            endi
-            fade
-            inst
-            targ va05
-            pose 75
-            subv va01 10
-            mvsf va00 va01
-            aslp 0
-            born
-            over
+                gsub eggv
+                doif va01 = 0 or va01 = 1 or va01 = 2
+                    new: crea 4 va99 1 va01 0
+                else
+                    new: crea 4 va99 1 0 0
+                endi
+                accg game "c3_creature_accg"
+                bhvr game "c3_creature_bhvr"
+                attr game "c3_creature_attr"
+                perm game "c3_creature_perm"
+                setv va91 11
+                addv va91 gnus
+                emit va91 0.5
+                drea 1
+                seta va05 targ
+                wait 40
+                gsub eggv
+                doif spcs = 1
+                    anim [4 5 6 4 5 6 4 5 6 5 6 5 6 4 5 6 4 5 6 6 6 5 6 5 6 5 6 5 4 5 6 255]
+                    wait 40
+                else
+                    anim [4 5 4 5 4 5 5 5 4 5 4 5 5 5 5 5 4 5 255]
+                    wait 40
+                endi
+                gsub eggv
+                snde "crak"
+                wait 40
+                gsub eggv
+                setv va00 posl
+                setv va01 posb
+                targ ownr
+                part 1
+                pose 0
+                part 3
+                pose 0
+                part 4
+                pose 0
+                part 5
+                pose 0
+                part 6
+                pose 0
+                part 7
+                pose 0
+                part 8
+                pose 0
+                targ va99
+                doif spcs = 1
+                    anim [6 7]
+                    wait 5
+                else
+                    anim [5 6]
+                    wait 5
+                endi
+                gsub eggv
+                fade
+                doif va05 eq null
+                    * The creature was removed while the hatch animation ran.
+                    attr va98
+                    gsub rset
+                    unlk
+                    stop
+                endi
+                targ va05
+                pose 75
+                subv va01 10
+                mvsf va00 va01
+                aslp 0
+                born
+                over
 
-            targ va99
-            kill targ
+                inst
+                doif va99 ne null
+                    targ va99
+                    kill targ
+                endi
+                seta va05 null
+            endi
         endi
     next
-    targ ownr
-    part 2
-    pose 0
-    stpc
-    attr 207
+    gsub rset
     slow
     wait rand 20 30
+    inst
     epas 3 4 0
-        doif gtos 1 = "" and targ <> null
-            kill targ
+        doif targ <> null
+            doif gtos 1 = ""
+                kill targ
+            endi
         endi
     next
     unlk
+    stop
+
+* WAIT and OVER yield; revalidate the egg before accessing it again.
+subr eggv
+    inst
+    doif va99 eq null
+        * Do not leave an unborn creature behind if its egg was removed.
+        doif va05 ne null
+            targ va05
+            kill targ
+        endi
+        gsub rset
+        unlk
+        stop
+    endi
+    targ va99
+retn
+
+subr rset
+    targ ownr
+    part 1
+    pose 0
+    part 2
+    pose 0
+    part 3
+    pose 0
+    part 4
+    pose 0
+    part 5
+    pose 0
+    part 6
+    pose 0
+    part 7
+    pose 0
+    part 8
+    pose 0
+    stpc
+    attr 207
+retn
 endm
 
 
@@ -224,22 +293,26 @@ scrp 2 22 6500 124
     lock
     setv va00 0
     epas 0 0 0
-
-        doif fmly ne 3 or gnus ne 4
-            rpas ownr targ
-        else
-            plne 201
-            setv va00 1
+        doif targ ne null
+            doif fmly ne 3 or gnus ne 4
+                rpas ownr targ
+            else
+                plne 201
+                setv va00 1
+            endi
         endi
     next
+    targ ownr
     doif va00 eq 1
         mesg wrt+ ownr 1001 255 0 0
     endi
+    unlk
 endm
 
 
-* Drum remover
+* Incubator remover
 rscr
+inst
 doif game "C12DS_Lite_Loaded" eq 1
     setv va00 game "c12dsl::metaroom::id"
 else
@@ -248,9 +321,9 @@ else
 endi
 
 enum 2 22 6500
-*    doif gmap posl post ne va00
+    doif gmap posl post ne va00
         kill targ
-*    endi
+    endi
 next
 
 doif game "C12DS_Lite_Loaded" eq 0
