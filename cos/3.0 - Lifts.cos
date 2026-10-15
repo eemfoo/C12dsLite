@@ -1,0 +1,805 @@
+* C12DS-Lite lifts and call buttons (Docking Station).
+* Adapted from C12DS Lifts.cos and https://creatures.wiki/New_lift_script.
+* Dependencies: c1lift.c16, c1bu.wav, c1lf.wav; buzz.wav ships with DS.
+* Lift: ov00 moving, ov01 level (bottom = 0).
+* Button: ov00 pending call, ov01 level, ov16 associated lift.
+* Button ov10/11/12 preserve the previous CA link for removal.
+* The C1 cabin floor is 150 pixels below its origin, 14 above sprite POSB.
+* Unlike the tutorial's sprite, its separate up/down parts are 2 and 3.
+
+inst
+doif game "C12DS_Lite_Installing" = 1
+* An interrupted installation can leave a few lifts and buttons behind.
+* Rebuild that incomplete set instead of treating any existing lift as success.
+doif totl 3 1 6500 <> 5 or totl 2 12 6500 <> 14
+* Restore the scent links before deleting their call buttons.
+enum 2 12 6500
+    doif targ <> null
+        doif ov10 <> -1 and ov11 <> -1
+            doif ov10 <> ov11
+                link ov10 ov11 ov12
+            endi
+        endi
+        kill targ
+    endi
+next
+enum 3 1 6500
+    doif targ <> null
+        seta va16 targ
+        doif ov18 <> null
+            targ ov18
+            zomb 0
+            targ va16
+        endi
+* Install/removal has no OWNR: EPAS cannot enumerate the selected lift.
+        enum 4 0 0
+            doif targ <> null
+                doif carr = va16
+                    zomb 0
+                endi
+            endi
+        next
+        targ va16
+        dpas 4 0 0
+        kill targ
+    endi
+next
+
+*lift next to carrot favorite place
+    new: vhcl 3 1 6500 "c1lift" 0 1 90
+    cabn -10 -10 114 150
+    cabp 1
+    cabw 0
+    rnge 400
+    pat: dull 1 "c1lift" 0 0 0 2
+    pat: butt 2 "c1lift" 2 4 82 72 3 [0] 1 1
+    pat: butt 3 "c1lift" 3 4 82 83 3 [0] 2 1
+    attr 512
+    bhvr 3
+    accg 0
+    aero 100
+    fric 100
+    elas 0
+    perm 0
+    mvto 1467 18775.9
+    setv ov00 0
+    seta ov18 null
+    setv ov01 0
+    seta va16 targ
+    setv va10 -1
+* floor 1 call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 0
+    seta ov16 va16
+    mvsf 1567 18844
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+* floor 2 call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 1
+    seta ov16 va16
+    mvsf 1567 18647
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+
+* floor 3 call button (Lite upper section)
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 2
+    seta ov16 va16
+    mvsf 1567 18503
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+
+*lift next to hives and music room
+    new: vhcl 3 1 6500 "c1lift" 0 1 90
+    cabn -20 -10 140 150
+    cabp 1
+    cabw 0
+    rnge 400
+    pat: dull 1 "c1lift" 0 0 0 2
+    pat: butt 2 "c1lift" 2 4 82 72 3 [0] 1 1
+    pat: butt 3 "c1lift" 3 4 82 83 3 [0] 2 1
+    attr 512
+    bhvr 3
+    accg 0
+    aero 100
+    fric 100
+    elas 0
+    perm 0
+    mvto 1089 18778
+    setv ov00 0
+    seta ov18 null
+    setv ov01 1
+    seta va16 targ
+    setv va10 -1
+* floor 1 call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 0
+    seta ov16 va16
+    mvsf 1044 19000
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+* floor 2 call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 1
+    seta ov16 va16
+    mvsf 1044 18840
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+* floor 3 call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 2
+    seta ov16 va16
+    mvsf 1044 18696
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+* floor 4 call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 3
+    seta ov16 va16
+    mvsf 1044 18503
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+
+* outside garden to bridge lift
+    new: vhcl 3 1 6500 "c1lift" 0 1 90
+    cabn -20 -10 140 150
+    cabp 1
+    cabw 0
+    rnge 400
+    pat: dull 1 "c1lift" 0 0 0 2
+    pat: butt 2 "c1lift" 2 4 82 72 3 [0] 1 1
+    pat: butt 3 "c1lift" 3 4 82 83 3 [0] 2 1
+    attr 512
+    bhvr 3
+    accg 0
+    aero 100
+    fric 100
+    elas 0
+    perm 0
+    mvto 3859 18948.6
+    setv ov00 0
+    seta ov18 null
+    setv ov01 0
+    seta va16 targ
+    setv va10 -1
+* underground call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 0
+    seta ov16 va16
+    mvsf 3965 18948
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+* ground floor call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 1
+    seta ov16 va16
+    mvsf 3795 18848
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+* bridge call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 2
+    seta ov16 va16
+    mvsf 3780 18479
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+
+* room outside garden lift
+    new: vhcl 3 1 6500 "c1lift" 0 1 90
+    cabn -20 -10 140 150
+    cabp 1
+    cabw 0
+    rnge 400
+    pat: dull 1 "c1lift" 0 0 0 2
+    pat: butt 2 "c1lift" 2 4 82 72 3 [0] 1 1
+    pat: butt 3 "c1lift" 3 4 82 83 3 [0] 2 1
+    attr 512
+    bhvr 3
+    accg 0
+    aero 100
+    fric 100
+    elas 0
+    perm 0
+    mvto 4205 18772.9
+    setv ov00 0
+    seta ov18 null
+    setv ov01 1
+    seta va16 targ
+    setv va10 -1
+* underground floor call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 0
+    seta ov16 va16
+    mvsf 4175 19004
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+* bridge call button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 1
+    seta ov16 va16
+    mvsf 4175 18848
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+
+* grendel tree lift
+    new: vhcl 3 1 6500 "c1lift" 0 1 90
+    cabn -20 -10 140 150
+    cabp 1
+    cabw 0
+    rnge 400
+    pat: dull 1 "c1lift" 0 0 0 2
+    pat: butt 2 "c1lift" 2 4 82 72 3 [0] 1 1
+    pat: butt 3 "c1lift" 3 4 82 83 3 [0] 2 1
+    attr 512
+    bhvr 3
+    accg 0
+    aero 100
+    fric 100
+    elas 0
+    perm 0
+    mvto 4952 18786
+    setv ov00 0
+    seta ov18 null
+    setv ov01 0
+    seta va16 targ
+    setv va10 -1
+* ground floor button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 0
+    seta ov16 va16
+    mvsf 4915 18848
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+* grendel branch button
+    new: simp 2 12 6500 "c1lift" 2 6 90
+    attr 196
+    accg 25
+    aero 10
+    fric 90
+    elas 0
+    perm 60
+    bhvr 11
+    setv ov00 0
+    setv ov01 1
+    seta ov16 va16
+    mvsf 4925 18453
+    setv ov10 grap posx posy
+    setv ov11 va10
+    setv ov12 0
+    doif ov10 <> -1 and ov11 <> -1
+        doif ov10 <> ov11
+            setv ov12 link ov10 ov11
+            link ov10 ov11 100
+        endi
+    endi
+    setv va10 ov10
+
+* Align cabins with the nearest safely placed call button without yielding
+* during installation. Buttons continue to settle under gravity in gameplay.
+    inst
+    enum 3 1 6500
+        doif targ <> null
+            seta va16 targ
+            setv va11 post
+            addv va11 150
+            setv va12 100000
+            seta va17 null
+            enum 2 12 6500
+                doif targ <> null
+                    doif ov16 = va16
+                        setv va13 posb
+                        subv va13 va11
+                        absv va13
+                        doif va13 < va12
+                            setv va12 va13
+                            seta va17 targ
+                        endi
+                    endi
+                endi
+            next
+            doif va17 <> null
+                targ va17
+                setv va11 posb
+                subv va11 150
+                setv va12 ov01
+                targ va16
+                mvto posl va11
+                setv ov01 va12
+            endi
+        endi
+    next
+endi
+endi
+
+* Push goes to the next higher served level; pull to the next lower one.
+scrp 3 1 6500 1
+    inst
+    call 1002 from 1
+endm
+
+scrp 3 1 6500 2
+    inst
+    call 1002 from -1
+endm
+
+scrp 3 1 6500 1002
+    inst
+    doif ov00 <> 0
+        stop
+    endi
+    setv va01 ov01
+    seta va16 null
+    enum 2 12 6500
+        doif targ <> null
+            doif ov16 = ownr
+                setv va02 ov01
+                subv va02 va01
+                mulv va02 _p2_
+                doif va02 > 0
+                    doif va16 = null
+                        seta va16 targ
+                        setv va03 va02
+                    elif va02 < va03
+                        seta va16 targ
+                        setv va03 va02
+                    endi
+                endi
+            endi
+        endi
+    next
+    targ ownr
+    doif va16 <> null
+        doif crea _p1_ = 1
+            stim writ _p1_ 75 1
+        endi
+        mesg wrt+ ownr 1000 _p1_ va16 0
+    endi
+endm
+
+* All travel shares one script. Snapshot the destination before yielding so a
+* removed button cannot leave the vehicle dereferencing a dead target.
+scrp 3 1 6500 1000
+    inst
+    lock
+    doif ov00 <> 0
+        stop
+    endi
+    doif _p2_ = null
+        stop
+    endi
+    targ _p2_
+    doif ov16 <> ownr
+        stop
+    endi
+    setv va00 posb
+    subv va00 150
+    setv va01 ov01
+    pose 1
+    targ ownr
+    doif va01 = ov01
+        targ _p2_
+        pose 0
+        stop
+    endi
+    setv ov00 1
+    setv va02 2
+    doif va01 < ov01
+        setv va02 3
+    endi
+
+* Hand-operated lifts collect the cabin; a creature boards only itself.
+* As in the wiki script, Grendels need a temporary pose/zombie workaround.
+    doif _p1_ = pntr
+        etch 4 2 0
+            inst
+            doif targ <> null
+                gsub brdg
+            endi
+        next
+        targ ownr
+        gpas 4 0 0 1
+    elif crea _p1_ = 1
+        targ _p1_
+        gsub brdg
+    endi
+    targ ownr
+    part va02
+    pose 2
+    sndl "c1lf"
+    slow
+    loop
+        inst
+        setv va03 va00
+        subv va03 post
+        doif va03 > 2
+            setv va03 2
+        elif va03 < -2
+            setv va03 -2
+        endi
+        mvby 0 va03
+        slow
+        wait 1
+    untl post = va00
+    inst
+    part va02
+    pose 0
+    fade
+    epas 4 0 0
+        doif targ <> null
+            zomb 0
+            stim writ targ 94 1
+        endi
+    next
+    targ ownr
+    dpas 4 0 0
+    setv ov01 va01
+    setv ov00 0
+    doif _p2_ <> null
+        targ _p2_
+        pose 0
+    endi
+    stop
+
+    subr brdg
+        inst
+        doif targ <> null
+            doif crea targ = 1
+                doif gnus = 2
+                    nohh
+                    zomb 1
+                    seta mv18 targ
+                    pose 80
+                    dirn 1
+                    wait 4
+                    inst
+                    doif targ <> null
+                        spas ownr targ
+                    endi
+                    wait 2
+                    inst
+                    doif targ <> null
+                        doif carr <> ownr
+                            zomb 0
+                        endi
+                    endi
+                    seta mv18 null
+                else
+                    spas ownr targ
+                endi
+            endi
+        endi
+    retn
+endm
+
+* Push and pull both call the lift. Keep the hand as the initiator only for
+* immediate hand calls; queued calls collect nobody (the tutorial's behavior).
+scrp 2 12 6500 1
+    inst
+    doif crea from = 1
+        stim writ from 89 1
+    endi
+    seta ov17 ownr
+    doif from = pntr
+        seta ov17 from
+    endi
+    setv ov00 1
+    pose 1
+    snde "c1bu"
+    call 1000 0 0
+endm
+
+scrp 2 12 6500 2
+    inst
+    doif crea from = 1
+        stim writ from 89 1
+    endi
+    seta ov17 ownr
+    doif from = pntr
+        seta ov17 from
+    endi
+    setv ov00 1
+    pose 1
+    snde "c1bu"
+    call 1000 0 0
+endm
+
+scrp 2 12 6500 3
+    inst
+    lock
+    doif crea from = 1
+        stim writ from 92 1
+    endi
+    anim [0 1 255]
+    snde "buzz"
+    wait 7
+    inst
+    anim [0]
+    pose ov00
+endm
+
+scrp 2 12 6500 9
+    inst
+    seta ov17 ownr
+    call 1000 0 0
+endm
+
+scrp 2 12 6500 1000
+    inst
+    doif ov16 = null
+        setv ov00 0
+        pose 0
+        tick 0
+        stop
+    endi
+    targ ov16
+    doif ov00 <> 0
+        targ ownr
+        tick 50
+        stop
+    endi
+    doif ov01 <> mv01
+        mesg wrt+ targ 1000 mv17 ownr 0
+* Keep the request until arrival, including if another button wins the race
+* to dispatch a stationary lift in this tick.
+        targ ownr
+        tick 50
+        stop
+    endi
+    targ ownr
+    pose 0
+    setv ov00 0
+    tick 0
+endm
+
+rscr
+inst
+* Restore the scent links before deleting their call buttons.
+enum 2 12 6500
+    doif targ <> null
+        doif ov10 <> -1 and ov11 <> -1
+            doif ov10 <> ov11
+                link ov10 ov11 ov12
+            endi
+        endi
+        kill targ
+    endi
+next
+enum 3 1 6500
+    doif targ <> null
+        seta va16 targ
+        doif ov18 <> null
+            targ ov18
+            zomb 0
+            targ va16
+        endi
+* Install/removal has no OWNR: EPAS cannot enumerate the selected lift.
+        enum 4 0 0
+            doif targ <> null
+                doif carr = va16
+                    zomb 0
+                endi
+            endi
+        next
+        targ va16
+        dpas 4 0 0
+        kill targ
+    endi
+next
+scrx 3 1 6500 1
+scrx 3 1 6500 2
+scrx 3 1 6500 1000
+scrx 3 1 6500 1002
+scrx 2 12 6500 1
+scrx 2 12 6500 2
+scrx 2 12 6500 3
+scrx 2 12 6500 9
+scrx 2 12 6500 1000
