@@ -32,7 +32,7 @@ doif game "C12DS_Lite_Installing" = 1 and totl 2 11 6502 = 0
 	setv va03 2724
 	setv va04 0
 	reps 5
-		new: simp 2 11 6502 "c1plants" 3 3 7002
+		new: simp 2 11 6502 "c1plants" 48 3 7002
 		pose 2
 		accg 3
 		attr 7
@@ -74,7 +74,7 @@ else
 	endi
 
 	reps rand 3 5
-		new: simp 2 11 6502 "c1plants" 3 3 7002
+		new: simp 2 11 6502 "c1plants" 48 3 7002
 		pose 2
 		accg 3
 		attr 199
@@ -131,7 +131,7 @@ scrp 2 11 6502 6
 	inst
 	lock
 	sndc "c1dr"
-	doif pose = 0
+	doif pose = 47
 		attr 23
 		mvby 0 18
 		tick rand 100 200
@@ -148,7 +148,7 @@ scrp 2 11 6502 9
 *	potato's timer
 	inst
 	lock
-	doif pose = 0
+	doif pose = 47
 		pose 2
 		attr 7
 		bhvr 48
@@ -214,7 +214,7 @@ scrp 2 11 6502 1000
 	endi
 	doif va22 >= 1
 		reps va22
-			new: simp 2 11 6502 "c1plants" 3 3 7002
+			new: simp 2 11 6502 "c1plants" 48 3 7002
 			accg 3
 			fric 100
 			aero 10
@@ -234,7 +234,7 @@ scrp 2 11 6502 1000
 				bhvr 48
 				velo rand -20 20 rand -10 -5
 			else
-				pose 0
+				pose 47
 				attr 215
 				bhvr 0
 				velo rand -10 10 rand -10 -5
