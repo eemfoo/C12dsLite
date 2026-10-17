@@ -356,7 +356,7 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 4774 4923 18528 18528 18736 18736
     rtyp va00 0
     setv game "map_tmp_116" va00
-  setv va00 addr va01 4923 5111 18528 18528 18736 18736
+  setv va00 addr va01 4923 5111 18528 18528 18667 18667
     rtyp va00 0
     setv game "map_tmp_117" va00
   setv va00 addr va01 1988 2038 18010 18012 18541 18544
@@ -461,6 +461,9 @@ setv va01 addm 770 18000 4736 1280 "c12dsl"
   setv va00 addr va01 4649 4774 18110 18163 18306 18306
     rtyp va00 0
     setv game "map_tmp_151" va00
+  setv va00 addr va01 4923 5111 18667 18667 18736 18736
+    rtyp va00 0
+    setv game "map_tmp_152" va00
 
 *ROOMIE Add doors between rooms
 door game "map_tmp_0" game "map_tmp_1" 100
@@ -555,7 +558,6 @@ door game "map_tmp_49" game "map_tmp_115" 100
 door game "map_tmp_50" game "map_tmp_51" 100
 door game "map_tmp_50" game "map_tmp_116" 100
 door game "map_tmp_51" game "map_tmp_52" 100
-door game "map_tmp_51" game "map_tmp_117" 100
 door game "map_tmp_52" game "map_tmp_53" 100
 door game "map_tmp_55" game "map_tmp_56" 100
 door game "map_tmp_57" game "map_tmp_58" 100
@@ -619,29 +621,29 @@ door game "map_tmp_105" game "map_tmp_106" 100
 door game "map_tmp_105" game "map_tmp_128" 100
 door game "map_tmp_106" game "map_tmp_107" 100
 door game "map_tmp_106" game "map_tmp_128" 100
-door game "map_tmp_106" game "map_tmp_129" 100
+door game "map_tmp_106" game "map_tmp_129" 20
 door game "map_tmp_107" game "map_tmp_108" 100
 door game "map_tmp_107" game "map_tmp_129" 100
-door game "map_tmp_107" game "map_tmp_130" 100
+door game "map_tmp_107" game "map_tmp_130" 20
 door game "map_tmp_108" game "map_tmp_109" 100
-door game "map_tmp_108" game "map_tmp_131" 100
+door game "map_tmp_108" game "map_tmp_131" 20
 door game "map_tmp_109" game "map_tmp_110" 100
-door game "map_tmp_109" game "map_tmp_132" 100
+door game "map_tmp_109" game "map_tmp_132" 20
 door game "map_tmp_110" game "map_tmp_111" 100
-door game "map_tmp_110" game "map_tmp_133" 100
+door game "map_tmp_110" game "map_tmp_133" 20
 door game "map_tmp_111" game "map_tmp_112" 100
-door game "map_tmp_111" game "map_tmp_134" 100
+door game "map_tmp_111" game "map_tmp_134" 20
 door game "map_tmp_112" game "map_tmp_113" 100
-door game "map_tmp_112" game "map_tmp_135" 100
+door game "map_tmp_112" game "map_tmp_135" 20
 door game "map_tmp_113" game "map_tmp_114" 100
-door game "map_tmp_113" game "map_tmp_136" 100
+door game "map_tmp_113" game "map_tmp_136" 20
 door game "map_tmp_114" game "map_tmp_115" 100
-door game "map_tmp_114" game "map_tmp_137" 100
+door game "map_tmp_114" game "map_tmp_137" 20
 door game "map_tmp_115" game "map_tmp_116" 100
-door game "map_tmp_115" game "map_tmp_138" 100
+door game "map_tmp_115" game "map_tmp_138" 20
 door game "map_tmp_116" game "map_tmp_117" 100
-door game "map_tmp_116" game "map_tmp_139" 100
-door game "map_tmp_117" game "map_tmp_140" 100
+door game "map_tmp_116" game "map_tmp_139" 20
+door game "map_tmp_117" game "map_tmp_140" 20
 door game "map_tmp_118" game "map_tmp_119" 100
 door game "map_tmp_119" game "map_tmp_120" 100
 door game "map_tmp_120" game "map_tmp_121" 100
@@ -686,6 +688,9 @@ door game "map_tmp_147" game "map_tmp_148" 100
 door game "map_tmp_148" game "map_tmp_149" 100
 door game "map_tmp_149" game "map_tmp_150" 100
 door game "map_tmp_150" game "map_tmp_151" 100
+door game "map_tmp_51" game "map_tmp_152" 100
+door game "map_tmp_116" game "map_tmp_152" 100
+door game "map_tmp_117" game "map_tmp_152" 100
 
 *ROOMIE Delete temporary variables
 delg "map_tmp_0"
@@ -840,6 +845,7 @@ delg "map_tmp_148"
 delg "map_tmp_149"
 delg "map_tmp_150"
 delg "map_tmp_151"
+delg "map_tmp_152"
 
 *ROOMIE Add overlays
 new: simp 1 1 6500 "c1l_overlays_cellar" 1 0 7000
