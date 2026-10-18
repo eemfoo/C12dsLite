@@ -1,0 +1,482 @@
+****************************
+* C1 Learning Computer
+* Classifier: 3 3 6518 - Learning Computer
+* DS learning computer with manual and automatic word libraries.
+****************************
+**CAOS2Pray Join
+*# C3-Name "Learning Computer (C3)"
+*# DS-Name "Learning Computer"
+*# Agent Description = "The Learning Computer teaches creatures words, manually or automatically."
+*# Agent Animation File = "c1comp2.c16"
+*# Agent Animation Gallery = "c1comp2"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Attach "../images/c1comp2.c16"
+*# Attach "../sounds/c1co.wav"
+*# Attach "../sounds/c1w3.wav"
+*# Attach "../sounds/c1nv.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+*# Attach "../catalogue/c12dsllearningcomputer-de.catalogue"
+*# Attach "../catalogue/c12dsllearningcomputer-es.catalogue"
+*# Attach "../catalogue/c12dsllearningcomputer-fr.catalogue"
+*# Attach "../catalogue/c12dsllearningcomputer-it.catalogue"
+*# Attach "../catalogue/c12dsllearningcomputer-nl.catalogue"
+*# Attach "../catalogue/c12dsllearningcomputer-ru.catalogue"
+*# Attach "../catalogue/c12dsllearningcomputer.catalogue"
+*# Attach "../catalogue/c12dsllearningcomputervoice.catalogue"
+
+* Install Script
+inst
+new: comp 3 3 6518 "c1comp2" 1 0 15
+* Activateable, with collisions and gravity; cannot be carried or mouse-picked up.
+attr 196
+* Creatures may push, pull and hit machinery, but cannot pick it up.
+bhvr 11
+elas 0
+accg 25
+fric 100
+perm 60
+vois "C12DS_Computer_Voice"
+
+* set 1
+pat: butt 2 "c1comp2" 78 2 88 55 0 [0] 8677 0
+
+* set 2
+pat: butt 3 "c1comp2" 78 2 88 65 0 [0] 8864 0
+
+* previous
+pat: butt 4 "c1comp2" 72 2 32 2 1 [0] 3571 0
+
+* next
+pat: butt 5 "c1comp2" 74 2 54 2 1 [0] 1157 0
+
+* power on
+pat: butt 6 "c1comp2" 68 2 99 58 0 [0] 5581 0
+Part 6
+frat 7
+anim [0 1 255]
+
+* auto play
+pat: butt 7 "c1comp2" 70 2 10 2 1 [0] 8881 0
+
+* lights
+pat: dull 8 "c1comp2" 65 1 99 1
+
+* main screen
+pat: dull 32 "c1comp2" 1 24 20 1
+part 32
+frat 3
+anim [60 61 62 63 255]
+
+* main text
+pat: fixd 37 "blank" 0 11 17 2 "WhiteOnTransparentChars"
+part 37
+frmt 0 0 42 31 0 0 0
+
+setv ov03 7
+setv ov00 0
+tick 35
+
+doif game "C12DS_Lite_Installing" = 1 and totl 3 3 6518 <= 1
+	setv va00 1697
+	setv va01 18607
+	mvsf va00 va01
+
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+*	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		mvsf va00 va01
+	endi
+endi
+
+
+*********************************
+* Scripts
+
+scrp 3 3 6518 1
+	inst
+	stim writ from 90 1.0
+	doif ov00 = 0
+		mesg writ ownr 5581
+	else
+		mesg writ ownr 1157
+	endi
+endm
+
+* Pulling advances the computer just like pushing it.
+scrp 3 3 6518 2
+    inst
+    stim writ from 90 1.0
+    doif ov00 = 0
+        mesg writ ownr 5581
+    else
+        mesg writ ownr 1157
+    endi
+endm
+
+* Hitting machinery uses the machine-hit stimulus.
+scrp 3 3 6518 3
+    inst
+    stim writ from 92 1.0
+endm
+
+scrp 3 3 6518 3031
+	lock
+	sets va00 ov06
+	adds va00 vtos ov03
+	setv va01 stoi read va00 0
+	setv va02 stoi read va00 1
+	doif va01 = 1
+		sets va03 "perfect verb "
+		sets va04 "Creature Actions"
+	elif va01 = 2
+		sets va03 "perfect special "
+		sets va04 "Learnt Specials"
+	elif va01 = 3
+		sets va03 "perfect drive "
+		sets va04 "Creature Drives"
+	elif va01 = 4
+		sets va03 "perfect qualifier "
+		sets va04 "Learnt Qualifiers"
+	elif va01 = 5
+		sets va03 "perfect nice_drive "
+		sets va04 "Learnt Nice Drives"
+	elif va01 = 6
+		sets va03 "perfect noun "
+		sets va04 "Agent Categories"
+	endi
+	sets va50 "<tint 128 200 128>"
+	adds va50 read va04 va02
+
+	doif va01 = 6 and va02 = 1
+		sets va50 "<tint 128 200 128>"
+		adds va50 hand
+	endi
+	sets va40 va03
+	adds va40 vtos va02
+	adds va40 " "
+	adds va40 va50
+
+	part 37
+	ptxt va50
+
+	inst
+	rtar 1 2 10
+*	say what you mean, if the speech-bubble agent exists
+	doif targ ne null
+		mesg wrt+ targ 126 va50 ownr 0
+	endi
+	slow
+
+*	show the hidden command
+*	mesg wrt+ targ 126 va40 ownr 0
+
+	targ ownr
+	sezz va50
+	wait 14
+	ordr shou va40
+	part 5
+	pose 0
+	part 4
+	pose 0
+endm
+
+scrp 3 3 6518 3030
+	inst
+	sets va09 ov06
+	adds va09 "count"
+	setv va10 stoi read va09 0
+	doif ov03 < 0
+		addv ov03 va10
+	elif ov03 >= va10
+		subv ov03 va10
+	endi
+	part 32
+	setv va05 ov03
+	doif va05 < 0
+		addv va05 va10
+	elif va05 >= va10
+		subv va05 va10
+	endi
+	sets va06 ov06
+	adds va06 vtos va05
+	doif reaq va06 = 1
+		sets va07 read va06 2
+		part 32
+		doif ov01 = 0
+			doif ov03 = 0
+*				look
+				anim [4 5 6 7 255]
+			elif ov03 = 1
+*				love
+				anim [16 17 18 19 255]
+			elif ov03 = 2
+*				push
+				anim [8 9 10 11 255]
+			elif ov03 = 3
+*				pull
+				anim [12 13 14 15 255]
+			elif ov03 = 6
+*				approach
+				anim [28 29 30 31 255]
+			elif ov03 = 7
+*				retreat
+				anim [32 33 34 35 255]
+			elif ov03 = 8
+*				drop
+				anim [40 41 42 43 255]
+			elif ov03 = 10
+*				rest
+				anim [0 1 2 3 255]
+			elif ov03 = 13
+*				no
+				anim [24 25 26 27 255]
+			elif ov03 = 16
+*				left
+				anim [48 49 50 51 255]
+			elif ov03 = 17
+*				right
+				anim [52 53 54 55 255]
+			elif ov03 = 18
+*				yes
+				anim [20 21 22 23 255]
+			elif ov03 = 23
+*				look
+				anim [4 5 6 7 255]
+			elif ov03 = 24
+*				something
+				anim [44 45 46 47 255]
+			elif ov03 = 25
+*				what
+				anim [44 45 46 47 255]
+			elif ov03 = 29
+*				get
+				anim [36 37 38 39 255]
+			else
+				anim [56 57 58 59 255]
+			endi
+		else
+			anim [56 57 58 59 255]
+		endi
+		sets va08 read va06 3
+	else
+		base 0
+		pose 0
+	endi
+	mesg writ ownr 3031
+endm
+
+
+scrp 3 3 6518 5581
+	lock
+	doif ov00 = 0
+		sndc "c1co"
+		part 8
+		anim [0 1 2 0 1 2 0 1 2 0 1 2 0 1 2]
+		part 6
+		anim [1]
+		pose 1
+		setv ov00 1
+		setv ov23 0
+		unlk
+		part 2
+		pose 1
+		part 3
+		pose 0
+		setv ov01 0
+		doif ov01 = 1
+			sets ov06 "C12DS_Learning_Computer feelings "
+		elif ov01 = 0
+			sets ov06 "C12DS_Learning_Computer actions "
+		endi
+		mesg writ ownr 3030
+	elif ov00 = 1
+		sndc "c1co"
+		targ ownr
+		part 37
+		ptxt ""
+		part 2
+		pose 0
+		part 3
+		pose 0
+		part 0
+		setv ov23 0
+		setv ov81 0
+		part 7
+		anim [0]
+		Part 6
+		frat 7
+		anim [0 1 255]
+		part 32
+		anim [60 61 62 63 255]
+		setv ov00 0
+		setv ov03 7
+	endi
+endm
+
+scrp 3 3 6518 8881
+	lock
+	inst
+	doif ov00 = 1
+		doif ov81 = 0
+			sndc "c1w3"
+			part 7
+			frat 2
+			anim [0 1 255]
+			setv ov81 1
+		elif ov81 = 1
+			sndc "c1w3"
+			setv ov81 0
+			part 7
+			base 0
+			anim [0]
+			unlk
+			wait 40
+		endi
+	else
+	endi
+	slow
+	unlk
+endm
+
+scrp 3 3 6518 8677
+	lock
+	doif ov00 = 1
+		sndc "c1w3"
+		part 2
+		pose 1
+		part 3
+		pose 0
+		setv ov01 0
+		doif ov01 = 1
+			sets ov06 "C12DS_Learning_Computer feelings "
+		elif ov01 = 0
+			sets ov06 "C12DS_Learning_Computer actions "
+		endi
+		unlk
+		setv ov03 0
+		doif ov81 = 1
+			wait 20
+			sets va50 read "C12DS_Learning_Computer misc words" 1
+		endi
+		mesg writ ownr 3030
+	endi
+endm
+
+scrp 3 3 6518 8864
+	lock
+	doif ov00 = 1
+		sndc "c1w3"
+		part 3
+		pose 1
+		part 2
+		pose 0
+		setv ov01 1
+		doif ov01 = 1
+			sets ov06 "C12DS_Learning_Computer feelings "
+		elif ov01 = 0
+			sets ov06 "C12DS_Learning_Computer actions "
+		endi
+		unlk
+		setv ov03 0
+		doif ov81 = 1
+			wait 20
+		endi
+		mesg writ ownr 3030
+	endi
+endm
+
+scrp 3 3 6518 3571
+	inst
+	doif ov00 = 1
+		doif ov81 = 0
+			sndc "c1w3"
+			part 4
+			pose 1
+			wait 2
+			part 8
+			anim [0 1 2 0 1 2 0 1 2 0 1 2 0 1 2]
+			subv ov03 1
+			mesg writ ownr 3030
+		endi
+	endi
+endm
+
+scrp 3 3 6518 1157
+	inst
+	doif ov00 = 1
+		doif ov81 = 0
+			sndc "c1w3"
+			part 5
+			pose 1
+			part 8
+			anim [0 1 2 0 1 2 0 1 2 0 1 2 0 1 2]
+			wait 2
+			addv ov03 1
+			mesg writ ownr 3030
+		endi
+	endi
+endm
+
+
+scrp 3 3 6518 9
+	doif ov00 = 1 and ov81 = 1
+		sndc "c1w3"
+		addv ov03 1
+		mesg writ ownr 3030
+	elif ov00 = 1 and ov81 = 0
+		addv ov55 1
+		doif ov55 = 2
+			setv ov55 0
+		endi
+	endi
+endm
+
+********************************
+* Remover Scripts
+
+rscr
+inst
+doif game "C12DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    setv va00 -1
+endi
+
+enum 3 3 6518
+    doif targ ne null
+        doif gmap posl post ne va00
+            kill targ
+        endi
+    endi
+next
+
+doif game "C12DS_Lite_Loaded" eq 0
+    scrx 3 3 6518 1
+    scrx 3 3 6518 2
+    scrx 3 3 6518 3
+    scrx 3 3 6518 9
+    scrx 3 3 6518 5581
+    scrx 3 3 6518 1157
+    scrx 3 3 6518 8864
+    scrx 3 3 6518 3571
+    scrx 3 3 6518 8677
+    scrx 3 3 6518 8881
+    scrx 3 3 6518 3030
+    scrx 3 3 6518 3031
+endi
