@@ -1,0 +1,281 @@
+* C1 Potatoes
+* Classifier: 2 11 6502 - Potato
+
+* Dependencies:
+*  c1plants.c16
+*  c1dr.wav
+*  chwp.wav
+
+* Potatoes now act more like real plants. They can spread in normal soil and monitor their population
+
+******************************
+**CAOS2Pray Join
+*# C3-Name "Potatoes (C3)"
+*# DS-Name "Potatoes"
+*# Agent Description = "Edible potatoes that spread in suitable soil."
+*# Agent Animation File = "c1plants.c16"
+*# Agent Animation Gallery = "c1plants"
+*# Agent Sprite First Image = 5
+*# Agent Animation String = "0"
+*# bioenergy = 0
+*# Attach "../images/c1plants.c16"
+*# Attach "../sounds/c1dr.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+*# Depend "chwp.wav"
+******************************
+
+inst
+
+doif game "C12DS_Lite_Installing" = 1 and totl 2 11 6502 = 0
+
+* Potato Plants
+	setv va03 2724
+	setv va04 0
+	reps 5
+		new: simp 2 11 6502 "c1plants" 48 3 7002
+		pose 2
+		accg 3
+		attr 7
+		fric 100
+		elas 0
+		aero 0
+		bhvr 48
+		puhl 0 14 35
+		puhl 1 14 35
+		puhl 2 14 35
+		rnge 300
+		emit 8 .20
+		perm 60
+		addv va04 45
+		setv va00 va03
+		setv va01 18895
+		addv va00 rand 0 10
+		addv va00 va04
+		mvto va00 va01
+	repe
+else
+	inst
+	doif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+		setv va00 5440
+		setv va01 3580
+	else
+* 	it IS a string, but what is the value?
+		doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+			setv va00 6100
+			setv va01 9200
+		elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+			setv va00 6100
+			setv va01 9200
+		endi
+	endi
+
+	reps rand 3 5
+		new: simp 2 11 6502 "c1plants" 48 3 7002
+		pose 2
+		accg 3
+		attr 199
+		fric 100
+		elas 0
+		aero 0
+		bhvr 48
+		puhl 0 14 35
+		puhl 1 14 35
+		puhl 2 14 35
+		rnge 300
+		emit 8 .20
+		perm 60
+		mvsf va00 va01
+		velo rand 5 15 rand -8 -5
+	repe
+
+endi
+
+***************************
+* Scripts
+
+scrp 2 11 6502 1
+*	potato has been clicked
+	inst
+	doif game "C12DS_Lite_Clickable_Food" = 1
+		doif from = pntr
+			mesg wrt+ ownr 1000 1 0 0
+		endi
+	endi
+endm
+
+scrp 2 11 6502 4
+*	potato has been picked up
+	inst
+	lock
+	doif pose = 0
+		pose 2
+		tick 1000
+		attr 199
+		accg 3
+		fric 90
+		aero 10
+	else
+		attr 199
+		accg 3
+		fric 90
+		aero 10
+	endi
+endm
+
+scrp 2 11 6502 6
+*	potato has collided!
+	inst
+	lock
+	sndc "c1dr"
+	doif pose = 47
+		attr 23
+		mvby 0 18
+		tick rand 100 200
+	elif pose = 2
+		pose 0
+	else
+		doif attr = 23
+			attr 199
+		endi
+	endi
+endm
+
+scrp 2 11 6502 9
+*	potato's timer
+	inst
+	lock
+	doif pose = 47
+		pose 2
+		attr 7
+		bhvr 48
+		tick rand 100 200
+		elas 20
+	elif pose = 1 and rand 1 4 = 4
+		pose 0
+	endi
+endm
+
+scrp 2 11 6502 12
+*	eating a potato
+	inst
+	lock
+	doif from ne null
+		doif crea from = 1
+			snde "chwp"
+			stim writ from 79 1
+		endi
+	endi
+	targ ownr
+	doif pose = 0 or pose = 2
+		pose 1
+	elif pose = 1
+		mesg wrt+ ownr 1000 2 0 0
+	else
+		mesg wrt+ ownr 1000 2 0 0
+	endi
+endm
+
+scrp 2 11 6502 1000
+	inst
+	lock
+	setv va20 0
+	esee 2 11 6502
+		doif targ <> ownr
+			addv va20 1
+		endi
+	next
+	targ ownr
+	setv va00 posl
+	setv va01 post
+	setv va22 0
+	setv va21 rtyp grap posl post
+	setv va23 rtyp grap posr post
+	doif va20 < 10
+		setv va24 3
+	elif va20 > 10
+		setv va24 1
+	elif va20 = 10
+		setv va24 2
+	endi
+	doif va23 = 5 or va23 = 6 or va23 = 7
+		setv va25 1
+	endi
+	doif va21 = 5 or va21 = 6 or va21 = 7
+		setv va26 1
+	endi
+	doif va25 = 1 and va26 = 1 and _p1_ <> 1 and va20 <= 15
+		setv va22 rand 0 va24
+	elif _p1_ = 1
+		setv va22 1
+	endi
+	doif va22 >= 1
+		reps va22
+			new: simp 2 11 6502 "c1plants" 48 3 7002
+			accg 3
+			fric 100
+			aero 10
+			fric 100
+			elas 0
+			aero 0
+			puhl 0 14 35
+			puhl 1 14 35
+			puhl 2 14 35
+			rnge 300
+			tick rand 100 200
+			emit 8 .20
+			perm 60
+			doif _p1_ = 1
+				pose 2
+				attr 199
+				bhvr 48
+				velo rand -20 20 rand -10 -5
+			else
+				pose 47
+				attr 215
+				bhvr 0
+				velo rand -10 10 rand -10 -5
+			endi
+			mvsf va00 va01
+		repe
+	endi
+	doif _p1_ = 2
+		mesg writ ownr 1001
+	endi
+endm
+
+scrp 2 11 6502 1001
+	inst
+	targ ownr
+	kill targ
+endm
+
+***************************
+* Removal scripts
+
+rscr
+
+doif game "C12DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    setv va00 -1
+endi
+
+enum 2 11 6502
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
+
+doif game "C12DS_Lite_Loaded" eq 0
+    scrx 2 11 6502 1
+    scrx 2 11 6502 4
+    scrx 2 11 6502 6
+    scrx 2 11 6502 9
+    scrx 2 11 6502 12
+    scrx 2 11 6502 1000
+    scrx 2 11 6502 1001
+endi
