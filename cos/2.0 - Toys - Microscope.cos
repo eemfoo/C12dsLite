@@ -1,0 +1,117 @@
+**CAOS2Pray Join
+*# C3-Name "Microscope (C3)"
+*# DS-Name "Microscope"
+*# Agent Description = "C12DS-Lite Microscope"
+*# Agent Animation Gallery = "c1microscope"
+*# Agent Animation File = "c1microscope.c16"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Attach "../images/c1microscope.c16"
+*# Attach "../sounds/c1g2.wav"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+
+****************************
+* C1 Microscope
+****************************
+
+* Dependencies:
+
+* Installers
+inst
+
+new: comp 2 21 6509 "c1microscope" 7 0 200
+attr 199
+accg 3
+bhvr 43
+fric 90
+aero 0
+elas 0
+perm 70
+
+doif game "C12DS_Lite_Installing" = 1 and totl 2 21 6509 <= 1
+* 	new microscope in norn house
+	mvsf 482 19058
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 30 40 -5
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	endi
+endi
+
+****************************
+* Scripts
+
+scrp 2 21 6509 1
+*	microscope is pushed
+	inst
+	lock
+	sndc "c1g2"
+	stim writ from 97 1
+endm
+
+scrp 2 21 6509 6
+*	microscope collides
+	inst
+	snde "c1d2"
+endm
+
+****************************
+* Removers
+
+* microscope remover
+
+scrp 2 21 6509 2
+*	microscope is pushed
+	inst
+	lock
+	sndc "c1g2"
+	stim writ from 97 1
+endm
+
+scrp 2 21 6509 3
+*	microscope is pushed
+	inst
+	lock
+	sndc "c1g2"
+	stim writ from 97 1
+endm
+
+rscr
+inst
+doif game "C12DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    setv va00 -1
+endi
+
+enum 2 21 6509
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
+
+doif game "C12DS_Lite_Loaded" eq 0
+    scrx 2 21 6509 1
+    scrx 2 21 6509 6
+    scrx 2 21 6509 2
+    scrx 2 21 6509 3
+endi

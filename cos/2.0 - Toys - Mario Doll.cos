@@ -1,0 +1,131 @@
+**CAOS2Pray Join
+*# C3-Name "Mario Doll (C3)"
+*# DS-Name "Mario Doll"
+*# Agent Description = "C12DS-Lite Mario Doll"
+*# Agent Animation Gallery = "c1mario"
+*# Agent Animation File = "c1mario.c16"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Attach "../images/c1mario.c16"
+*# Attach "../sounds/c1ns.wav"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+
+* Mario Doll, extracted from SAM.cos (Lacota).
+inst
+new: simp 2 21 6511 "c1mario" 7 0 400
+attr 199
+accg 3
+bhvr 43
+fric 90
+aero 0
+elas 0
+perm 70
+doif game "C12DS_Lite_Installing" = 1 and totl 2 21 6511 <= 1
+* Mario starts beside the jug vendor; SAM is not included in Lite.
+	mvsf 4323 19068
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 5 10 -2
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 5 10 -2
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 5 10 -2
+		mvsf va00 va01
+	endi
+endi
+
+scrp 2 21 6511 1
+    inst
+    lock
+    sndc "c1ns"
+    stim writ from 97 1
+    seta va00 carr
+    targ from
+    doif targ ne null
+        doif crea targ = 1
+            doif va00 ne targ
+                mesg writ targ 22
+            endi
+        endi
+    endi
+endm
+
+scrp 2 21 6511 4
+*	mario doll is picked up
+endm
+
+scrp 2 21 6511 6
+*	mario doll collides
+	inst
+	lock
+	sndc "c1d2"
+endm
+
+scrp 2 21 6511 2
+    inst
+    lock
+    sndc "c1ns"
+    stim writ from 97 1
+    seta va00 carr
+    targ from
+    doif targ ne null
+        doif crea targ = 1
+            doif va00 ne targ
+                mesg writ targ 22
+            endi
+        endi
+    endi
+endm
+
+scrp 2 21 6511 3
+    inst
+    lock
+    sndc "c1ns"
+    stim writ from 97 1
+    seta va00 carr
+    targ from
+    doif targ ne null
+        doif crea targ = 1
+            doif va00 ne targ
+                mesg writ targ 22
+            endi
+        endi
+    endi
+endm
+
+rscr
+inst
+doif game "C12DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    setv va00 -1
+endi
+
+enum 2 21 6511
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
+
+doif game "C12DS_Lite_Loaded" eq 0
+    scrx 2 21 6511 1
+    scrx 2 21 6511 4
+    scrx 2 21 6511 6
+    scrx 2 21 6511 2
+    scrx 2 21 6511 3
+endi

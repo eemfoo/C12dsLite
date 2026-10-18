@@ -1,0 +1,268 @@
+**CAOS2Pray Join
+*# C3-Name "Smashing Jugs (C3)"
+*# DS-Name "Smashing Jugs"
+*# Agent Description = "C12DS-Lite Smashing Jugs"
+*# Agent Animation Gallery = "c1breakablejugvendor"
+*# Agent Animation File = "c1breakablejugvendor.c16"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Attach "../images/c1breakablejugvendor.c16"
+*# Attach "../images/c1breakablejug.c16"
+*# Attach "../sounds/c1ba.wav"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../sounds/c1v1.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+
+****************************
+* C1 BreakableJug
+****************************
+
+* Dependencies:
+*	c1ba.wav
+*	c1d2.wav
+*	C1BreakableJug.c16
+*	Breakable jug: 2 21 6510
+*	Breakable jug vendor: 2 23 6502
+
+* Installers
+inst
+
+new: vhcl 2 23 6502 "c1breakablejugvendor" 1 0 100
+attr 711
+accg 7
+bhvr 11
+fric 90
+aero 0
+elas 20
+perm 70
+cabn 0 0 58 71
+doif game "C12DS_Lite_Installing" = 1 and totl 2 23 6502 <= 1
+* 	new Breakable Jug in Ettin house
+	mvsf 4303 19068
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 5 10 -2
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 5 10 -2
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 5 10 -2
+		mvsf va00 va01
+	endi
+endi
+
+****************************
+* Scripts
+
+scrp 2 21 6510 1
+*	BreakableJug is pushed
+	inst
+	lock
+	stim writ from 97 1
+	doif carr <> null
+		doif type carr = 6
+			rpas carr ownr
+		elif type carr = 7
+			mesg writ carr 23
+		endi
+	endi
+	setv ov90 posl
+	setv ov91 post
+	velo rand -20 20 rand -30 -20
+endm
+
+scrp 2 21 6510 4
+*	Breakable Jug is picked up
+endm
+
+scrp 2 21 6510 6
+*	Breakable Jug collides
+	inst
+	doif vely > 3 or vely < -3 and obst down <= 10
+		tick rand 30 40
+		velo 0 0
+		elas 0
+		sndc "c1ba"
+		attr 192
+		bhvr 0
+		anim [1 2 3 4]
+		over
+	elif vely > 3 or vely < -3 and obst down > 10
+		snde "c1d2"
+	endi
+endm
+
+scrp 2 21 6510 9
+*	breakable jug timer
+	inst
+	addv ov99 1
+	doif ov99 > 1
+		targ ownr
+		kill targ
+	endi
+endm
+
+scrp 2 23 6502 1
+*	vendor pushed
+	inst
+	stim writ from 90 1.0
+	setv va02 0
+	epas 0 0 0
+		addv va02 1
+	next
+	doif va02 < 10
+		sndc "c1v1"
+		setv va00 posl
+		setv va01 post
+		addv va00 5
+		addv va01 45
+		new: simp 2 21 6510 "c1breakablejug" 7 0 200
+		attr 199
+		accg 3
+		bhvr 43
+		fric 90
+		aero 0
+		elas 40
+		perm 70
+		mvsf va00 va01
+		spas ownr targ
+		velo 0 0
+	endi
+endm
+
+scrp 2 23 6502 6
+*	jug vendor collides
+	inst
+	stpc
+	doif vely > 3 or vely < -3 and obst down <= 10
+		sndc "c1d2"
+		epas 2 21 6510
+			inst
+			doif targ <> null
+				rpas ownr targ
+				tick rand 30 40
+				velo 0 0
+				elas 0
+				sndc "c1ba"
+				attr 192
+				bhvr 0
+				anim [1 2 3 4]
+			endi
+		next
+	endi
+endm
+
+scrp 2 21 6510 2
+*	BreakableJug is pushed
+	inst
+	lock
+	stim writ from 97 1
+	doif carr <> null
+		doif type carr = 6
+			rpas carr ownr
+		elif type carr = 7
+			mesg writ carr 23
+		endi
+	endi
+	setv ov90 posl
+	setv ov91 post
+	velo rand -20 20 rand -30 -20
+endm
+
+scrp 2 21 6510 3
+*	BreakableJug is pushed
+	inst
+	lock
+	stim writ from 97 1
+	doif carr <> null
+		doif type carr = 6
+			rpas carr ownr
+		elif type carr = 7
+			mesg writ carr 23
+		endi
+	endi
+	setv ov90 posl
+	setv ov91 post
+	velo rand -20 20 rand -30 -20
+endm
+
+scrp 2 23 6502 2
+*	vendor pushed
+	inst
+	stim writ from 90 1.0
+	setv va02 0
+	epas 0 0 0
+		addv va02 1
+	next
+	doif va02 < 10
+		sndc "c1v1"
+		setv va00 posl
+		setv va01 post
+		addv va00 5
+		addv va01 45
+		new: simp 2 21 6510 "c1breakablejug" 7 0 200
+		attr 199
+		accg 3
+		bhvr 43
+		fric 90
+		aero 0
+		elas 40
+		perm 70
+		mvsf va00 va01
+		spas ownr targ
+		velo 0 0
+	endi
+endm
+
+scrp 2 23 6502 3
+
+    inst
+    stim writ from 92 1
+    sndc "c1d2"
+endm
+
+rscr
+inst
+doif game "C12DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    setv va00 -1
+endi
+
+enum 2 21 6510
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
+
+enum 2 23 6502
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
+
+doif game "C12DS_Lite_Loaded" eq 0
+    scrx 2 21 6510 1
+    scrx 2 21 6510 4
+    scrx 2 21 6510 6
+    scrx 2 21 6510 9
+    scrx 2 23 6502 1
+    scrx 2 23 6502 6
+    scrx 2 21 6510 2
+    scrx 2 21 6510 3
+    scrx 2 23 6502 2
+    scrx 2 23 6502 3
+endi

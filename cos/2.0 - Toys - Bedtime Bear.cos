@@ -1,0 +1,148 @@
+**CAOS2Pray Join
+*# C3-Name "Bedtime Bear (C3)"
+*# DS-Name "Bedtime Bear"
+*# Agent Description = "C12DS-Lite Bedtime Bear"
+*# Agent Animation Gallery = "c1teddy"
+*# Agent Animation File = "c1teddy.c16"
+*# Agent Sprite First Image = 0
+*# Agent Animation String = "0"
+*# Agent Bioenergy Value = 0
+*# Attach "../images/c1teddy.c16"
+*# Attach "../sounds/c1tg.wav"
+*# Attach "../sounds/c1d2.wav"
+*# Attach "../catalogue/c12dsl.catalogue"
+
+* Bed Time Bear
+* Encourages creatures to sleep if they are too tired or sleepy
+
+inst
+new: simp 2 21 6507 "c1teddy" 7 0 200
+attr 199
+accg 3
+bhvr 43
+fric 90
+aero 0
+elas 0
+perm 70
+doif game "C12DS_Lite_Installing" = 1 and totl 2 21 6507 <= 1
+* 	Bedtime bear in norn house
+	mvto 1660 18670
+elif type game "ds_game_type" ne 2
+* 	it's NOT a string, this must be C3 only
+* 	choose a safe C3 location
+	setv va00 5440
+	setv va01 3580
+	velo rand 30 40 -5
+	mvsf va00 va01
+else
+* 	it IS a string, but what is the value?
+	doif game "ds_game_type" eq "undocked"
+* 		this is an undocked world, location needs to be DS safe
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	elif game "ds_game_type" eq "docked"
+* 		this is a docked world, location can be anywhere in the DS/C3 realm
+		setv va00 6100
+		setv va01 9200
+		velo rand 30 40 -5
+		mvsf va00 va01
+	endi
+endi
+
+scrp 2 21 6507 1
+    inst
+    lock
+    sndc "c1tg"
+    stim writ from 97 1
+    seta va00 carr
+    targ from
+    doif targ ne null
+        doif crea targ = 1
+            doif va00 ne targ
+                mesg writ targ 22
+            endi
+            doif drv! = 7 or drv! = 8
+                doif aslp = 0
+                    driv 8 10.0
+                endi
+            endi
+        endi
+    endi
+endm
+
+scrp 2 21 6507 4
+*	bed time bear is picked up
+endm
+
+scrp 2 21 6507 6
+*	bed time bear collides
+	inst
+	lock
+	sndc "c1d2"
+endm
+
+scrp 2 21 6507 2
+    inst
+    lock
+    sndc "c1tg"
+    stim writ from 97 1
+    seta va00 carr
+    targ from
+    doif targ ne null
+        doif crea targ = 1
+            doif va00 ne targ
+                mesg writ targ 22
+            endi
+            doif drv! = 7 or drv! = 8
+                doif aslp = 0
+                    driv 8 10.0
+                endi
+            endi
+        endi
+    endi
+endm
+
+scrp 2 21 6507 3
+    inst
+    lock
+    sndc "c1tg"
+    stim writ from 97 1
+    seta va00 carr
+    targ from
+    doif targ ne null
+        doif crea targ = 1
+            doif va00 ne targ
+                mesg writ targ 22
+            endi
+            doif drv! = 7 or drv! = 8
+                doif aslp = 0
+                    driv 8 10.0
+                endi
+            endi
+        endi
+    endi
+endm
+
+rscr
+inst
+doif game "C12DS_Lite_Loaded" eq 1
+    setv va00 game "c12dsl::metaroom::id"
+else
+    setv va00 -1
+endi
+
+enum 2 21 6507
+    doif gmap posl post ne va00
+        kill targ
+    endi
+next
+
+doif game "C12DS_Lite_Loaded" eq 0
+    scrx 2 21 6507 1
+    scrx 2 21 6507 4
+    scrx 2 21 6507 6
+    scrx 2 21 6507 2
+    scrx 2 21 6507 3
+endi
