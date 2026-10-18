@@ -1,0 +1,106 @@
+****************************
+* C1 Red Ball
+****************************
+* Classifiers:
+*  2 21 6500 - BALL
+*
+* Dependencies:
+*  c1b4.wav
+*  c1ball.c16
+*  c1c2.wav
+*  c1s3.wav splash
+*****************************
+
+* pump cover up
+new: simp 1 5 6513 "c1pump" 1 4 0
+attr 0
+mvto 2224 18814
+
+* actual pump
+new: comp 2 21 6513 "c1pump" 4 0 200
+attr 4
+bhvr 11
+fric 100
+aero 0
+elas 0
+pat: dull 1 "c1water" 0 83 41 1
+part 1
+pose 0
+mvto 2203 18814
+
+
+
+scrp 2 21 6513 1
+*	pump is pushed
+    lock
+    doif ov99 <> 1
+        stim writ from 97 1
+        setv ov99 1
+        reps 1
+            part 0
+            anim [0 1 2 3 3]
+            over
+            part 1
+            anim [ 1 2 3 4 5 0]
+            sndc "c1cf"
+            part 0
+            anim [3 2 1 0]
+            over
+        repe
+        setv ov99 0
+    endi
+endm
+
+scrp 2 21 6513 2
+    *	pump is pushed
+    lock
+    doif ov99 <> 1
+        stim writ from 97 1
+        setv ov99 1
+        reps 1
+            part 0
+            anim [0 1 2 3 3]
+            over
+            part 1
+            anim [ 1 2 3 4 5 0]
+            sndc "c1cf"
+            part 0
+            anim [3 2 1 0]
+            over
+        repe
+        setv ov99 0
+    endi
+endm
+
+
+scrp 2 21 6513 3
+*	pump is pushed
+    lock
+    doif ov99 <> 1
+        stim writ from 97 1
+        setv ov99 1
+        reps 1
+            part 0
+            anim [0 1 2 3 3]
+            over
+            part 1
+            anim [ 1 2 3 4 5 0]
+            sndc "c1cf"
+            part 0
+            anim [3 2 1 0]
+            over
+        repe
+        setv ov99 0
+    endi
+endm
+
+
+rscr
+* pump remover
+enum 2 21 32333
+    kill targ
+next
+enum 1 5 32333
+    kill targ
+next
+scrx 2 21 32333 1
