@@ -289,7 +289,7 @@ scrp 1 1 6504 1000
 
     * Get modifier for carrot beetles
     setv va96 0
-    enum 2 2 6500
+    enum 2 13 6500
         doif gmap posl post eq va98
             addv va96 rand 1 2
         endi
