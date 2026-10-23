@@ -72,8 +72,10 @@ const addMusicAndWriteMap = function () {
         out += `    rmsc ${midX} ${midY} "c1_music.mng\\\\c12ds"\r\n`;
     }
 
+
     try {
         fs.writeFileSync(outputMapFile, out, "latin1");
+        outputMapFile = outputFileName;
         return true;
     } catch (e) {
         const error = e instanceof Error ? e.message : e;

@@ -42,7 +42,7 @@ function linkCos(text, relativePath, prefixComment = null) {
         } else {
             fs.copyFileSync(path, outFile);
         }
-        text.push(`*# Link \"${outFile}\"`);
+        text.push(`*# Link \"${fileName}\"`);
         return outFile;
     }
 

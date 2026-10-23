@@ -40,7 +40,7 @@ const classifierData = {
     "name": "Food"
   },
   "2 12": {
-    "bhvr": 48,
+    "bhvr": 11,
     "name": "Buttons and Switches"
   },
   "2 13": {

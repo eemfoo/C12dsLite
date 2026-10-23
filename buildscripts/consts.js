@@ -1,5 +1,5 @@
 // === CONFIG === //
-const COMPILER_VERSION = "1.2.4";
+const COMPILER_VERSION = "1.3.0";
 const AGENT_NAME_PREFIX="C12DS-Lite"
 
 // === Node Imports === //

@@ -67,7 +67,7 @@ function buildCAOSFile() {
 
     // Add Joins if any
     if (useJoins) {
-        text = text.concat(joins.map((file) => "*# Join \"" + file + "\""));
+        text = text.concat(joins.map((file) => "*# Join \"" + file.split(/[\\\/]/).pop() + "\""));
     }
 
     // Insert CAOS2Pray statements into Main.cos
@@ -107,29 +107,39 @@ async function _compile() {
 
         buildCAOSFile();
 
-        const compilerArgs = ["compile", caos2PrayFilePath, "-o", __dirname];
-        const debug = argv.find((arg) => arg.toLowerCase() === "--debug") != null;
-        if (debug) {
-            compilerArgs.push("--debug");
-        }
+       const compilerArgs = ["compile", caos2PrayFilePath, "-o", __dirname];
+       const debug = argv.find((arg) => arg.toLowerCase() === "--debug") != null;
+       if (debug) {
+           compilerArgs.push("--debug");
+       }
 
-        let child;
-        try {
-            console.log("Compiling agent...");
-            child = spawn(exe, compilerArgs);
-        } catch (e) {
+       let child;
+       try {
+           console.log("Compiling agent...");
+           child = spawn(exe, compilerArgs);
+       } catch (e) {
 //		 	fs.rmSync(exe, exe + ".broken");
-            reject(e);
-        }
+           reject(e);
+       }
 
-        // use child.stdout.setEncoding('utf8'); if you want text chunks
-        child.stdout.on('data', (chunk) => {
+       // use child.stdout.setEncoding('utf8'); if you want text chunks
+       child.stdout.on('data', (chunk) => {
+           console.log(chunk.toString());
+       });
+
+        // Capture error output (stderr)
+        child.stderr.on('data', (chunk) => {
             console.log(chunk.toString());
         });
 
-        child.on('close', (code) => {
-            resolve(code);
+        // Handle spawn errors (e.g., command not found)
+        child.on('error', (err) => {
+            console.error(err.message);
         });
+
+       child.on('close', (code) => {
+           resolve(code);
+       });
     });
 }
 
