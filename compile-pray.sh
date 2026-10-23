@@ -127,6 +127,16 @@ async function _compile() {
            console.log(chunk.toString());
        });
 
+        // Capture error output (stderr)
+        child.stderr.on('data', (chunk) => {
+            console.log(chunk.toString());
+        });
+
+        // Handle spawn errors (e.g., command not found)
+        child.on('error', (err) => {
+            console.error(err.message);
+        });
+
        child.on('close', (code) => {
            resolve(code);
        });
