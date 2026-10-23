@@ -45,7 +45,7 @@ function deleteTempCaosFiles() {
  * @param code
  */
 function exitProcess(code) {
-    cleanTemporaryFiles(code !== 0);
+    // cleanTemporaryFiles(code !== 0);
     _exitProcess(code);
 }
 

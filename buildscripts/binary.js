@@ -24,7 +24,7 @@ function getBinaryError(binary, versionTextFilePath) {
     if (fileSize === 0) {
         return "File failed to download any bytes";
     }
-    if (fileSize < 8000000) {
+    if (fileSize < 3500000) {
         return "Incomplete file download";
     }
 
@@ -75,7 +75,7 @@ async function getCompiler() {
     let exe;
     switch (platform.toLowerCase()) {
         case "darwin":
-            exe = arch === "arm" ?
+            exe = arch === "arm64" ?
                 `https://github.com/bedalton/CreatureBinaries/raw/main/agent-util/${COMPILER_VERSION}/Kotlin-Native/macos-arm64/agent-util` :
                 `https://github.com/bedalton/CreatureBinaries/raw/main/agent-util/${COMPILER_VERSION}/Kotlin-Native/macos-x64/agent-util`;
             break;
@@ -84,7 +84,7 @@ async function getCompiler() {
             exe = `https://github.com/bedalton/CreatureBinaries/raw/main/agent-util/${COMPILER_VERSION}/Kotlin-Native/windows-x64/agent-util.exe`;
             break;
         default:
-            exe = arch === "arm" ?
+            exe = arch === "arm64" ?
                 `https://github.com/bedalton/CreatureBinaries/raw/main/agent-util/${COMPILER_VERSION}/Kotlin-Native/linux-arm64/agent-util` :
                 `https://github.com/bedalton/CreatureBinaries/raw/main/agent-util/${COMPILER_VERSION}/Kotlin-Native/linux-x64/agent-util`;
             break;
